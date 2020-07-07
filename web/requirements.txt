@@ -1,0 +1,12 @@
+setuptools==39.0.1
+six==1.10.0
+FormEncode==1.3.0
+bottle==0.12.18
+pyOpenSSL==19.1.0
+core==1.0.1
+flup==1.0.3
+kid==0.9.6
+mod_python==3.4.3
+python_openid==2.2.5
+pyPgSQL==2.5
+scgi==2.0
