@@ -24,6 +24,19 @@
       <div class="row clearfix">
         <div class="col-md-9 column">
           <form id="NewForm" name="NewForm" onsubmit="return false"><br>
+فعل: <select id='verb'  class='form-inline' name='verb'>
+	<option></option>
+	<option>شَرِبَ</option>
+	<option>ضَرِبَ</option>
+	<option>ذَهَبَ</option>
+	<option>قَالَ</option>
+</select>
+فعل مساعد: <select id='auxiliary'  class='form-inline' name='auxiliary'>
+	<option></option>
+	<option>َاِسْتَطَاع</option>
+	<option>أَرَادَ</option>
+	<option>كَادَ</option>
+</select>
 فاعل: <select id='subject'  class='form-inline' name='subject'>
 	<option>أنا</option>
 	<option>نحن</option>
@@ -39,11 +52,9 @@
 	<option>هما مؤ</option>
 	<option>هم</option>
 	<option>هن</option>
-</select>
-فعل مساعد: <select id='auxiliary'  class='form-inline' name='auxiliary'>
-	<option>َاِسْتَطَاع</option>
-	<option>أَرَادَ</option>
-	<option>كَادَ</option>
+	<option></option>
+	<option>أَحْمَد</option>
+	<option>وَلَدٌ</option>
 </select>
 مفعول: <select id='object'  class='form-inline' name='object'>
 	<option>أنا</option>
@@ -60,30 +71,9 @@
 	<option>هما مؤ</option>
 	<option>هم</option>
 	<option>هن</option>
-	<option>حليب</option>
-</select>
-ظرف زمان: <select id='time'  class='form-inline' name='time'>
-	<option>أحيانا</option>
-	<option>أول أمس</option>
-	<option>أمس</option>
-	<option>غدا</option>
-	<option>دائما</option>
-	<option>بعد غد</option>
-	<option>كل يوم</option>
-	<option>مساء</option>
-	<option>البارحة</option>
-	<option>اليوم</option>
-	<option>صباحا</option>
-</select>
-فعل: <select id='verb'  class='form-inline' name='verb'>
-	<option>شَرِبَ</option>
-	<option>ضَرِبَ</option>
-	<option>ذَهَبَ</option>
-	<option>قَالَ</option>
-</select>
-مثبت/منفي: <select id='negative'  class='form-inline' name='negative'>
-	<option>مثبت</option>
-	<option>منفي</option>
+	<option></option>
+	<option>حَلِيبٌ</option>
+	<option>بَابٌ</option>
 </select>
 مبني للمعلوم/مجهول: <select id='voice'  class='form-inline' name='voice'>
 	<option>معلوم</option>
@@ -92,15 +82,32 @@
 زمن: <select id='tense'  class='form-inline' name='tense'>
 	<option>الماضي المعلوم</option>
 	<option>المضارع المعلوم</option>
-	<option>المضارع المؤكد الثقيل</option>
 	<option>الأمر</option>
-	<option>الأمر المؤكد</option>
+</select>
+ظرف زمان: <select id='time'  class='form-inline' name='time'>
+	<option>دائما</option>
+	<option>صباحا</option>
+	<option>غدا</option>
+	<option>كل يوم</option>
+	<option>مساء</option>
+	<option>اليوم</option>
+	<option>أحيانا</option>
+	<option>البارحة</option>
+	<option>بعد غد</option>
+	<option>أول أمس</option>
+	<option>أمس</option>
 </select>
 ظرف مكان: <select id='place'  class='form-inline' name='place'>
+	<option></option>
 	<option>بيت</option>
 	<option>السوق</option>
 	<option>المدرسة</option>
 </select>
+مثبت/منفي: <select id='negative'  class='form-inline' name='negative'>
+	<option>مثبت</option>
+	<option>منفي</option>
+</select>
+
 
 
     <br>

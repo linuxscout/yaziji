@@ -40,7 +40,10 @@ class componentsSet:
         ]
         self.times = list(yaziji_const.TENSES.keys())
         self.places = [u"", u"بيت", u"السوق", u"المدرسة"]
-        self.tenses = vconst.TABLE_TENSE
+        self.tenses = [vconst.TensePast,
+                        vconst.TenseFuture, 
+                        vconst.TenseImperative,      
+        ]
         self.voices = [u"معلوم", u"مبني للمجهول"]
         self.auxiliaries = [u"", u"َاِسْتَطَاع",
         u"أَرَادَ",
