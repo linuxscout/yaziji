@@ -31,18 +31,18 @@ class componentsSet:
     A class to generate random data
     """
     def __init__(self,):
-        self.subjects = vconst.PronounsTable
-        self.objects = list(vconst.PronounsTable) + [u"حليب"]
-        self.verbs = [  u"شَرِبَ",
+        self.subjects = list(vconst.PronounsTable)+ [u"", u"أَحْمَد", u"وَلَدٌ"]
+        self.objects = list(vconst.PronounsTable) + [u"", u"حَلِيبٌ", u"بَابٌ"]
+        self.verbs = [ u"", u"شَرِبَ",
             u"ضَرِبَ",
             u"ذَهَبَ",
             u"قَالَ",
         ]
         self.times = list(yaziji_const.TENSES.keys())
-        self.places = [u"بيت", u"السوق", u"المدرسة"]
+        self.places = [u"", u"بيت", u"السوق", u"المدرسة"]
         self.tenses = vconst.TABLE_TENSE
         self.voices = [u"معلوم", u"مبني للمجهول"]
-        self.auxiliaries = [u"َاِسْتَطَاع",
+        self.auxiliaries = [u"", u"َاِسْتَطَاع",
         u"أَرَادَ",
         u"كَادَ",
         ]
