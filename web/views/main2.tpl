@@ -16,8 +16,9 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
   </head>
   <body dir="rtl">
-    <h2>يازجي</h2>
-    <h3>مولد الجمل العربية</h3>
+                   <p> <a href="/mishkal/main"><img alt="مشكال: تشكيل النصوص العربية" height="120px" src="/_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
+    <!--<h2>يازجي</h2>
+    <h3>مولد الجمل العربية</h3>-->
 
     <div class="container">
       <div class="row clearfix">
@@ -91,16 +92,9 @@
 زمن: <select id='tense'  class='form-inline' name='tense'>
 	<option>الماضي المعلوم</option>
 	<option>المضارع المعلوم</option>
-	<option>المضارع المجزوم</option>
-	<option>المضارع المنصوب</option>
 	<option>المضارع المؤكد الثقيل</option>
 	<option>الأمر</option>
 	<option>الأمر المؤكد</option>
-	<option>الماضي المجهول</option>
-	<option>المضارع المجهول</option>
-	<option>المضارع المجهول المجزوم</option>
-	<option>المضارع المجهول المنصوب</option>
-	<option>المضارع المؤكد الثقيل المجهول </option>
 </select>
 ظرف مكان: <select id='place'  class='form-inline' name='place'>
 	<option>بيت</option>
