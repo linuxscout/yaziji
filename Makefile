@@ -34,12 +34,11 @@ upload:
 
 doc:
 	epydoc -v --config epydoc.conf
+test1:
+	python3  yaziji/phrase_generator.py> tests/output/text.out.txt
 test:
-	cd tests;python test_genelex.py -f samples/text.txt -o output/text.csv > output/text.out.txt
-testqrn:
-	cd tests;python test_genelex.py -f samples/text.txt -o output/text.csv > output/text.out.txt
-testaffix:
-	cd tests;python test_print_affixes.py > output/affixes.csv
+	cd tests;python3  test.py> output/text.out.txt
+
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
 

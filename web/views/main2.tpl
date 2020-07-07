@@ -113,6 +113,7 @@
     <br>
             <div class="form-inline"><a class="btn btn-primary" id="phrase" title="بناء الجملة"><span>بناء</span></a>
             <a class="btn btn-primary" id="random_select" title="عشوائي"><span>عشوائي</span></a>
+            <a class="btn btn-primary" id="sample" title="عينة"><span>عينة</span></a>
               <input checked="checked" class="checkbox" id="LastMark" value="1"
                 type="checkbox"> حركة الإعراب</div>
           </form>

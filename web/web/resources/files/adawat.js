@@ -382,8 +382,32 @@ var more_click = function(e) {
       "verb":document.NewForm.verb.value,
       "time":document.NewForm.time.value,
       "place":document.NewForm.place.value,
+      "tense":document.NewForm.tense.value,
+      "voice":document.NewForm.voice.value,
+      "auxiliary":document.NewForm.auxiliary.value,
+      "negative":document.NewForm.negative.value,
     }, function(d) {
       $("#result").html("<div class=\'tashkeel\'>" + d.result + "</div>");
+
+    });
+  }
+    var sample_click = function(e) {
+        e.preventDefault()
+    var item;
+    $.getJSON(script + "/ajaxGet", {
+      text: document.NewForm.subject.value,
+      action: "sample",
+      "subject":document.NewForm.subject.value,
+      "object":document.NewForm.object.value,
+      "verb":document.NewForm.verb.value,
+      "time":document.NewForm.time.value,
+      "place":document.NewForm.place.value,
+      "tense":document.NewForm.tense.value,
+      "voice":document.NewForm.voice.value,
+      "auxiliary":document.NewForm.auxiliary.value,
+      "negative":document.NewForm.negative.value,
+    }, function(d) {
+      $("#result").html( d.result);
 
     });
   }
@@ -1091,6 +1115,7 @@ $().ready(function() {
   $(document).on( 'click', '#spellcheck', spellcheck_click );
   $(document).on( 'click', '#synt', synt_click );
   $(document).on( 'click', '#phrase', phrase_click );
+  $(document).on( 'click', '#sample', sample_click );
   $(document).on( 'click', '#random_select', random_select_click );
   $(document).on( 'click', '#tashkeel2', tashkeel2_click );
   $(document).on( 'click', '#tashkeel', tashkeel_click );

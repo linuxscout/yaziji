@@ -52,7 +52,7 @@ if __name__ == '__main__':
     dataset = components_set.componentsSet()
     components = dataset.get_random()
     phrase = phraser.build(components)
-    print(u"".join(["<%s>"%x for x in components.values()]))
+    print(u"".join(["<%s:%s>"%(x,components[x]) for x in components]))
     print(phraser.pattern.stream.__str__())
     print(phrase)
     sys.exit(main(sys.argv))

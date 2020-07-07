@@ -34,6 +34,8 @@ class PhrasePattern:
     def __init__(self):
         
         self.stream = stream_pattern.streamPattern(["subject", 
+        "auxiliary",
+        "negation",
         "verb",
         "object",
         "time",
@@ -76,6 +78,22 @@ class PhrasePattern:
         Add a verb to phrase
         """
         self.verb = verb
+    def add_negative(self, negative):
+        """
+        Add a negative to phrase
+        """
+        self.negative = negative
+    def add_tense(self, tense):
+        """
+        Add a tense to phrase
+        """
+        self.tense = tense
+    def add_voice(self, voice):
+        """
+        Add a voice to phrase
+        """
+        self.voice = voice
+
     def add_components(self, components):
         """
         Add components
@@ -85,6 +103,10 @@ class PhrasePattern:
         self.add_verb(components.get("verb",""))
         self.add_time_circumstance(components.get("time",""))
         self.add_place_circumstance(components.get("place",""))
+        self.add_tense(components.get("tense",""))
+        self.add_negative(components.get("negative",""))
+        self.add_voice(components.get("voice",""))
+        self.add_auxiliary(components.get("auxiliary",""))
     
     def prepare(self,):
         """
@@ -93,12 +115,23 @@ class PhrasePattern:
         #prepare the verb
         # extract tense
         tense = self.get_tense(self.time_circumstance)
-        # extract pronoun
+        tense_aux = tense
+        tense_verb = tense
         pronoun = self.get_pronoun(self.subject)
-        transitive = True
-        future_type = araby.FATHA
-        vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type) 
-        self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense, pronoun)
+        self.verb_conjugated = ""
+        if self.auxiliary:
+            tense_aux = tense
+            tense_verb = vconst.TenseSubjunctiveFuture
+            # if auxiliary the tense change
+            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive=False,future_type=araby.FATHA) 
+            self.verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
+            self.verb_factor = u"أن"       
+        else:
+            self.stream.remove("auxiliary")
+            self.stream.remove("factor_auxiliary")
+        # verb
+        vbc = libqutrub.classverb.VerbClass(self.verb, transitive=True,future_type=araby.FATHA) 
+        self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
         
         # if the subject is a pronoun, it will be omitted
         if self.is_pronoun(self.subject):
@@ -121,7 +154,32 @@ class PhrasePattern:
         """
         Extract tense from time circomstance
         """
-        return yaziji_const.TENSES.get(time_word,"")        
+        # get the primary tense
+        tense = ""
+        # if not time circum or is neutral
+        if not time_word or yaziji_const.TENSES.get(time_word,""):
+            if self.tense:
+                tense = self.tense
+        else:
+            tense = yaziji_const.TENSES.get(time_word,"")
+        # negative
+        if self.negative == u"منفي":
+            # if past the verb will be future majzum
+            if tense == vconst.TensePast:
+                tense = vconst.TenseJussiveFuture
+            elif tense == vconst.TenseFuture:
+                tense = vconst.TenseSubjunctiveFuture
+        #voice active
+        if self.voice == u"مبني للمجهول":
+            if tense == vconst.TensePast:
+                tense = vconst.TensePassivePast
+            elif tense == vconst.TenseFuture:
+                tense = vconst.TensePassiveFuture
+            elif tense == vconst.TenseJussiveFuture:
+                tense = vconst.TensePassiveJussiveFuture
+            elif tense == vconst.TenseSubjunctiveFuture:
+                tense = vconst.TensePassiveSubjunctiveFuture
+        return tense       
         
     def get_pronoun(self, word):
         """
@@ -130,7 +188,8 @@ class PhrasePattern:
         if word in vconst.PronounsTable:
             return word
         else:
-            return vconst.Pronoun_Huwa
+            return vconst.PronounHuwa
+    
     def is_pronoun(self, word):
         """
         get if is pronoun
@@ -151,6 +210,14 @@ class PhrasePattern:
             return self.time_circumstance
         elif key == "place":
             return self.place_circumstance
+        elif key == "tense":
+            return self.tense
+        elif key == "negative":
+            return self.negative
+        elif key == "voice":
+            return self.voice            
+        elif key == "auxiliary":
+            return self.verb_aux           
         return ""
 
             
