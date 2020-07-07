@@ -23,49 +23,23 @@
 import libqutrub.verb_const as vconst
 import libqutrub.classverb
 import pyarabic.araby as araby
-class streamPattern:
-    """
-    a class to handle pattern stream order
-    """
-    def __init__(self, stream_list):
-        self.stream = stream_list
-    
-    def add(self, attribute, before="", after=""):
-        """
-        add an attribute after or before another attribute
-        """
-        pass
-    def remove(self, name):
-        """
-        remove a component from stream
-        """
-        if name in self.stream:
-            self.stream.remove(name)
-    def __list__(self,):
-        """
-        list of content
-        """
-        return list(self.stream)
+import alyahmor.verb_affixer
 
-    def __str__(self,):
-        """
-        str of content
-        """
-        return (u"".join(["<%s>"%x for x in self.stream]))
-        #~ return u" ".join(self.stream)
-    
+import yaziji_const
+import stream_pattern
 class PhrasePattern:
     """
     A class to generator
     """
     def __init__(self):
         
-        self.stream = streamPattern(["subject", 
+        self.stream = stream_pattern.streamPattern(["subject", 
         "verb",
         "object",
         "time",
         "place",
         ])
+        self.verbaffixer = alyahmor.verb_affixer.verb_affixer()
     
     def add_subject(self, subject):
         """
@@ -116,18 +90,39 @@ class PhrasePattern:
         """
         extract more data from components
         """
+        #prepare the verb
         # extract tense
-        tense = vconst.TensePast
+        tense = self.get_tense(self.time_circumstance)
         # extract pronoun
         pronoun = self.get_pronoun(self.subject)
         transitive = True
         future_type = araby.FATHA
         vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type) 
         self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense, pronoun)
-
+        
+        # if the subject is a pronoun, it will be omitted
         if self.is_pronoun(self.subject):
             self.stream.remove("subject")
-
+            
+        # if the object is a pronoun
+        if self.is_pronoun(self.predicate):
+            v_enclitic = self.get_enclitic(self.predicate)
+            #~ self.verb_conjugated += "-" + v_enclitic
+            forms = self.verbaffixer.vocalize(self.verb_conjugated, proclitic="", enclitic=v_enclitic)
+            self.verb_conjugated = forms[0][0]
+            self.stream.remove("object")
+    def get_enclitic(self, pronoun):
+        """
+        Extract enclitic
+        """
+        return yaziji_const.ENCLITICS.get(pronoun,"")
+        
+    def get_tense(self, time_word):
+        """
+        Extract tense from time circomstance
+        """
+        return yaziji_const.TENSES.get(time_word,"")        
+        
     def get_pronoun(self, word):
         """
         get the pronoun of the word
@@ -143,6 +138,9 @@ class PhrasePattern:
         return word in vconst.PronounsTable
 
     def get_component(self, key):
+        """
+        Select a component by name
+        """
         if key == "subject":
             return self.subject
         elif key == "object":
@@ -165,7 +163,6 @@ class PhrasePattern:
         phrase = []
         for key in self.stream.__list__():
             phrase.append(self.get_component(key))
-        #~ phrase = [self.subject, self.verb_conjugated, self.predicate, self.time_circumstance, self.place_circumstance]
         phrase = u" ".join(phrase)
         return phrase
         

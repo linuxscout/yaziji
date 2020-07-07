@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
+#  adaat.py
 #  
 #  Copyright 2020 zerrouki <zerrouki@majd4>
 #  
@@ -19,40 +20,41 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-#
-import random
+#  
+import os.path
+import sys
+sys.path.append(os.path.join("../yaziji"))
 
-import libqutrub.verb_const as vconst
-
-import phrase_pattern
-import components_set
-class PhraseGenerator:
+import phrase_generator
+def DoAction(text, action, options = {}):
     """
-    A class to generator
+    do action by name
     """
-    def __init__(self):
-        
-        self.pattern = phrase_pattern.PhrasePattern()
-    
-    def build(self, table_compononts):
-        """
-        
-        """
-        self.pattern.add_components(table_compononts)
-        self.pattern.prepare()
-        phrase = self.pattern.build()
+    if action == "DoNothing":
+        return text
+    elif action == "phrase":
+        return build_phrase(options)
         return phrase
+    else:
 
+        return text
+
+def build_phrase(options):        
+    phraser = phrase_generator.PhraseGenerator()
+    #~ dataset = components_set.componentsSet()
+    components = options
+    #~ values = options.values()
+    #~ phrase  = repr(options) #u"+".join(values)
+    #~ return phrase
+          
+    phrase = phraser.build(components)
+    print(u"".join(["<%s>"%x for x in components.values()]))
+    print(phraser.pattern.stream.__str__())
+    return phrase
+    
 def main(args):
     return 0
 
 if __name__ == '__main__':
     import sys
-    phraser = PhraseGenerator()
-    dataset = components_set.componentsSet()
-    components = dataset.get_random()
-    phrase = phraser.build(components)
-    print(u"".join(["<%s>"%x for x in components.values()]))
-    print(phraser.pattern.stream.__str__())
-    print(phrase)
     sys.exit(main(sys.argv))
