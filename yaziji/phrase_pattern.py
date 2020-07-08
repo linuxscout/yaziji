@@ -27,6 +27,25 @@ import alyahmor.verb_affixer
 
 import yaziji_const
 import stream_pattern
+class wordNode:
+    """
+    a word node 
+    """
+    def __init__(self, name, value):
+        self.name  = name
+        self.value = value
+        # the word form
+        self.conjugated = value
+        self.prefix = ""
+        self.suffix = ""
+        self.before = ""
+        self.after = ""
+        self.tense = ""
+
+    def set_null(self,):
+        self.value = ""
+        self.conjugated = ""
+        
 class PhrasePattern:
     """
     A class to generator
@@ -41,101 +60,78 @@ class PhrasePattern:
         "time",
         "place",
         ])
+        self.nodes = {}
         self.verbaffixer = alyahmor.verb_affixer.verb_affixer()
     
-    def add_subject(self, subject):
-        """
-        Add a subject to phrase
-        """
-        self.subject = subject
-
-    def add_predicate(self, an_object):
-        """
-        Add a object to phrase
-        """
-        self.predicate = an_object
-
-    def add_auxiliary(self, auxiliary):
-        """
-        Add a auxiliary to phrase
-        """
-        self.auxiliary = auxiliary
-
-    def add_place_circumstance(self, circumstance):
-        """
-        Add a place circumstance to phrase
-        """
-        self.place_circumstance = circumstance
-
-    def add_time_circumstance(self, circumstance):
-        """
-        Add a time circumstance to phrase
-        """
-        self.time_circumstance = circumstance
-
-    def add_verb(self, verb):
-        """
-        Add a verb to phrase
-        """
-        self.verb = verb
-    def add_negative(self, negative):
-        """
-        Add a negative to phrase
-        """
-        self.negative = negative
-    def add_tense(self, tense):
-        """
-        Add a tense to phrase
-        """
-        self.tense = tense
-    def add_voice(self, voice):
-        """
-        Add a voice to phrase
-        """
-        self.voice = voice
 
     def add_components(self, components):
         """
         Add components
         """
-        self.add_subject(components.get("subject",""))
-        self.add_predicate(components.get("object",""))
-        self.add_verb(components.get("verb",""))
-        self.add_time_circumstance(components.get("time",""))
-        self.add_place_circumstance(components.get("place",""))
-        self.add_tense(components.get("tense",""))
-        self.add_negative(components.get("negative",""))
-        self.add_voice(components.get("voice",""))
-        self.add_auxiliary(components.get("auxiliary",""))
-    
+        self.nodes["subject"]  = wordNode("subject", components.get("subject",""))
+        self.nodes["object"]   = wordNode("object",  components.get("object",""))
+        self.nodes["verb"]     = wordNode("verb",    components.get("verb",""))
+        self.nodes["time"]     = wordNode("time",    components.get("time",""))
+        self.nodes["place"]    = wordNode("place",   components.get("place",""))
+        self.nodes["tense"]    = wordNode("tense",   components.get("tense",""))
+        self.nodes["negative"] = wordNode("negative", components.get("negative",""))
+        self.nodes["voice"]    = wordNode("voice",   components.get("voice",""))
+        self.nodes["auxiliary"] = wordNode("auxiliary", components.get("auxiliary","")) 
+        
+        self.subject   = self.nodes["subject"].value
+        self.predicate = self.nodes["object"].value
+        self.verb      = self.nodes["verb"].value
+        self.tense     = self.nodes["tense"].value
+        self.negative  = self.nodes["negative"].value
+        self.voice     = self.nodes["voice"].value
+        self.auxiliary = self.nodes["auxiliary"].value
+        self.time_circumstance  = self.nodes["time"].value
+        self.place_circumstance = self.nodes["place"].value
+
     def prepare(self,):
         """
         extract more data from components
         """
         #prepare the verb
         # extract tense
-        tense = self.get_tense(self.time_circumstance)
-        tense_aux = tense
+        tense = self.get_tense(self.nodes["time"].value)
+        tense_aux  = tense
         tense_verb = tense
-        pronoun = self.get_pronoun(self.subject)
+        pronoun = self.get_pronoun(self.nodes["subject"].value)
         self.verb_conjugated = ""
-        if self.auxiliary:
+        if self.nodes["auxiliary"].value:
             tense_aux = tense
             tense_verb = vconst.TenseSubjunctiveFuture
             # if auxiliary the tense change
             vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive=False,future_type=araby.FATHA) 
-            self.verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
-            self.verb_factor = u"أن"       
+            verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
+            verb_factor = u"أن"
+            self.verb_aux = verb_aux
+            self.nodes["auxiliary"].tense = tense_aux
+            self.nodes["auxiliary"].conjugated = verb_aux
+            self.nodes["auxiliary"].after = verb_factor
+            if tense_aux == vconst.TenseJussiveFuture:
+                self.nodes["auxiliary"].before = u"لم"
+            elif tense_aux == vconst.TenseSubjunctiveFuture:
+                self.nodes["auxiliary"].before = u"لن"
+
         else:
             self.stream.remove("auxiliary")
+            self.nodes["auxiliary"].set_null()    
             self.stream.remove("factor_auxiliary")
         # verb
         vbc = libqutrub.classverb.VerbClass(self.verb, transitive=True,future_type=araby.FATHA) 
         self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
-        
+        self.nodes["verb"].tense = tense_verb    
+        self.nodes["verb"].conjugated = self.verb_conjugated
+        if tense_verb == vconst.TenseJussiveFuture:
+            self.nodes["verb"].before = u"لم"
+        elif tense_verb in (vconst.TenseSubjunctiveFuture, vconst.TensePassiveSubjunctiveFuture) and not self.nodes["auxiliary"].value:
+            self.nodes["verb"].before = u"لن"
         # if the subject is a pronoun, it will be omitted
         if self.is_pronoun(self.subject):
             self.stream.remove("subject")
+            self.nodes["subject"].set_null()             
             
         # if the object is a pronoun
         if self.is_pronoun(self.predicate):
@@ -143,7 +139,9 @@ class PhrasePattern:
             #~ self.verb_conjugated += "-" + v_enclitic
             forms = self.verbaffixer.vocalize(self.verb_conjugated, proclitic="", enclitic=v_enclitic)
             self.verb_conjugated = forms[0][0]
+            self.nodes["verb"].conjugated = self.verb_conjugated
             self.stream.remove("object")
+            self.nodes["object"].set_null()             
     def get_enclitic(self, pronoun):
         """
         Extract enclitic
@@ -158,19 +156,19 @@ class PhrasePattern:
         tense = ""
         # if not time circum or is neutral
         if not time_word or yaziji_const.TENSES.get(time_word,""):
-            if self.tense:
-                tense = self.tense
+            if self.nodes["tense"].value:
+                tense = self.nodes["tense"].value
         else:
             tense = yaziji_const.TENSES.get(time_word,"")
         # negative
-        if self.negative == u"منفي":
+        if self.nodes["negative"].value == u"منفي":
             # if past the verb will be future majzum
             if tense == vconst.TensePast:
                 tense = vconst.TenseJussiveFuture
             elif tense == vconst.TenseFuture:
                 tense = vconst.TenseSubjunctiveFuture
         #voice active
-        if self.voice == u"مبني للمجهول":
+        if self.nodes["voice"].value == u"مبني للمجهول":
             if tense == vconst.TensePast:
                 tense = vconst.TensePassivePast
             elif tense == vconst.TenseFuture:
@@ -196,31 +194,7 @@ class PhrasePattern:
         """
         return word in vconst.PronounsTable
 
-    def get_component(self, key):
-        """
-        Select a component by name
-        """
-        if key == "subject":
-            return self.subject
-        elif key == "object":
-            return self.predicate
-        elif key == "verb":
-            return self.verb_conjugated
-        elif key == "time":
-            return self.time_circumstance
-        elif key == "place":
-            return self.place_circumstance
-        elif key == "tense":
-            return self.tense
-        elif key == "negative":
-            return self.negative
-        elif key == "voice":
-            return self.voice            
-        elif key == "auxiliary":
-            return self.verb_aux           
-        return ""
-
-            
+           
         
     def build(self,):
         """
@@ -229,7 +203,13 @@ class PhrasePattern:
         # build phrase according to stream
         phrase = []
         for key in self.stream.__list__():
-            phrase.append(self.get_component(key))
+            wn = self.nodes.get(key, None)
+            if wn:
+                if wn.before:
+                    phrase.append(wn.before)
+                phrase.append(wn.conjugated) 
+                if wn.after:
+                    phrase.append(wn.after)                
         phrase = u" ".join(phrase)
         return phrase
         
