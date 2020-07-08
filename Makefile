@@ -38,7 +38,8 @@ test1:
 	python3  yaziji/phrase_generator.py> tests/output/text.out.txt
 test:
 	cd tests;python3  test.py> output/text.out.txt
-
+server:
+	cd web;python3  test.py
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
 
