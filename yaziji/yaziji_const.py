@@ -51,8 +51,8 @@ TENSES = {
         u"أَمْسِ": vconst.TensePast,
         u"أَوَّلَ أَمْسِ": vconst.TensePast,
         # neutral
-        u"صَبَاحًا": vconst.TensePast,
-        u"مَسَاءً": vconst.TensePast,
+        u"صَبَاحًا": "",
+        u"مَسَاءً": "",
         }
 
 TRANSLATION={
@@ -74,16 +74,16 @@ STREAMS= {
         "negation",
         "verb",
         "object",
-        "time",
         "place",
+        "time",
         ],
     u"جملة اسمية": [        "subject", 
     "auxiliary",
         "negation",
         "verb",
         "object",
-        "time",
         "place",
+        "time",
         ],
     u"جملة فعلية":
         ["auxiliary",
@@ -91,8 +91,8 @@ STREAMS= {
         "negation",
         "verb",
         "object",
-        "time",
         "place",
+        "time",
         ],
     }
 

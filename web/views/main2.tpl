@@ -58,7 +58,7 @@
 	<option>شَرِبَ</option>
 	<option>ضَرِبَ</option>
 	<option>ذَهَبَ</option>
-	<option>قَالَ</option>
+	<option>جَلَسَ</option>
 </select>
 زمن: <select id='tense'  class='form-inline' name='tense'>
 	<option>الماضي المعلوم</option>

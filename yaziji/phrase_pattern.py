@@ -123,17 +123,20 @@ class PhrasePattern:
         tense_aux  = tense
         tense_verb = tense
         pronoun = self.get_pronoun(self.nodes["subject"].value)
+        pronoun_aux = pronoun
         self.verb_conjugated = ""
         if self.nodes["auxiliary"].value and self.nodes["verb"].value:
             tense_aux = tense
+            if self.nodes['voice'].value =="مبني للمجهول":
+                pronoun_aux = vconst.PronounHuwa
             tense_verb = vconst.TenseSubjunctiveFuture
             # if auxiliary the tense change
             transitive, future_type = self.get_verb_attributes(self.auxiliary)            
-            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive,future_type)
-            if not self.is_compatible(tense_aux, pronoun):
-                verb_aux = u"[ '%s' خطأ: الأمر لا يقبل ضمير المتكلم أو المخاطب]"%pronoun
+            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive, future_type)
+            if not self.is_compatible(tense_aux, pronoun_aux):
+                verb_aux =  u"[ImperativeError '%s']"%pronoun_aux       
             else:
-                verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
+                verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun_aux)
             verb_factor = u"أَنْ"
             self.verb_aux = verb_aux
             self.nodes["auxiliary"].tense = tense_aux
@@ -151,7 +154,7 @@ class PhrasePattern:
             transitive, future_type = self.get_verb_attributes(self.verb)
             vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type)
             if not self.is_compatible(tense_verb, pronoun):
-                self.verb_conjugated = u"[ '%s' خطأ: الأمر لا يقبل ضمير المتكلم أو المخاطب]"%pronoun            
+                self.verb_conjugated = u"[ImperativeError '%s']"%pronoun            
             else:
                 self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
                 
@@ -167,7 +170,7 @@ class PhrasePattern:
                 self.nodes["subject"].set_null()             
                 
             # if the object is a pronoun
-            if self.is_pronoun(self.predicate) and  self.nodes["voice"].value != u"مبني للمجهول":
+            if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.nodes["voice"].value != u"مبني للمجهول" :
                 v_enclitic = self.get_enclitic(self.predicate)
                 #~ self.verb_conjugated += "-" + v_enclitic
                 forms = self.verbaffixer.vocalize(self.verb_conjugated, proclitic="", enclitic=v_enclitic)
@@ -188,7 +191,7 @@ class PhrasePattern:
                 # إذا كان مبنيا للمجهول
                 # ما لم يسم فاعله
                 # او خبر
-                if self.nodes['voice'].value =="مبني للمجهول":
+                elif self.nodes['voice'].value =="مبني للمجهول" and not self.nodes['auxiliary'].value:
                     self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
 
                 else:
@@ -263,7 +266,7 @@ class PhrasePattern:
         # get the primary tense
         tense = ""
         # if not time circum or is neutral
-        if not time_word or yaziji_const.TENSES.get(time_word,""):
+        if not time_word or not yaziji_const.TENSES.get(time_word,""):
             if self.nodes["tense"].value:
                 tense = self.nodes["tense"].value
         else:

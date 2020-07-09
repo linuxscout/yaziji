@@ -37,7 +37,7 @@ class componentsSet:
         self.verbs = [ u"", u"شَرِبَ",
             u"ضَرِبَ",
             u"ذَهَبَ",
-            u"قَالَ",
+            u"جَلَسَ",
         ]
         self.times = [u""] + list(yaziji_const.TENSES.keys()) 
         self.places = [u"", u"بيت", u"سوق", u"مدرسة"]

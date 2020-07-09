@@ -1,6 +1,8 @@
 #/usr/bin/sh
 # Build yaziji package
 
+LIBREOFFICE=libreoffice6.3
+
 default: all
 # Clean build files
 clean:
@@ -40,11 +42,14 @@ test:
 	cd tests;python3  test.py -c test --limit 10 -o output/text.out.csv
 gen:
 	cd tests;python3  test.py -c generate --limit 10 -o output/text.sample.csv
-eval:
-	cd tests;python3  test.py -c eval --limit 10 -f samples/sample10.csv -o output/text.eval.csv
+eval:ods
+	
+	cd tests;python3  test.py -c test --limit 10 -f samples/tmp/sample10.csv -o output/text.eval.csv
 
 server:
 	cd web;python3  test.py
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
 
+ods:
+	$(LIBREOFFICE) --headless --convert-to "csv:Text - txt - csv (StarCalc):9,34,UTF8" --outdir tests/samples/tmp/ tests/samples/*.ods
