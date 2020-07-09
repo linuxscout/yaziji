@@ -131,3 +131,6 @@ dmypy.json
 *.css~
 *.bak
 /tests/output/
+/tests/samples/.~lock.sample10.xlsx#
+/tests/samples/sample10.xlsx
+/tests/samples/tmp/sample10.csv
