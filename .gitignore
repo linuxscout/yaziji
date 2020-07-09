@@ -127,6 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/web/web/resources/files/adawat.js~
-/web/web/resources/files/adawatstyle.css~
-/web/web/resources/templates/main.2.html
+*.js~
+*.css~
+*.bak
+/tests/output/

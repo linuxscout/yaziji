@@ -1,5 +1,5 @@
 #/usr/bin/sh
-# Build alyahmor package
+# Build yaziji package
 
 default: all
 # Clean build files
@@ -30,14 +30,19 @@ install3:
 sdist:
 	sudo python setup.py sdist
 upload:
-	echo "use twine upload dist/alyahmor-0.1-py2-none-any.whl"
+	echo "use twine upload dist/yaziji-0.1-py2-none-any.whl"
 
 doc:
 	epydoc -v --config epydoc.conf
 test1:
 	python3  yaziji/phrase_generator.py> tests/output/text.out.txt
 test:
-	cd tests;python3  test.py> output/text.out.txt
+	cd tests;python3  test.py -c test --limit 10 -o output/text.out.csv
+gen:
+	cd tests;python3  test.py -c generate --limit 10 -o output/text.sample.csv
+eval:
+	cd tests;python3  test.py -c eval --limit 10 -f samples/sample10.csv -o output/text.eval.csv
+
 server:
 	cd web;python3  test.py
 select:

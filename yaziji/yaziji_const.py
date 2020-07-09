@@ -40,19 +40,19 @@ ENCLITICS = {vconst.PronounAna : u"ني",
         
 TENSES = {
         # future
-        u"غدا": vconst.TenseFuture,
-        u"اليوم": vconst.TenseFuture,
-        u"كل يوم": vconst.TenseFuture,
-        u"دائما": vconst.TenseFuture,
-        u"أحيانا": vconst.TenseFuture,
-        u"بعد غد": vconst.TenseFuture,
+        u"غَدًا": vconst.TenseFuture,
+        u"الْيَوْمَ": vconst.TenseFuture,
+        u"كُلَّ يَوْمٍ": vconst.TenseFuture,
+        u"دَائِمًا": vconst.TenseFuture,
+        u"أَحْيَانًا": vconst.TenseFuture,
+        u"بَعْدَ غَدٍ": vconst.TenseFuture,
         # past
-        u"البارحة": vconst.TensePast,
-        u"أمس": vconst.TensePast,
-        u"أول أمس": vconst.TensePast,
+        u"الْبَارِحَةَ": vconst.TensePast,
+        u"أَمْسِ": vconst.TensePast,
+        u"أَوَّلَ أَمْسِ": vconst.TensePast,
         # neutral
-        u"صباحا": vconst.TensePast,
-        u"مساء": vconst.TensePast,
+        u"صَبَاحًا": vconst.TensePast,
+        u"مَسَاءً": vconst.TensePast,
         }
 
 TRANSLATION={
@@ -65,4 +65,52 @@ TRANSLATION={
             "voice":u"مبني للمعلوم/مجهول",
             "auxiliary":u"فعل مساعد",
             "negative":u"مثبت/منفي",
+            u"phrase_type":u"نوع الجملة",
         }
+
+STREAMS= {
+    "default": ["auxiliary",
+        "subject", 
+        "negation",
+        "verb",
+        "object",
+        "time",
+        "place",
+        ],
+    u"جملة اسمية": [        "subject", 
+    "auxiliary",
+        "negation",
+        "verb",
+        "object",
+        "time",
+        "place",
+        ],
+    u"جملة فعلية":
+        ["auxiliary",
+        "subject", 
+        "negation",
+        "verb",
+        "object",
+        "time",
+        "place",
+        ],
+    }
+
+SPECIAL_VOCALIZED ={
+    u'أنا': u'أَنَا',
+u'نحن': u'نَحْنُ',
+u'أنت': u'أَنْتَ',
+u'أنتِ': u'أَنْتِ',
+u'أنتما': u'أَنْتُمَا',
+u'أنتما مؤ': u'أَنْتُمَا',
+u'أنتم': u'أَنْتُمْ',
+u'أنتن': u'أَنْتُنَّ',
+u'هو': u'هُوَ',
+u'هي': u'هِي',
+u'هما': u'هُمَا',
+u'هما مؤ': u'هُمَا',
+u'هم': u'هُمْ',
+u'هن': u'هُنَّ',
+
+    
+}

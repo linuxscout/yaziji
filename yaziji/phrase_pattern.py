@@ -25,6 +25,7 @@ import libqutrub.classverb
 import libqutrub.verb_db
 import pyarabic.araby as araby
 import alyahmor.verb_affixer
+import alyahmor.noun_affixer
 import arramooz.arabicdictionary
 
 import yaziji_const
@@ -43,6 +44,7 @@ class wordNode:
         self.before = ""
         self.after = ""
         self.tense = ""
+        self.transitive = True
 
     def set_null(self,):
         self.value = ""
@@ -54,18 +56,32 @@ class PhrasePattern:
     """
     def __init__(self):
         
-        self.stream = stream_pattern.streamPattern(["subject", 
-        "auxiliary",
+        self.stream = stream_pattern.streamPattern(["auxiliary",
+        "subject", 
         "negation",
         "verb",
         "object",
         "time",
         "place",
         ])
-        self.nodes = {}
+        
+
         self.verbaffixer = alyahmor.verb_affixer.verb_affixer()
+        self.nounaffixer = alyahmor.noun_affixer.noun_affixer()
         self.verb_dict = arramooz.arabicdictionary.ArabicDictionary('verbs')
-    
+        self.noun_dict = arramooz.arabicdictionary.ArabicDictionary('nouns')
+        default_wn =  wordNode("default", "")  
+        self.nodes = {"subject"  : default_wn,
+        "object"   : default_wn,
+        "verb"     : default_wn,
+        "time"     : default_wn,
+        "place"    : default_wn,
+        "tense"    : default_wn,
+        "negative" : default_wn,
+        "voice"    : default_wn,
+        "auxiliary" : default_wn,
+        "phrase_type":default_wn,
+        }
 
     def add_components(self, components):
         """
@@ -80,6 +96,12 @@ class PhrasePattern:
         self.nodes["negative"] = wordNode("negative", components.get("negative",""))
         self.nodes["voice"]    = wordNode("voice",   components.get("voice",""))
         self.nodes["auxiliary"] = wordNode("auxiliary", components.get("auxiliary","")) 
+        phrase_type = components.get("phrase_type","")
+        self.nodes["phrase_type"] = wordNode("phrase_type", components.get("phrase","")) 
+        
+        stream = yaziji_const.STREAMS.get(phrase_type, yaziji_const.STREAMS["default"] )
+        print(phrase_type, stream) 
+        self.stream = stream_pattern.streamPattern(stream)
         
         self.subject   = self.nodes["subject"].value
         self.predicate = self.nodes["object"].value
@@ -102,51 +124,132 @@ class PhrasePattern:
         tense_verb = tense
         pronoun = self.get_pronoun(self.nodes["subject"].value)
         self.verb_conjugated = ""
-        if self.nodes["auxiliary"].value:
+        if self.nodes["auxiliary"].value and self.nodes["verb"].value:
             tense_aux = tense
             tense_verb = vconst.TenseSubjunctiveFuture
             # if auxiliary the tense change
             transitive, future_type = self.get_verb_attributes(self.auxiliary)            
-            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive,future_type) 
-            verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
-            verb_factor = u"أن"
+            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive,future_type)
+            if not self.is_compatible(tense_aux, pronoun):
+                verb_aux = u"[ '%s' خطأ: الأمر لا يقبل ضمير المتكلم أو المخاطب]"%pronoun
+            else:
+                verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun)
+            verb_factor = u"أَنْ"
             self.verb_aux = verb_aux
             self.nodes["auxiliary"].tense = tense_aux
             self.nodes["auxiliary"].conjugated = verb_aux
             self.nodes["verb"].before = verb_factor
-            if tense_aux == vconst.TenseJussiveFuture:
-                self.nodes["auxiliary"].before = u"لم"
-            elif tense_aux == vconst.TenseSubjunctiveFuture:
-                self.nodes["auxiliary"].before = u"لن"
+            if tense_aux in (vconst.TenseJussiveFuture, vconst.TensePassiveJussiveFuture):
+                self.nodes["auxiliary"].before = u"لَمْ"
+            elif tense_aux in (vconst.TenseSubjunctiveFuture, vconst.TensePassiveSubjunctiveFuture) :
+                self.nodes["auxiliary"].before = u"لَنْ"
 
         else:
             self.nodes["auxiliary"].set_null()    
         # verb
         if self.verb:
             transitive, future_type = self.get_verb_attributes(self.verb)
-            vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type) 
-            self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
+            vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type)
+            if not self.is_compatible(tense_verb, pronoun):
+                self.verb_conjugated = u"[ '%s' خطأ: الأمر لا يقبل ضمير المتكلم أو المخاطب]"%pronoun            
+            else:
+                self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
+                
             self.nodes["verb"].tense = tense_verb    
+            self.nodes["verb"].transitive = transitive    
             self.nodes["verb"].conjugated = self.verb_conjugated
-            if tense_verb == vconst.TenseJussiveFuture:
-                self.nodes["verb"].before = u"لم"
+            if tense_verb in (vconst.TenseJussiveFuture, vconst.TensePassiveJussiveFuture):
+                self.nodes["verb"].before = u"لَمْ"
             elif tense_verb in (vconst.TenseSubjunctiveFuture, vconst.TensePassiveSubjunctiveFuture) and not self.nodes["auxiliary"].value:
-                self.nodes["verb"].before = u"لن"
+                self.nodes["verb"].before = u"لَنْ"
             # if the subject is a pronoun, it will be omitted
             if self.is_pronoun(self.subject):
                 self.nodes["subject"].set_null()             
                 
             # if the object is a pronoun
-            if self.is_pronoun(self.predicate):
+            if self.is_pronoun(self.predicate) and  self.nodes["voice"].value != u"مبني للمجهول":
                 v_enclitic = self.get_enclitic(self.predicate)
                 #~ self.verb_conjugated += "-" + v_enclitic
                 forms = self.verbaffixer.vocalize(self.verb_conjugated, proclitic="", enclitic=v_enclitic)
                 self.verb_conjugated = forms[0][0]
                 self.nodes["verb"].conjugated = self.verb_conjugated
-                self.stream.remove("object")
-                self.nodes["object"].set_null()
         if self.place_circumstance :
+            word = self.place_circumstance
             self.nodes["place"].before = u"فِي"
+            self.nodes["place"].conjugated  = self.conjugate_noun(word, u"مجرور")       
+        if self.predicate :
+            # if is there is verb
+            word = self.predicate
+            if self.nodes['verb'].value:
+                # إذا كان الضمير متصلا
+                # أو الفعل لازما
+                if self.is_pronoun(self.predicate) or not self.nodes['verb'].transitive:
+                    self.nodes["object"].set_null()
+                # إذا كان مبنيا للمجهول
+                # ما لم يسم فاعله
+                # او خبر
+                if self.nodes['voice'].value =="مبني للمجهول":
+                    self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+
+                else:
+
+                    self.nodes["object"].conjugated  = self.conjugate_noun(word, u"منصوب")       
+            else:
+                # مبتدأ وخبر
+                self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+                
+        if self.subject :
+            # if is there is verb
+            word = self.subject
+            if self.nodes['verb'].value:
+                # إذا كان الضمير متصلا
+                # أو الفعل مبني للمجهول
+                if self.is_pronoun(self.subject) or self.nodes['voice'].value =="مبني للمجهول":
+                    self.nodes["subject"].set_null()
+   
+            # مبتدأ وخبر
+            self.nodes["subject"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+                
+
+    def conjugate_noun(self, word, tag):
+        """
+        conjugate a word according to tag
+        """
+        enclitic = u""        
+        proclitic = u""       
+        suffix = ""
+        if tag == u"منصوب":
+            suffix = araby.FATHA
+        elif tag == u"مجرور":
+            suffix = araby.KASRA
+        elif tag == u"مرفوع":
+            suffix = araby.DAMMA
+        else:
+            suffix = araby.FATHA
+            
+        if not self.is_pronoun(word):
+            proclitic = u"ال"
+
+        if word in yaziji_const.SPECIAL_VOCALIZED:
+            voc = yaziji_const.SPECIAL_VOCALIZED[word]
+            conj = voc
+        else:
+            # get vocalized form of the word
+            noun_tuple = self.get_noun_attributes(word)
+            voc = noun_tuple.get("vocalized","")
+            forms = self.nounaffixer.vocalize(voc, proclitic, suffix, enclitic)
+            if forms:
+                conj = forms[0][0] 
+            else:
+                conj = word
+        return conj
+        
+            
+    def is_compatible(self, tense, pronoun):
+        
+        if tense == vconst.TenseImperative and pronoun not in vconst.ImperativePronouns:
+            return False
+        return True
     def get_enclitic(self, pronoun):
         """
         Extract enclitic
@@ -187,10 +290,10 @@ class PhrasePattern:
         """
         return transitive and future_type
         """
-        transitive = False
+        transitive = True
         future_type = araby.FATHA
         
-        tmp_list = []
+
         word_nm = araby.strip_tashkeel(word)
         foundlist = self.verb_dict.lookup(word_nm)
         for word_tuple in foundlist:
@@ -212,6 +315,27 @@ class PhrasePattern:
             #~ print("vocalized", vocalized)
         #~ print("verb************", word)
         return transitive, future_type
+
+    def get_noun_attributes(self, word):
+        """
+        return vocalized form
+        """
+        vocalized = word
+       
+        word_nm = araby.strip_tashkeel(word)
+        foundlist = self.noun_dict.lookup(word_nm)
+        word_tuple_res = None
+        for word_tuple in foundlist:
+            word_tuple = dict(word_tuple)
+            # if found the same vocalization
+            word_tuple_res = word_tuple
+            break
+        else: # no vocalization, try the first one
+            if foundlist:
+                word_tuple_res = dict(foundlist[0])
+            else:
+                word_tuple_res = {"vocalized":word}
+        return word_tuple_res        
     def get_pronoun(self, word):
         """
         get the pronoun of the word

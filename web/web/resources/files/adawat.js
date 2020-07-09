@@ -386,6 +386,7 @@ var more_click = function(e) {
       "voice":document.NewForm.voice.value,
       "auxiliary":document.NewForm.auxiliary.value,
       "negative":document.NewForm.negative.value,
+      "phrase_type":document.NewForm.phrase_type.value,
     }, function(d) {
       $("#result").html("<div class=\'tashkeel\'>" + d.result + "</div>");
 
@@ -406,6 +407,7 @@ var more_click = function(e) {
       "voice":document.NewForm.voice.value,
       "auxiliary":document.NewForm.auxiliary.value,
       "negative":document.NewForm.negative.value,
+      "phrase_type":document.NewForm.phrase_type.value,
     }, function(d) {
       $("#result").html( d.result);
 
@@ -451,7 +453,10 @@ var more_click = function(e) {
     var options = $("#auxiliary > option");
     var random = Math.floor(options.length * (Math.random() % 1));
     $("#auxiliary > option").attr('selected',false).eq(random).attr('selected',true);
-
+    // phrase_type
+    var options = $("#phrase_type > option");
+    var random = Math.floor(options.length * (Math.random() % 1));
+    $("#phrase_type > option").attr('selected',false).eq(random).attr('selected',true);
   }
 // Gramatical Analysis
  var synt_click = function(e) {

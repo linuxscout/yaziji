@@ -51,8 +51,9 @@ if __name__ == '__main__':
     phraser = PhraseGenerator()
     dataset = components_set.componentsSet()
     components = dataset.get_random()
-    phrase = phraser.build(components)
-    print(u"".join(["<%s:%s>"%(x,components[x]) for x in components]))
-    print(phraser.pattern.stream.__str__())
-    print(phrase)
+    for comp in components:
+        phrase = phraser.build(comp)
+        print(u"".join(["<%s:%s>"%(x,comp[x]) for x in comp]))
+        print(phraser.pattern.stream.__str__())
+        print(phrase)
     sys.exit(main(sys.argv))

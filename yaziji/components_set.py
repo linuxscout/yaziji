@@ -23,6 +23,7 @@
 # 
 import random
 
+
 import libqutrub.verb_const as vconst
 import yaziji_const
 
@@ -31,26 +32,56 @@ class componentsSet:
     A class to generate random data
     """
     def __init__(self,):
-        self.subjects = list(vconst.PronounsTable)+ [u"", u"أَحْمَد", u"وَلَدٌ"]
-        self.objects = list(vconst.PronounsTable) + [u"", u"حَلِيبٌ", u"بَابٌ"]
+        self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
+        self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 
         self.verbs = [ u"", u"شَرِبَ",
             u"ضَرِبَ",
             u"ذَهَبَ",
             u"قَالَ",
         ]
-        self.times = list(yaziji_const.TENSES.keys())
-        self.places = [u"", u"بيت", u"السوق", u"المدرسة"]
+        self.times = [u""] + list(yaziji_const.TENSES.keys()) 
+        self.places = [u"", u"بيت", u"سوق", u"مدرسة"]
         self.tenses = [vconst.TensePast,
                         vconst.TenseFuture, 
                         vconst.TenseImperative,      
         ]
         self.voices = [u"معلوم", u"مبني للمجهول"]
-        self.auxiliaries = [u"", u"َاِسْتَطَاع",
+        self.auxiliaries = [u"", u"اِسْتَطَاعَ",
+
         u"أَرَادَ",
         u"كَادَ",
         ]
         self.negative = [u"مثبت", u"منفي"]        
-    
+        self.comp={
+            "subject":self.subjects,
+            "object":self.objects,
+            "verb":self.verbs,
+            "time":self.times,
+            "place":self.places,
+            "tense":self.tenses,
+            "voice":self.voices,
+            "auxiliary":self.auxiliaries,
+            "negative":self.negative,
+            "phrase_type":[u"جملة فعلية", u"جملة اسمية",
+            ],
+            
+        }   
+        # order of displaying keys
+        self.comp_keys_order = [
+            "phrase_type",
+            "separator",            
+            "subject",
+            "separator",            
+            "auxiliary",
+            "verb",
+            "tense",
+            "voice",
+            "negative",
+            "separator",
+            "object",
+            "time",
+            "place",
+        ]
     def load(self,filename):
         """
         load data from file
@@ -62,42 +93,30 @@ class componentsSet:
         """
         return yaziji_const.TRANSLATION.get(word, word)
         
-    def get_random(self,):
+    def get_random(self, limit=1):
         """ generate random phrase"""
-        comp={
-            "subject":random.choice(self.subjects),
-            "object":random.choice(self.objects),
-            "verb":random.choice(self.verbs),
-            "time":random.choice(self.times),
-            "place":random.choice(self.places),
-            "tense":random.choice(self.tenses),
-            "voice":random.choice(self.voices),
-            "auxiliary":random.choice(self.auxiliaries),
-            "negative":random.choice(self.negative),
-        }
-        return comp
+        
+        list_comp = []
+        for i in range(limit):
+            random_comp={}
+            for key in self.comp:
+                random_comp[key] = random.choice(self.comp[key])
+            list_comp.append(random_comp)
+        return list_comp
     
     def generate_select(self,):
         """
          generation select options
         """
-        comp={
-            "subject":self.subjects,
-            "object":self.objects,
-            "verb":self.verbs,
-            "time":self.times,
-            "place":self.places,
-            "tense":self.tenses,
-            "voice":self.voices,
-            "auxiliary":self.auxiliaries,
-            "negative":self.negative,
-        }   
         text = ""     
-        for key in comp:
-            text += u"%s: "%self.get_translation(key)
-            text += u"<select id='%s'  class='form-inline' name='%s'>\n"%(key, key)
-            text += u"\n".join(["\t<option>%s</option>"%x for x in comp[key]])
-            text += u"\n</select>\n"
+        for key in self.comp_keys_order:
+            if key == "separator":
+                text += "<br/>"
+            else:
+                text += u"%s: "%self.get_translation(key)
+                text += u"<select id='%s'  class='form-inline' name='%s'>\n"%(key, key)
+                text += u"\n".join(["\t<option>%s</option>"%x for x in self.comp[key]])
+                text += u"\n</select>\n"
         return text
 def main(args):
     dataset = componentsSet()
