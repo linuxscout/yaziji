@@ -114,3 +114,10 @@ u'هن': u'هُنَّ',
 
     
 }
+
+AUXILIARY= {
+     u"اِسْتَطَاعَ":araby.KASRA,
+        u"أَرَادَ": araby.KASRA,
+        u"كَادَ":araby.FATHA,
+    
+}

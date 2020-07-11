@@ -38,10 +38,20 @@ class PhraseGenerator:
         """
         
         """
-        self.pattern.add_components(table_compononts)
-        self.pattern.prepare()
-        phrase = self.pattern.build()
+        success = self.pattern.add_components(table_compononts)
+        if success < 0:
+            phrase = self.error_message(success)
+        else:
+            self.pattern.prepare()
+            phrase = self.pattern.build()
+
         return phrase
+
+    def error_message(self, error_no):
+        if error_no == -1:
+            return "Imperative Tense Incompatible with pronoun"
+        else:
+            return "Input Error"
 
 def main(args):
     return 0

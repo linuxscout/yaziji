@@ -51,8 +51,11 @@ def send_image(filename):
 @app.route('/mishkal/index')
 @view('main2')
 def main():
+    #~ selection ="<textarea>Taha Zerrouki</textarea>"
     return {'DefaultText':u"جائحة كورونا",
-      'ResultText':u"السلام عليكم",}
+      'ResultText':u"السلام عليكم",
+      #~ "Selection":selection
+      }
 
 @app.route('/ajaxGet')
 @app.route('/mishkal/ajaxGet')

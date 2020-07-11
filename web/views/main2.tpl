@@ -25,92 +25,92 @@
         <div class="col-md-9 column">
           <form id="NewForm" name="NewForm" onsubmit="return false"><br>
 نوع الجملة: <select id='phrase_type'  class='form-inline' name='phrase_type'>
-	<option>جملة فعلية</option>
-	<option>جملة اسمية</option>
+    <option>جملة فعلية</option>
+    <option>جملة اسمية</option>
 </select>
 <br/>فاعل: <select id='subject'  class='form-inline' name='subject'>
-	<option></option>
-	<option>أَحْمَد</option>
-	<option>وَلَدٌ</option>
-	<option>أنا</option>
-	<option>نحن</option>
-	<option>أنت</option>
-	<option>أنتِ</option>
-	<option>أنتما</option>
-	<option>أنتما مؤ</option>
-	<option>أنتم</option>
-	<option>أنتن</option>
-	<option>هو</option>
-	<option>هي</option>
-	<option>هما</option>
-	<option>هما مؤ</option>
-	<option>هم</option>
-	<option>هن</option>
+    <option></option>
+    <option>أَحْمَد</option>
+    <option>وَلَدٌ</option>
+    <option>أنا</option>
+    <option>نحن</option>
+    <option>أنت</option>
+    <option>أنتِ</option>
+    <option>أنتما</option>
+    <option>أنتما مؤ</option>
+    <option>أنتم</option>
+    <option>أنتن</option>
+    <option>هو</option>
+    <option>هي</option>
+    <option>هما</option>
+    <option>هما مؤ</option>
+    <option>هم</option>
+    <option>هن</option>
 </select>
 <br/>فعل مساعد: <select id='auxiliary'  class='form-inline' name='auxiliary'>
-	<option></option>
-	<option>اِسْتَطَاعَ</option>
+    <option></option>
+    <option>اِسْتَطَاعَ</option>
 <option>أَرَادَ</option>
-	<option>كَادَ</option>
+    <option>كَادَ</option>
 </select>
 فعل: <select id='verb'  class='form-inline' name='verb'>
-	<option></option>
-	<option>شَرِبَ</option>
-	<option>ضَرِبَ</option>
-	<option>ذَهَبَ</option>
-	<option>جَلَسَ</option>
+    <option></option>
+    <option>شَرِبَ</option>
+    <option>ضَرَبَ</option>
+    <option>ذَهَبَ</option>
+    <option>جَلَسَ</option>
 </select>
 زمن: <select id='tense'  class='form-inline' name='tense'>
-	<option>الماضي المعلوم</option>
-	<option>المضارع المعلوم</option>
-	<option>الأمر</option>
+    <option>الماضي المعلوم</option>
+    <option>المضارع المعلوم</option>
+    <option>الأمر</option>
 </select>
 مبني للمعلوم/مجهول: <select id='voice'  class='form-inline' name='voice'>
-	<option>معلوم</option>
-	<option>مبني للمجهول</option>
+    <option>معلوم</option>
+    <option>مبني للمجهول</option>
 </select>
 مثبت/منفي: <select id='negative'  class='form-inline' name='negative'>
-	<option>مثبت</option>
-	<option>منفي</option>
+    <option>مثبت</option>
+    <option>منفي</option>
 </select>
 <br/>مفعول: <select id='object'  class='form-inline' name='object'>
-	<option></option>
-	<option>حَلِيبٌ</option>
-	<option>بَابٌ</option>
-	<option>أنا</option>
-	<option>نحن</option>
-	<option>أنت</option>
-	<option>أنتِ</option>
-	<option>أنتما</option>
-	<option>أنتما مؤ</option>
-	<option>أنتم</option>
-	<option>أنتن</option>
-	<option>هو</option>
-	<option>هي</option>
-	<option>هما</option>
-	<option>هما مؤ</option>
-	<option>هم</option>
-	<option>هن</option>
+    <option></option>
+    <option>حَلِيبٌ</option>
+    <option>بَابٌ</option>
+    <option>أنا</option>
+    <option>نحن</option>
+    <option>أنت</option>
+    <option>أنتِ</option>
+    <option>أنتما</option>
+    <option>أنتما مؤ</option>
+    <option>أنتم</option>
+    <option>أنتن</option>
+    <option>هو</option>
+    <option>هي</option>
+    <option>هما</option>
+    <option>هما مؤ</option>
+    <option>هم</option>
+    <option>هن</option>
 </select>
 ظرف زمان: <select id='time'  class='form-inline' name='time'>
-	<option></option>
-	<option>دَائِمًا</option>
-	<option>أَوَّلَ أَمْسِ</option>
-	<option>الْبَارِحَةَ</option>
-	<option>أَحْيَانًا</option>
-	<option>بَعْدَ غَدٍ</option>
-	<option>مَسَاءً</option>
-	<option>أَمْسِ</option>
-	<option>الْيَوْمَ</option>
-	<option>غَدًا</option>
-	<option>صَبَاحًا</option>
-	<option>كُلَّ يَوْمٍ</option>
+    <option></option>
+    <option>دَائِمًا</option>
+    <option>أَوَّلَ أَمْسِ</option>
+    <option>الْبَارِحَةَ</option>
+    <option>أَحْيَانًا</option>
+    <option>بَعْدَ غَدٍ</option>
+    <option>مَسَاءً</option>
+    <option>أَمْسِ</option>
+    <option>الْيَوْمَ</option>
+    <option>غَدًا</option>
+    <option>صَبَاحًا</option>
+    <option>كُلَّ يَوْمٍ</option>
 </select>
 ظرف مكان: <select id='place'  class='form-inline' name='place'>
-	<option></option>
-	<option>بيت</option>
-	<option>سوق</option>
-	<option>مدرسة</option>
+    <option></option>
+    <option>بيت</option>
+    <option>سوق</option>
+    <option>مدرسة</option>
 </select>
 
 
@@ -122,6 +122,7 @@
             <a class="btn btn-primary" id="sample" title="عينة"><span>عينة</span></a>
               <input checked="checked" class="checkbox" id="LastMark" value="1"
                 type="checkbox"> حركة الإعراب</div>
+
           </form>
           <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
           <output id="result" class="form-control" width="100%%">{{ResultText}}</output>

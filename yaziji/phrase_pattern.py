@@ -112,74 +112,54 @@ class PhrasePattern:
         self.auxiliary = self.nodes["auxiliary"].value
         self.time_circumstance  = self.nodes["time"].value
         self.place_circumstance = self.nodes["place"].value
-
+        
+        #check for errors
+        if  self.tense == vconst.TenseImperative and self.subject  not in vconst.ImperativePronouns:
+            return -1 # error code
+        return True
     def prepare(self,):
         """
         extract more data from components
         """
         #prepare the verb
         # extract tense
-        tense = self.get_tense(self.nodes["time"].value)
-        tense_aux  = tense
-        tense_verb = tense
-        pronoun = self.get_pronoun(self.nodes["subject"].value)
-        pronoun_aux = pronoun
-        self.verb_conjugated = ""
+        tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
+        # extract pronoun
+        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"].value, tense_verb, tense_aux)
+        
+        # Error on pronoun and 
+        if not pronoun_verb:
+            self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
+            return False
         if self.nodes["auxiliary"].value and self.nodes["verb"].value:
-            tense_aux = tense
-            if self.nodes['voice'].value =="مبني للمجهول":
-                pronoun_aux = vconst.PronounHuwa
-            tense_verb = vconst.TenseSubjunctiveFuture
-            # if auxiliary the tense change
-            transitive, future_type = self.get_verb_attributes(self.auxiliary)            
+            transitive, future_type = self.get_verb_attributes(self.auxiliary, "auxiliary")            
             vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive, future_type)
-            if not self.is_compatible(tense_aux, pronoun_aux):
-                verb_aux =  u"[ImperativeError '%s']"%pronoun_aux       
-            else:
-                verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun_aux)
-            verb_factor = u"أَنْ"
-            self.verb_aux = verb_aux
+            verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun_aux)
             self.nodes["auxiliary"].tense = tense_aux
             self.nodes["auxiliary"].conjugated = verb_aux
-            self.nodes["verb"].before = verb_factor
-            if tense_aux in (vconst.TenseJussiveFuture, vconst.TensePassiveJussiveFuture):
-                self.nodes["auxiliary"].before = u"لَمْ"
-            elif tense_aux in (vconst.TenseSubjunctiveFuture, vconst.TensePassiveSubjunctiveFuture) :
-                self.nodes["auxiliary"].before = u"لَنْ"
-
+            self.nodes["auxiliary"].before = factor_aux
         else:
             self.nodes["auxiliary"].set_null()    
         # verb
         if self.verb:
             transitive, future_type = self.get_verb_attributes(self.verb)
             vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type)
-            if not self.is_compatible(tense_verb, pronoun):
-                self.verb_conjugated = u"[ImperativeError '%s']"%pronoun            
-            else:
-                self.verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun)
+            verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun_verb)
                 
             self.nodes["verb"].tense = tense_verb    
             self.nodes["verb"].transitive = transitive    
-            self.nodes["verb"].conjugated = self.verb_conjugated
-            if tense_verb in (vconst.TenseJussiveFuture, vconst.TensePassiveJussiveFuture):
-                self.nodes["verb"].before = u"لَمْ"
-            elif tense_verb in (vconst.TenseSubjunctiveFuture, vconst.TensePassiveSubjunctiveFuture) and not self.nodes["auxiliary"].value:
-                self.nodes["verb"].before = u"لَنْ"
-            # if the subject is a pronoun, it will be omitted
-            if self.is_pronoun(self.subject):
-                self.nodes["subject"].set_null()             
+            self.nodes["verb"].conjugated = verb_conjugated
+            self.nodes["verb"].before = factor_verb
+             
                 
             # if the object is a pronoun
             if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.nodes["voice"].value != u"مبني للمجهول" :
                 v_enclitic = self.get_enclitic(self.predicate)
                 #~ self.verb_conjugated += "-" + v_enclitic
-                forms = self.verbaffixer.vocalize(self.verb_conjugated, proclitic="", enclitic=v_enclitic)
-                self.verb_conjugated = forms[0][0]
-                self.nodes["verb"].conjugated = self.verb_conjugated
-        if self.place_circumstance :
-            word = self.place_circumstance
-            self.nodes["place"].before = u"فِي"
-            self.nodes["place"].conjugated  = self.conjugate_noun(word, u"مجرور")       
+                forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
+                verb_conjugated = forms[0][0]
+                self.nodes["verb"].conjugated = verb_conjugated
+
         if self.predicate :
             # if is there is verb
             word = self.predicate
@@ -212,6 +192,11 @@ class PhrasePattern:
    
             # مبتدأ وخبر
             self.nodes["subject"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+
+        if self.place_circumstance :
+            word = self.place_circumstance
+            self.nodes["place"].before = u"فِي"
+            self.nodes["place"].conjugated  = self.conjugate_noun(word, u"مجرور")       
                 
 
     def conjugate_noun(self, word, tag):
@@ -265,6 +250,7 @@ class PhrasePattern:
         """
         # get the primary tense
         tense = ""
+        verb_factor = u""
         # if not time circum or is neutral
         if not time_word or not yaziji_const.TENSES.get(time_word,""):
             if self.nodes["tense"].value:
@@ -276,8 +262,10 @@ class PhrasePattern:
             # if past the verb will be future majzum
             if tense == vconst.TensePast:
                 tense = vconst.TenseJussiveFuture
+                verb_factor = u"لَمْ"
             elif tense == vconst.TenseFuture:
                 tense = vconst.TenseSubjunctiveFuture
+                verb_factor = u"لَنْ"                
         #voice active
         if self.nodes["voice"].value == u"مبني للمجهول":
             if tense == vconst.TensePast:
@@ -288,14 +276,33 @@ class PhrasePattern:
                 tense = vconst.TensePassiveJussiveFuture
             elif tense == vconst.TenseSubjunctiveFuture:
                 tense = vconst.TensePassiveSubjunctiveFuture
-        return tense       
-    def get_verb_attributes(self, word):
+        tense_aux = tense
+        tense_verb = tense
+        factor_aux = verb_factor
+        factor_verb = verb_factor
+        
+        # verb and auxiliary
+        if self.verb and self.auxiliary:
+            # auxilary and verb
+            #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
+            if self.nodes["voice"].value == u"مبني للمجهول":
+                tense_verb = vconst.TenseSubjunctiveFuture
+            
+            factor_verb = u"أَنْ"
+            
+        return tense_verb, tense_aux, factor_verb, factor_aux
+
+    def get_verb_attributes(self, word, auxiliary = False):
         """
         return transitive and future_type
         """
         transitive = True
         future_type = araby.FATHA
         
+        if auxiliary:
+            transitive = True
+            future_type = yaziji_const.AUXILIARY.get(word, araby.FATHA)
+            return transitive, future_type
 
         word_nm = araby.strip_tashkeel(word)
         foundlist = self.verb_dict.lookup(word_nm)
@@ -339,14 +346,23 @@ class PhrasePattern:
             else:
                 word_tuple_res = {"vocalized":word}
         return word_tuple_res        
-    def get_pronoun(self, word):
+    def get_pronoun(self, word, tense_verb, tense_aux):
         """
         get the pronoun of the word
         """
+        pronoun = ""
+        pronoun_aux = ""
         if word in vconst.PronounsTable:
-            return word
+            pronoun = word
         else:
-            return vconst.PronounHuwa
+            pronoun = vconst.PronounHuwa
+        pronoun_aux = pronoun
+        if tense_aux in vconst.TablePassiveTense:
+            pronoun_aux = vconst.PronounHuwa
+        # test if the pronoun is compatible with tense
+        if (tense_verb == vconst.TenseImperative or tense_aux == vconst.TenseImperative)  and pronoun not in vconst.ImperativePronouns:
+            return False, False
+        return pronoun, pronoun_aux
     
     def is_pronoun(self, word):
         """

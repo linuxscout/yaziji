@@ -35,7 +35,7 @@ class componentsSet:
         self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
         self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 
         self.verbs = [ u"", u"شَرِبَ",
-            u"ضَرِبَ",
+            u"ضَرَبَ",
             u"ذَهَبَ",
             u"جَلَسَ",
         ]
@@ -47,7 +47,6 @@ class componentsSet:
         ]
         self.voices = [u"معلوم", u"مبني للمجهول"]
         self.auxiliaries = [u"", u"اِسْتَطَاعَ",
-
         u"أَرَادَ",
         u"كَادَ",
         ]

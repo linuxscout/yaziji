@@ -373,7 +373,11 @@ var more_click = function(e) {
   }
     var phrase_click = function(e) {
         e.preventDefault()
-    var item;
+    if((document.NewForm.tense.value == "الأمر")&&(document.NewForm.subject.value.indexOf("أنت") == -1))
+     {
+         alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
+     return  0;
+     }
     $.getJSON(script + "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "phrase",
@@ -394,7 +398,11 @@ var more_click = function(e) {
   }
     var sample_click = function(e) {
         e.preventDefault()
-    var item;
+    if((document.NewForm.tense.value == "الأمر")&&(document.NewForm.subject.value.indexOf("أنت") == -1))
+     {
+         alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
+     return  0;
+     }
     $.getJSON(script + "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "sample",
@@ -416,10 +424,7 @@ var more_click = function(e) {
     var random_select_click = function(e) {
         e.preventDefault()
     var item;
-    // subject
-    var options = $("#subject > option");
-    var random = Math.floor(options.length * (Math.random() % 1));
-    $("#subject > option").attr('selected',false).eq(random).attr('selected',true);
+
     // object
     var options = $("#object > option");
     var random = Math.floor(options.length * (Math.random() % 1));
@@ -429,14 +434,7 @@ var more_click = function(e) {
     var options = $("#verb > option");
     var random = Math.floor(options.length * (Math.random() % 1));
     $("#verb > option").attr('selected',false).eq(random).attr('selected',true);
-    // tense
-    var options = $("#tense > option");
-    var random = Math.floor(options.length * (Math.random() % 1));
-    $("#tense > option").attr('selected',false).eq(random).attr('selected',true);
-    // voice
-    var options = $("#voice > option");
-    var random = Math.floor(options.length * (Math.random() % 1));
-    $("#voice > option").attr('selected',false).eq(random).attr('selected',true);
+
     // time
     var options = $("#time > option");
     var random = Math.floor(options.length * (Math.random() % 1));
@@ -457,6 +455,18 @@ var more_click = function(e) {
     var options = $("#phrase_type > option");
     var random = Math.floor(options.length * (Math.random() % 1));
     $("#phrase_type > option").attr('selected',false).eq(random).attr('selected',true);
+      // tense
+    var options = $("#tense > option");
+    var random = Math.floor(options.length * (Math.random() % 1));
+    $("#tense > option").attr('selected',false).eq(random).attr('selected',true);
+    // voice
+    var options = $("#voice > option");
+    var random = Math.floor(options.length * (Math.random() % 1));
+    $("#voice > option").attr('selected',false).eq(random).attr('selected',true);
+    // subject
+    var options = $("#subject > option");
+    var random = Math.floor(options.length * (Math.random() % 1));
+    $("#subject > option").attr('selected',false).eq(random).attr('selected',true);
   }
 // Gramatical Analysis
  var synt_click = function(e) {
