@@ -1,8 +1,11 @@
-# Yaziji
+# Yaziji: Arabic Phrase Generator
+# يازجي: مولّد الجمل العربية
 Yaziji : Arabic phrase generator
+<div dir="rtl">
 أداة لمساعدة المتعلم في تكوين جمل عربية صحيحة
+</div>
 ## Idea
-
+<div dir="rtl">
 موقع أو تطبيق يساعد المتعلم للعربية غير الناطق بها لتركيب جمل بسيطة بالاعتماد على مدخلات نمطية
 مثلا:
 * الضمير: أنا
@@ -12,6 +15,7 @@ Yaziji : Arabic phrase generator
 
 النتيجة :  سَأُذْهِبُ إِلَى السُّوقِ غَدَا
 
+</div>
 ## name meaning
 Yaziji, alternatively Yazigi or Yazji (Arabic: يازجي‎ [jɑzɪdʒiː], Yāzijī) is an Arabic surname of Turkish origin meaning 'clerk' or 'writer'. The Arabic definite article "Al-" is often added to render it Al-Yaziji or Al-Yazigi.
 
@@ -24,3 +28,7 @@ Yaziji/Yazigi/Yazji may refer to:
 * Nasif al-Yaziji, Lebanese author
 * Rosie Yazigi, Lebanese actress and voice actress
 * Zina Yazji, Syrian journalist, news agency reporter and news anchor
+
+## Demo
+
+[Demo](http://tahadz.com/yaziji/) 
