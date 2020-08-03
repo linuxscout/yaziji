@@ -286,6 +286,8 @@ class PhrasePattern:
             # auxilary and verb
             #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
             if self.nodes["voice"].value == u"مبني للمجهول":
+                tense_verb = vconst.TensePassiveSubjunctiveFuture
+            elif self.nodes["voice"].value:
                 tense_verb = vconst.TenseSubjunctiveFuture
             
             factor_verb = u"أَنْ"
