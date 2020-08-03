@@ -100,7 +100,7 @@ class PhrasePattern:
         self.nodes["phrase_type"] = wordNode("phrase_type", components.get("phrase","")) 
         
         stream = yaziji_const.STREAMS.get(phrase_type, yaziji_const.STREAMS["default"] )
-        print(phrase_type, stream) 
+        #~ print(phrase_type, stream) 
         self.stream = stream_pattern.streamPattern(stream)
         
         self.subject   = self.nodes["subject"].value
@@ -286,6 +286,8 @@ class PhrasePattern:
             # auxilary and verb
             #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
             if self.nodes["voice"].value == u"مبني للمجهول":
+                tense_verb = vconst.TensePassiveSubjunctiveFuture
+            elif self.nodes["voice"].value:
                 tense_verb = vconst.TenseSubjunctiveFuture
             
             factor_verb = u"أَنْ"
@@ -312,16 +314,16 @@ class PhrasePattern:
             if word == word_tuple['vocalized']:
                 transitive = word_tuple['transitive']
                 future_type = word_tuple['future_type']
-                print("1-Transitive", transitive)
-                print("1-future_type", future_type)                
+                #~ print("1-Transitive", transitive)
+                #~ print("1-future_type", future_type)                
                 break;
         else: # no vocalization, try the first one
             word_tuple = dict(foundlist[0])
             # if found
             transitive = word_tuple['transitive']
             future_type = word_tuple['future_type']
-            print("Transitive", transitive)
-            print("future_type", future_type)
+            #~ print("Transitive", transitive)
+            #~ print("future_type", future_type)
             #~ print("vocalized", vocalized)
         #~ print("verb************", word)
         return transitive, future_type
