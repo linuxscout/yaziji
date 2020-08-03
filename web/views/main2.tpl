@@ -5,18 +5,18 @@
     <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  <![endif]-->
     <title>مولد الجمل العربية</title>
-    <link href="/_files/favicon1.png" rel="icon" type="image/png">
-    <link href="/_files/adawatstyle.css" rel="stylesheet">
-    <!-- <link href="/_files/xzero-rtl/css/bootstrap-arabic.reduced.css" rel="stylesheet">  -->
-    <link href="/_files/xzero-rtl/css/bootstrap-arabic.min.css" rel="stylesheet">
+    <link href="_files/favicon1.png" rel="icon" type="image/png">
+    <link href="_files/adawatstyle.css" rel="stylesheet">
+    <!-- <link href="_files/xzero-rtl/css/bootstrap-arabic.reduced.css" rel="stylesheet">  -->
+    <link href="_files/xzero-rtl/css/bootstrap-arabic.min.css" rel="stylesheet">
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
     <!--
-    <link href="/_files/bootstrap-rtl.min.css" rel="stylesheet">-->
+    <link href="_files/bootstrap-rtl.min.css" rel="stylesheet">-->
     <meta content="width=device-width, initial-scale=1" name="viewport">
   </head>
   <body dir="rtl">
-                   <p> <a href="/mishkal/main"><img alt="مشكال: تشكيل النصوص العربية" height="120px" src="/_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
+                   <p> <a href="/main"><img alt="مشكال: تشكيل النصوص العربية" height="120px" src="_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
     <!--<h2>يازجي</h2>
     <h3>مولد الجمل العربية</h3>-->
 
@@ -149,7 +149,7 @@
                 <!--
                             <div class="media">-->
                 <!--
-  <div class="media-right">    <img src="/_files/images/dreamdevdz.png" class="media-object" style="width:100px">  </div>  <div class="media-body">    <h4 class="media-heading">الاس</h4>     من شركة <a href="https://dreamdev.dz/"> DreamDev.dz    </a>  </div>
+  <div class="media-right">    <img src="_files/images/dreamdevdz.png" class="media-object" style="width:100px">  </div>  <div class="media-body">    <h4 class="media-heading">الاس</h4>     من شركة <a href="https://dreamdev.dz/"> DreamDev.dz    </a>  </div>
 --><!--
 </div>--> <br>
                 الاستضافة بدعم من شركة <a href="https://dreamdev.dz/">
@@ -158,12 +158,12 @@
         var script = "";
     </script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <!--<script  src="/_files/jquery-3.3.1.min.js"></script>-->
-                <script async="" src="/_files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
-                <script async="" src="/_files/cytoscape.min.js"></script>
+                <!--<script  src="_files/jquery-3.3.1.min.js"></script>-->
+                <script async="" src="_files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
+                <script async="" src="_files/cytoscape.min.js"></script>
                 <!--
-    <script async src="/_files/adawat.min.js"></script>-->
-                <script async="" src="/_files/adawat.js"></script> </div>
+    <script async src="_files/adawat.min.js"></script>-->
+                <script async="" src="_files/adawat.js"></script> </div>
             </div>
           </div>
         </div>

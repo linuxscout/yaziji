@@ -13,56 +13,64 @@ from bottle import response
 
 import json
 import os.path
-sys.path.append(os.path.join("/home/zerrouki/workspace/projects/mishkal-project/mishkal-2017-03-19/"))
+#~ sys.path.append(os.path.join("/home/zerrouki/workspace/projects/mishkal-project/mishkal-2017-03-19/"))
 import adaat
 app = Bottle()
-
-
+#~ WEB_PATH = "yaziji/"dir_path = os.path.dirname(os.path.realpath(__file__))
+WEB_PATH = os.path.dirname(os.path.realpath(__file__))
+#~ print("WEB_PATH", WEB_PATH)
 #------------------
 # resources files
 #------------------
 @app.route('/_files/fonts/<filename>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/fonts')
+    return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/fonts'))
 @app.route('/_files/xzero-rtl/css/<filename>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/xzero-rtl/css')
+    return static_file(filename, root = os.path.join(WEB_PATH,'./web/resources/files/xzero-rtl/css'))
 
 @app.route('/_files/xzero-rtl/js/<filename>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/xzero-rtl/js')
+    return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/xzero-rtl/js'))
 @app.route('/_files/xzero-rtl/fonts/<filename>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/xzero-rtl/fonts')
+    return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/xzero-rtl/fonts'))
 
 
 @app.route('/_files/samples/<filename:re:.*\.(png|jpg|jpeg)>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/samples', mimetype='image/png')
+    return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/samples'), mimetype='image/png')
 
 @app.route('/_files/images/<filename:re:.*\.(png|jpg|jpeg)>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files/images', mimetype='image/png')
+    return static_file(filename, root= os.path.join(WEB_PATH,'web/resources/files/images'), mimetype='image/png')
 @app.route('/_files/<filename>')
 def send_image(filename):
-    return static_file(filename, root='./web/resources/files')
+    return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files'))
 
 
 
 
 
-@app.route('/mishkal/main')
-@app.route('/mishkal/index')
-@view('main2')
+#~ @app.route('/mishkal/main')
+#~ @app.route('/mishkal/index')
+@app.route('/')
+@app.route('/main')
+@app.route('/index')
+#~ @view('main2')
+@view(os.path.join(WEB_PATH,'views/main2'))
 def main():
     #~ selection ="<textarea>Taha Zerrouki</textarea>"
     return {'DefaultText':u"جائحة كورونا",
-      'ResultText':u"السلام عليكم",
+      #~ 'ResultText':u"السلام عليكم",
+      'ResultText':WEB_PATH,
+      #~ 'Script':"cgi-bin/yaziji.cgi",
+      'Script':".",
       #~ "Selection":selection
       }
 
 @app.route('/ajaxGet')
-@app.route('/mishkal/ajaxGet')
+#~ @app.route('/mishkal/ajaxGet')
 #~ @view('main2')
 def ajaxget():
     """
@@ -114,7 +122,7 @@ def ajaxget():
 @app.route('/mishkal/<filename>')
 def server_static(filename):
     if filename in ("doc", "projects", "contact", "download","index"):
-        return static_file(filename+".html", root='./web/resources/templates/')
+        return static_file(filename+".html", root= os.path.join(WEB_PATH,'web/resources/templates/'))
     else:
         return "<h2>Page Not found</h2>"
 
@@ -135,6 +143,9 @@ from bottle import error
 def error404(error):
     return 'Nothing here, sorry' 
 if __name__ == '__main__':
-    run(app, host='localhost', port=8080, debug=True)
+    try:
+        run(app, host='localhost', port=8080, debug=True)
+    except:
+        run(app, host='127.0.0.1', port=8081, debug=True)        
 
 

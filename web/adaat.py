@@ -44,8 +44,8 @@ def build_phrase(options):
     phraser = phrase_generator.PhraseGenerator()
     components = options
     phrase = phraser.build(components)
-    print(u"".join(["<%s>"%x for x in components.values()]))
-    print(phraser.pattern.stream.__str__())
+    #~ print(u"".join(["<%s>"%x for x in components.values()]))
+    #~ print(phraser.pattern.stream.__str__())
     return phrase
 
 def build_sample(options):        
