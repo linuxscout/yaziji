@@ -16,7 +16,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
   </head>
   <body dir="rtl">
-                   <p> <a href="/main"><img alt="مشكال: تشكيل النصوص العربية" height="120px" src="_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
+                   <p> <a href="main"><img alt="مولد الجمل العربية" height="120px" src="_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
     <!--<h2>يازجي</h2>
     <h3>مولد الجمل العربية</h3>-->
 
