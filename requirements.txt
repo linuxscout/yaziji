@@ -2,3 +2,4 @@ alyahmor>=0.1
 libqutrub>=1.2.3
 pyarabic>=0.6.8
 bottle>=0.12.18
+arramooz-pysqlite>=0.3
