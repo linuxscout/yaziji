@@ -11,14 +11,36 @@ from bottle import get
 from bottle import request
 from bottle import response
 
+
 import json
 import os.path
-#~ sys.path.append(os.path.join("/home/zerrouki/workspace/projects/mishkal-project/mishkal-2017-03-19/"))
+import datetime
+import logging
 import adaat
 app = Bottle()
-#~ WEB_PATH = "yaziji/"dir_path = os.path.dirname(os.path.realpath(__file__))
+
 WEB_PATH = os.path.dirname(os.path.realpath(__file__))
-#~ print("WEB_PATH", WEB_PATH)
+
+# define logger
+# prepare logging 
+d = os.path.dirname(sys.argv[0])
+LOG_FILENAME = os.path.join(d,u'tmp','logging_yaziji.out')
+logging.basicConfig(filename = LOG_FILENAME,level=logging.INFO,)
+myLogger = logging.getLogger('Mishkal')
+h = logging.StreamHandler() # in production use WatchedFileHandler or RotatingFileHandler
+h.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
+myLogger.addHandler(h)
+myLogger.setLevel(logging.INFO) # in production use logging.INFO
+#~ myLogger.setLevel(logging.DEBUG) # in production use logg
+def writelog(text,action):
+    """
+    @param text: an object to be logged
+    @type text: object
+    """
+    timelog = datetime.datetime.now().strftime("%Y-%m-%d %I:%M");
+    textlog = u"\t".join([timelog, action, text]);
+    myLogger.info(textlog);
+    
 #------------------
 # resources files
 #------------------
@@ -49,15 +71,10 @@ def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files'))
 
 
-
-
-
-#~ @app.route('/mishkal/main')
-#~ @app.route('/mishkal/index')
 @app.route('/')
 @app.route('/main')
 @app.route('/index')
-#~ @view('main2')
+
 @view(os.path.join(WEB_PATH,'views/main2'))
 def main():
     #~ selection ="<textarea>Taha Zerrouki</textarea>"
@@ -80,26 +97,18 @@ def ajaxget():
     text = request.query.text or u"تجربة"
     action = request.query.action or 'DoNothing'
     order = request.query.order or '0'
-    #options = {};
-    #options['lastmark'] = request.query.lastmark or '1'
 
-    #options['subject'] = request.query["options[subject]"] or ''
-    #options['object'] = request.query["options[object]"] or ''
-    #options['verb'] = request.query["options[verb]"] or ''
-    #options['time'] = request.query["options[time]"] or ''
-    #options['place'] = request.query["options[place]"] or ''
     options = dict(request.query.decode())
-    #print("Options", options)
-    if sys.version_info[0] < 3:
-       text = text.decode('utf-8')
-       options['lastmark']  = options['lastmark'].decode('utf8')
 
-    #self.writelog(text,action);
+    if sys.version_info[0] < 3:
+       options['lastmark']  = options.get('lastmark',"")#.decode('utf8')
+       #~ pass
+
+    writelog(text,action);
         #Handle contribute cases
     if action=="Contribute":
         return {'result':u"شكرا جزيلا على مساهمتك."}
     resulttext = adaat.DoAction(text ,action, options)
-    #~ resulttext = u"تم إنجاز المهمة بنجاح"
     
     #-----------
     # prepare json
