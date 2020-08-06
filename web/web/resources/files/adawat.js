@@ -378,7 +378,7 @@ var more_click = function(e) {
          alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
      return  0;
      }
-    $.getJSON(script + "ajaxGet", {
+    $.getJSON(script + "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "phrase",
       "subject":document.NewForm.subject.value,
@@ -403,7 +403,7 @@ var more_click = function(e) {
          alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
      return  0;
      }
-    $.getJSON(script + "ajaxGet", {
+    $.getJSON(script + "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "sample",
       "subject":document.NewForm.subject.value,

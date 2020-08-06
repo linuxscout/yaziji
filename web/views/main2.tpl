@@ -155,7 +155,7 @@
                 الاستضافة بدعم من شركة <a href="https://dreamdev.dz/">
                   DreamDev.dz<span class="glyphicon glyphicon-globe"></span></a>
                 <script>//~ var script = "%(script)s";
-        var script = "";
+        var script = ".";
     </script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <!--<script  src="_files/jquery-3.3.1.min.js"></script>-->

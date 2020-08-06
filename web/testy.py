@@ -10,7 +10,7 @@ from bottle import view
 from bottle import get
 from bottle import request
 from bottle import response
-
+from bottle import TEMPLATE_PATH
 
 import json
 import os.path
@@ -18,8 +18,8 @@ import datetime
 import logging
 import adaat
 app = Bottle()
-
 WEB_PATH = os.path.dirname(os.path.realpath(__file__))
+TEMPLATE_PATH.insert(0, os.path.join(WEB_PATH, "views"))
 
 # define logger
 # prepare logging 
@@ -74,8 +74,8 @@ def send_image(filename):
 @app.route('/')
 @app.route('/main')
 @app.route('/index')
-
-@view(os.path.join(WEB_PATH,'views/main2'))
+#~ @view(os.path.join(WEB_PATH,'views/main2'))
+@view('main2')
 def main():
     #~ selection ="<textarea>Taha Zerrouki</textarea>"
     return {'DefaultText':u"جائحة كورونا",
