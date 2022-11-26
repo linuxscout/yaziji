@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-26 12:06+0100\n"
+"PO-Revision-Date: 2022-11-26 12:24+0100\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#: web/views/main2.tpl:27
+msgid "My Language test"
+msgstr "My Language test"
+
+#: web/views/main2.tpl:28
+msgid "نوع الجملة:"
+msgstr "Phrase type:"
+
+#: web/views/main2.tpl:31
+msgid "جملة فعلية"
+msgstr "Verbal phrase"
+
+#: web/views/main2.tpl:32
+msgid "جملة اسمية"
+msgstr "Nominal Phrase"
+
+#: web/views/main2.tpl:34
+msgid "فاعل"
+msgstr "Subject"
+
+#: web/views/main2.tpl:36
+msgid "أَحْمَد"
+msgstr "Ahmed"
+
+#: web/views/main2.tpl:37
+msgid "وَلَدٌ"
+msgstr "Boy"
+
+#: web/views/main2.tpl:38 web/views/main2.tpl:89
+msgid "أنا"
+msgstr "I"
+
+#: web/views/main2.tpl:39 web/views/main2.tpl:90
+msgid "نحن"
+msgstr "We"
+
+#: web/views/main2.tpl:40 web/views/main2.tpl:91
+msgid "أنت"
+msgstr "You (masculine singular)"
+
+#: web/views/main2.tpl:41 web/views/main2.tpl:92
+msgid "أنتِ"
+msgstr "You (feminine singular)"
+
+#: web/views/main2.tpl:42 web/views/main2.tpl:93
+msgid "أنتما"
+msgstr "You (dual masculine)"
+
+#: web/views/main2.tpl:43 web/views/main2.tpl:94
+msgid "أنتما مؤ"
+msgstr "You (dual feminine)"
+
+#: web/views/main2.tpl:44 web/views/main2.tpl:95
+msgid "أنتم"
+msgstr "You (plural masculine)"
+
+#: web/views/main2.tpl:45 web/views/main2.tpl:96
+msgid "أنتن"
+msgstr "You (plural feminine)"
+
+#: web/views/main2.tpl:46 web/views/main2.tpl:97
+msgid "هو"
+msgstr "He"
+
+#: web/views/main2.tpl:47 web/views/main2.tpl:98
+msgid "هي"
+msgstr "She"
+
+#: web/views/main2.tpl:48 web/views/main2.tpl:99
+msgid "هما"
+msgstr "They (dual masculine)"
+
+#: web/views/main2.tpl:49 web/views/main2.tpl:100
+msgid "هما مؤ"
+msgstr "They (Dual Feminine)"
+
+#: web/views/main2.tpl:50 web/views/main2.tpl:101
+msgid "هم"
+msgstr "They (masculine)"
+
+#: web/views/main2.tpl:51 web/views/main2.tpl:102
+msgid "هن"
+msgstr "They (feminine)"
+
+#: web/views/main2.tpl:53
+msgid "فعل مساعد"
+msgstr "Auxiliary"
+
+#: web/views/main2.tpl:56
+msgid "اِسْتَطَاعَ"
+msgstr "Can"
+
+#: web/views/main2.tpl:57
+msgid "أَرَادَ"
+msgstr "Want"
+
+#: web/views/main2.tpl:58
+msgid "كَادَ"
+msgstr "May"
+
+#: web/views/main2.tpl:60
+msgid "فعل:"
+msgstr "Verb:"
+
+#: web/views/main2.tpl:63
+msgid "شَرِبَ"
+msgstr "to Drink"
+
+#: web/views/main2.tpl:64
+msgid "ضَرَبَ"
+msgstr "to Hit"
+
+#: web/views/main2.tpl:65
+msgid "ذَهَبَ"
+msgstr "to Go"
+
+#: web/views/main2.tpl:66
+msgid "جَلَسَ"
+msgstr "to Stand"
+
+#: web/views/main2.tpl:68
+msgid "زمن:"
+msgstr "Tense:"
+
+#: web/views/main2.tpl:70
+msgid "الماضي المعلوم"
+msgstr "Past"
+
+#: web/views/main2.tpl:71
+msgid "المضارع المعلوم"
+msgstr "Present/Future"
+
+#: web/views/main2.tpl:72
+msgid "الأمر"
+msgstr "Imperative"
+
+#: web/views/main2.tpl:74
+msgid "مبني للمعلوم/مجهول:"
+msgstr "Voice:"
+
+#: web/views/main2.tpl:76
+msgid "معلوم"
+msgstr "Active"
+
+#: web/views/main2.tpl:77
+msgid "مبني للمجهول"
+msgstr "passive"
+
+#: web/views/main2.tpl:80
+msgid "مثبت/منفي:"
+msgstr "affirmative/negative:"
+
+#: web/views/main2.tpl:82
+msgid "مثبت"
+msgstr "Affirmative"
+
+#: web/views/main2.tpl:83
+msgid "منفي"
+msgstr "Negative"
+
+#: web/views/main2.tpl:85
+msgid "مفعول"
+msgstr "Object"
+
+#: web/views/main2.tpl:87
+msgid "حَلِيبٌ"
+msgstr "Milk"
+
+#: web/views/main2.tpl:88
+msgid "بَابٌ"
+msgstr "Door"
+
+#: web/views/main2.tpl:104
+msgid "ظرف زمان:"
+msgstr "Time:"
+
+#: web/views/main2.tpl:108
+msgid "دَائِمًا"
+msgstr "Always"
+
+#: web/views/main2.tpl:109
+msgid "أَوَّلَ أَمْسِ"
+msgstr "Before yesterday"
+
+#: web/views/main2.tpl:110
+msgid "الْبَارِحَةَ"
+msgstr "Yesterday"
+
+#: web/views/main2.tpl:111
+msgid "أَحْيَانًا"
+msgstr "Sometimes"
+
+#: web/views/main2.tpl:112
+msgid "بَعْدَ غَدٍ"
+msgstr "After tomorrow"
+
+#: web/views/main2.tpl:113
+msgid "مَسَاءً"
+msgstr "Afternoon"
+
+#: web/views/main2.tpl:114
+msgid "أَمْسِ"
+msgstr "Yesterday"
+
+#: web/views/main2.tpl:115
+msgid "الْيَوْمَ"
+msgstr "Today"
+
+#: web/views/main2.tpl:116
+msgid "غَدًا"
+msgstr "tomorrow"
+
+#: web/views/main2.tpl:117
+msgid "صَبَاحًا"
+msgstr "Morning"
+
+#: web/views/main2.tpl:118
+msgid "كُلَّ يَوْمٍ"
+msgstr "Everyday"
+
+#: web/views/main2.tpl:120
+msgid "ظرف مكان:"
+msgstr "Place:"
+
+#: web/views/main2.tpl:123
+msgid "بيت"
+msgstr "House/home"
+
+#: web/views/main2.tpl:124
+msgid "سوق"
+msgstr "Market"
+
+#: web/views/main2.tpl:125
+msgid "مدرسة"
+msgstr "School"
+
+#: web/views/main2.tpl:132
+msgid "بناء"
+msgstr "Build"
+
+#: web/views/main2.tpl:133
+msgid "عشوائي"
+msgstr "Random"
+
+#: web/views/main2.tpl:134
+msgid "عينة"
+msgstr "sample"
+
+#: web/views/main2.tpl:136
+msgid "حركة الإعراب"
+msgstr "Inflection mark"
+
+#: web/views/main2.tpl:140
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "Show inflection mark on word ending"
+
+#: web/views/main2.tpl:141
+msgid "اختيار عشوائي للمفردات"
+msgstr "Choose words Randomly "
+
+#: web/views/main2.tpl:142
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "Copy a Json sample to make tests"
+
+#: web/views/main2.tpl:143
+msgid "بناء الجملة"
+msgstr "Build a phrase"
+
+#: web/views/main2.tpl:166
+msgid "مدونتي"
+msgstr "My blog"
+
+#: web/views/main2.tpl:173
+msgid "الاستضافة بدعم من شركة"
+msgstr "Supported by"

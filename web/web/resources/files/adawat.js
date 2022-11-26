@@ -424,12 +424,6 @@ var more_click = function(e) {
     var random_select_click = function(e) {
         e.preventDefault()
     var item;
-
-    // object
-    var options = $("#object > option");
-    var random = Math.floor(options.length * (Math.random() % 1));
-    $("#object > option").attr('selected',false).eq(random).attr('selected',true);
-
     // verb
     var options = $("#verb > option");
     var random = Math.floor(options.length * (Math.random() % 1));
@@ -1101,10 +1095,32 @@ var txkl_change = function(e) {
        //~ console.log($(this).text()+"-"+$(this).next().text());
     }
  }
+ 
+ 
+ // Gererate a costom list
+  var generate_custom_list_click = function(e) {
+      e.preventDefault();
+    var myword = $(this);
+    var id = "verblist"
+    var list = ['right','left'];
+    var text = "<select class='testlist' id='" + id + "'>";
+    var cpt = 0;
+    for (i in list) {
+      if (list[i] != "") {
+        text += "<option selected=" + list[i] + ">" + list[i] + "</option>";
+        cpt += 1;
+      }
+    }
+    text += "</select>";
+  }
 // ready document
 
 $().ready(function() {
-
+  $(document).on( 'click', '#phrase', phrase_click );
+  $(document).on( 'click', '#sample', sample_click );
+  $(document).on( 'click', '#random_select', random_select_click );
+  
+  
   $(document).on( 'click', '#randomMaqola', randomMaqola_handler);
   $(document).on( 'click', '#affixate', affixate_click );
   $(document).on( 'click', '#bigrams', bigrams_click );
@@ -1129,9 +1145,7 @@ $().ready(function() {
   $(document).on( 'click', '#stripharakat', stripharakat_click );
   $(document).on( 'click', '#spellcheck', spellcheck_click );
   $(document).on( 'click', '#synt', synt_click );
-  $(document).on( 'click', '#phrase', phrase_click );
-  $(document).on( 'click', '#sample', sample_click );
-  $(document).on( 'click', '#random_select', random_select_click );
+
   $(document).on( 'click', '#tashkeel2', tashkeel2_click );
   $(document).on( 'click', '#tashkeel', tashkeel_click );
   $(document).on( 'click', '#tokenize', tokenize_click );

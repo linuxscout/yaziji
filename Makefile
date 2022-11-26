@@ -47,9 +47,21 @@ eval:ods
 	cd tests;python3  test.py -c test --limit 10 -f samples/tmp/sample10.csv -o output/text.eval.csv
 
 server:
-	cd web;python3  test.py
+	cd web;python3  testy.py
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
 
 ods:
 	$(LIBREOFFICE) --headless --convert-to "csv:Text - txt - csv (StarCalc):9,34,UTF8" --outdir tests/samples/tmp/ tests/samples/*.ods
+gettext:
+	# extract messages from main template
+	xgettext -L python --from-code=UTF-8 web/views/main2.tpl -o web/locales/main.po
+copy_locales:
+	cd web/locales; cp main.po ar_DZ/LC_MESSAGES/
+	cd web/locales; cp main.po en_US/LC_MESSAGES/
+update_locales:
+	echo '' > messages.po # xgettext needs that file, and we need it empty
+	find . -type f -iname "*.py" | xgettext -j -f - # this modifies messages.po
+	msgmerge -N existing.po messages.po > new.po
+	mv new.po existing.po
+	rm messages.po	
