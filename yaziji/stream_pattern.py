@@ -27,8 +27,14 @@ class streamPattern:
     a class to handle pattern stream order
     """
     def __init__(self, stream_type):
-
+        # get the phrase words order from stream
+        self.type = stream_type
         self.stream = STREAMS.get(stream_type, STREAMS.get('default',{}))
+        # hidden nodes on the stream order
+        self.hidden = []
+        if stream_type not in STREAMS:
+            raise KeyError("steam_pattern.py:Phrase type not exists", stream_type)
+        print(self.stream)
     
     def add(self, attribute, before="", after=""):
         """
@@ -41,18 +47,32 @@ class streamPattern:
         """
         if name in self.stream:
             self.stream.remove(name)
+    def hide(self, name):
+        """
+        Hide a component from stream
+        """
+        if name not in self.hidden:
+            self.hidden.append(name)
+
+    def unhide(self, name):
+        """
+        Unhide a component from stream
+        """
+        if name in self.hidden:
+            self.hidden.remove(name)
+
     def __list__(self,):
         """
         list of content
         """
-        return list(self.stream)
+        return list([x for x in self.stream])
 
     def __str__(self,):
         """
         str of content
         """
         return (u"".join(["<%s>"%x for x in self.stream]))
-        #~ return u" ".join(self.stream)
+
 
 def main(args):
     return 0

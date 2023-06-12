@@ -88,6 +88,10 @@ def send_image(filename):
 @app.route('/_files/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files'))
+    
+@app.route('/_data/<filename>')
+def send_image(filename):
+    return static_file(filename, root = os.path.join(WEB_PATH,'data'))
 
 
 @app.route('/')

@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
 
+# use iso two letters language code
+#: web/views/main2.tpl:27
+msgid "LanguageCode"
+msgstr "en"
 #: web/views/main2.tpl:27
 msgid "My Language test"
 msgstr "My Language test"

@@ -1,5 +1,96 @@
 <!DOCTYPE html>
-<html lang="ar">
+<%selectValues = {"fields": [
+  "subject",
+  "verb",
+  "auxiliary",
+  "tense",
+  "voice",
+  "negative",
+  "object",
+  "time",
+  "place",
+],
+  "subject":{
+    "أَحْمَد":_("أَحْمَد"),
+    "وَلَدٌ":_("وَلَدٌ"),
+    "أنا":_("أنا"),
+    "نحن":_("نحن"),
+    "أنت":_("أنت"),
+    "أنتِ":_("أنتِ"),
+    "أنتما":_("أنتما"),
+    "أنتما مؤ":_("أنتما مؤ"),
+    "أنتم":_("أنتم"),
+    "أنتن":_("أنتن"),
+    "هو":_("هو"),
+    "هي":_("هي"),
+    "هما":_("هما"),
+    "هما مؤ":_("هما مؤ"),
+    "هم":_("هم"),
+    "هن":_("هن"),
+},
+"auxiliary":{
+    "اِسْتَطَاعَ":_("اِسْتَطَاعَ"),
+    "أَرَادَ":_("أَرَادَ"),
+    "كَادَ":_("كَادَ"),
+},
+"verb":{
+    "شَرِبَ":_("شَرِبَ"),
+    "ضَرَبَ":_("ضَرَبَ"),
+    "ذَهَبَ":_("ذَهَبَ"),
+    "جَلَسَ":_("جَلَسَ"),
+},
+"tense":{
+    "الماضي المعلوم":_("الماضي المعلوم"),
+    "المضارع المعلوم":_("المضارع المعلوم"),
+    "الأمر":_("الأمر"),
+},
+"voice":{
+    "معلوم":_("معلوم"),
+    "مبني للمجهول":_("مبني للمجهول"),
+},
+"negative":{
+    "مثبت":_("مثبت"),
+    "منفي":_("منفي"),
+},
+"object":{
+    "حَلِيبٌ":_("حَلِيبٌ"),
+    "بَابٌ":_("بَابٌ"),
+    "أنا":_("أنا"),
+    "نحن":_("نحن"),
+    "أنت":_("أنت"),
+    "أنتِ":_("أنتِ"),
+    "أنتما":_("أنتما"),
+    "أنتما مؤ":_("أنتما مؤ"),
+    "أنتم":_("أنتم"),
+    "أنتن":_("أنتن"),
+    "هو":_("هو"),
+    "هي":_("هي"),
+    "هما":_("هما"),
+    "هما مؤ":_("هما مؤ"),
+    "هم":_("هم"),
+    "هن":_("هن"),
+},
+"time":{
+    "دَائِمًا":_("دَائِمًا"),
+    "أَوَّلَ أَمْسِ":_("أَوَّلَ أَمْسِ"),
+    "الْبَارِحَةَ":_("الْبَارِحَةَ"),
+    "أَحْيَانًا":_("أَحْيَانًا"),
+    "بَعْدَ غَدٍ":_("بَعْدَ غَدٍ"),
+    "مَسَاءً":_("مَسَاءً"),
+    "أَمْسِ":_("أَمْسِ"),
+    "الْيَوْمَ":_("الْيَوْمَ"),
+    "غَدًا":_("غَدًا"),
+    "صَبَاحًا":_("صَبَاحًا"),
+    "كُلَّ يَوْمٍ":_("كُلَّ يَوْمٍ"),
+},
+"place":{
+    "بيت":_("بيت"),
+    "سوق":_("سوق"),
+    "مدرسة":_("مدرسة"),
+},
+};
+%>
+<html lang="{{ _('LanguageCode') }}">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <!--[if lt IE 9]>
@@ -25,7 +116,7 @@
       <div class="row clearfix">
         <div class="col-md-9 column">
           <form id="NewForm" name="NewForm" onsubmit="return false"><br>
-          <h3>{{ _('My Language test') }}</h3>
+          <h3>{{ _('My Language test') }} {{ _('LanguageCode') }}</h3>
 {{ _('نوع الجملة:') }}
            <select id='phrase_type'  class='form-inline' name='phrase_type'>
     <option value="جملة فعلية">
@@ -34,6 +125,10 @@
 </select>
 <br/>{{ _('فاعل') }} <select id='subject'  class='form-inline' name='subject'>
     <option value=""></option>
+    %for item in selectValues["subject"]:
+    <option value="{{item}}">{{selectValues["subject"][item]}}</option>
+    %end    
+<!--
     <option value="أَحْمَد">{{ _('أَحْمَد') }}</option>
     <option value="وَلَدٌ">{{ _('وَلَدٌ') }}</option>
     <option value="أنا">{{ _('أنا') }}</option>
@@ -50,41 +145,71 @@
     <option value="هما مؤ">{{ _('هما مؤ') }}</option>
     <option value="هم">{{ _('هم') }}</option>
     <option value="هن">{{ _('هن') }}</option>
+-->
 </select>
 <br/>{{ _('فعل مساعد') }}
 : <select id='auxiliary'  class='form-inline' name='auxiliary'>
     <option value=""></option>
+    %for item in selectValues["auxiliary"]:
+    <option value="{{item}}">{{selectValues["auxiliary"][item]}}</option>
+    %end
+<!--
     <option value="اِسْتَطَاعَ">{{ _('اِسْتَطَاعَ') }}</option>
 <option value="أَرَادَ">{{ _('أَرَادَ') }}</option>
     <option value="كَادَ">{{ _('كَادَ') }}</option>
+-->
 </select>
 {{ _('فعل:') }}
 <select id='verb'  class='form-inline' name='verb'>
     <option value=""></option>
+        %for item in selectValues["verb"]:
+    <option value="{{item}}">{{selectValues["verb"][item]}}</option>
+    %end
+<!--
     <option value="شَرِبَ">{{ _('شَرِبَ') }}</option>
     <option value="ضَرَبَ">{{ _('ضَرَبَ') }}</option>
     <option value="ذَهَبَ">{{ _('ذَهَبَ') }}</option>
     <option value="جَلَسَ">{{ _('جَلَسَ') }}</option>
+-->
 </select>
 {{ _('زمن:') }}
 <select id='tense'  class='form-inline' name='tense'>
+    %for item in selectValues["tense"]:
+    <option value="{{item}}">{{selectValues["tense"][item]}}</option>
+    %end    
+<!--
     <option value="الماضي المعلوم">{{ _('الماضي المعلوم') }}</option>
     <option value="المضارع المعلوم">{{ _('المضارع المعلوم') }}</option>
     <option value="الأمر">{{ _('الأمر') }}</option>
+-->
 </select>
 {{ _('مبني للمعلوم/مجهول:') }}
 <select id='voice'  class='form-inline' name='voice'>
+    %for item in selectValues["voice"]:
+    <option value="{{item}}">{{selectValues["voice"][item]}}</option>
+    %end    
+<!--
     <option value="معلوم">{{ _('معلوم') }}</option>
     <option value="مبني للمجهول">{{ _('مبني للمجهول') }}</option>
+-->
 
 </select>
 {{ _('مثبت/منفي:') }}
 <select id='negative'  class='form-inline' name='negative'>
+    %for item in selectValues["negative"]:
+    <option value="{{item}}">{{selectValues["negative"][item]}}</option>
+    %end    
+<!--
     <option value="مثبت">{{ _('مثبت') }}</option>
     <option value="منفي">{{ _('منفي') }}</option>
+-->
 </select>
 <br/>{{ _('مفعول') }} <select id='object'  class='form-inline' name='object'>
     <option value=""></option>
+    %for item in selectValues["object"]:
+    <option value="{{item}}">{{selectValues["object"][item]}}</option>
+    %end
+<!--
     <option value="حَلِيبٌ">{{ _('حَلِيبٌ') }}</option>
     <option value="بَابٌ">{{ _('بَابٌ') }}</option>
     <option value="أنا">{{ _('أنا') }}</option>
@@ -101,29 +226,29 @@
     <option value="هما مؤ">{{ _('هما مؤ') }}</option>
     <option value="هم">{{ _('هم') }}</option>
     <option value="هن">{{ _('هن') }}</option>
+-->
 </select>
 {{ _('ظرف زمان:') }}
 <select id='time'  class='form-inline' name='time'>
 
     <option value=""></option>
-    <option value="دَائِمًا">{{ _('دَائِمًا') }}</option>
-    <option value="أَوَّلَ أَمْسِ">{{ _('أَوَّلَ أَمْسِ') }}</option>
-    <option value="الْبَارِحَةَ">{{ _('الْبَارِحَةَ') }}</option>
-    <option value="أَحْيَانًا">{{ _('أَحْيَانًا') }}</option>
-    <option value="بَعْدَ غَدٍ">{{ _('بَعْدَ غَدٍ') }}</option>
-    <option value="مَسَاءً">{{ _('مَسَاءً') }}</option>
-    <option value="أَمْسِ">{{ _('أَمْسِ') }}</option>
-    <option value="الْيَوْمَ">{{ _('الْيَوْمَ') }}</option>
-    <option value="غَدًا">{{ _('غَدًا') }}</option>
-    <option value="صَبَاحًا">{{ _('صَبَاحًا') }}</option>
-    <option value="كُلَّ يَوْمٍ">{{ _('كُلَّ يَوْمٍ') }}</option>
+    %for item in selectValues["time"]:
+    <option value="{{item}}">{{selectValues["time"][item]}}</option>
+    %end
 </select>
 {{ _('ظرف مكان:') }}
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
-    <option value="بيت">{{ _('بيت') }}</option>
-    <option value="سوق">{{ _('سوق') }}</option>
-    <option value="مدرسة">{{ _('مدرسة') }}</option>
+    %for item in selectValues["place"]:
+    <option value="{{item}}">{{selectValues["place"][item]}}</option>
+    %end
+</select>
+{{ _('ظرف مكان:') }}
+ <select id='place'  class='form-inline' name='place'>
+    <option value=""></option>
+    %for item in selectValues["place"]:
+    <option value="بيت">{{_(item)}}</option>
+    %end
 </select>
 
 
@@ -177,11 +302,11 @@
         var script = ".";
     </script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <!--<script  src="_files/jquery-3.3.1.min.js"></script>-->
+
                 <script async="" src="_files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
-                <script async="" src="_files/cytoscape.min.js"></script>
-                <!--
-    <script async src="_files/adawat.min.js"></script>-->
+<!--
+                <script async="" src="_data/data_{{ _('LanguageCode') }}.json"></script> </div>
+-->
                 <script async="" src="_files/adawat.js"></script> </div>
             </div>
           </div>

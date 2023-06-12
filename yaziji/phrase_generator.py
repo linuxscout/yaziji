@@ -47,6 +47,7 @@ class PhraseGenerator:
         else:
             self.pattern.prepare()
             phrase = self.pattern.build()
+            phrase  += "[%s]"%self.pattern.phrase_type
 
         return phrase
 

@@ -48,8 +48,8 @@ class PhrasePattern:
         self.verb_dict = arramooz.arabicdictionary.ArabicDictionary('verbs')
         self.noun_dict = arramooz.arabicdictionary.ArabicDictionary('nouns')
 
+        self.phrase_type = ""
         # init defaul word nodes
-        default_wn =  wordNode("default", "")  
         self.nodes = {}
         self.nodes_names = ['subject', 'object', 'verb', 'time', 'place', 'tense', 'negative', 'voice', 'auxiliary', 'phrase_type']
         for attr in self.nodes_names:
@@ -60,19 +60,9 @@ class PhrasePattern:
         Add components
 
         """
+        # collect informations from nodes names from given components
         for name in self.nodes_names:
             self.nodes[name]  = wordNode(name, components.get(name,""))
-        # self.nodes["object"]   = wordNode("object",  components.get("object",""))
-        # self.nodes["verb"]     = wordNode("verb",    components.get("verb",""))
-        # self.nodes["time"]     = wordNode("time",    components.get("time",""))
-        # self.nodes["place"]    = wordNode("place",   components.get("place",""))
-        # self.nodes["tense"]    = wordNode("tense",   components.get("tense",""))
-        # self.nodes["negative"] = wordNode("negative", components.get("negative",""))
-        # self.nodes["voice"]    = wordNode("voice",   components.get("voice",""))
-        # self.nodes["auxiliary"] = wordNode("auxiliary", components.get("auxiliary",""))
-        # phrase_type = components.get("phrase_type","")
-        # self.nodes["phrase_type"] = wordNode("phrase_type", components.get("phrase",""))
-
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
         # for example, in Nominal Phrase, the order can be
@@ -84,13 +74,11 @@ class PhrasePattern:
         #         "place",
         #         "time",
         #         ],
-        phrase_type = self.nodes.get("phrase_type","")
+        if self.nodes.get("phrase_type", None) :
+            self.phrase_type = self.nodes.get("phrase_type").value
+        # get the phrase word order (stream) according to phrase type
+        self.stream = stream_pattern.streamPattern(self.phrase_type)
 
-        stream = stream_pattern.streamPattern(phrase_type)
-        # stream = yaziji_const.STREAMS.get(phrase_type, yaziji_const.STREAMS["default"] )
-
-        self.stream = stream_pattern.streamPattern(stream)
-        
         self.subject   = self.nodes["subject"].value
         self.predicate = self.nodes["object"].value
         self.verb      = self.nodes["verb"].value
@@ -102,14 +90,28 @@ class PhrasePattern:
         self.place_circumstance = self.nodes["place"].value
         
         #check for errors
-        if  self.tense == vconst.TenseImperative and self.subject  not in vconst.ImperativePronouns:
-            return -1 # error code
+        response = self.check_compatibles()
+        if response < 0:
+            return response
+
         return True
+    def check_compatibles(self):
+        """
+        Check if input components are compatibles
+        :return:
+        """
+        # مشكلة في التصريف بين الضمير وفعل الأمر
+        if  self.nodes["tense"].value == vconst.TenseImperative and self.nodes["subject"].value  not in vconst.ImperativePronouns:
+            return -1 # error code
+        #TODO:
+        # check verbs
+        return True
+
     def prepare(self,):
         """
         extract more data from components
         """
-        #prepare the verb
+        # prepare the verb
         # extract tense
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
         # extract pronoun
@@ -127,7 +129,7 @@ class PhrasePattern:
             self.nodes["auxiliary"].conjugated = verb_aux
             self.nodes["auxiliary"].before = factor_aux
         else:
-            self.nodes["auxiliary"].set_null()    
+            self.nodes["auxiliary"].hide()
         # verb
         if self.verb:
             transitive, future_type = self.get_verb_attributes(self.verb)
@@ -149,7 +151,7 @@ class PhrasePattern:
                 self.nodes["verb"].conjugated = verb_conjugated
 
         if self.predicate :
-            # if is there is verb
+            # if is there a verb
             word = self.predicate
             if self.nodes['verb'].value:
                 # إذا كان الضمير متصلا
@@ -175,8 +177,11 @@ class PhrasePattern:
             if self.nodes['verb'].value:
                 # إذا كان الضمير متصلا
                 # أو الفعل مبني للمجهول
-                if self.is_pronoun(self.subject) or self.nodes['voice'].value =="مبني للمجهول":
-                    self.nodes["subject"].set_null()
+                if (self.phrase_type == "جملة فعلية"
+                    and ( self.is_pronoun(self.subject) or self.nodes['voice'].value == "مبني للمجهول")
+                   ):
+                    # hide the subject from stream
+                    self.nodes['subject'].hide()
    
             # مبتدأ وخبر
             self.nodes["subject"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
@@ -368,11 +373,18 @@ class PhrasePattern:
         """
         # build phrase according to stream
         phrase = []
+        # a strean contains the word role order in the phrase
         for key in self.stream.__list__():
+            # each word node has conjugated form
             wn = self.nodes.get(key, None)
-            if wn and wn.value:
+            # some words can be hidden like a pronoun for a verb
+            # أنت تلعب ==> تلعب
+            if wn and wn.value and not wn.hidden:
+                # some words generate particles  to be added before and after
+                # for example a majzoum future tense need "لم" partical
                 if wn.before:
                     phrase.append(wn.before)
+
                 phrase.append(wn.conjugated) 
                 if wn.after:
                     phrase.append(wn.after)                

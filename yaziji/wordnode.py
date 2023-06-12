@@ -57,6 +57,8 @@ class wordNode:
         self.tense = ""
         # transitivity for verbs
         self.transitive = True
+        # if the word will be hidden
+        self.hidden = False
 
     def set_null(self,):
         """
@@ -65,6 +67,20 @@ class wordNode:
         """
         self.value = ""
         self.conjugated = ""
+    def hide(self,):
+        """
+        hide the word node in the output
+        :return:
+        """
+        self.hidden = True
+    def unhide(self,):
+        """
+        unhide the word node in the output
+        :return:
+        """
+        self.hidden = False
+
+
 
         
 
