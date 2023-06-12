@@ -30,77 +30,65 @@ import arramooz.arabicdictionary
 
 import yaziji_const
 import stream_pattern
-class wordNode:
-    """
-    a word node 
-    """
-    def __init__(self, name, value):
-        self.name  = name
-        self.value = value
-        # the word form
-        self.conjugated = value
-        self.prefix = ""
-        self.suffix = ""
-        self.before = ""
-        self.after = ""
-        self.tense = ""
-        self.transitive = True
+from wordnode import wordNode
 
-    def set_null(self,):
-        self.value = ""
-        self.conjugated = ""
-        
 class PhrasePattern:
     """
     A class to generator
     """
     def __init__(self):
         
-        self.stream = stream_pattern.streamPattern(["auxiliary",
-        "subject", 
-        "negation",
-        "verb",
-        "object",
-        "time",
-        "place",
-        ])
+        self.stream = stream_pattern.streamPattern("default")
         
-
+        # a verb affixer to conjugate and affixe a verb
         self.verbaffixer = alyahmor.verb_affixer.verb_affixer()
+        # a noun affixer to flex a noun
         self.nounaffixer = alyahmor.noun_affixer.noun_affixer()
+        # dictionanries used to get lemmas and words
         self.verb_dict = arramooz.arabicdictionary.ArabicDictionary('verbs')
         self.noun_dict = arramooz.arabicdictionary.ArabicDictionary('nouns')
+
+        # init defaul word nodes
         default_wn =  wordNode("default", "")  
-        self.nodes = {"subject"  : default_wn,
-        "object"   : default_wn,
-        "verb"     : default_wn,
-        "time"     : default_wn,
-        "place"    : default_wn,
-        "tense"    : default_wn,
-        "negative" : default_wn,
-        "voice"    : default_wn,
-        "auxiliary" : default_wn,
-        "phrase_type":default_wn,
-        }
+        self.nodes = {}
+        self.nodes_names = ['subject', 'object', 'verb', 'time', 'place', 'tense', 'negative', 'voice', 'auxiliary', 'phrase_type']
+        for attr in self.nodes_names:
+            self.nodes[attr] = wordNode("default", "")
 
     def add_components(self, components):
         """
         Add components
+
         """
-        self.nodes["subject"]  = wordNode("subject", components.get("subject",""))
-        self.nodes["object"]   = wordNode("object",  components.get("object",""))
-        self.nodes["verb"]     = wordNode("verb",    components.get("verb",""))
-        self.nodes["time"]     = wordNode("time",    components.get("time",""))
-        self.nodes["place"]    = wordNode("place",   components.get("place",""))
-        self.nodes["tense"]    = wordNode("tense",   components.get("tense",""))
-        self.nodes["negative"] = wordNode("negative", components.get("negative",""))
-        self.nodes["voice"]    = wordNode("voice",   components.get("voice",""))
-        self.nodes["auxiliary"] = wordNode("auxiliary", components.get("auxiliary","")) 
-        phrase_type = components.get("phrase_type","")
-        self.nodes["phrase_type"] = wordNode("phrase_type", components.get("phrase","")) 
-        
-        stream = yaziji_const.STREAMS.get(phrase_type, yaziji_const.STREAMS["default"] )
-        #~ print(phrase_type, stream) 
+        for name in self.nodes_names:
+            self.nodes[name]  = wordNode(name, components.get(name,""))
+        # self.nodes["object"]   = wordNode("object",  components.get("object",""))
+        # self.nodes["verb"]     = wordNode("verb",    components.get("verb",""))
+        # self.nodes["time"]     = wordNode("time",    components.get("time",""))
+        # self.nodes["place"]    = wordNode("place",   components.get("place",""))
+        # self.nodes["tense"]    = wordNode("tense",   components.get("tense",""))
+        # self.nodes["negative"] = wordNode("negative", components.get("negative",""))
+        # self.nodes["voice"]    = wordNode("voice",   components.get("voice",""))
+        # self.nodes["auxiliary"] = wordNode("auxiliary", components.get("auxiliary",""))
+        # phrase_type = components.get("phrase_type","")
+        # self.nodes["phrase_type"] = wordNode("phrase_type", components.get("phrase",""))
+
+        # select a stream for a given phrase type
+        # the stream is the word order and phrase components
+        # for example, in Nominal Phrase, the order can be
+        # [        "subject",
+        #     "auxiliary",
+        #         "negation",
+        #         "verb",
+        #         "object",
+        #         "place",
+        #         "time",
+        #         ],
+        phrase_type = self.nodes.get("phrase_type","")
+
+        stream = stream_pattern.streamPattern(phrase_type)
+        # stream = yaziji_const.STREAMS.get(phrase_type, yaziji_const.STREAMS["default"] )
+
         self.stream = stream_pattern.streamPattern(stream)
         
         self.subject   = self.nodes["subject"].value

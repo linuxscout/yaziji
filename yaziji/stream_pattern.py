@@ -20,13 +20,15 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-#  
+#
+from  yaziji_const import STREAMS
 class streamPattern:
     """
     a class to handle pattern stream order
     """
-    def __init__(self, stream_list):
-        self.stream = stream_list
+    def __init__(self, stream_type):
+
+        self.stream = STREAMS.get(stream_type, STREAMS.get('default',{}))
     
     def add(self, attribute, before="", after=""):
         """

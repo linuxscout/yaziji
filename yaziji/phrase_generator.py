@@ -38,9 +38,12 @@ class PhraseGenerator:
         """
         
         """
-        success = self.pattern.add_components(table_compononts)
-        if success < 0:
-            phrase = self.error_message(success)
+        # Try to add components to prepare the phrase,
+        # if there are some errors, response will be negative
+        # else : build phrase within phrase_pattern module
+        response = self.pattern.add_components(table_compononts)
+        if response < 0:
+            phrase = self.error_message(response)
         else:
             self.pattern.prepare()
             phrase = self.pattern.build()

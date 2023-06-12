@@ -21,12 +21,16 @@ import logging
 import adaat
 # ~ app = Bottle()
 app = default_app()
-LANGS = [ ('ar_DZ', 'العربية'),
-    ('en_US', 'English'),
-#   ('fr_FR', 'français'),
+LANGS = [ ('ar', 'العربية'),
+    # ~ ('en_US', 'English'),
+   # ~ ('fr_FR', 'français'),
+    ('en', 'English'),
+   ('fr', 'français'),
+   ('ar_DZ', 'العربية'),
 ]
 
-DEFAULT_LOCALE = 'ar_DZ'
+# ~ DEFAULT_LOCALE = 'ar_DZ'
+DEFAULT_LOCALE = 'ar'
 LOCALES_DIR = './locales'
 wsgi_app = I18NPlugin(app,
                       langs=LANGS,

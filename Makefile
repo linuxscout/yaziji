@@ -22,20 +22,18 @@ md2html:
 	pandoc -s -r markdown -w html README.md -o README.html
 
 wheel:
-	sudo python setup.py bdist_wheel
-wheel3:
 	sudo python3 setup.py bdist_wheel
 install:
-	sudo python setup.py install
-install3:
 	sudo python3 setup.py install
+
 sdist:
-	sudo python setup.py sdist
+	sudo python3 setup.py sdist
 upload:
 	echo "use twine upload dist/yaziji-0.1-py2-none-any.whl"
 
 doc:
 	epydoc -v --config epydoc.conf
+	
 test1:
 	python3  yaziji/phrase_generator.py> tests/output/text.out.txt
 test:
@@ -48,6 +46,9 @@ eval:ods
 
 server:
 	cd web;python3  testy.py
+serverlang:
+	cd web;python3  testylang.py
+
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
 
@@ -57,8 +58,10 @@ gettext:
 	# extract messages from main template
 	xgettext -L python --from-code=UTF-8 web/views/main2.tpl -o web/locales/main.po
 copy_locales:
+	cd web/locales; cp main.po ar/LC_MESSAGES/
 	cd web/locales; cp main.po ar_DZ/LC_MESSAGES/
-	cd web/locales; cp main.po en_US/LC_MESSAGES/
+	cd web/locales; cp main.po en/LC_MESSAGES/
+	cd web/locales; cp main.po fr/LC_MESSAGES/
 update_locales:
 	echo '' > messages.po # xgettext needs that file, and we need it empty
 	find . -type f -iname "*.py" | xgettext -j -f - # this modifies messages.po
