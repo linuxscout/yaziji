@@ -134,3 +134,5 @@ dmypy.json
 /tests/samples/.~lock.sample10.xlsx#
 /tests/samples/sample10.xlsx
 /tests/samples/tmp/sample10.csv
+/.idea/
+/tools/outputs/

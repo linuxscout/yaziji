@@ -175,16 +175,46 @@ var more_click = function(e) {
   }
 
 function draw(){
+// this function call /selectget api to get data to be display on fields Select inputs
+// this fields are translated into target language
 // fill all select fields from translated strings
 // fill select fields
- for (x in selectValues.fields)
-    {
-    var field = selectValues.fields[x];
-//    console.log("field", selectValues.fields[x], field);
-    $.each(selectValues[field], function(key, value) {
-         $('#'+field).append($("<option></option>").attr("value", key).text(value));
+// Catche the current locale
+const urlParams = new URLSearchParams(window.location.search);
+const lang = urlParams.get('locale');
+$("html").attr("lang", lang);
+//console.log("HTML lang Changed to :"+$("html").attr("lang"))
+//Change direction if not Arabic
+if(lang == "ar")
+    $("#NewForm").css("direction", "rtl");
+else
+    $("#NewForm").css("direction", "ltr");
+//console.log("Body direction Changed to :"+$("body").attr("dir"))
+//console.log("catched locale is: "+lang)
+   $.getJSON(script + "/"+lang+"/selectGet", {
+      text: '',
+      action: "RandomText"
+    }, function(data) {
+
+      if (!data) console.log("No thing, from selectGet");
+      else
+      {
+      //console.log(data);
+        var selectValues = data;
+//    console.log("SELECT Values" + selectValues);
+//      console.log("SELECT Values fields" + selectValues.fields);
+     for (x in selectValues.fields)
+        {
+        var field = selectValues.fields[x];
+    //    console.log("field", selectValues.fields[x], field);
+        $.each(selectValues[field], function(key, value) {
+             $('#'+field).append($("<option></option>").attr("value", key).text(value));
+        });
+        }
+
+       }
     });
-    }
+
 
 }
 

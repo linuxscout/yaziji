@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Application</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <script src="js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.language.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
+  <script src="js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+  <script src="js/lib/history/jquery.history.js"></script>
+  <script src="js/lib/url/url.min.js"></script>
+
+  <script src="js/global.js"></script>
+</head>
+<body>
+<ul class="switch-locale">
+  <li><a href="#" data-locale="en">English</a></li>
+  <li><a href="#" data-locale="ru">Русский</a></li>
+  <li><a href="#" data-locale="ar">العربية</a></li>
+</ul>
+
+<h1 class="translate" data-args="app-title">Example Application</h1>
+<h2 class="translate" data-args="welcome,John">Welcome</h2>
+
+<p class="translate" data-args="letters,5"></p>
+
+<div>
+  <p><em class="translate" data-args="letter,Ann,female"></em></p>
+  <p>letter's text...</p>
+</div>
+
+<div>
+  <p><em class="translate" data-args="letter,Rick,male"></em></p>
+  <p>letter's text...</p>
+</div>
+
+<p class="translate" data-args="about"></p>
+
+<footer class="translate" data-args="copyright"></footer>
+</body>
+</html>

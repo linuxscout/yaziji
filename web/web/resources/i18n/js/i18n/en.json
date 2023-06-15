@@ -1,0 +1,28 @@
+{
+  "@metadata": {
+    "authors": [
+      "Taha Zerrouki"
+    ],
+    "last-updated": "2023-06-15",
+    "locale": "en"
+  },
+      "app-title": "Example Application",
+     "نوع الجملة:" : "Phrase type",
+    "جملة فعلية":"verbal Phrase",
+    "جملة اسمية":"nominal Phrase",
+    "فاعل" : "Subject",
+    "فعل مساعد":"Auxiliary",
+    "فعل:":"Verb",
+    "زمن:":"tense",
+    "مبني للمعلوم/مجهول:":"Passive",
+    "مثبت/منفي:":"Negative",
+    "مفعول":"Object",
+    "ظرف زمان:":"Time",
+    "ظرف مكان:":"Place",
+    "بناء":"Build",
+    "عشوائي":"Random",
+    "عينة":"Sample",
+    "حركة الإعراب":"Inflection mark",
+    "مدونتي":"My Blog",
+     "الاستضافة بدعم من شركة":"Hosted by"
+}
