@@ -45,9 +45,8 @@ eval:ods
 	cd tests;python3  test.py -c test --limit 10 -f samples/tmp/sample10.csv -o output/text.eval.csv
 
 server:
-	cd web;python3  testy.py
-serverlang:
 	cd web;python3  testylang.py
+
 
 select:
 	python3 yaziji/components_set.py > tests/output/select.html
