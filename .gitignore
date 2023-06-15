@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -136,3 +136,4 @@ dmypy.json
 /tests/samples/tmp/sample10.csv
 /.idea/
 /tools/outputs/
+/web/web/lib
