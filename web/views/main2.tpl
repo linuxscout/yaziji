@@ -1,95 +1,4 @@
 <!DOCTYPE html>
-<%selectValues = {"fields": [
-  "subject",
-  "verb",
-  "auxiliary",
-  "tense",
-  "voice",
-  "negative",
-  "object",
-  "time",
-  "place",
-],
-  "subject":{
-    "أَحْمَد":_("أَحْمَد"),
-    "وَلَدٌ":_("وَلَدٌ"),
-    "أنا":_("أنا"),
-    "نحن":_("نحن"),
-    "أنت":_("أنت"),
-    "أنتِ":_("أنتِ"),
-    "أنتما":_("أنتما"),
-    "أنتما مؤ":_("أنتما مؤ"),
-    "أنتم":_("أنتم"),
-    "أنتن":_("أنتن"),
-    "هو":_("هو"),
-    "هي":_("هي"),
-    "هما":_("هما"),
-    "هما مؤ":_("هما مؤ"),
-    "هم":_("هم"),
-    "هن":_("هن"),
-},
-"auxiliary":{
-    "اِسْتَطَاعَ":_("اِسْتَطَاعَ"),
-    "أَرَادَ":_("أَرَادَ"),
-    "كَادَ":_("كَادَ"),
-},
-"verb":{
-    "شَرِبَ":_("شَرِبَ"),
-    "ضَرَبَ":_("ضَرَبَ"),
-    "ذَهَبَ":_("ذَهَبَ"),
-    "جَلَسَ":_("جَلَسَ"),
-},
-"tense":{
-    "الماضي المعلوم":_("الماضي المعلوم"),
-    "المضارع المعلوم":_("المضارع المعلوم"),
-    "الأمر":_("الأمر"),
-},
-"voice":{
-    "معلوم":_("معلوم"),
-    "مبني للمجهول":_("مبني للمجهول"),
-},
-"negative":{
-    "مثبت":_("مثبت"),
-    "منفي":_("منفي"),
-},
-"object":{
-    "حَلِيبٌ":_("حَلِيبٌ"),
-    "بَابٌ":_("بَابٌ"),
-    "أنا":_("أنا"),
-    "نحن":_("نحن"),
-    "أنت":_("أنت"),
-    "أنتِ":_("أنتِ"),
-    "أنتما":_("أنتما"),
-    "أنتما مؤ":_("أنتما مؤ"),
-    "أنتم":_("أنتم"),
-    "أنتن":_("أنتن"),
-    "هو":_("هو"),
-    "هي":_("هي"),
-    "هما":_("هما"),
-    "هما مؤ":_("هما مؤ"),
-    "هم":_("هم"),
-    "هن":_("هن"),
-},
-"time":{
-    "دَائِمًا":_("دَائِمًا"),
-    "أَوَّلَ أَمْسِ":_("أَوَّلَ أَمْسِ"),
-    "الْبَارِحَةَ":_("الْبَارِحَةَ"),
-    "أَحْيَانًا":_("أَحْيَانًا"),
-    "بَعْدَ غَدٍ":_("بَعْدَ غَدٍ"),
-    "مَسَاءً":_("مَسَاءً"),
-    "أَمْسِ":_("أَمْسِ"),
-    "الْيَوْمَ":_("الْيَوْمَ"),
-    "غَدًا":_("غَدًا"),
-    "صَبَاحًا":_("صَبَاحًا"),
-    "كُلَّ يَوْمٍ":_("كُلَّ يَوْمٍ"),
-},
-"place":{
-    "بيت":_("بيت"),
-    "سوق":_("سوق"),
-    "مدرسة":_("مدرسة"),
-},
-};
-%>
 <html lang="{{ _('LanguageCode') }}">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -109,8 +18,7 @@
   </head>
   <body dir="rtl">
                    <p> <a href="main"><img alt="مولد الجمل العربية" height="120px" src="_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
-    <!--<h2>يازجي</h2>
-    <h3>مولد الجمل العربية</h3>--><h3>مولد الجمل العربية</h3>
+<h3>مولد الجمل العربية</h3>
 <h4> <a href="/ar">ar</a>&nbsp;<a href="/fr">Fr</a>&nbsp;<a href="/en">En</a>&nbsp;</h4>
     <div class="container">
       <div class="row clearfix">
@@ -125,128 +33,72 @@
 </select>
 <br/>{{ _('فاعل') }} <select id='subject'  class='form-inline' name='subject'>
     <option value=""></option>
-    %for item in selectValues["subject"]:
-    <option value="{{item}}">{{selectValues["subject"][item]}}</option>
+    %for item in selectValues.get("subject",{}):
+    <option value="{{item}}">{{selectValues.get("subject",{})[item]}}</option>
     %end    
-<!--
-    <option value="أَحْمَد">{{ _('أَحْمَد') }}</option>
-    <option value="وَلَدٌ">{{ _('وَلَدٌ') }}</option>
-    <option value="أنا">{{ _('أنا') }}</option>
-    <option value="نحن">{{ _('نحن') }}</option>
-    <option value="أنت">{{ _('أنت') }}</option>
-    <option value="أنتِ">{{ _('أنتِ') }}</option>
-    <option value="أنتما">{{ _('أنتما') }}</option>
-    <option value="أنتما مؤ">{{ _('أنتما مؤ') }}</option>
-    <option value="أنتم">{{ _('أنتم') }}</option>
-    <option value="أنتن">{{ _('أنتن') }}</option>
-    <option value="هو">{{ _('هو') }}</option>
-    <option value="هي">{{ _('هي') }}</option>
-    <option value="هما">{{ _('هما') }}</option>
-    <option value="هما مؤ">{{ _('هما مؤ') }}</option>
-    <option value="هم">{{ _('هم') }}</option>
-    <option value="هن">{{ _('هن') }}</option>
--->
+
 </select>
 <br/>{{ _('فعل مساعد') }}
 : <select id='auxiliary'  class='form-inline' name='auxiliary'>
     <option value=""></option>
-    %for item in selectValues["auxiliary"]:
-    <option value="{{item}}">{{selectValues["auxiliary"][item]}}</option>
+    %for item in selectValues.get("auxiliary",{}):
+    <option value="{{item}}">{{selectValues.get("auxiliary",{})[item]}}</option>
     %end
-<!--
-    <option value="اِسْتَطَاعَ">{{ _('اِسْتَطَاعَ') }}</option>
-<option value="أَرَادَ">{{ _('أَرَادَ') }}</option>
-    <option value="كَادَ">{{ _('كَادَ') }}</option>
--->
+
 </select>
 {{ _('فعل:') }}
 <select id='verb'  class='form-inline' name='verb'>
     <option value=""></option>
-        %for item in selectValues["verb"]:
-    <option value="{{item}}">{{selectValues["verb"][item]}}</option>
+        %for item in selectValues.get("verb",{}):
+    <option value="{{item}}">{{selectValues.get("verb",{})[item]}}</option>
     %end
-<!--
-    <option value="شَرِبَ">{{ _('شَرِبَ') }}</option>
-    <option value="ضَرَبَ">{{ _('ضَرَبَ') }}</option>
-    <option value="ذَهَبَ">{{ _('ذَهَبَ') }}</option>
-    <option value="جَلَسَ">{{ _('جَلَسَ') }}</option>
--->
+
 </select>
 {{ _('زمن:') }}
 <select id='tense'  class='form-inline' name='tense'>
-    %for item in selectValues["tense"]:
-    <option value="{{item}}">{{selectValues["tense"][item]}}</option>
+    %for item in selectValues.get("tense",{}):
+    <option value="{{item}}">{{selectValues.get("tense",{})[item]}}</option>
     %end    
-<!--
-    <option value="الماضي المعلوم">{{ _('الماضي المعلوم') }}</option>
-    <option value="المضارع المعلوم">{{ _('المضارع المعلوم') }}</option>
-    <option value="الأمر">{{ _('الأمر') }}</option>
--->
+
 </select>
 {{ _('مبني للمعلوم/مجهول:') }}
 <select id='voice'  class='form-inline' name='voice'>
-    %for item in selectValues["voice"]:
-    <option value="{{item}}">{{selectValues["voice"][item]}}</option>
+    %for item in selectValues.get("voice",{}):
+    <option value="{{item}}">{{selectValues.get("voice",{})[item]}}</option>
     %end    
-<!--
-    <option value="معلوم">{{ _('معلوم') }}</option>
-    <option value="مبني للمجهول">{{ _('مبني للمجهول') }}</option>
--->
 
 </select>
 {{ _('مثبت/منفي:') }}
 <select id='negative'  class='form-inline' name='negative'>
-    %for item in selectValues["negative"]:
-    <option value="{{item}}">{{selectValues["negative"][item]}}</option>
+    %for item in selectValues.get("negative",{}):
+    <option value="{{item}}">{{selectValues.get("negative",{})[item]}}</option>
     %end    
-<!--
-    <option value="مثبت">{{ _('مثبت') }}</option>
-    <option value="منفي">{{ _('منفي') }}</option>
--->
 </select>
 <br/>{{ _('مفعول') }} <select id='object'  class='form-inline' name='object'>
     <option value=""></option>
-    %for item in selectValues["object"]:
-    <option value="{{item}}">{{selectValues["object"][item]}}</option>
+    %for item in selectValues.get("object",{}):
+    <option value="{{item}}">{{selectValues.get("object",{})[item]}}</option>
     %end
-<!--
-    <option value="حَلِيبٌ">{{ _('حَلِيبٌ') }}</option>
-    <option value="بَابٌ">{{ _('بَابٌ') }}</option>
-    <option value="أنا">{{ _('أنا') }}</option>
-    <option value="نحن">{{ _('نحن') }}</option>
-    <option value="أنت">{{ _('أنت') }}</option>
-    <option value="أنتِ">{{ _('أنتِ') }}</option>
-    <option value="أنتما">{{ _('أنتما') }}</option>
-    <option value="أنتما مؤ">{{ _('أنتما مؤ') }}</option>
-    <option value="أنتم">{{ _('أنتم') }}</option>
-    <option value="أنتن">{{ _('أنتن') }}</option>
-    <option value="هو">{{ _('هو') }}</option>
-    <option value="هي">{{ _('هي') }}</option>
-    <option value="هما">{{ _('هما') }}</option>
-    <option value="هما مؤ">{{ _('هما مؤ') }}</option>
-    <option value="هم">{{ _('هم') }}</option>
-    <option value="هن">{{ _('هن') }}</option>
--->
 </select>
 {{ _('ظرف زمان:') }}
 <select id='time'  class='form-inline' name='time'>
 
     <option value=""></option>
-    %for item in selectValues["time"]:
-    <option value="{{item}}">{{selectValues["time"][item]}}</option>
+    %for item in selectValues.get("time",{}):
+    <option value="{{item}}">{{selectValues.get("time",{})[item]}}</option>
     %end
 </select>
 {{ _('ظرف مكان:') }}
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
-    %for item in selectValues["place"]:
-    <option value="{{item}}">{{selectValues["place"][item]}}</option>
+    %for item in selectValues.get("place",{}):
+    <option value="{{item}}">{{selectValues.get("place",{})[item]}}</option>
     %end
 </select>
 {{ _('ظرف مكان:') }}
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
-    %for item in selectValues["place"]:
+    %for item in selectValues.get("place",{}):
     <option value="بيت">{{_(item)}}</option>
     %end
 </select>
@@ -262,13 +114,13 @@
                 type="checkbox" title="{{ _('إظهار حركة الإعراب في أواخر الكلمات') }}"> {{ _('حركة الإعراب') }}</div>
 
           </form>
-                    <!--hidden parts only used to extract gettext
+<!--hidden parts only used to extract gettext
                     {{ _('إظهار حركة الإعراب في أواخر الكلمات') }}
                     {{ _('اختيار عشوائي للمفردات') }}
                     {{ _('نسخ عينة جيسون للتجارب البرمجية') }
                     {{ _('بناء الجملة') }}
                     
-                    -->
+-->
           <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
           <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
           <section class="bg-info" id="small_hint"></section>

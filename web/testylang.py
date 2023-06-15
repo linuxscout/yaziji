@@ -5,25 +5,48 @@ from __future__ import (absolute_import, division,
 import sys
 from bottle import Bottle, run, default_app
 from bottle import static_file
-from bottle import template
+import bottle
 from bottle import view
-from bottle import get
+# from bottle import get
 from bottle import request
 from bottle import response
+# from bottle import hook
 from bottle import TEMPLATE_PATH
 from bottle_utils.i18n import I18NPlugin
-from bottle_utils.i18n import lazy_ngettext as ngettext, lazy_gettext as _
+import bottle_utils.lazy
+# from bottle_utils.i18n import lazy_ngettext as ngettext, lazy_gettext as _
 
 import json
 import os.path
 import datetime
 import logging
 import adaat
-# ~ app = Bottle()
+
+
+# contains data
+
+import data_const
+
+class EnableCors(object):
+    name = 'enable_cors'
+    api = 2
+
+    def apply(self, fn, context):
+        def _enable_cors(*args, **kwargs):
+            # set CORS headers
+            response.headers['Access-Control-Allow-Origin'] = '*'
+            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS'
+            response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+            if bottle.request.method != 'OPTIONS':
+                # actual request; reply with the actual response
+                return fn(*args, **kwargs)
+
+        return _enable_cors
+
 app = default_app()
+app.install(EnableCors())
 LANGS = [ ('ar', 'العربية'),
-    # ~ ('en_US', 'English'),
-   # ~ ('fr_FR', 'français'),
     ('en', 'English'),
    ('fr', 'français'),
    ('ar_DZ', 'العربية'),
@@ -32,6 +55,7 @@ LANGS = [ ('ar', 'العربية'),
 # ~ DEFAULT_LOCALE = 'ar_DZ'
 DEFAULT_LOCALE = 'ar'
 LOCALES_DIR = './locales'
+
 wsgi_app = I18NPlugin(app,
                       langs=LANGS,
                       default_locale=DEFAULT_LOCALE,
@@ -97,21 +121,16 @@ def send_image(filename):
 @app.route('/')
 @app.route('/main')
 @app.route('/index')
-#~ @view(os.path.join(WEB_PATH,'views/main2'))
 @view('main2')
 def main():
-    #~ selection ="<textarea>Taha Zerrouki</textarea>"
-    return {'DefaultText':u"جائحة كورونا",
-      #~ 'ResultText':u"السلام عليكم",
+    return {
       'ResultText':WEB_PATH,
-      #~ 'Script':"cgi-bin/yaziji.cgi",
       'Script':".",
-      #~ "Selection":selection
+      "selectValues": {},
+      # "selectValues":data_const.selectValues,
       }
 
 @app.route('/ajaxGet')
-#~ @app.route('/mishkal/ajaxGet')
-#~ @view('main2')
 def ajaxget():
     """
     this is an example of using ajax/json
@@ -142,10 +161,40 @@ def ajaxget():
     response.set_header("Access-Control-Allow-Headers",     "Content-Type, *")
     response.set_header( "Content-Type", "application/json")
     
-    return json.dumps({'result':resulttext, 'order':order})
+    return json.dumps({'result':resulttext, 'order':order})\
 
+@app.route('/selectGet')
+def selectget():
+    """
+    this is an example of using ajax/json
+    to test it visit http://localhost:8080/selectGet"
+    """
 
+    #-----------
+    # prepare json
+    #-------------
+    response.set_header("Access-Control-Allow-Methods",     "GET, POST, OPTIONS")
+    response.set_header("Access-Control-Allow-Credentials", "true")
+    response.set_header( "Access-Control-Allow-Origin",      "*")
+    response.set_header("Access-Control-Allow-Headers",     "Content-Type, *")
+    response.set_header( "Content-Type", "application/json")
+    # Todo: remove
+    # print(data_const.selectValues.__str__())
+    # print(json.dumps(data_const.selectValues,  default=json_default))
+    # return json.dumps(data_const.selectValues.__str__())
+    # return json.dumps(data_const.selectValues.__str__())
+    return json.dumps(data_const.selectValues,  default=json_default)
 
+def json_default(value):
+    """
+    Function used to handle json dumps for translated texts
+    :param value:
+    :return:
+    """
+    if isinstance(value, bottle_utils.lazy.Lazy):
+        return value.__str__()
+        # return str(value)
+    raise TypeError('testylang:json_default():not JSON serializable')
 
 #------------------
 # Static pages files
