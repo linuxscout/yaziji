@@ -46,6 +46,8 @@ eval:ods
 
 server:
 	cd web;python3  testylang.py
+server2:
+	cd web;python3  yaziji_webserver.py
 
 
 select:
@@ -66,4 +68,10 @@ update_locales:
 	find . -type f -iname "*.py" | xgettext -j -f - # this modifies messages.po
 	msgmerge -N existing.po messages.po > new.po
 	mv new.po existing.po
-	rm messages.po	
+	rm messages.po
+
+testurl:
+	curl -o tests/output/testajax1.json http://127.0.0.1:8080/fr/ajaxGet
+	curl -o tests/output/testajax2.json http://127.0.0.1/yaziji/fr/ajaxGet
+	curl -o tests/output/testselect1.json http://127.0.0.1:8080/fr/selectGet
+	curl -o tests/output/testselect2.json http://127.0.0.1/yaziji/fr/selectGet

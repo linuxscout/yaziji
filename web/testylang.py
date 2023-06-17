@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
+
 import sys
 from bottle import Bottle, run, default_app
 from bottle import static_file
@@ -23,8 +24,8 @@ import logging
 import adaat
 
 
-# contains data
 
+# contains data
 import data_const
 
 class EnableCors(object):
@@ -43,7 +44,7 @@ class EnableCors(object):
                 return fn(*args, **kwargs)
 
         return _enable_cors
-
+BASE_PATH = ''
 app = default_app()
 app.install(EnableCors())
 LANGS = [ ('ar', 'العربية'),
@@ -87,14 +88,14 @@ def writelog(text,action):
 #------------------
 # resources files
 #------------------
-@app.route('/_files/fonts/<filename>')
+@app.route(BASE_PATH +'/_files/fonts/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/fonts'))
-@app.route('/_files/xzero-rtl/css/<filename>')
+@app.route(BASE_PATH +'/_files/xzero-rtl/css/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'./web/resources/files/xzero-rtl/css'))
 
-@app.route('/_files/xzero-rtl/js/<filename>')
+@app.route(BASE_PATH +'/_files/xzero-rtl/js/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/xzero-rtl/js'))
 @app.route('/_files/xzero-rtl/fonts/<filename>')
@@ -102,35 +103,36 @@ def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/xzero-rtl/fonts'))
 
 
-@app.route('/_files/samples/<filename:re:.*\.(png|jpg|jpeg)>')
+@app.route(BASE_PATH +'/_files/samples/<filename:re:.*\.(png|jpg|jpeg)>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files/samples'), mimetype='image/png')
 
-@app.route('/_files/images/<filename:re:.*\.(png|jpg|jpeg)>')
+@app.route(BASE_PATH +'/_files/images/<filename:re:.*\.(png|jpg|jpeg)>')
 def send_image(filename):
     return static_file(filename, root= os.path.join(WEB_PATH,'web/resources/files/images'), mimetype='image/png')
-@app.route('/_files/<filename>')
+@app.route(BASE_PATH +'/_files/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'web/resources/files'))
     
-@app.route('/_data/<filename>')
+@app.route(BASE_PATH +'/_data/<filename>')
 def send_image(filename):
     return static_file(filename, root = os.path.join(WEB_PATH,'data'))
 
 
-@app.route('/')
-@app.route('/main')
-@app.route('/index')
+@app.route(BASE_PATH +'/')
+@app.route(BASE_PATH +'/main')
+@app.route(BASE_PATH +'/index')
 @view('main2')
 def main():
+    # ~ print("request.urlparts ",request.urlparts)
+    # ~ print("request.urlparts ",request.urlparts)
     return {
       'ResultText':WEB_PATH,
       'Script':".",
       "selectValues": {},
-      # "selectValues":data_const.selectValues,
       }
 
-@app.route('/ajaxGet')
+@app.route(BASE_PATH +'/ajaxGet')
 def ajaxget():
     """
     this is an example of using ajax/json
@@ -161,9 +163,9 @@ def ajaxget():
     response.set_header("Access-Control-Allow-Headers",     "Content-Type, *")
     response.set_header( "Content-Type", "application/json")
     
-    return json.dumps({'result':resulttext, 'order':order})\
+    return json.dumps({'result':resulttext, 'order':order})
 
-@app.route('/selectGet')
+@app.route(BASE_PATH +'/selectGet')
 def selectget():
     """
     this is an example of using ajax/json
@@ -173,7 +175,7 @@ def selectget():
     #-----------
     # prepare json
     #-------------
-    response.set_header("Access-Control-Allow-Methods",     "GET, POST, OPTIONS")
+    response.set_header("Access-Control-Allow-Methods",     "GET, POST")
     response.set_header("Access-Control-Allow-Credentials", "true")
     response.set_header( "Access-Control-Allow-Origin",      "*")
     response.set_header("Access-Control-Allow-Headers",     "Content-Type, *")
@@ -230,9 +232,9 @@ if __name__ == '__main__':
     # ~ app = wsgi_app
     try:
 
-        run(wsgi_app, host='localhost', port=8080, debug=True)
+        run(wsgi_app, host='localhost', port=8080, debug=True, reloader=True)
     except:
-        run(app, host='127.0.0.1', port=8081, debug=True)  
+        run(wsgi_app, host='127.0.0.1', port=8081, debug=True, reloader=True)  
 
 
 

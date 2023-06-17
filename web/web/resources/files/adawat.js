@@ -89,7 +89,9 @@ var more_click = function(e) {
          alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
      return  0;
      }
-    $.getJSON(script + "/ajaxGet", {
+    var prefix = get_prefix_path();
+    console.log("phrase_click:"+prefix+"/ajaxGet")
+    $.getJSON(prefix+ "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "phrase",
       "subject":document.NewForm.subject.value,
@@ -114,7 +116,9 @@ var more_click = function(e) {
          alert("خطأ في الضمير ["+document.NewForm.subject.value+"] غير متطابق مع التصريف في الأمر");
      return  0;
      }
-    $.getJSON(script + "/ajaxGet", {
+     var prefix = get_prefix_path();
+     //~ var prefix = script;
+    $.getJSON(prefix+ "/ajaxGet", {
       text: document.NewForm.subject.value,
       action: "sample",
       "subject":document.NewForm.subject.value,
@@ -174,24 +178,51 @@ var more_click = function(e) {
     $("#subject > option").attr('selected',false).eq(random).attr('selected',true);
   }
 
+
+/*
+ * Return prerfix path according to  acutal script and language
+ * */
+function get_prefix_path()
+{
+    //~ return script;
+var lang = get_lang();
+var prefix = script;
+if(!lang) lang = "ar";
+// generate prefix path
+prefix +="/"+lang;
+console.log("current script path is: "+prefix)
+console.log("catched locale is: "+lang)
+return prefix;
+}
+
+
+/*
+ * Return language param
+ * */
+function get_lang()
+{
+const urlParams = new URLSearchParams(window.location.search);
+var lang = urlParams.get('locale');
+return lang;
+}
+
 function draw(){
 // this function call /selectget api to get data to be display on fields Select inputs
 // this fields are translated into target language
 // fill all select fields from translated strings
 // fill select fields
 // Catche the current locale
-const urlParams = new URLSearchParams(window.location.search);
-const lang = urlParams.get('locale');
-$("html").attr("lang", lang);
-//console.log("HTML lang Changed to :"+$("html").attr("lang"))
-//Change direction if not Arabic
-if(lang == "ar")
+
+var lang = get_lang();
+var prefix = get_prefix_path();
+
+if(!lang || lang === "ar")
     $("#NewForm").css("direction", "rtl");
 else
     $("#NewForm").css("direction", "ltr");
-//console.log("Body direction Changed to :"+$("body").attr("dir"))
-//console.log("catched locale is: "+lang)
-   $.getJSON(script + "/"+lang+"/selectGet", {
+console.log("Select get :"+prefix+"/selectGet")
+
+   $.getJSON(prefix+"/selectGet", {
       text: '',
       action: "RandomText"
     }, function(data) {

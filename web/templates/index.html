@@ -5,10 +5,10 @@
     <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  <![endif]-->
     <title>مولد الجمل العربية</title>
-    <link href="resources/files/favicon1.png" rel="icon" type="image/png">
-    <link href="resources/files/adawatstyle.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='resources/files/favicon1.png')}}" rel="icon" type="image/png">
+    <link href="{{ url_for('static', filename='resources/files/adawatstyle.css')}}" rel="stylesheet">
 
-    <link href="resources/files/xzero-rtl/css/bootstrap-arabic.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='resources/files/xzero-rtl/css/bootstrap-arabic.min.css')}}" rel="stylesheet">
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
     <!--
@@ -16,68 +16,87 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
   </head>
   <body dir="rtl">
-                   <p> <a href="main"><img alt="مولد الجمل العربية" height="120px" src="resources/files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
+                   <p> <a href="main"><img alt="مولد الجمل العربية" height="120px"
+                    src="{{ url_for('static', filename='resources/files/logo.png')}}" style='float:right; margin-top:-20px;'> </a></p>
 <h3>مولد الجمل العربية</h3>
+
     <div class="container">
       <div class="row clearfix">
         <div class="col-md-9 column">
+
+
+<!--
           <ul class="switch-locale">
               <li><a href="#" data-locale="ar">العربية</a></li>
               <li><a href="#" data-locale="en">English</a></li>
               <li><a href="#" data-locale="fr">Français</a></li>
-          </ul>        
+          </ul>
+-->
+<!--
+          <ul>
+              <li><a href="{{ url_for('home', lang='ar') }}">العربية</a></li>
+              <li><a href="{{ url_for('home', lang='en') }}">English</a></li>
+              <li><a href="{{ url_for('home', lang='fr') }}">Français</a></li>
+          </ul>
+-->
+<ul>
+  {% for language in available_languages %}
+    <li><a href="{{ url_for('home', lang=language, locale=language) }}">{{ available_languages[language] }}</a></li>
+  {% endfor %}
+</ul>
+
           <form id="NewForm" name="NewForm" onsubmit="return false"><br>
 
 
 
-<span class="translate" data-args='نوع الجملة:' ></span>
+{{_('نوع الجملة:')}}
            <select id='phrase_type'  class='form-inline' name='phrase_type'>
 </select>
-<br/><span class="translate" data-args='فاعل'></span> <select id='subject'  class='form-inline' name='subject'>
+<br/>{{_('فاعل')}} <select id='subject'  class='form-inline' name='subject'>
     <option value=""></option>
   
 
 </select>
-<br/><span class="translate" data-args='فعل مساعد'></span>
+<br/>{{_('فعل مساعد')}}
 : <select id='auxiliary'  class='form-inline' name='auxiliary'>
     <option value=""></option>
 
 </select>
-<span class="translate" data-args='فعل:'></span>
+{{_('فعل:')}}
 <select id='verb'  class='form-inline' name='verb'>
     <option value=""></option>
 
 </select>
-<span class="translate" data-args='زمن:'></span>
+{{_('زمن:')}}
 <select id='tense'  class='form-inline' name='tense'>
   
 
 </select>
-<span class="translate" data-args='مبني للمعلوم/مجهول:'></span>
+{{_('مبني للمعلوم/مجهول:')}}
 <select id='voice'  class='form-inline' name='voice'>
  
 
 </select>
-<span class="translate" data-args='مثبت/منفي:'></span>
+{{_('مثبت/منفي:')}}
 <select id='negative'  class='form-inline' name='negative'>
   
 </select>
-<br/><span class="translate" data-args='مفعول'></span> <select id='object'  class='form-inline' name='object'>
+<br/>{{_('مفعول')}} <select id='object'  class='form-inline' name='object'>
     <option value=""></option>
 
 </select>
-<span class="translate" data-args='ظرف زمان:'></span>
+{{_('ظرف زمان:')}}
 <select id='time'  class='form-inline' name='time'>
 
     <option value=""></option>
 
 </select>
-<span class="translate" data-args='ظرف مكان:'></span>
+{{_('ظرف مكان:')}}
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
 
 </select>
-<span class="translate" data-args='ظرف مكان:'></span>
+{{_('ظرف مكان:')}}
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
 
@@ -87,20 +106,14 @@
 
 
     <br>
-            <div class="form-inline"><a class="btn btn-primary" id="phrase" title="{{ _('بناء الجملة') }}"><span class="translate" data-args='بناء'></span></a>
-            <a class="btn btn-primary" id="random_select" title="{{ _('اختيار عشوائي للمفردات') }}"><span class="translate" data-args='عشوائي'></span></a>
-            <a class="btn btn-primary" id="sample" title="{{ _('نسخ عينة جيسون للتجارب البرمجية') }}"><span  class="translate" data-args='عينة'></span></a>
+            <div class="form-inline"><a class="btn btn-primary" id="phrase" title="'بناء الجملة'">{{_('بناء')}}</a>
+            <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'">{{_('عشوائي')}}</a>
+            <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'">{{_('عينة')}}</a>
               <input checked="checked" class="checkbox" id="LastMark" value="1"
-                type="checkbox" title="{{ _('إظهار حركة الإعراب في أواخر الكلمات') }}"> <span  class="translate" data-args='حركة الإعراب'></span></div>
+                type="checkbox" title="'إظهار حركة الإعراب في أواخر الكلمات'"> {{_('حركة الإعراب')}}</div>
 
           </form>
-<!--hidden parts only used to extract gettext
-                    {{ _('إظهار حركة الإعراب في أواخر الكلمات') }}
-                    {{ _('اختيار عشوائي للمفردات') }}
-                    {{ _('نسخ عينة جيسون للتجارب البرمجية') }
-                    {{ _('بناء الجملة') }}
-                    
--->
+
           <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
           <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
           <section class="bg-info" id="small_hint"></section>
@@ -122,39 +135,40 @@
           <div class="col-md-3 column" id="myprojects">
             <div class="panel panel-default">
               <div class="panel-body"> <a href="http://blog.tahadz.com"><span class="glyphicon glyphicon-globe"></span></span>
-              <span class="translate" data-args='مدونتي'></span>
+              {{_('مدونتي')}}
                      </a>
                 <!--
                             <div class="media">-->
                 <!--
   <div class="media-right">    <img src="resources/files/images/dreamdevdz.png" class="media-object" style="width:100px">  </div>  <div class="media-body">    <h4 class="media-heading">الاس</h4>     من شركة <a href="https://dreamdev.dz/"> DreamDev.dz    </a>  </div>
 --><!--
-</div>--> <br><span class="translate" data-args='الاستضافة بدعم من شركة'></span> <a href="https://dreamdev.dz/">
+</div>--> <br>{{_('الاستضافة بدعم من شركة')}} <a href="https://dreamdev.dz/">
                   DreamDev.dz<span class="glyphicon glyphicon-globe"></span></a>
                 <script>//~ var script = "%(script)s";
         //~ var script = "http://localhost:8080";
-        const script = "http://127.0.0.1:5000";
+        const script = "http://127.0.0.1/yaziji";
+        //~ const script = "http://127.0.0.1:5000";
     </script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-                <script async="" src="resources/files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
-<!--
-                <script async="" src="_data/data_{{ _('LanguageCode') }}.json"></script> </div>
--->
-                  <script src="resources/i18n/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.language.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
-  <script src="resources/i18n/js/lib/history/jquery.history.js"></script>
-  <script src="resources/i18n/js/lib/url/url.min.js"></script>
+ 
+<script async="" src="{{ url_for('static', filename='resources/files/xzero-rtl/js/bootstrap-arabic.min.js')}}"></script>
 
-  <script src="resources/i18n/js/global.js"></script>
+
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.messagestore.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.fallbacks.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.language.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.parser.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/history/jquery.history.js')}}"></script>
+<script src="{{ url_for('static', filename='resources/i18n/js/lib/url/url.min.js')}}"></script>
+
+  <script src="{{ url_for('static', filename='resources/i18n/js/global.js')}}"></script>
                 
-                <script async="" src="resources/files/adawat.js"></script> 
+                <script async="" src="{{ url_for('static',filename='resources/files/adawat.js')}}"></script> 
                 
                 
                 </div>

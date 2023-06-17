@@ -21,7 +21,7 @@ msgstr ""
 # use iso two letters language code
 #: web/views/main2.tpl:27
 msgid "LanguageCode"
-msgstr "ar"
+msgstr "fr"
 
 #: web/views/main2.tpl:27
 msgid "My Language test"

@@ -19,7 +19,7 @@
   <body dir="rtl">
                    <p> <a href="main"><img alt="مولد الجمل العربية" height="120px" src="_files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
 <h3>مولد الجمل العربية</h3>
-<h4> <a href="/ar">ar</a>&nbsp;<a href="/fr">Fr</a>&nbsp;<a href="/en">En</a>&nbsp;</h4>
+<h4> <a href="/ar/">ar</a>&nbsp;<a href="/fr/">Fr</a>&nbsp;<a href="/yaziji/en/">En</a>&nbsp;</h4>
     <div class="container">
       <div class="row clearfix">
         <div class="col-md-9 column">
