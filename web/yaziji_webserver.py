@@ -7,6 +7,8 @@ import re
 from glob import glob
 import logging
 import logging.config
+from logging.handlers import RotatingFileHandler
+
 from datetime import datetime, timedelta
 
 
@@ -24,10 +26,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
 from config.yaziji_config import LOGGING_CFG_FILE
 from config.yaziji_config import LOGGING_FILE
 from config.yaziji_config import MODE_DEBUG
+from config.yaziji_config import URL_HOST_PATH
 
 import adaat
 # ~ import data_const_arabic as data_const
-import data_const
+from data import data_const
 
 
 
@@ -35,11 +38,18 @@ import data_const
 # set output logging in utf
 import locale; 
 if locale.getpreferredencoding().upper() != 'UTF-8': 
-    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8') 
+    locale.setlocale(locale.LC_ALL, 'ar_DZ.UTF-8')
 
-# ~ logging.config.fileConfig(LOGGING_CFG_FILE,  disable_existing_loggers = False)
 if MODE_DEBUG:
-    logging.basicConfig(filename=LOGGING_FILE, level=logging.DEBUG)
+    # to rotate log 
+    try:
+        my_handler = RotatingFileHandler(LOGGING_FILE, mode='a', maxBytes=5*1024*1024, 
+                                 backupCount=2, encoding=None, delay=0)
+    except PermissionError:
+        print(__file__, "You may verify the log file permissions")
+    else:
+        logging.basicConfig(level=logging.DEBUG, handlers=[my_handler]) 
+    # ~ logging.basicConfig(filename=LOGGING_FILE, level=logging.DEBUG)
 else:
     logging.basicConfig(filename=LOGGING_FILE, level=logging.INFO) 
 #------------
@@ -49,6 +59,8 @@ else:
 app = Flask(__name__)
 minify(app=app, html=True, js=True, cssless=True)
 
+# used to fix URL path for hosting
+app.config['URL_HOST_PATH'] = URL_HOST_PATH
 # set default locale to arabic
 app.config["BABEL_DEFAULT_LOCALE"] = "ar"
 app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
@@ -89,8 +101,11 @@ def index():
 def home(lang="ar"):
     context = {}
     available_languages = app.config['BABEL_LANGUAGES']
+    url_host_path = app.config['URL_HOST_PATH']
     with force_locale(lang):  # Set the locale to French
-        return render_template("index.html",current_page='home',available_languages=available_languages,
+        return render_template("index.html", current_page='home',
+                    available_languages=available_languages,
+                    url_host_path = url_host_path,
         **context)
 
 
