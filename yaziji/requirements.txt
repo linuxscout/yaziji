@@ -1,0 +1,4 @@
+libqutrub==1.2.5
+arramooz_pysqlite==0.4.1
+alyahmor==0.2
+pyarabic==0.6.15
