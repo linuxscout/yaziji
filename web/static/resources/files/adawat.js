@@ -92,6 +92,7 @@ var more_click = function(e) {
     var prefix = get_prefix_path();
     console.log("phrase_click:"+prefix+"/ajaxGet")
     $.getJSON(prefix+ "/ajaxGet", {
+
       text: document.NewForm.subject.value,
       action: "phrase",
       "subject":document.NewForm.subject.value,
