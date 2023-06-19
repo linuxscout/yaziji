@@ -75,3 +75,4 @@ testurl:
 	curl -o tests/output/testajax2.json http://127.0.0.1/yaziji/fr/ajaxGet
 	curl -o tests/output/testselect1.json http://127.0.0.1:8080/fr/selectGet
 	curl -o tests/output/testselect2.json http://127.0.0.1/yaziji/fr/selectGet
+
