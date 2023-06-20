@@ -1,0 +1,784 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Yaziji 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-19 19:19+0100\n"
+"PO-Revision-Date: 2023-06-12 11:04+0100\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
+"Language-Team: FR(Taha Zerrouki)\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: web/data/data_const.py:39
+msgid "جملة فعلية"
+msgstr "Phrase verbale"
+
+#: web/data/data_const.py:40
+msgid "جملة اسمية"
+msgstr "Phrase nominale"
+
+#: web/data/data_const.py:43
+msgid "اِسْتَطَاعَ"
+msgstr "Pouvoir"
+
+#: web/data/data_const.py:44
+msgid "أَرَادَ"
+msgstr "Vouloir"
+
+#: web/data/data_const.py:45
+msgid "كَادَ"
+msgstr "Pouvoir(presque)"
+
+#: web/data/data_const.py:48 web/data/data_const.py:105
+msgid "شَرِبَ"
+msgstr "Boire"
+
+#: web/data/data_const.py:49 web/data/data_const.py:90
+msgid "ضَرَبَ"
+msgstr "Frapper"
+
+#: web/data/data_const.py:50 web/data/data_const.py:106
+msgid "ذَهَبَ"
+msgstr "Aller"
+
+#: web/data/data_const.py:51 web/data/data_const.py:110
+msgid "جَلَسَ"
+msgstr "Assoir"
+
+#: web/data/data_const.py:52
+msgid "شَبِعَ"
+msgstr ""
+
+msgid "أَكَلَ"
+msgstr "manger"
+
+msgid "خَرَجَ"
+msgstr "sortir"
+
+msgid "مَشَى"
+msgstr "marcher"
+
+msgid "قَامَ"
+msgstr "se lever"
+
+msgid "نَجَحَ"
+msgstr "réussir"
+
+msgid "بَكَى"
+msgstr "pleurer"
+
+msgid "سَمِعَ"
+msgstr "entendre"
+
+msgid "جَاءَ"
+msgstr "venir"
+
+msgid "عَرَفَ"
+msgstr "savoir"
+
+msgid "رَسَبَ"
+msgstr "échouer"
+
+msgid "تَعَلَّمَ"
+msgstr "apprendre"
+
+msgid "لَعِبَ"
+msgstr "boire"
+
+msgid "جَعَلَ"
+msgstr "faire"
+
+msgid "شَكَرَ"
+msgstr "remercier"
+
+msgid "جَهَّزَ"
+msgstr "préparer"
+
+msgid "وَعَدَ"
+msgstr "promettre"
+
+msgid "عَاشَ"
+msgstr "vivre"
+
+msgid "وَقَفَ"
+msgstr "se lever"
+
+msgid "سَجَدَ"
+msgstr "prosterner"
+
+msgid "مَاتَ"
+msgstr "mourir"
+
+msgid "قَبَضَ"
+msgstr "attraper"
+
+msgid "غَفَرَ"
+msgstr "pardonner"
+
+msgid "صَامَ"
+msgstr "jeûner"
+
+msgid "رَسَمَ"
+msgstr "dessiner"
+
+msgid "نَزَلَ"
+msgstr "descendre"
+
+msgid "رَكَعَ"
+msgstr "s'agenouiller"
+
+msgid "سَافَرَ"
+msgstr "voyager"
+
+msgid "وَفَى"
+msgstr "s'acquitter"
+
+msgid "لَبِسَ"
+msgstr "porter"
+
+msgid "اجْتَهَدَ"
+msgstr "diligent"
+
+msgid "وَجَدَ"
+msgstr "trouver"
+
+msgid "وَصَلَ"
+msgstr "arriver"
+
+msgid "قَرَأَ"
+msgstr "lire"
+
+msgid "قَعَدَ"
+msgstr "s'asseoir"
+
+msgid "قَالَ"
+msgstr "dire"
+
+msgid "خَبَّرَ"
+msgstr "informer"
+
+msgid "عَلِمَ"
+msgstr "savoir"
+
+msgid "سَأَلَ"
+msgstr "demander"
+
+msgid "رَمَى"
+msgstr "lancer"
+
+msgid "شَاهَدَ"
+msgstr "regarder"
+
+msgid "أَخَذَ"
+msgstr "prendre"
+
+msgid "طَلَعَ"
+msgstr "monter"
+
+msgid "حَفِظَ"
+msgstr "apprendre par coeur"
+
+msgid "أَخْبَرَ"
+msgstr "informer"
+
+msgid "نَامَ"
+msgstr "dormir"
+
+msgid "سَاعَدَ"
+msgstr "aider"
+
+msgid "كَتَبَ"
+msgstr "écrire"
+
+msgid "حَدَّثَ"
+msgstr "parler"
+
+msgid "جَرَى"
+msgstr "courir"
+
+msgid "اشْتَرَى"
+msgstr "acheter"
+
+msgid "أَسْرَعَ"
+msgstr "accelérer"
+
+msgid "ذَاكَرَ"
+msgstr "réviser"
+
+msgid "وَضَعَ"
+msgstr "mettre"
+
+msgid "بَاعَ"
+msgstr "vendre"
+
+msgid "فَهِمَ"
+msgstr "comprendre"
+
+msgid "فَتَحَ"
+msgstr "ouvrir"
+
+msgid "عَطِشَ"
+msgstr "avoir soif"
+
+msgid "سَكَنَ"
+msgstr "habiter"
+
+msgid "أَعْلَمَ"
+msgstr "informer"
+
+msgid "كَسَرَ"
+msgstr "casser"
+
+msgid "دَخَلَ"
+msgstr "entrer"
+
+#: web/data/data_const.py:120
+msgid "الماضي المعلوم"
+msgstr "Passé"
+
+#: web/data/data_const.py:121
+msgid "المضارع المعلوم"
+msgstr "Présent/Futur"
+
+#: web/data/data_const.py:122
+msgid "الأمر"
+msgstr "Impérative"
+
+#: web/data/data_const.py:125
+msgid "معلوم"
+msgstr "Active"
+
+#: web/data/data_const.py:126
+msgid "مبني للمجهول"
+msgstr "passive"
+
+#: web/data/data_const.py:129
+msgid "مثبت"
+msgstr "Affirmative"
+
+#: web/data/data_const.py:130
+msgid "منفي"
+msgstr "Négative"
+
+#: web/data/data_const.py:133 web/data/data_const.py:154
+msgid "حَلِيبٌ"
+msgstr "Lait"
+
+#: web/data/data_const.py:134
+msgid "بَابٌ"
+msgstr "Porte"
+
+#: web/data/data_const.py:135 web/data/data_const.py:276
+msgid "أنا"
+msgstr "Je"
+
+#: web/data/data_const.py:136 web/data/data_const.py:277
+msgid "نحن"
+msgstr "Nous"
+
+#: web/data/data_const.py:137 web/data/data_const.py:278
+msgid "أنت"
+msgstr "Tu (masculin)"
+
+#: web/data/data_const.py:138 web/data/data_const.py:279
+msgid "أنتِ"
+msgstr "Tu (féminin)"
+
+#: web/data/data_const.py:139 web/data/data_const.py:280
+msgid "أنتما"
+msgstr "Vous (masculins dual)"
+
+#: web/data/data_const.py:140 web/data/data_const.py:281
+msgid "أنتما مؤ"
+msgstr "Vous (féminins dual)"
+
+#: web/data/data_const.py:141 web/data/data_const.py:282
+msgid "أنتم"
+msgstr "Vous (masculin pluriel)"
+
+#: web/data/data_const.py:142 web/data/data_const.py:283
+msgid "أنتن"
+msgstr "Vous (féminin pluriel)"
+
+#: web/data/data_const.py:143 web/data/data_const.py:284
+msgid "هو"
+msgstr "Il"
+
+#: web/data/data_const.py:144 web/data/data_const.py:285
+msgid "هي"
+msgstr "Elle"
+
+#: web/data/data_const.py:145 web/data/data_const.py:286
+msgid "هما"
+msgstr "Ils (masculins dual)"
+
+#: web/data/data_const.py:146 web/data/data_const.py:287
+msgid "هما مؤ"
+msgstr "Elles (Féminin dual)"
+
+#: web/data/data_const.py:147 web/data/data_const.py:288
+msgid "هم"
+msgstr "Ils"
+
+#: web/data/data_const.py:148 web/data/data_const.py:289
+msgid "هن"
+msgstr "Elles"
+
+msgid "تُفَاحَةٌ"
+msgstr "pomme"
+
+msgid "تِلْمِيذٌ"
+msgstr "élève"
+
+msgid "ثَوْبٌ"
+msgstr "vêtement"
+
+msgid "جَبَلٌ"
+msgstr "montagne"
+
+msgid "حَقِيبَةٌ"
+msgstr "bagage"
+
+msgid "خُضَرٌ"
+msgstr "légumes"
+
+msgid "دَرْسٌ"
+msgstr "Leçon"
+
+msgid "رَجُلٌ"
+msgstr "homme"
+
+msgid "شَعْرٌ"
+msgstr "cheveux"
+
+msgid "صَحْرَاءٌ"
+msgstr "désert"
+
+msgid "صَوْتٌ"
+msgstr "son"
+
+msgid "طَعَامٌ"
+msgstr "nourriture"
+
+msgid "طَلَبَةٌ"
+msgstr "Étudiants"
+
+msgid "عَصِيرٌ"
+msgstr "jus"
+
+msgid "عَلَمٌ"
+msgstr "drapeau"
+
+msgid "فَوَاكِهٌ"
+msgstr "fruits"
+
+msgid "قَمَرٌ"
+msgstr "lune"
+
+msgid "قُرْآنٌ"
+msgstr "Coran"
+
+msgid "قِصَّةٌ"
+msgstr "histoire"
+
+msgid "قِطَّةٌ"
+msgstr "chat"
+
+msgid "كَأْسٌ"
+msgstr "tasse"
+
+msgid "كُرَةٌ"
+msgstr "balle"
+
+msgid "كِتَابٌ"
+msgstr "livre"
+
+#: web/data/data_const.py:173
+msgid "لمْرأَةٌ"
+msgstr ""
+
+msgid "مدْرَسةٌ"
+msgstr "école"
+
+msgid "مسْرَحِيَّةٌ"
+msgstr "un pièce de théatre"
+
+msgid "مُعَلِمٌ"
+msgstr "Professeur"
+
+msgid "مِحْفَظَةٌ"
+msgstr "portefeuille"
+
+msgid "نَاسٌ"
+msgstr "personnes"
+
+#: web/data/data_const.py:193
+msgid "أَحْيَانًا"
+msgstr "parfois"
+
+msgid "البَارِحَةَ"
+msgstr "hier"
+
+msgid "اليَوْمَ"
+msgstr "aujourd'hui"
+
+msgid "سَاعَةً"
+msgstr "heure"
+
+msgid "سَنَةً"
+msgstr "année"
+
+msgid "شِتَاءً"
+msgstr "hiver"
+
+#: web/data/data_const.py:200
+msgid "صَبَاحًا"
+msgstr "Le matin"
+
+msgid "صَيْفًا"
+msgstr "été"
+
+msgid "ظُهْرًا"
+msgstr "après midi"
+
+#: web/data/data_const.py:204
+msgid "عَصْرًا"
+msgstr ""
+
+#: web/data/data_const.py:205
+msgid "غَدًا"
+msgstr "Demain"
+
+msgid "فَجْرًا"
+msgstr "lever du soleil"
+
+msgid "لَحْظَةَ"
+msgstr "Moment"
+
+msgid "لَيْلًا"
+msgstr "nuit"
+
+#: web/data/data_const.py:210
+msgid "مَسَاءً"
+msgstr "Le soir"
+
+msgid "نَهْارًا"
+msgstr "dans la journée"
+
+msgid "بَيْتٌ"
+msgstr "maison"
+
+msgid "حَدِيقَةٌ"
+msgstr "jardin"
+
+msgid "سُوقٌ"
+msgstr "marché"
+
+msgid "طَرِيقٌ"
+msgstr "route"
+
+msgid "غُرْفَةٌ"
+msgstr "chambre"
+
+msgid "فِنَاءٌ"
+msgstr "Cour"
+
+msgid "مَدِينَةٌ"
+msgstr "ville"
+
+msgid "مَدْرَسَةٌ"
+msgstr "école"
+
+msgid "مَسْجِدٌ"
+msgstr "Mosquée"
+
+msgid "مَطْبَخٌ"
+msgstr "cuisine"
+
+msgid "أَنِيقٌ"
+msgstr "élégant"
+
+msgid "بَخِيلٌ"
+msgstr "avare"
+
+msgid "بَشِعٌ"
+msgstr "laid"
+
+msgid "بَطِيءٌ"
+msgstr "lent"
+
+msgid "جَمِيلٌ"
+msgstr "Beau"
+
+msgid "حَزِينٌ"
+msgstr "triste"
+
+msgid "حَنُونٌ"
+msgstr "compatissant"
+
+msgid "ذَكِيٌ"
+msgstr "intelligent"
+
+msgid "سَرِيعٌ"
+msgstr "rapide"
+
+msgid "سَعِيدٌ"
+msgstr "content"
+
+msgid "سَمِينٌ"
+msgstr "obèse"
+
+msgid "شُجَاعٌ"
+msgstr "brave"
+
+msgid "ضَعِيفٌ"
+msgstr "faible"
+
+msgid "طَوِيلٌ"
+msgstr "long"
+
+msgid "غَبِيٌ"
+msgstr "stupide"
+
+msgid "فَرِحٌ"
+msgstr "joyeux"
+
+msgid "قَصِيرٌ"
+msgstr "court"
+
+msgid "قَوِيٌ"
+msgstr "fort"
+
+msgid "كَرِيمٌ"
+msgstr "généreux"
+
+msgid "كَسُولٌ"
+msgstr "paresseux"
+
+msgid "لَئِيمٌ"
+msgstr "scélérat"
+
+msgid "مَسْرُورٌ"
+msgstr "heureux"
+
+msgid "مُبْتَهِجٌ"
+msgstr "gai"
+
+msgid "مُجْتَهِدٌ"
+msgstr "assidu"
+
+msgid "مُرْتَفِعٌ"
+msgstr "haut"
+
+msgid "مُنْخَفِضٌ"
+msgstr "faible"
+
+msgid "هَزِيلٌ"
+msgstr "maigre"
+
+msgid "وَسِيمٌ"
+msgstr "Beau"
+
+#: web/data/data_const.py:274
+msgid "أَحْمَد"
+msgstr "Ahmed"
+
+#: web/data/data_const.py:275 web/data/data_const.py:321
+msgid "وَلَدٌ"
+msgstr "Garçon"
+
+msgid "أَبٌ"
+msgstr "Père"
+
+msgid "أَحْمَدُ"
+msgstr "Ahmed"
+
+msgid "أَسَدٌ"
+msgstr "Lion"
+
+msgid "أُمٌّ"
+msgstr "Mère"
+
+msgid "اِبْنٌ"
+msgstr "fils"
+
+msgid "بِنْتٌ"
+msgstr "fille"
+
+msgid "تَاجِرٌ"
+msgstr "marchand"
+
+msgid "حِصَانٌ"
+msgstr "cheval"
+
+msgid "دِيكٌ"
+msgstr "coq"
+
+msgid "رَضِيعٌ"
+msgstr "bébé"
+
+msgid "زُهُورٌ"
+msgstr "fleurs"
+
+msgid "شُرْطِيٌّ"
+msgstr "policier"
+
+msgid "طَالِبٌ"
+msgstr "étudiant"
+
+msgid "طَبِيبٌ"
+msgstr "médecin"
+
+msgid "طِفْلٌ"
+msgstr "enfant"
+
+msgid "عَامِلٌ"
+msgstr "Ouvrier"
+
+msgid "عُمَّالٌ"
+msgstr "Ouvriers"
+
+msgid "فَاطِمَةُ"
+msgstr "Fatima"
+
+msgid "فَرَاشَةٌ"
+msgstr "papillon"
+
+msgid "قَاضٌِ"
+msgstr "juge"
+
+msgid "قِطٌّ"
+msgstr "chat"
+
+msgid "لَيْلَى"
+msgstr "Leila"
+
+msgid "معَلِّمٌ"
+msgstr "Professeur"
+
+msgid "مَرْأَةٌ"
+msgstr "Femme"
+
+msgid "مَطَرٌ"
+msgstr "pluie"
+
+msgid "مُحَمَدُ"
+msgstr "Mohammed"
+
+msgid "مُسْلِمٌ"
+msgstr "musulman"
+
+msgid "مُهَنْدِسٌ"
+msgstr "Ingénieur"
+
+msgid "Arabic"
+msgstr "French"
+
+msgid "مَرأَةٌ"
+msgstr "femme"
+
+# use iso two letters language code
+#~ msgid "LanguageCode"
+#~ msgstr "fr"
+
+#~ msgid "My Language test"
+#~ msgstr "Mon test de langue"
+
+#~ msgid "نوع الجملة:"
+#~ msgstr "Type de phrase:"
+
+#~ msgid "فاعل"
+#~ msgstr "Sujet"
+
+#~ msgid "فعل مساعد"
+#~ msgstr "Auxiliare"
+
+#~ msgid "فعل:"
+#~ msgstr "Verbe:"
+
+#~ msgid "زمن:"
+#~ msgstr "Temps:"
+
+#~ msgid "مبني للمعلوم/مجهول:"
+#~ msgstr "Voix:"
+
+#~ msgid "مثبت/منفي:"
+#~ msgstr "affirmative/négative:"
+
+#~ msgid "مفعول"
+#~ msgstr "Objet"
+
+#~ msgid "ظرف زمان:"
+#~ msgstr "Temps:"
+
+#~ msgid "دَائِمًا"
+#~ msgstr "Toujours"
+
+#~ msgid "أَوَّلَ أَمْسِ"
+#~ msgstr "Avant-hier"
+
+#~ msgid "الْبَارِحَةَ"
+#~ msgstr "Hier la nuit"
+
+#~ msgid "بَعْدَ غَدٍ"
+#~ msgstr "Après demain"
+
+#~ msgid "أَمْسِ"
+#~ msgstr "Hier"
+
+#~ msgid "الْيَوْمَ"
+#~ msgstr "Aujourd'hui"
+
+#~ msgid "كُلَّ يَوْمٍ"
+#~ msgstr "Tous les jours"
+
+#~ msgid "ظرف مكان:"
+#~ msgstr "Place:"
+
+#~ msgid "بيت"
+#~ msgstr "Maison"
+
+#~ msgid "سوق"
+#~ msgstr "Marché"
+
+#~ msgid "مدرسة"
+#~ msgstr "Ecole"
+
+#~ msgid "بناء"
+#~ msgstr "Construire"
+
+#~ msgid "عشوائي"
+#~ msgstr "Aléatoire"
+
+#~ msgid "عينة"
+#~ msgstr "Échantillon"
+
+#~ msgid "حركة الإعراب"
+#~ msgstr "Marque d’inflexion"
+
+#~ msgid "إظهار حركة الإعراب في أواخر الكلمات"
+#~ msgstr "Montrer la marque d’inflexion sur la fin du mot"
+
+#~ msgid "اختيار عشوائي للمفردات"
+#~ msgstr "Choix aléatoire des mots"
+
+#~ msgid "نسخ عينة جيسون للتجارب البرمجية"
+#~ msgstr "Copier l’échantillon de JSON pour les essais"
+
+#~ msgid "بناء الجملة"
+#~ msgstr "Construire la phrase"
+
+#~ msgid "مدونتي"
+#~ msgstr "Mon blog"
+
+#~ msgid "الاستضافة بدعم من شركة"
+#~ msgstr "Supporté par"

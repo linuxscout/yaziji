@@ -1,0 +1,704 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Yaziji 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-19 20:03+0100\n"
+"PO-Revision-Date: 2023-06-20 13:03+0100\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
+"Language-Team: taha.zerrouki@gmail.com\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.3\n"
+
+msgid "جملة فعلية"
+msgstr "kata kerja"
+
+msgid "جملة اسمية"
+msgstr "kata benda"
+
+msgid "اِسْتَطَاعَ"
+msgstr "bisa/mampu"
+
+msgid "أَرَادَ"
+msgstr "ingin"
+
+msgid "كَادَ"
+msgstr "hampir"
+
+msgid "شَرِبَ"
+msgstr "meminum"
+
+msgid "ضَرَبَ"
+msgstr "memukul"
+
+msgid "ذَهَبَ"
+msgstr "pergi"
+
+msgid "جَلَسَ"
+msgstr "duduk"
+
+msgid "شَبِعَ"
+msgstr "kenyang"
+
+msgid "أَكَلَ"
+msgstr "memakan"
+
+msgid "خَرَجَ"
+msgstr "keluar"
+
+msgid "مَشَى"
+msgstr "berjalan"
+
+msgid "قَامَ"
+msgstr "berdiri/bangkit"
+
+msgid "نَجَحَ"
+msgstr "berhasil/sukses"
+
+msgid "بَكَى"
+msgstr "menangis"
+
+msgid "سَمِعَ"
+msgstr "mendengar"
+
+msgid "جَاءَ"
+msgstr "datang/tiba"
+
+msgid "عَرَفَ"
+msgstr "mengetahui"
+
+msgid "رَسَبَ"
+msgstr "gagal"
+
+msgid "تَعَلَّمَ"
+msgstr "belajar"
+
+msgid "لَعِبَ"
+msgstr "bermain"
+
+msgid "جَعَلَ"
+msgstr "membuat/ menjadikan"
+
+msgid "شَكَرَ"
+msgstr "berterima kasih"
+
+msgid "جَهَّزَ"
+msgstr "mempersiapkan"
+
+msgid "وَعَدَ"
+msgstr "berjanji"
+
+msgid "عَاشَ"
+msgstr "Hidup"
+
+msgid "وَقَفَ"
+msgstr "berdiri"
+
+msgid "سَجَدَ"
+msgstr "bersujud"
+
+msgid "مَاتَ"
+msgstr "mati/eninggal"
+
+msgid "قَبَضَ"
+msgstr "menangkap"
+
+msgid "غَفَرَ"
+msgstr "memaafkan"
+
+msgid "صَامَ"
+msgstr "berpuasa"
+
+msgid "رَسَمَ"
+msgstr "menggambar"
+
+msgid "نَزَلَ"
+msgstr "turun"
+
+msgid "رَكَعَ"
+msgstr "berlutut"
+
+msgid "سَافَرَ"
+msgstr "Bepergian"
+
+msgid "وَفَى"
+msgstr "memenuhi"
+
+msgid "لَبِسَ"
+msgstr "memakai"
+
+msgid "اجْتَهَدَ"
+msgstr "berjuang/ bersungguh sungguh"
+
+msgid "وَجَدَ"
+msgstr "menemukan"
+
+msgid "وَصَلَ"
+msgstr "sampai"
+
+msgid "قَرَأَ"
+msgstr "membaca"
+
+msgid "قَعَدَ"
+msgstr "Duduk"
+
+msgid "قَالَ"
+msgstr "mengatakan"
+
+msgid "خَبَّرَ"
+msgstr "memberikan kabar/informasi"
+
+msgid "عَلِمَ"
+msgstr "mengetahui"
+
+msgid "سَأَلَ"
+msgstr "bertanya"
+
+msgid "رَمَى"
+msgstr "Melempar"
+
+msgid "شَاهَدَ"
+msgstr "menyaksikan"
+
+msgid "أَخَذَ"
+msgstr "mengambil"
+
+msgid "طَلَعَ"
+msgstr "menelaah"
+
+msgid "حَفِظَ"
+msgstr "menyimpan/ menjaga"
+
+msgid "أَخْبَرَ"
+msgstr "Memberi tahu"
+
+msgid "نَامَ"
+msgstr "tidur"
+
+msgid "سَاعَدَ"
+msgstr "Membantu"
+
+msgid "كَتَبَ"
+msgstr "menulis"
+
+msgid "حَدَّثَ"
+msgstr "bercerita"
+
+msgid "جَرَى"
+msgstr "berlari"
+
+msgid "اشْتَرَى"
+msgstr "membeli"
+
+msgid "أَسْرَعَ"
+msgstr "lebih cepat"
+
+msgid "ذَاكَرَ"
+msgstr "mengingat"
+
+msgid "وَضَعَ"
+msgstr "meletakkan"
+
+msgid "بَاعَ"
+msgstr "menjual"
+
+msgid "فَهِمَ"
+msgstr "memahami"
+
+msgid "فَتَحَ"
+msgstr "membuka"
+
+msgid "عَطِشَ"
+msgstr "haus"
+
+msgid "سَكَنَ"
+msgstr "tinggal"
+
+msgid "أَعْلَمَ"
+msgstr "memberitahu"
+
+msgid "كَسَرَ"
+msgstr "hancur"
+
+msgid "دَخَلَ"
+msgstr "masuk"
+
+msgid "الماضي المعلوم"
+msgstr "Kata kerja masa lalu aktif"
+
+msgid "المضارع المعلوم"
+msgstr "kata kerja masa sekarang aktif"
+
+msgid "الأمر"
+msgstr "bentuk perintah"
+
+msgid "معلوم"
+msgstr "aktif"
+
+msgid "مبني للمجهول"
+msgstr "Isim yang tidak berubah (Mabni) pasif"
+
+msgid "مثبت"
+msgstr "Menetapkan"
+
+msgid "منفي"
+msgstr "Meniadakan"
+
+msgid "حَلِيبٌ"
+msgstr "susu"
+
+msgid "بَابٌ"
+msgstr "pintu"
+
+msgid "أنا"
+msgstr "SAYA"
+
+msgid "نحن"
+msgstr "Kami"
+
+msgid "أنت"
+msgstr "Anda laki-laki"
+
+msgid "أنتِ"
+msgstr "Anda perempuan"
+
+msgid "أنتما"
+msgstr "Anda berdua laki-laki"
+
+msgid "أنتما مؤ"
+msgstr "Anda berdua perempuan"
+
+msgid "أنتم"
+msgstr "kalian semua laki-laki"
+
+msgid "أنتن"
+msgstr "kaliam semua perempuan"
+
+msgid "هو"
+msgstr "Dia laki-laki"
+
+msgid "هي"
+msgstr "dia perempuan"
+
+msgid "هما"
+msgstr "Mereka berdua laki-laki"
+
+msgid "هما مؤ"
+msgstr "Mereka berdua perempuan"
+
+msgid "هم"
+msgstr "mereka semua laki-laki"
+
+msgid "هن"
+msgstr "Mereka semua perempuan"
+
+msgid "تُفَاحَةٌ"
+msgstr "apel"
+
+msgid "تِلْمِيذٌ"
+msgstr "Murid/ siswa"
+
+msgid "ثَوْبٌ"
+msgstr "gaun/palaian"
+
+msgid "جَبَلٌ"
+msgstr "gunung"
+
+msgid "حَقِيبَةٌ"
+msgstr "tas"
+
+msgid "خُضَرٌ"
+msgstr "hijau"
+
+msgid "دَرْسٌ"
+msgstr "Pelajaran"
+
+msgid "رَجُلٌ"
+msgstr "pria"
+
+msgid "شَعْرٌ"
+msgstr "Puisi"
+
+msgid "صَحْرَاءٌ"
+msgstr "gurun"
+
+msgid "صَوْتٌ"
+msgstr "suara"
+
+msgid "طَعَامٌ"
+msgstr "makanan"
+
+msgid "طَلَبَةٌ"
+msgstr "murid perempuan/siswi"
+
+msgid "عَصِيرٌ"
+msgstr "jus"
+
+msgid "عَلَمٌ"
+msgstr "bendera/panji"
+
+msgid "فَوَاكِهٌ"
+msgstr "buah-buahan"
+
+msgid "قَمَرٌ"
+msgstr "bulan"
+
+msgid "قُرْآنٌ"
+msgstr "Al-Quran"
+
+msgid "قِصَّةٌ"
+msgstr "cerita/kisah"
+
+msgid "قِطَّةٌ"
+msgstr "kucing"
+
+msgid "كَأْسٌ"
+msgstr "cangkir/ gelas"
+
+msgid "كُرَةٌ"
+msgstr "bola"
+
+msgid "كِتَابٌ"
+msgstr "buku"
+
+#: web/data/data_const.py:173
+msgid "لمْرأَةٌ"
+msgstr ""
+
+msgid "مدْرَسةٌ"
+msgstr "sekolah"
+
+msgid "مسْرَحِيَّةٌ"
+msgstr "sebuah drama"
+
+msgid "مُعَلِمٌ"
+msgstr "Guru"
+
+msgid "مِحْفَظَةٌ"
+msgstr "dompet"
+
+msgid "نَاسٌ"
+msgstr "rakyat/ manusia"
+
+msgid "أَحْيَانًا"
+msgstr "Kadang-kadang"
+
+msgid "البَارِحَةَ"
+msgstr "semalam"
+
+msgid "اليَوْمَ"
+msgstr "Hari ini"
+
+msgid "سَاعَةً"
+msgstr "dalam satu jam"
+
+msgid "سَنَةً"
+msgstr "dalam satu tahun"
+
+msgid "شِتَاءً"
+msgstr "musim dingin"
+
+msgid "صَبَاحًا"
+msgstr "waktu pagi"
+
+msgid "صَيْفًا"
+msgstr "waktu musim panas"
+
+msgid "ظُهْرًا"
+msgstr "waktu dhuhur"
+
+msgid "عَصْرًا"
+msgstr "waktu ashar"
+
+msgid "غَدًا"
+msgstr "besok"
+
+msgid "فَجْرًا"
+msgstr "waktu fajar"
+
+msgid "لَحْظَةَ"
+msgstr "sejenak"
+
+msgid "لَيْلًا"
+msgstr "waktu malam"
+
+msgid "مَسَاءً"
+msgstr "waktu sore"
+
+msgid "نَهْارًا"
+msgstr "waktu siang"
+
+msgid "بَيْتٌ"
+msgstr "rumah"
+
+msgid "حَدِيقَةٌ"
+msgstr "kebun"
+
+msgid "سُوقٌ"
+msgstr "pasar"
+
+msgid "طَرِيقٌ"
+msgstr "jalan"
+
+msgid "غُرْفَةٌ"
+msgstr "kamar"
+
+msgid "فِنَاءٌ"
+msgstr "Halaman"
+
+msgid "مَدِينَةٌ"
+msgstr "kota"
+
+msgid "مَدْرَسَةٌ"
+msgstr "sekolah"
+
+msgid "مَسْجِدٌ"
+msgstr "Masjid"
+
+msgid "مَطْبَخٌ"
+msgstr "dapur"
+
+msgid "أَنِيقٌ"
+msgstr "anggun"
+
+msgid "بَخِيلٌ"
+msgstr "pelit"
+
+msgid "بَشِعٌ"
+msgstr "buruk"
+
+msgid "بَطِيءٌ"
+msgstr "lambat"
+
+msgid "جَمِيلٌ"
+msgstr "Cantik"
+
+msgid "حَزِينٌ"
+msgstr "sedih"
+
+msgid "حَنُونٌ"
+msgstr "penuh kasih"
+
+msgid "ذَكِيٌ"
+msgstr "lezat"
+
+msgid "سَرِيعٌ"
+msgstr "cepat"
+
+msgid "سَعِيدٌ"
+msgstr "senang"
+
+msgid "سَمِينٌ"
+msgstr "gemuk"
+
+msgid "شُجَاعٌ"
+msgstr "berani"
+
+msgid "ضَعِيفٌ"
+msgstr "lemah"
+
+msgid "طَوِيلٌ"
+msgstr "panjang"
+
+msgid "غَبِيٌ"
+msgstr "bodoh"
+
+msgid "فَرِحٌ"
+msgstr "sukacita"
+
+msgid "قَصِيرٌ"
+msgstr "pendek"
+
+msgid "قَوِيٌ"
+msgstr "kuat"
+
+msgid "كَرِيمٌ"
+msgstr "mulia"
+
+msgid "كَسُولٌ"
+msgstr "malas"
+
+msgid "لَئِيمٌ"
+msgstr "lembut"
+
+msgid "مَسْرُورٌ"
+msgstr "senang"
+
+msgid "مُبْتَهِجٌ"
+msgstr "riang"
+
+msgid "مُجْتَهِدٌ"
+msgstr "kerja keras"
+
+msgid "مُرْتَفِعٌ"
+msgstr "tinggi"
+
+msgid "مُنْخَفِضٌ"
+msgstr "rendah"
+
+msgid "هَزِيلٌ"
+msgstr "kurus"
+
+msgid "وَسِيمٌ"
+msgstr "Tampan"
+
+msgid "أَحْمَد"
+msgstr "Ahmed"
+
+msgid "وَلَدٌ"
+msgstr "anak"
+
+msgid "أَبٌ"
+msgstr "ayah"
+
+msgid "أَحْمَدُ"
+msgstr "Ahmed"
+
+msgid "أَسَدٌ"
+msgstr "Singa"
+
+msgid "أُمٌّ"
+msgstr "Ibu"
+
+msgid "اِبْنٌ"
+msgstr "putra"
+
+msgid "بِنْتٌ"
+msgstr "anak perempuan"
+
+msgid "تَاجِرٌ"
+msgstr "pedagang"
+
+msgid "حِصَانٌ"
+msgstr "kuda"
+
+msgid "دِيكٌ"
+msgstr "ayam jantan"
+
+msgid "رَضِيعٌ"
+msgstr "yang masih menyusu"
+
+msgid "زُهُورٌ"
+msgstr "bunga"
+
+msgid "شُرْطِيٌّ"
+msgstr "polisi"
+
+msgid "طَالِبٌ"
+msgstr "murid laki-laki"
+
+msgid "طَبِيبٌ"
+msgstr "dokter"
+
+msgid "طِفْلٌ"
+msgstr "anak"
+
+msgid "عَامِلٌ"
+msgstr "pekerja"
+
+msgid "عُمَّالٌ"
+msgstr "para pekerja"
+
+msgid "فَاطِمَةُ"
+msgstr "Fatima"
+
+msgid "فَرَاشَةٌ"
+msgstr "kupu -kupu"
+
+msgid "قَاضٌِ"
+msgstr "hakim"
+
+msgid "قِطٌّ"
+msgstr "kucing"
+
+msgid "لَيْلَى"
+msgstr "Layla"
+
+msgid "معَلِّمٌ"
+msgstr "Guru"
+
+msgid "مَرْأَةٌ"
+msgstr "wanita/perempuan"
+
+msgid "مَطَرٌ"
+msgstr "hujan"
+
+msgid "مُحَمَدُ"
+msgstr "muhammad"
+
+msgid "مُسْلِمٌ"
+msgstr "Muslim"
+
+msgid "مُهَنْدِسٌ"
+msgstr "Insinyur"
+
+msgid "Arabic"
+msgstr "indonosien"
+
+msgid "مَرأَةٌ"
+msgstr "Seorang wanita"
+
+msgid "فعل:"
+msgstr "kata kerja:"
+
+msgid "زمن:"
+msgstr "waktu:"
+
+msgid "مبني للمعلوم/مجهول:"
+msgstr "benuk aktif/pasif"
+
+msgid "مثبت/منفي:"
+msgstr "menetapkan/meniadakan"
+
+msgid "مفعول"
+msgstr "objek"
+
+msgid "ظرف زمان:"
+msgstr "isim yang menunjukkan waktu"
+
+msgid "ظرف مكان:"
+msgstr "isim yang menunjukkan tempat"
+
+msgid "بناء"
+msgstr "bangunan"
+
+msgid "عشوائي"
+msgstr "acak"
+
+msgid "عينة"
+msgstr "contoh/sampel"
+
+msgid "حركة الإعراب"
+msgstr "Harakat i'rab"
+
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "Menampakkan harakat i'rab di akhir kalimat"
+
+msgid "اختيار عشوائي للمفردات"
+msgstr "Pilihan acak untuk kosa kata"
+
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "salin sampel jason untuk percobaan perangkat lunak"
+
+msgid "بناء الجملة"
+msgstr "kalimat yang mabni (tidak dapat berubah)"
+
+msgid "مدونتي"
+msgstr "blog saya"
+
+msgid "الاستضافة بدعم من شركة"
+msgstr "didukung oleh"
+
+msgid "فاعل"
+msgstr "kata kerja bantu"
+
+msgid "فعل مساعد"
+msgstr "Auxiliary"
