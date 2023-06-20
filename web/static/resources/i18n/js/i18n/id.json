@@ -1,0 +1,28 @@
+{
+  "@metadata": {
+    "authors": [
+      "Taha Zerrouki"
+    ],
+    "last-updated": "2023-06-20",
+    "locale": "id"
+  },
+    "app-title": "مثال تطبيقي",
+"نوع الجملة:":"نوع الجملة:",
+"جملة فعلية":"kata kerja",
+"جملة اسمية":"kata benda",
+"فاعل":"Subjek",
+"فعل مساعد":"kata kerja bantu",
+"فعل:":"kata kerja:",
+"زمن:":"waktu:",
+"مبني للمعلوم/مجهول:":    "benuk aktif/pasif:",
+"مثبت/منفي:":"menetapkan/meniadakan:",
+"مفعول":"objek",
+"ظرف زمان:":"isim yang menunjukkan waktu:",
+"ظرف مكان:":"isim yang menunjukkan tempat:",
+"بناء":"bangunan",
+"عشوائي":"acak",
+"عينة":"contoh/sampel",
+"حركة الإعراب":"Harakat i'rab",
+    "مدونتي":"blog saya",
+"الاستضافة بدعم من شركة":"didukung oleh"
+}
