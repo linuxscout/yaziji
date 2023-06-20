@@ -67,7 +67,9 @@ app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
 app.config["BABEL_DOMAIN"] = "messages"
 app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
 'en':"English", 
-'fr':"Français"}
+"id":"indonisian",
+'fr':"Français",
+}
 
 # create a Bable instance for our app
 babel = Babel(app)
