@@ -4,10 +4,10 @@
 # zerrouki <taha.zerrouki@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Yaziji 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-26 12:06+0100\n"
-"PO-Revision-Date: 2023-06-12 16:36+0100\n"
+"POT-Creation-Date: 2023-06-19 20:03+0100\n"
+"PO-Revision-Date: 2023-06-19 19:51+0100\n"
 "Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: Taha Zerrouki\n"
 "Language: ar\n"
@@ -18,283 +18,927 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Poedit 3.1.1\n"
 
-# use iso two letters language code
-#: web/views/main2.tpl:27
-msgid "LanguageCode"
-msgstr "ar"
-
-#: web/views/main2.tpl:27
-msgid "My Language test"
-msgstr "لغتي العربية"
-
-#: web/views/main2.tpl:28
-msgid "نوع الجملة:"
-msgstr "نوع الجملة:"
-
-#: web/views/main2.tpl:31
+#: web/data/data_const.py:39
 msgid "جملة فعلية"
 msgstr "جملة فعلية"
 
-#: web/views/main2.tpl:32
+#: web/data/data_const.py:40
 msgid "جملة اسمية"
 msgstr "جملة اسمية"
 
-#: web/views/main2.tpl:34
-msgid "فاعل"
-msgstr "فاعل"
-
-#: web/views/main2.tpl:36
-msgid "أَحْمَد"
-msgstr "أَحْمَد"
-
-#: web/views/main2.tpl:37
-msgid "وَلَدٌ"
-msgstr "وَلَدٌ"
-
-#: web/views/main2.tpl:38 web/views/main2.tpl:89
-msgid "أنا"
-msgstr "أنا"
-
-#: web/views/main2.tpl:39 web/views/main2.tpl:90
-msgid "نحن"
-msgstr "نحن"
-
-#: web/views/main2.tpl:40 web/views/main2.tpl:91
-msgid "أنت"
-msgstr "أنت"
-
-#: web/views/main2.tpl:41 web/views/main2.tpl:92
-msgid "أنتِ"
-msgstr "أنتِ"
-
-#: web/views/main2.tpl:42 web/views/main2.tpl:93
-msgid "أنتما"
-msgstr "أنتما"
-
-#: web/views/main2.tpl:43 web/views/main2.tpl:94
-msgid "أنتما مؤ"
-msgstr "أنتما مؤ"
-
-#: web/views/main2.tpl:44 web/views/main2.tpl:95
-msgid "أنتم"
-msgstr "أنتم"
-
-#: web/views/main2.tpl:45 web/views/main2.tpl:96
-msgid "أنتن"
-msgstr "أنتن"
-
-#: web/views/main2.tpl:46 web/views/main2.tpl:97
-msgid "هو"
-msgstr "هو"
-
-#: web/views/main2.tpl:47 web/views/main2.tpl:98
-msgid "هي"
-msgstr "هي"
-
-#: web/views/main2.tpl:48 web/views/main2.tpl:99
-msgid "هما"
-msgstr "هما"
-
-#: web/views/main2.tpl:49 web/views/main2.tpl:100
-msgid "هما مؤ"
-msgstr "هما مؤ"
-
-#: web/views/main2.tpl:50 web/views/main2.tpl:101
-msgid "هم"
-msgstr "هم"
-
-#: web/views/main2.tpl:51 web/views/main2.tpl:102
-msgid "هن"
-msgstr "هن"
-
-#: web/views/main2.tpl:53
-msgid "فعل مساعد"
-msgstr "فعل مساعد"
-
-#: web/views/main2.tpl:56
+#: web/data/data_const.py:43
 msgid "اِسْتَطَاعَ"
 msgstr "اِسْتَطَاعَ"
 
-#: web/views/main2.tpl:57
+#: web/data/data_const.py:44
 msgid "أَرَادَ"
 msgstr "أَرَادَ"
 
-#: web/views/main2.tpl:58
+#: web/data/data_const.py:45
 msgid "كَادَ"
 msgstr "كَادَ"
 
-#: web/views/main2.tpl:60
-msgid "فعل:"
-msgstr "فعل:"
-
-#: web/views/main2.tpl:63
+#: web/data/data_const.py:48 web/data/data_const.py:105
 msgid "شَرِبَ"
 msgstr "شَرِبَ"
 
-#: web/views/main2.tpl:64
+#: web/data/data_const.py:49 web/data/data_const.py:90
 msgid "ضَرَبَ"
 msgstr "ضَرَبَ"
 
-#: web/views/main2.tpl:65
+#: web/data/data_const.py:50 web/data/data_const.py:106
 msgid "ذَهَبَ"
 msgstr "ذَهَبَ"
 
-#: web/views/main2.tpl:66
+#: web/data/data_const.py:51 web/data/data_const.py:110
 msgid "جَلَسَ"
 msgstr "جَلَسَ"
 
-#: web/views/main2.tpl:68
-msgid "زمن:"
-msgstr "زمن:"
+#: web/data/data_const.py:52
+msgid "شَبِعَ"
+msgstr "شَبِعَ"
 
-#: web/views/main2.tpl:70
+#: web/data/data_const.py:53
+msgid "أَكَلَ"
+msgstr "أَكَلَ"
+
+#: web/data/data_const.py:54
+msgid "خَرَجَ"
+msgstr "خَرَجَ"
+
+#: web/data/data_const.py:55
+msgid "مَشَى"
+msgstr "مَشَى"
+
+#: web/data/data_const.py:56
+msgid "قَامَ"
+msgstr "قَامَ"
+
+#: web/data/data_const.py:57
+msgid "نَجَحَ"
+msgstr "نَجَحَ"
+
+#: web/data/data_const.py:58
+msgid "بَكَى"
+msgstr "بَكَى"
+
+#: web/data/data_const.py:59
+msgid "سَمِعَ"
+msgstr "سَمِعَ"
+
+#: web/data/data_const.py:60
+msgid "جَاءَ"
+msgstr "جَاءَ"
+
+#: web/data/data_const.py:61
+msgid "عَرَفَ"
+msgstr "عَرَفَ"
+
+#: web/data/data_const.py:62
+msgid "رَسَبَ"
+msgstr "رَسَبَ"
+
+#: web/data/data_const.py:63
+msgid "تَعَلَّمَ"
+msgstr "تَعَلَّمَ"
+
+#: web/data/data_const.py:64
+msgid "لَعِبَ"
+msgstr "لَعِبَ"
+
+#: web/data/data_const.py:65
+msgid "جَعَلَ"
+msgstr "جَعَلَ"
+
+#: web/data/data_const.py:66
+msgid "شَكَرَ"
+msgstr "شَكَرَ"
+
+#: web/data/data_const.py:67
+msgid "جَهَّزَ"
+msgstr "جَهَّزَ"
+
+#: web/data/data_const.py:68
+msgid "وَعَدَ"
+msgstr "وَعَدَ"
+
+#: web/data/data_const.py:69
+msgid "عَاشَ"
+msgstr "عَاشَ"
+
+#: web/data/data_const.py:70
+msgid "وَقَفَ"
+msgstr "وَقَفَ"
+
+#: web/data/data_const.py:71
+msgid "سَجَدَ"
+msgstr "سَجَدَ"
+
+#: web/data/data_const.py:72
+msgid "مَاتَ"
+msgstr "مَاتَ"
+
+#: web/data/data_const.py:73
+msgid "قَبَضَ"
+msgstr "قَبَضَ"
+
+#: web/data/data_const.py:74
+msgid "غَفَرَ"
+msgstr "غَفَرَ"
+
+#: web/data/data_const.py:75
+msgid "صَامَ"
+msgstr "صَامَ"
+
+#: web/data/data_const.py:76
+msgid "رَسَمَ"
+msgstr "رَسَمَ"
+
+#: web/data/data_const.py:77
+msgid "نَزَلَ"
+msgstr "نَزَلَ"
+
+#: web/data/data_const.py:78
+msgid "رَكَعَ"
+msgstr "رَكَعَ"
+
+#: web/data/data_const.py:79
+msgid "سَافَرَ"
+msgstr "سَافَرَ"
+
+#: web/data/data_const.py:80
+msgid "وَفَى"
+msgstr "وَفَى"
+
+#: web/data/data_const.py:81
+msgid "لَبِسَ"
+msgstr "لَبِسَ"
+
+#: web/data/data_const.py:82
+msgid "اجْتَهَدَ"
+msgstr "اجْتَهَدَ"
+
+#: web/data/data_const.py:83
+msgid "وَجَدَ"
+msgstr "وَجَدَ"
+
+#: web/data/data_const.py:84
+msgid "وَصَلَ"
+msgstr "وَصَلَ"
+
+#: web/data/data_const.py:85
+msgid "قَرَأَ"
+msgstr "قَرَأَ"
+
+#: web/data/data_const.py:86
+msgid "قَعَدَ"
+msgstr "قَعَدَ"
+
+#: web/data/data_const.py:87
+msgid "قَالَ"
+msgstr "قَالَ"
+
+#: web/data/data_const.py:88
+msgid "خَبَّرَ"
+msgstr "خَبَّرَ"
+
+#: web/data/data_const.py:89
+msgid "عَلِمَ"
+msgstr "عَلِمَ"
+
+#: web/data/data_const.py:91
+msgid "سَأَلَ"
+msgstr "سَأَلَ"
+
+#: web/data/data_const.py:92
+msgid "رَمَى"
+msgstr "رَمَى"
+
+#: web/data/data_const.py:93
+msgid "شَاهَدَ"
+msgstr "شَاهَدَ"
+
+#: web/data/data_const.py:94
+msgid "أَخَذَ"
+msgstr "أَخَذَ"
+
+#: web/data/data_const.py:95
+msgid "طَلَعَ"
+msgstr "طَلَعَ"
+
+#: web/data/data_const.py:96
+msgid "حَفِظَ"
+msgstr "حَفِظَ"
+
+#: web/data/data_const.py:97
+msgid "أَخْبَرَ"
+msgstr "أَخْبَرَ"
+
+#: web/data/data_const.py:98
+msgid "نَامَ"
+msgstr "نَامَ"
+
+#: web/data/data_const.py:99
+msgid "سَاعَدَ"
+msgstr "سَاعَدَ"
+
+#: web/data/data_const.py:100
+msgid "كَتَبَ"
+msgstr "كَتَبَ"
+
+#: web/data/data_const.py:101
+msgid "حَدَّثَ"
+msgstr "حَدَّثَ"
+
+#: web/data/data_const.py:102
+msgid "جَرَى"
+msgstr "جَرَى"
+
+#: web/data/data_const.py:103
+msgid "اشْتَرَى"
+msgstr "اشْتَرَى"
+
+#: web/data/data_const.py:104
+msgid "أَسْرَعَ"
+msgstr "أَسْرَعَ"
+
+#: web/data/data_const.py:107
+msgid "ذَاكَرَ"
+msgstr "ذَاكَرَ"
+
+#: web/data/data_const.py:108
+msgid "وَضَعَ"
+msgstr "وَضَعَ"
+
+#: web/data/data_const.py:109
+msgid "بَاعَ"
+msgstr "بَاعَ"
+
+#: web/data/data_const.py:111
+msgid "فَهِمَ"
+msgstr "فَهِمَ"
+
+#: web/data/data_const.py:112
+msgid "فَتَحَ"
+msgstr "فَتَحَ"
+
+#: web/data/data_const.py:113
+msgid "عَطِشَ"
+msgstr "عَطِشَ"
+
+#: web/data/data_const.py:114
+msgid "سَكَنَ"
+msgstr "سَكَنَ"
+
+#: web/data/data_const.py:115
+msgid "أَعْلَمَ"
+msgstr "أَعْلَمَ"
+
+#: web/data/data_const.py:116
+msgid "كَسَرَ"
+msgstr "كَسَرَ"
+
+#: web/data/data_const.py:117
+msgid "دَخَلَ"
+msgstr "دَخَلَ"
+
+#: web/data/data_const.py:120
 msgid "الماضي المعلوم"
 msgstr "الماضي المعلوم"
 
-#: web/views/main2.tpl:71
+#: web/data/data_const.py:121
 msgid "المضارع المعلوم"
 msgstr "المضارع المعلوم"
 
-#: web/views/main2.tpl:72
+#: web/data/data_const.py:122
 msgid "الأمر"
 msgstr "الأمر"
 
-#: web/views/main2.tpl:74
-msgid "مبني للمعلوم/مجهول:"
-msgstr "مبني للمعلوم/مجهول:"
-
-#: web/views/main2.tpl:76
+#: web/data/data_const.py:125
 msgid "معلوم"
 msgstr "معلوم"
 
-#: web/views/main2.tpl:77
+#: web/data/data_const.py:126
 msgid "مبني للمجهول"
 msgstr "مبني للمجهول"
 
-#: web/views/main2.tpl:80
-msgid "مثبت/منفي:"
-msgstr "مثبت/منفي:"
-
-#: web/views/main2.tpl:82
+#: web/data/data_const.py:129
 msgid "مثبت"
 msgstr "مثبت"
 
-#: web/views/main2.tpl:83
+#: web/data/data_const.py:130
 msgid "منفي"
 msgstr "منفي"
 
-#: web/views/main2.tpl:85
-msgid "مفعول"
-msgstr "مفعول"
-
-#: web/views/main2.tpl:87
+#: web/data/data_const.py:133 web/data/data_const.py:154
 msgid "حَلِيبٌ"
 msgstr "حَلِيبٌ"
 
-#: web/views/main2.tpl:88
+#: web/data/data_const.py:134
 msgid "بَابٌ"
 msgstr "بَابٌ"
 
-#: web/views/main2.tpl:104
-msgid "ظرف زمان:"
-msgstr "ظرف زمان:"
+#: web/data/data_const.py:135 web/data/data_const.py:276
+msgid "أنا"
+msgstr "أنا"
 
-#: web/views/main2.tpl:108
-msgid "دَائِمًا"
-msgstr "دَائِمًا"
+#: web/data/data_const.py:136 web/data/data_const.py:277
+msgid "نحن"
+msgstr "نحن"
 
-#: web/views/main2.tpl:109
-msgid "أَوَّلَ أَمْسِ"
-msgstr "أَوَّلَ أَمْسِ"
+#: web/data/data_const.py:137 web/data/data_const.py:278
+msgid "أنت"
+msgstr "أنت"
 
-#: web/views/main2.tpl:110
-msgid "الْبَارِحَةَ"
-msgstr "الْبَارِحَةَ"
+#: web/data/data_const.py:138 web/data/data_const.py:279
+msgid "أنتِ"
+msgstr "أنتِ"
 
-#: web/views/main2.tpl:111
+#: web/data/data_const.py:139 web/data/data_const.py:280
+msgid "أنتما"
+msgstr "أنتما"
+
+#: web/data/data_const.py:140 web/data/data_const.py:281
+msgid "أنتما مؤ"
+msgstr "أنتما مؤ"
+
+#: web/data/data_const.py:141 web/data/data_const.py:282
+msgid "أنتم"
+msgstr "أنتم"
+
+#: web/data/data_const.py:142 web/data/data_const.py:283
+msgid "أنتن"
+msgstr "أنتن"
+
+#: web/data/data_const.py:143 web/data/data_const.py:284
+msgid "هو"
+msgstr "هو"
+
+#: web/data/data_const.py:144 web/data/data_const.py:285
+msgid "هي"
+msgstr "هي"
+
+#: web/data/data_const.py:145 web/data/data_const.py:286
+msgid "هما"
+msgstr "هما"
+
+#: web/data/data_const.py:146 web/data/data_const.py:287
+msgid "هما مؤ"
+msgstr "هما مؤ"
+
+#: web/data/data_const.py:147 web/data/data_const.py:288
+msgid "هم"
+msgstr "هم"
+
+#: web/data/data_const.py:148 web/data/data_const.py:289
+msgid "هن"
+msgstr "هن"
+
+#: web/data/data_const.py:149
+msgid "تُفَاحَةٌ"
+msgstr "تُفَاحَةٌ"
+
+#: web/data/data_const.py:150 web/data/data_const.py:297
+msgid "تِلْمِيذٌ"
+msgstr "تِلْمِيذٌ"
+
+#: web/data/data_const.py:151
+msgid "ثَوْبٌ"
+msgstr "ثَوْبٌ"
+
+#: web/data/data_const.py:152
+msgid "جَبَلٌ"
+msgstr "جَبَلٌ"
+
+#: web/data/data_const.py:153
+msgid "حَقِيبَةٌ"
+msgstr "حَقِيبَةٌ"
+
+#: web/data/data_const.py:155
+msgid "خُضَرٌ"
+msgstr "خُضَرٌ"
+
+#: web/data/data_const.py:156
+msgid "دَرْسٌ"
+msgstr "دَرْسٌ"
+
+#: web/data/data_const.py:157 web/data/data_const.py:300
+msgid "رَجُلٌ"
+msgstr "رَجُلٌ"
+
+#: web/data/data_const.py:158
+msgid "شَعْرٌ"
+msgstr "شَعْرٌ"
+
+#: web/data/data_const.py:159
+msgid "صَحْرَاءٌ"
+msgstr "صَحْرَاءٌ"
+
+#: web/data/data_const.py:160
+msgid "صَوْتٌ"
+msgstr "صَوْتٌ"
+
+#: web/data/data_const.py:161
+msgid "طَعَامٌ"
+msgstr "طَعَامٌ"
+
+#: web/data/data_const.py:162
+msgid "طَلَبَةٌ"
+msgstr "طَلَبَةٌ"
+
+#: web/data/data_const.py:163
+msgid "عَصِيرٌ"
+msgstr "عَصِيرٌ"
+
+#: web/data/data_const.py:164
+msgid "عَلَمٌ"
+msgstr "عَلَمٌ"
+
+#: web/data/data_const.py:165
+msgid "فَوَاكِهٌ"
+msgstr "فَوَاكِهٌ"
+
+#: web/data/data_const.py:166
+msgid "قَمَرٌ"
+msgstr "قَمَرٌ"
+
+#: web/data/data_const.py:167
+msgid "قُرْآنٌ"
+msgstr "قُرْآنٌ"
+
+#: web/data/data_const.py:168
+msgid "قِصَّةٌ"
+msgstr "قِصَّةٌ"
+
+#: web/data/data_const.py:169
+msgid "قِطَّةٌ"
+msgstr "قِطَّةٌ"
+
+#: web/data/data_const.py:170
+msgid "كَأْسٌ"
+msgstr "كَأْسٌ"
+
+#: web/data/data_const.py:171
+msgid "كُرَةٌ"
+msgstr "كُرَةٌ"
+
+#: web/data/data_const.py:172
+msgid "كِتَابٌ"
+msgstr "كِتَابٌ"
+
+#: web/data/data_const.py:173
+msgid "لمْرأَةٌ"
+msgstr "مَرأَةٌ"
+
+#: web/data/data_const.py:174
+msgid "مدْرَسةٌ"
+msgstr "مدْرَسةٌ"
+
+#: web/data/data_const.py:175
+msgid "مسْرَحِيَّةٌ"
+msgstr "مسْرَحِيَّةٌ"
+
+#: web/data/data_const.py:176
+msgid "مُعَلِمٌ"
+msgstr "مُعَلِمٌ"
+
+#: web/data/data_const.py:177
+msgid "مِحْفَظَةٌ"
+msgstr "مِحْفَظَةٌ"
+
+#: web/data/data_const.py:178
+msgid "نَاسٌ"
+msgstr "نَاسٌ"
+
+#: web/data/data_const.py:193
 msgid "أَحْيَانًا"
 msgstr "أَحْيَانًا"
 
-#: web/views/main2.tpl:112
-msgid "بَعْدَ غَدٍ"
-msgstr "بَعْدَ غَدٍ"
+#: web/data/data_const.py:194
+msgid "البَارِحَةَ"
+msgstr "البَارِحَةَ"
 
-#: web/views/main2.tpl:113
-msgid "مَسَاءً"
-msgstr "مَسَاءً"
+#: web/data/data_const.py:195
+msgid "اليَوْمَ"
+msgstr "اليَوْمَ"
 
-#: web/views/main2.tpl:114
-msgid "أَمْسِ"
-msgstr "أَمْسِ"
+#: web/data/data_const.py:197
+msgid "سَاعَةً"
+msgstr "سَاعَةً"
 
-#: web/views/main2.tpl:115
-msgid "الْيَوْمَ"
-msgstr "الْيَوْمَ"
+#: web/data/data_const.py:198
+msgid "سَنَةً"
+msgstr "سَنَةً"
 
-#: web/views/main2.tpl:116
-msgid "غَدًا"
-msgstr "غَدًا"
+#: web/data/data_const.py:199
+msgid "شِتَاءً"
+msgstr "شِتَاءً"
 
-#: web/views/main2.tpl:117
+#: web/data/data_const.py:200
 msgid "صَبَاحًا"
 msgstr "صَبَاحًا"
 
-#: web/views/main2.tpl:118
-msgid "كُلَّ يَوْمٍ"
-msgstr "كُلَّ يَوْمٍ"
+#: web/data/data_const.py:201
+msgid "صَيْفًا"
+msgstr "صَيْفًا"
 
-#: web/views/main2.tpl:120
-msgid "ظرف مكان:"
-msgstr "ظرف مكان:"
+#: web/data/data_const.py:202
+msgid "ظُهْرًا"
+msgstr "ظُهْرًا"
 
-#: web/views/main2.tpl:123
-msgid "بيت"
-msgstr "بيت"
+#: web/data/data_const.py:204
+msgid "عَصْرًا"
+msgstr "عَصْرًا"
 
-#: web/views/main2.tpl:124
-msgid "سوق"
-msgstr "سوق"
+#: web/data/data_const.py:205
+msgid "غَدًا"
+msgstr "غَدًا"
 
-#: web/views/main2.tpl:125
-msgid "مدرسة"
-msgstr "مدرسة"
+#: web/data/data_const.py:206
+msgid "فَجْرًا"
+msgstr "فَجْرًا"
 
-#: web/views/main2.tpl:132
-msgid "بناء"
-msgstr "بناء"
+#: web/data/data_const.py:208
+msgid "لَحْظَةَ"
+msgstr "لَحْظَةَ"
 
-#: web/views/main2.tpl:133
-msgid "عشوائي"
-msgstr "عشوائي"
+#: web/data/data_const.py:209
+msgid "لَيْلًا"
+msgstr "لَيْلًا"
 
-#: web/views/main2.tpl:134
-msgid "عينة"
-msgstr "عينة"
+#: web/data/data_const.py:210
+msgid "مَسَاءً"
+msgstr "مَسَاءً"
 
-#: web/views/main2.tpl:136
-msgid "حركة الإعراب"
-msgstr "حركة الإعراب"
+#: web/data/data_const.py:211
+msgid "نَهْارًا"
+msgstr "نَهْارًا"
 
-#: web/views/main2.tpl:140
-msgid "إظهار حركة الإعراب في أواخر الكلمات"
-msgstr "إظهار حركة الإعراب في أواخر الكلمات"
+#: web/data/data_const.py:215
+msgid "بَيْتٌ"
+msgstr "بَيْتٌ"
 
-#: web/views/main2.tpl:141
-msgid "اختيار عشوائي للمفردات"
-msgstr "اختيار عشوائي للمفردات"
+#: web/data/data_const.py:216
+msgid "حَدِيقَةٌ"
+msgstr "حَدِيقَةٌ"
 
-#: web/views/main2.tpl:142
-msgid "نسخ عينة جيسون للتجارب البرمجية"
-msgstr "نسخ عينة جيسون للتجارب البرمجية"
+#: web/data/data_const.py:217
+msgid "سُوقٌ"
+msgstr "سُوقٌ"
 
-#: web/views/main2.tpl:143
-msgid "بناء الجملة"
-msgstr "بناء الجملة"
+#: web/data/data_const.py:218
+msgid "طَرِيقٌ"
+msgstr "طَرِيقٌ"
 
-#: web/views/main2.tpl:166
-msgid "مدونتي"
-msgstr "مدونتي"
+#: web/data/data_const.py:219
+msgid "غُرْفَةٌ"
+msgstr "غُرْفَةٌ"
 
-#: web/views/main2.tpl:173
-msgid "الاستضافة بدعم من شركة"
-msgstr "الاستضافة بدعم من شركة"
+#: web/data/data_const.py:220
+msgid "فِنَاءٌ"
+msgstr "فِنَاءٌ"
+
+#: web/data/data_const.py:221
+msgid "مَدِينَةٌ"
+msgstr "مَدِينَةٌ"
+
+#: web/data/data_const.py:222
+msgid "مَدْرَسَةٌ"
+msgstr "مَدْرَسَةٌ"
+
+#: web/data/data_const.py:223
+msgid "مَسْجِدٌ"
+msgstr "مَسْجِدٌ"
+
+#: web/data/data_const.py:224
+msgid "مَطْبَخٌ"
+msgstr "مَطْبَخٌ"
+
+#: web/data/data_const.py:244
+msgid "أَنِيقٌ"
+msgstr "أَنِيقٌ"
+
+#: web/data/data_const.py:245
+msgid "بَخِيلٌ"
+msgstr "بَخِيلٌ"
+
+#: web/data/data_const.py:246
+msgid "بَشِعٌ"
+msgstr "بَشِعٌ"
+
+#: web/data/data_const.py:247
+msgid "بَطِيءٌ"
+msgstr "بَطِيءٌ"
+
+#: web/data/data_const.py:248
+msgid "جَمِيلٌ"
+msgstr "جَمِيلٌ"
+
+#: web/data/data_const.py:249
+msgid "حَزِينٌ"
+msgstr "حَزِينٌ"
+
+#: web/data/data_const.py:250
+msgid "حَنُونٌ"
+msgstr "حَنُونٌ"
+
+#: web/data/data_const.py:251
+msgid "ذَكِيٌ"
+msgstr "ذَكِيٌ"
+
+#: web/data/data_const.py:252
+msgid "سَرِيعٌ"
+msgstr "سَرِيعٌ"
+
+#: web/data/data_const.py:253
+msgid "سَعِيدٌ"
+msgstr "سَعِيدٌ"
+
+#: web/data/data_const.py:254
+msgid "سَمِينٌ"
+msgstr "سَمِينٌ"
+
+#: web/data/data_const.py:255
+msgid "شُجَاعٌ"
+msgstr "شُجَاعٌ"
+
+#: web/data/data_const.py:256
+msgid "ضَعِيفٌ"
+msgstr "ضَعِيفٌ"
+
+#: web/data/data_const.py:257
+msgid "طَوِيلٌ"
+msgstr "طَوِيلٌ"
+
+#: web/data/data_const.py:258
+msgid "غَبِيٌ"
+msgstr "غَبِيٌ"
+
+#: web/data/data_const.py:259
+msgid "فَرِحٌ"
+msgstr "فَرِحٌ"
+
+#: web/data/data_const.py:260
+msgid "قَصِيرٌ"
+msgstr "قَصِيرٌ"
+
+#: web/data/data_const.py:261
+msgid "قَوِيٌ"
+msgstr "قَوِيٌ"
+
+#: web/data/data_const.py:262
+msgid "كَرِيمٌ"
+msgstr "كَرِيمٌ"
+
+#: web/data/data_const.py:263
+msgid "كَسُولٌ"
+msgstr "كَسُولٌ"
+
+#: web/data/data_const.py:264
+msgid "لَئِيمٌ"
+msgstr "لَئِيمٌ"
+
+#: web/data/data_const.py:265
+msgid "مَسْرُورٌ"
+msgstr "مَسْرُورٌ"
+
+#: web/data/data_const.py:266
+msgid "مُبْتَهِجٌ"
+msgstr "مُبْتَهِجٌ"
+
+#: web/data/data_const.py:267 web/data/data_const.py:317
+msgid "مُجْتَهِدٌ"
+msgstr "مُجْتَهِدٌ"
+
+#: web/data/data_const.py:268
+msgid "مُرْتَفِعٌ"
+msgstr "مُرْتَفِعٌ"
+
+#: web/data/data_const.py:269
+msgid "مُنْخَفِضٌ"
+msgstr "مُنْخَفِضٌ"
+
+#: web/data/data_const.py:270
+msgid "هَزِيلٌ"
+msgstr "هَزِيلٌ"
+
+#: web/data/data_const.py:271
+msgid "وَسِيمٌ"
+msgstr "وَسِيمٌ"
+
+#: web/data/data_const.py:274
+msgid "أَحْمَد"
+msgstr "أَحْمَد"
+
+#: web/data/data_const.py:275 web/data/data_const.py:321
+msgid "وَلَدٌ"
+msgstr "وَلَدٌ"
+
+#: web/data/data_const.py:290
+msgid "أَبٌ"
+msgstr "أَبٌ"
+
+#: web/data/data_const.py:291
+msgid "أَحْمَدُ"
+msgstr "أَحْمَدُ"
+
+#: web/data/data_const.py:292
+msgid "أَسَدٌ"
+msgstr "أَسَدٌ"
+
+#: web/data/data_const.py:293
+msgid "أُمٌّ"
+msgstr "أُمٌّ"
+
+#: web/data/data_const.py:294
+msgid "اِبْنٌ"
+msgstr "اِبْنٌ"
+
+#: web/data/data_const.py:295
+msgid "بِنْتٌ"
+msgstr "بِنْتٌ"
+
+#: web/data/data_const.py:296
+msgid "تَاجِرٌ"
+msgstr "تَاجِرٌ"
+
+#: web/data/data_const.py:298
+msgid "حِصَانٌ"
+msgstr "حِصَانٌ"
+
+#: web/data/data_const.py:299
+msgid "دِيكٌ"
+msgstr "دِيكٌ"
+
+#: web/data/data_const.py:301
+msgid "رَضِيعٌ"
+msgstr "رَضِيعٌ"
+
+#: web/data/data_const.py:302
+msgid "زُهُورٌ"
+msgstr "زُهُورٌ"
+
+#: web/data/data_const.py:303
+msgid "شُرْطِيٌّ"
+msgstr "شُرْطِيٌّ"
+
+#: web/data/data_const.py:304
+msgid "طَالِبٌ"
+msgstr "طَالِبٌ"
+
+#: web/data/data_const.py:305
+msgid "طَبِيبٌ"
+msgstr "طَبِيبٌ"
+
+#: web/data/data_const.py:306
+msgid "طِفْلٌ"
+msgstr "طِفْلٌ"
+
+#: web/data/data_const.py:307
+msgid "عَامِلٌ"
+msgstr "عَامِلٌ"
+
+#: web/data/data_const.py:308
+msgid "عُمَّالٌ"
+msgstr "عُمَّالٌ"
+
+#: web/data/data_const.py:309
+msgid "فَاطِمَةُ"
+msgstr "فَاطِمَةُ"
+
+#: web/data/data_const.py:310
+msgid "فَرَاشَةٌ"
+msgstr "فَرَاشَةٌ"
+
+#: web/data/data_const.py:311
+msgid "قَاضٌِ"
+msgstr "قَاضٌِ"
+
+#: web/data/data_const.py:312
+msgid "قِطٌّ"
+msgstr "قِطٌّ"
+
+#: web/data/data_const.py:313
+msgid "لَيْلَى"
+msgstr "لَيْلَى"
+
+#: web/data/data_const.py:314
+msgid "معَلِّمٌ"
+msgstr "معَلِّمٌ"
+
+#: web/data/data_const.py:315
+msgid "مَرْأَةٌ"
+msgstr "مَرْأَةٌ"
+
+#: web/data/data_const.py:316
+msgid "مَطَرٌ"
+msgstr "مَطَرٌ"
+
+#: web/data/data_const.py:318
+msgid "مُحَمَدُ"
+msgstr "مُحَمَدُ"
+
+#: web/data/data_const.py:319
+msgid "مُسْلِمٌ"
+msgstr "مُسْلِمٌ"
+
+#: web/data/data_const.py:320
+msgid "مُهَنْدِسٌ"
+msgstr "مُهَنْدِسٌ"
+
+# use iso two letters language code
+#~ msgid "LanguageCode"
+#~ msgstr "ar"
+
+#~ msgid "My Language test"
+#~ msgstr "لغتي العربية"
+
+#~ msgid "نوع الجملة:"
+#~ msgstr "نوع الجملة:"
+
+#~ msgid "فاعل"
+#~ msgstr "فاعل"
+
+#~ msgid "فعل مساعد"
+#~ msgstr "فعل مساعد"
+
+#~ msgid "فعل:"
+#~ msgstr "فعل:"
+
+#~ msgid "زمن:"
+#~ msgstr "زمن:"
+
+#~ msgid "مبني للمعلوم/مجهول:"
+#~ msgstr "مبني للمعلوم/مجهول:"
+
+#~ msgid "مثبت/منفي:"
+#~ msgstr "مثبت/منفي:"
+
+#~ msgid "مفعول"
+#~ msgstr "مفعول"
+
+#~ msgid "ظرف زمان:"
+#~ msgstr "ظرف زمان:"
+
+#~ msgid "دَائِمًا"
+#~ msgstr "دَائِمًا"
+
+#~ msgid "أَوَّلَ أَمْسِ"
+#~ msgstr "أَوَّلَ أَمْسِ"
+
+#~ msgid "الْبَارِحَةَ"
+#~ msgstr "الْبَارِحَةَ"
+
+#~ msgid "بَعْدَ غَدٍ"
+#~ msgstr "بَعْدَ غَدٍ"
+
+#~ msgid "أَمْسِ"
+#~ msgstr "أَمْسِ"
+
+#~ msgid "الْيَوْمَ"
+#~ msgstr "الْيَوْمَ"
+
+#~ msgid "كُلَّ يَوْمٍ"
+#~ msgstr "كُلَّ يَوْمٍ"
+
+#~ msgid "ظرف مكان:"
+#~ msgstr "ظرف مكان:"
+
+#~ msgid "بيت"
+#~ msgstr "بيت"
+
+#~ msgid "سوق"
+#~ msgstr "سوق"
+
+#~ msgid "مدرسة"
+#~ msgstr "مدرسة"
+
+#~ msgid "بناء"
+#~ msgstr "بناء"
+
+#~ msgid "عشوائي"
+#~ msgstr "عشوائي"
+
+#~ msgid "عينة"
+#~ msgstr "عينة"
+
+#~ msgid "حركة الإعراب"
+#~ msgstr "حركة الإعراب"
+
+#~ msgid "إظهار حركة الإعراب في أواخر الكلمات"
+#~ msgstr "إظهار حركة الإعراب في أواخر الكلمات"
+
+#~ msgid "اختيار عشوائي للمفردات"
+#~ msgstr "اختيار عشوائي للمفردات"
+
+#~ msgid "نسخ عينة جيسون للتجارب البرمجية"
+#~ msgstr "نسخ عينة جيسون للتجارب البرمجية"
+
+#~ msgid "بناء الجملة"
+#~ msgstr "بناء الجملة"
+
+#~ msgid "مدونتي"
+#~ msgstr "مدونتي"
+
+#~ msgid "الاستضافة بدعم من شركة"
+#~ msgstr "الاستضافة بدعم من شركة"
