@@ -45,8 +45,6 @@ eval:ods
 	cd tests;python3  test.py -c test --limit 10 -f samples/tmp/sample10.csv -o output/text.eval.csv
 
 server:
-	cd web;python3  testylang.py
-server2:
 	cd web;python3  yaziji_webserver.py
 
 
@@ -59,16 +57,35 @@ gettext:
 	# extract messages from main template
 	xgettext -L python --from-code=UTF-8 web/views/main2.tpl -o web/locales/main.po
 copy_locales:
-	cd web/locales; cp main.po ar/LC_MESSAGES/
-	cd web/locales; cp main.po ar_DZ/LC_MESSAGES/
-	cd web/locales; cp main.po en/LC_MESSAGES/
-	cd web/locales; cp main.po fr/LC_MESSAGES/
-update_locales:
+	cp translations/ar/main_ar.po web/locales/ar/LC_MESSAGES/main.po
+	cp translations/en/main_en.po web/locales/en/LC_MESSAGES/main.po
+	cp translations/fr/main_fr.po web/locales/fr/LC_MESSAGES/main.po
+	cp translations/id/main_id.po web/locales/id/LC_MESSAGES/main.po
+mo:
+	#create mo files
+	cd web/locales/ar/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/en/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/fr/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/id/LC_MESSAGES/; msgfmt main.po
+
+
+update_pot:
+	#extract new messages and update global message file
 	echo '' > messages.po # xgettext needs that file, and we need it empty
 	find . -type f -iname "*.py" | xgettext -j -f - # this modifies messages.po
-	msgmerge -N existing.po messages.po > new.po
-	mv new.po existing.po
+	msgmerge -N translations/existing.pot messages.po > translations/new.pot
+	mv translations/new.pot translations/existing.pot
 	rm messages.po
+
+update_po:LANG=en
+update_po:LANG=fr
+update_po:LANG=ar
+update_po:
+	# merge updated messages to existing languages files
+	cd translations;msgmerge -N $(LANG)/main_$(LANG).po main.pot >$(LANG)/new.po
+	cd translations/$(LANG);mv new.po main_$(LANG).po
+
+
 
 testurl:
 	curl -o tests/output/testajax1.json http://127.0.0.1:8080/fr/ajaxGet
@@ -76,3 +93,6 @@ testurl:
 	curl -o tests/output/testselect1.json http://127.0.0.1:8080/fr/selectGet
 	curl -o tests/output/testselect2.json http://127.0.0.1/yaziji/fr/selectGet
 
+update_pofrompo:
+	# import translation from en.po to main_en
+	msgcat main_en.po en.po --use-first > main_en1.po
