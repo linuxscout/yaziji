@@ -7,365 +7,482 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yaziji 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 20:03+0100\n"
-"PO-Revision-Date: 2023-06-20 11:56+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2023-06-21 18:59+0100\n"
+"PO-Revision-Date: 2023-06-21 20:01+0100\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: taha.zerrouki@gmail.com\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 2.3\n"
 
+#: web/data/data_const.py:39 web/data/data_const.py:326
 msgid "جملة فعلية"
 msgstr "kata kerja"
 
+#: web/data/data_const.py:40 web/data/data_const.py:327
 msgid "جملة اسمية"
 msgstr "kata benda"
 
+#: web/data/data_const.py:43
 msgid "اِسْتَطَاعَ"
 msgstr "bisa/mampu"
 
+#: web/data/data_const.py:44
 msgid "أَرَادَ"
 msgstr "ingin"
 
+#: web/data/data_const.py:45
 msgid "كَادَ"
 msgstr "hampir"
 
+#: web/data/data_const.py:48 web/data/data_const.py:105
 msgid "شَرِبَ"
 msgstr "meminum"
 
+#: web/data/data_const.py:49 web/data/data_const.py:90
 msgid "ضَرَبَ"
 msgstr "memukul"
 
+#: web/data/data_const.py:50 web/data/data_const.py:106
 msgid "ذَهَبَ"
 msgstr "pergi"
 
+#: web/data/data_const.py:51 web/data/data_const.py:110
 msgid "جَلَسَ"
 msgstr "duduk"
 
+#: web/data/data_const.py:52
 msgid "شَبِعَ"
 msgstr "kenyang"
 
+#: web/data/data_const.py:53
 msgid "أَكَلَ"
 msgstr "memakan"
 
+#: web/data/data_const.py:54
 msgid "خَرَجَ"
 msgstr "keluar"
 
+#: web/data/data_const.py:55
 msgid "مَشَى"
 msgstr "berjalan"
 
+#: web/data/data_const.py:56
 msgid "قَامَ"
 msgstr "berdiri/bangkit"
 
+#: web/data/data_const.py:57
 msgid "نَجَحَ"
 msgstr "berhasil/sukses"
 
+#: web/data/data_const.py:58
 msgid "بَكَى"
 msgstr "menangis"
 
+#: web/data/data_const.py:59
 msgid "سَمِعَ"
 msgstr "mendengar"
 
+#: web/data/data_const.py:60
 msgid "جَاءَ"
 msgstr "datang/tiba"
 
+#: web/data/data_const.py:61
 msgid "عَرَفَ"
 msgstr "mengetahui"
 
+#: web/data/data_const.py:62
 msgid "رَسَبَ"
 msgstr "gagal"
 
+#: web/data/data_const.py:63
 msgid "تَعَلَّمَ"
 msgstr "belajar"
 
+#: web/data/data_const.py:64
 msgid "لَعِبَ"
 msgstr "bermain"
 
+#: web/data/data_const.py:65
 msgid "جَعَلَ"
 msgstr "membuat/ menjadikan"
 
+#: web/data/data_const.py:66
 msgid "شَكَرَ"
 msgstr "berterima kasih"
 
+#: web/data/data_const.py:67
 msgid "جَهَّزَ"
 msgstr "mempersiapkan"
 
+#: web/data/data_const.py:68
 msgid "وَعَدَ"
 msgstr "berjanji"
 
+#: web/data/data_const.py:69
 msgid "عَاشَ"
 msgstr "Hidup"
 
+#: web/data/data_const.py:70
 msgid "وَقَفَ"
 msgstr "berdiri"
 
+#: web/data/data_const.py:71
 msgid "سَجَدَ"
 msgstr "bersujud"
 
+#: web/data/data_const.py:72
 msgid "مَاتَ"
 msgstr "mati/eninggal"
 
+#: web/data/data_const.py:73
 msgid "قَبَضَ"
 msgstr "menangkap"
 
+#: web/data/data_const.py:74
 msgid "غَفَرَ"
 msgstr "memaafkan"
 
+#: web/data/data_const.py:75
 msgid "صَامَ"
 msgstr "berpuasa"
 
+#: web/data/data_const.py:76
 msgid "رَسَمَ"
 msgstr "menggambar"
 
+#: web/data/data_const.py:77
 msgid "نَزَلَ"
 msgstr "turun"
 
+#: web/data/data_const.py:78
 msgid "رَكَعَ"
 msgstr "berlutut"
 
+#: web/data/data_const.py:79
 msgid "سَافَرَ"
 msgstr "Bepergian"
 
+#: web/data/data_const.py:80
 msgid "وَفَى"
 msgstr "memenuhi"
 
+#: web/data/data_const.py:81
 msgid "لَبِسَ"
 msgstr "memakai"
 
+#: web/data/data_const.py:82
 msgid "اجْتَهَدَ"
 msgstr "berjuang/ bersungguh sungguh"
 
+#: web/data/data_const.py:83
 msgid "وَجَدَ"
 msgstr "menemukan"
 
+#: web/data/data_const.py:84
 msgid "وَصَلَ"
 msgstr "sampai"
 
+#: web/data/data_const.py:85
 msgid "قَرَأَ"
 msgstr "membaca"
 
+#: web/data/data_const.py:86
 msgid "قَعَدَ"
 msgstr "Duduk"
 
+#: web/data/data_const.py:87
 msgid "قَالَ"
 msgstr "mengatakan"
 
+#: web/data/data_const.py:88
 msgid "خَبَّرَ"
 msgstr "memberikan kabar/informasi"
 
+#: web/data/data_const.py:89
 msgid "عَلِمَ"
 msgstr "mengetahui"
 
+#: web/data/data_const.py:91
 msgid "سَأَلَ"
 msgstr "bertanya"
 
+#: web/data/data_const.py:92
 msgid "رَمَى"
 msgstr "Melempar"
 
+#: web/data/data_const.py:93
 msgid "شَاهَدَ"
 msgstr "menyaksikan"
 
+#: web/data/data_const.py:94
 msgid "أَخَذَ"
 msgstr "mengambil"
 
+#: web/data/data_const.py:95
 msgid "طَلَعَ"
 msgstr "menelaah"
 
+#: web/data/data_const.py:96
 msgid "حَفِظَ"
 msgstr "menyimpan/ menjaga"
 
+#: web/data/data_const.py:97
 msgid "أَخْبَرَ"
 msgstr "Memberi tahu"
 
+#: web/data/data_const.py:98
 msgid "نَامَ"
 msgstr "tidur"
 
+#: web/data/data_const.py:99
 msgid "سَاعَدَ"
 msgstr "Membantu"
 
+#: web/data/data_const.py:100
 msgid "كَتَبَ"
 msgstr "menulis"
 
+#: web/data/data_const.py:101
 msgid "حَدَّثَ"
 msgstr "bercerita"
 
+#: web/data/data_const.py:102
 msgid "جَرَى"
 msgstr "berlari"
 
+#: web/data/data_const.py:103
 msgid "اشْتَرَى"
 msgstr "membeli"
 
+#: web/data/data_const.py:104
 msgid "أَسْرَعَ"
 msgstr "lebih cepat"
 
+#: web/data/data_const.py:107
 msgid "ذَاكَرَ"
 msgstr "mengingat"
 
+#: web/data/data_const.py:108
 msgid "وَضَعَ"
 msgstr "meletakkan"
 
+#: web/data/data_const.py:109
 msgid "بَاعَ"
 msgstr "menjual"
 
+#: web/data/data_const.py:111
 msgid "فَهِمَ"
 msgstr "memahami"
 
+#: web/data/data_const.py:112
 msgid "فَتَحَ"
 msgstr "membuka"
 
+#: web/data/data_const.py:113
 msgid "عَطِشَ"
 msgstr "haus"
 
+#: web/data/data_const.py:114
 msgid "سَكَنَ"
 msgstr "tinggal"
 
+#: web/data/data_const.py:115
 msgid "أَعْلَمَ"
 msgstr "memberitahu"
 
+#: web/data/data_const.py:116
 msgid "كَسَرَ"
 msgstr "hancur"
 
+#: web/data/data_const.py:117
 msgid "دَخَلَ"
 msgstr "masuk"
 
+#: web/data/data_const.py:120
 msgid "الماضي المعلوم"
 msgstr "Kata kerja masa lalu aktif"
 
+#: web/data/data_const.py:121
 msgid "المضارع المعلوم"
 msgstr "kata kerja masa sekarang aktif"
 
+#: web/data/data_const.py:122
 msgid "الأمر"
 msgstr "bentuk perintah"
 
+#: web/data/data_const.py:125
 msgid "معلوم"
 msgstr "aktif"
 
+#: web/data/data_const.py:126
 msgid "مبني للمجهول"
 msgstr "Isim yang tidak berubah (Mabni) pasif"
 
+#: web/data/data_const.py:129
 msgid "مثبت"
 msgstr "Menetapkan"
 
+#: web/data/data_const.py:130
 msgid "منفي"
 msgstr "Meniadakan"
 
+#: web/data/data_const.py:133 web/data/data_const.py:154
 msgid "حَلِيبٌ"
 msgstr "susu"
 
+#: web/data/data_const.py:134
 msgid "بَابٌ"
 msgstr "pintu"
 
+#: web/data/data_const.py:135 web/data/data_const.py:276
 msgid "أنا"
 msgstr "SAYA"
 
+#: web/data/data_const.py:136 web/data/data_const.py:277
 msgid "نحن"
 msgstr "Kami"
 
+#: web/data/data_const.py:137 web/data/data_const.py:278
 msgid "أنت"
 msgstr "Anda laki-laki"
 
+#: web/data/data_const.py:138 web/data/data_const.py:279
 msgid "أنتِ"
 msgstr "Anda perempuan"
 
+#: web/data/data_const.py:139 web/data/data_const.py:280
 msgid "أنتما"
 msgstr "Anda berdua laki-laki"
 
+#: web/data/data_const.py:140 web/data/data_const.py:281
 msgid "أنتما مؤ"
 msgstr "Anda berdua perempuan"
 
+#: web/data/data_const.py:141 web/data/data_const.py:282
 msgid "أنتم"
 msgstr "kalian semua laki-laki"
 
+#: web/data/data_const.py:142 web/data/data_const.py:283
 msgid "أنتن"
 msgstr "kaliam semua perempuan"
 
+#: web/data/data_const.py:143 web/data/data_const.py:284
 msgid "هو"
 msgstr "Dia laki-laki"
 
+#: web/data/data_const.py:144 web/data/data_const.py:285
 msgid "هي"
 msgstr "dia perempuan"
 
+#: web/data/data_const.py:145 web/data/data_const.py:286
 msgid "هما"
 msgstr "Mereka berdua laki-laki"
 
+#: web/data/data_const.py:146 web/data/data_const.py:287
 msgid "هما مؤ"
 msgstr "Mereka berdua perempuan"
 
+#: web/data/data_const.py:147 web/data/data_const.py:288
 msgid "هم"
 msgstr "mereka semua laki-laki"
 
+#: web/data/data_const.py:148 web/data/data_const.py:289
 msgid "هن"
 msgstr "Mereka semua perempuan"
 
+#: web/data/data_const.py:149
 msgid "تُفَاحَةٌ"
 msgstr "apel"
 
+#: web/data/data_const.py:150 web/data/data_const.py:297
 msgid "تِلْمِيذٌ"
 msgstr "Murid/ siswa"
 
+#: web/data/data_const.py:151
 msgid "ثَوْبٌ"
 msgstr "gaun/palaian"
 
+#: web/data/data_const.py:152
 msgid "جَبَلٌ"
 msgstr "gunung"
 
+#: web/data/data_const.py:153
 msgid "حَقِيبَةٌ"
 msgstr "tas"
 
+#: web/data/data_const.py:155
 msgid "خُضَرٌ"
 msgstr "hijau"
 
+#: web/data/data_const.py:156
 msgid "دَرْسٌ"
 msgstr "Pelajaran"
 
+#: web/data/data_const.py:157 web/data/data_const.py:300
 msgid "رَجُلٌ"
 msgstr "pria"
 
+#: web/data/data_const.py:158
 msgid "شَعْرٌ"
 msgstr "Puisi"
 
+#: web/data/data_const.py:159
 msgid "صَحْرَاءٌ"
 msgstr "gurun"
 
+#: web/data/data_const.py:160
 msgid "صَوْتٌ"
 msgstr "suara"
 
+#: web/data/data_const.py:161
 msgid "طَعَامٌ"
 msgstr "makanan"
 
+#: web/data/data_const.py:162
 msgid "طَلَبَةٌ"
 msgstr "murid perempuan/siswi"
 
+#: web/data/data_const.py:163
 msgid "عَصِيرٌ"
 msgstr "jus"
 
+#: web/data/data_const.py:164
 msgid "عَلَمٌ"
 msgstr "bendera/panji"
 
+#: web/data/data_const.py:165
 msgid "فَوَاكِهٌ"
 msgstr "buah-buahan"
 
+#: web/data/data_const.py:166
 msgid "قَمَرٌ"
 msgstr "bulan"
 
+#: web/data/data_const.py:167
 msgid "قُرْآنٌ"
 msgstr "Al-Quran"
 
+#: web/data/data_const.py:168
 msgid "قِصَّةٌ"
 msgstr "cerita/kisah"
 
+#: web/data/data_const.py:169
 msgid "قِطَّةٌ"
 msgstr "kucing"
 
+#: web/data/data_const.py:170
 msgid "كَأْسٌ"
 msgstr "cangkir/ gelas"
 
+#: web/data/data_const.py:171
 msgid "كُرَةٌ"
 msgstr "bola"
 
+#: web/data/data_const.py:172
 msgid "كِتَابٌ"
 msgstr "buku"
 
@@ -373,326 +490,444 @@ msgstr "buku"
 msgid "لمْرأَةٌ"
 msgstr ""
 
+#: web/data/data_const.py:174
 msgid "مدْرَسةٌ"
 msgstr "sekolah"
 
+#: web/data/data_const.py:175
 msgid "مسْرَحِيَّةٌ"
 msgstr "sebuah drama"
 
+#: web/data/data_const.py:176
 msgid "مُعَلِمٌ"
 msgstr "Guru"
 
+#: web/data/data_const.py:177
 msgid "مِحْفَظَةٌ"
 msgstr "dompet"
 
+#: web/data/data_const.py:178
 msgid "نَاسٌ"
 msgstr "rakyat/ manusia"
 
+#: web/data/data_const.py:193
 msgid "أَحْيَانًا"
 msgstr "Kadang-kadang"
 
+#: web/data/data_const.py:194
 msgid "البَارِحَةَ"
 msgstr "semalam"
 
+#: web/data/data_const.py:195
 msgid "اليَوْمَ"
 msgstr "Hari ini"
 
+#: web/data/data_const.py:197
 msgid "سَاعَةً"
 msgstr "dalam satu jam"
 
+#: web/data/data_const.py:198
 msgid "سَنَةً"
 msgstr "dalam satu tahun"
 
+#: web/data/data_const.py:199
 msgid "شِتَاءً"
 msgstr "musim dingin"
 
+#: web/data/data_const.py:200
 msgid "صَبَاحًا"
 msgstr "waktu pagi"
 
+#: web/data/data_const.py:201
 msgid "صَيْفًا"
 msgstr "waktu musim panas"
 
+#: web/data/data_const.py:202
 msgid "ظُهْرًا"
 msgstr "waktu dhuhur"
 
+#: web/data/data_const.py:204
 msgid "عَصْرًا"
 msgstr "waktu ashar"
 
+#: web/data/data_const.py:205
 msgid "غَدًا"
 msgstr "besok"
 
+#: web/data/data_const.py:206
 msgid "فَجْرًا"
 msgstr "waktu fajar"
 
+#: web/data/data_const.py:208
 msgid "لَحْظَةَ"
 msgstr "sejenak"
 
+#: web/data/data_const.py:209
 msgid "لَيْلًا"
 msgstr "waktu malam"
 
+#: web/data/data_const.py:210
 msgid "مَسَاءً"
 msgstr "waktu sore"
 
+#: web/data/data_const.py:211
 msgid "نَهْارًا"
 msgstr "waktu siang"
 
+#: web/data/data_const.py:215
 msgid "بَيْتٌ"
 msgstr "rumah"
 
+#: web/data/data_const.py:216
 msgid "حَدِيقَةٌ"
 msgstr "kebun"
 
+#: web/data/data_const.py:217
 msgid "سُوقٌ"
 msgstr "pasar"
 
+#: web/data/data_const.py:218
 msgid "طَرِيقٌ"
 msgstr "jalan"
 
+#: web/data/data_const.py:219
 msgid "غُرْفَةٌ"
 msgstr "kamar"
 
+#: web/data/data_const.py:220
 msgid "فِنَاءٌ"
 msgstr "Halaman"
 
+#: web/data/data_const.py:221
 msgid "مَدِينَةٌ"
 msgstr "kota"
 
+#: web/data/data_const.py:222
 msgid "مَدْرَسَةٌ"
 msgstr "sekolah"
 
+#: web/data/data_const.py:223
 msgid "مَسْجِدٌ"
 msgstr "Masjid"
 
+#: web/data/data_const.py:224
 msgid "مَطْبَخٌ"
 msgstr "dapur"
 
+#: web/data/data_const.py:244
 msgid "أَنِيقٌ"
 msgstr "anggun"
 
+#: web/data/data_const.py:245
 msgid "بَخِيلٌ"
 msgstr "pelit"
 
+#: web/data/data_const.py:246
 msgid "بَشِعٌ"
 msgstr "buruk"
 
+#: web/data/data_const.py:247
 msgid "بَطِيءٌ"
 msgstr "lambat"
 
+#: web/data/data_const.py:248
 msgid "جَمِيلٌ"
 msgstr "Cantik"
 
+#: web/data/data_const.py:249
 msgid "حَزِينٌ"
 msgstr "sedih"
 
+#: web/data/data_const.py:250
 msgid "حَنُونٌ"
 msgstr "penuh kasih"
 
+#: web/data/data_const.py:251
 msgid "ذَكِيٌ"
 msgstr "lezat"
 
+#: web/data/data_const.py:252
 msgid "سَرِيعٌ"
 msgstr "cepat"
 
+#: web/data/data_const.py:253
 msgid "سَعِيدٌ"
 msgstr "senang"
 
+#: web/data/data_const.py:254
 msgid "سَمِينٌ"
 msgstr "gemuk"
 
+#: web/data/data_const.py:255
 msgid "شُجَاعٌ"
 msgstr "berani"
 
+#: web/data/data_const.py:256
 msgid "ضَعِيفٌ"
 msgstr "lemah"
 
+#: web/data/data_const.py:257
 msgid "طَوِيلٌ"
 msgstr "panjang"
 
+#: web/data/data_const.py:258
 msgid "غَبِيٌ"
 msgstr "bodoh"
 
+#: web/data/data_const.py:259
 msgid "فَرِحٌ"
 msgstr "sukacita"
 
+#: web/data/data_const.py:260
 msgid "قَصِيرٌ"
 msgstr "pendek"
 
+#: web/data/data_const.py:261
 msgid "قَوِيٌ"
 msgstr "kuat"
 
+#: web/data/data_const.py:262
 msgid "كَرِيمٌ"
 msgstr "mulia"
 
+#: web/data/data_const.py:263
 msgid "كَسُولٌ"
 msgstr "malas"
 
+#: web/data/data_const.py:264
 msgid "لَئِيمٌ"
 msgstr "lembut"
 
+#: web/data/data_const.py:265
 msgid "مَسْرُورٌ"
 msgstr "senang"
 
+#: web/data/data_const.py:266
 msgid "مُبْتَهِجٌ"
 msgstr "riang"
 
+#: web/data/data_const.py:267 web/data/data_const.py:317
 msgid "مُجْتَهِدٌ"
 msgstr "kerja keras"
 
+#: web/data/data_const.py:268
 msgid "مُرْتَفِعٌ"
 msgstr "tinggi"
 
+#: web/data/data_const.py:269
 msgid "مُنْخَفِضٌ"
 msgstr "rendah"
 
+#: web/data/data_const.py:270
 msgid "هَزِيلٌ"
 msgstr "kurus"
 
+#: web/data/data_const.py:271
 msgid "وَسِيمٌ"
 msgstr "Tampan"
 
+#: web/data/data_const.py:274
 msgid "أَحْمَد"
 msgstr "Ahmed"
 
+#: web/data/data_const.py:275 web/data/data_const.py:321
 msgid "وَلَدٌ"
 msgstr "anak"
 
+#: web/data/data_const.py:290
 msgid "أَبٌ"
 msgstr "ayah"
 
+#: web/data/data_const.py:291
 msgid "أَحْمَدُ"
 msgstr "Ahmed"
 
+#: web/data/data_const.py:292
 msgid "أَسَدٌ"
 msgstr "Singa"
 
+#: web/data/data_const.py:293
 msgid "أُمٌّ"
 msgstr "Ibu"
 
+#: web/data/data_const.py:294
 msgid "اِبْنٌ"
 msgstr "putra"
 
+#: web/data/data_const.py:295
 msgid "بِنْتٌ"
 msgstr "anak perempuan"
 
+#: web/data/data_const.py:296
 msgid "تَاجِرٌ"
 msgstr "pedagang"
 
+#: web/data/data_const.py:298
 msgid "حِصَانٌ"
 msgstr "kuda"
 
+#: web/data/data_const.py:299
 msgid "دِيكٌ"
 msgstr "ayam jantan"
 
+#: web/data/data_const.py:301
 msgid "رَضِيعٌ"
 msgstr "yang masih menyusu"
 
+#: web/data/data_const.py:302
 msgid "زُهُورٌ"
 msgstr "bunga"
 
+#: web/data/data_const.py:303
 msgid "شُرْطِيٌّ"
 msgstr "polisi"
 
+#: web/data/data_const.py:304
 msgid "طَالِبٌ"
 msgstr "murid laki-laki"
 
+#: web/data/data_const.py:305
 msgid "طَبِيبٌ"
 msgstr "dokter"
 
+#: web/data/data_const.py:306
 msgid "طِفْلٌ"
 msgstr "anak"
 
+#: web/data/data_const.py:307
 msgid "عَامِلٌ"
 msgstr "pekerja"
 
+#: web/data/data_const.py:308
 msgid "عُمَّالٌ"
 msgstr "para pekerja"
 
+#: web/data/data_const.py:309
 msgid "فَاطِمَةُ"
 msgstr "Fatima"
 
+#: web/data/data_const.py:310
 msgid "فَرَاشَةٌ"
 msgstr "kupu -kupu"
 
+#: web/data/data_const.py:311
 msgid "قَاضٌِ"
 msgstr "hakim"
 
+#: web/data/data_const.py:312
 msgid "قِطٌّ"
 msgstr "kucing"
 
+#: web/data/data_const.py:313
 msgid "لَيْلَى"
 msgstr "Layla"
 
+#: web/data/data_const.py:314
 msgid "معَلِّمٌ"
 msgstr "Guru"
 
+#: web/data/data_const.py:315
 msgid "مَرْأَةٌ"
 msgstr "wanita/perempuan"
 
+#: web/data/data_const.py:316
 msgid "مَطَرٌ"
 msgstr "hujan"
 
+#: web/data/data_const.py:318
 msgid "مُحَمَدُ"
 msgstr "muhammad"
 
+#: web/data/data_const.py:319
 msgid "مُسْلِمٌ"
 msgstr "Muslim"
 
+#: web/data/data_const.py:320
 msgid "مُهَنْدِسٌ"
 msgstr "Insinyur"
 
-msgid "Arabic"
-msgstr "indonosien"
+#: web/data/data_const.py:325
+msgid "نوع الجملة:"
+msgstr "Kalimat:"
 
-msgid "مَرأَةٌ"
-msgstr "Seorang wanita"
+#: web/data/data_const.py:328
+msgid "فاعل"
+msgstr "Subjek"
 
+#: web/data/data_const.py:329
+msgid "فعل مساعد"
+msgstr "kata kerja bantu"
+
+#: web/data/data_const.py:330
 msgid "فعل:"
-msgstr "kata kerja"
+msgstr "kata kerja:"
 
+#: web/data/data_const.py:331
 msgid "زمن:"
 msgstr "waktu:"
 
+#: web/data/data_const.py:332
 msgid "مبني للمعلوم/مجهول:"
-msgstr "benuk aktif/pasif"
+msgstr "benuk aktif/pasif:"
 
+#: web/data/data_const.py:333
 msgid "مثبت/منفي:"
-msgstr "menetapkan/meniadakan"
+msgstr "menetapkan/meniadakan:"
 
+#: web/data/data_const.py:334
 msgid "مفعول"
 msgstr "objek"
 
+#: web/data/data_const.py:335
 msgid "ظرف زمان:"
-msgstr "isim yang menunjukkan waktu"
+msgstr "isim yang menunjukkan waktu:"
 
+#: web/data/data_const.py:336
 msgid "ظرف مكان:"
-msgstr "isim yang menunjukkan tempat"
+msgstr "isim yang menunjukkan tempat:"
 
+#: web/data/data_const.py:337
 msgid "بناء"
 msgstr "bangunan"
 
+#: web/data/data_const.py:338
 msgid "عشوائي"
 msgstr "acak"
 
+#: web/data/data_const.py:339
 msgid "عينة"
 msgstr "contoh/sampel"
 
+#: web/data/data_const.py:340
 msgid "حركة الإعراب"
 msgstr "Harakat i'rab"
 
-msgid "إظهار حركة الإعراب في أواخر الكلمات"
-msgstr "Menampakkan harakat i'rab di akhir kalimat"
-
-msgid "اختيار عشوائي للمفردات"
-msgstr "Pilihan acak untuk kosa kata"
-
-msgid "نسخ عينة جيسون للتجارب البرمجية"
-msgstr "salin sampel jason untuk percobaan perangkat lunak"
-
-msgid "بناء الجملة"
-msgstr "kalimat yang mabni (tidak dapat berubah)"
-
+#: web/data/data_const.py:341
 msgid "مدونتي"
 msgstr "blog saya"
 
+#: web/data/data_const.py:342
 msgid "الاستضافة بدعم من شركة"
 msgstr "didukung oleh"
+
+#: web/data/data_const.py:343
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "Menampakkan harakat i'rab di akhir kalimat"
+
+#: web/data/data_const.py:344
+msgid "اختيار عشوائي للمفردات"
+msgstr "Pilihan acak untuk kosa kata"
+
+#: web/data/data_const.py:345
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "salin sampel jason untuk percobaan perangkat lunak"
+
+#: web/data/data_const.py:346
+msgid "بناء الجملة"
+msgstr "kalimat yang mabni (tidak dapat berubah)"
+
+#~ msgid "Arabic"
+#~ msgstr "indonosien"
+
+#~ msgid "مَرأَةٌ"
+#~ msgstr "Seorang wanita"

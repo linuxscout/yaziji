@@ -69,8 +69,10 @@ app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
 app.config["BABEL_DOMAIN"] = "messages"
 app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
 'en':"English", 
-"id":"indonisian",
+"id":"Bahasa Indonesia",
 'fr':"Français",
+'bn':"বাংলা",
+'es':"Español",
 }
 
 # create a Bable instance for our app

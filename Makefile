@@ -61,25 +61,31 @@ copy_locales:
 	cp translations/en/main_en.po web/locales/en/LC_MESSAGES/main.po
 	cp translations/fr/main_fr.po web/locales/fr/LC_MESSAGES/main.po
 	cp translations/id/main_id.po web/locales/id/LC_MESSAGES/main.po
+	cp translations/bn/main_bn.po web/locales/bn/LC_MESSAGES/main.po
+	cp translations/es/main_es.po web/locales/es/LC_MESSAGES/main.po
 mo:
 	#create mo files
 	cd web/locales/ar/LC_MESSAGES/; msgfmt main.po
 	cd web/locales/en/LC_MESSAGES/; msgfmt main.po
 	cd web/locales/fr/LC_MESSAGES/; msgfmt main.po
 	cd web/locales/id/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/bn/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/es/LC_MESSAGES/; msgfmt main.po
 
 
 update_pot:
 	#extract new messages and update global message file
 	echo '' > messages.po # xgettext needs that file, and we need it empty
 	find . -type f -iname "*.py" | xgettext -j -f - # this modifies messages.po
-	msgmerge -N translations/existing.pot messages.po > translations/new.pot
-	mv translations/new.pot translations/existing.pot
+	cp translations/main.pot translations/main.pot.backup
+	msgmerge -N translations/main.pot messages.po > translations/new.pot
+	mv translations/new.pot translations/main.pot
 	rm messages.po
 
 update_po:LANG=en
 update_po:LANG=fr
 update_po:LANG=ar
+update_po:LANG=id
 update_po:
 	# merge updated messages to existing languages files
 	cd translations;msgmerge -N $(LANG)/main_$(LANG).po main.pot >$(LANG)/new.po

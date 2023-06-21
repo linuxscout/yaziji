@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yaziji 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 20:03+0100\n"
+"POT-Creation-Date: 2023-06-21 18:59+0100\n"
 "PO-Revision-Date: 2023-06-19 19:51+0100\n"
 "Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
 "Language-Team: Taha Zerrouki\n"
@@ -18,11 +18,11 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: web/data/data_const.py:39
+#: web/data/data_const.py:39 web/data/data_const.py:326
 msgid "جملة فعلية"
 msgstr "جملة فعلية"
 
-#: web/data/data_const.py:40
+#: web/data/data_const.py:40 web/data/data_const.py:327
 msgid "جملة اسمية"
 msgstr "جملة اسمية"
 
@@ -846,39 +846,92 @@ msgstr "مُسْلِمٌ"
 msgid "مُهَنْدِسٌ"
 msgstr "مُهَنْدِسٌ"
 
+#: web/data/data_const.py:325
+msgid "نوع الجملة:"
+msgstr "نوع الجملة:"
+
+#: web/data/data_const.py:328
+msgid "فاعل"
+msgstr "فاعل"
+
+#: web/data/data_const.py:329
+msgid "فعل مساعد"
+msgstr "فعل مساعد"
+
+#: web/data/data_const.py:330
+msgid "فعل:"
+msgstr "فعل:"
+
+#: web/data/data_const.py:331
+msgid "زمن:"
+msgstr "زمن:"
+
+#: web/data/data_const.py:332
+msgid "مبني للمعلوم/مجهول:"
+msgstr "مبني للمعلوم/مجهول:"
+
+#: web/data/data_const.py:333
+msgid "مثبت/منفي:"
+msgstr "مثبت/منفي:"
+
+#: web/data/data_const.py:334
+msgid "مفعول"
+msgstr "مفعول"
+
+#: web/data/data_const.py:335
+msgid "ظرف زمان:"
+msgstr "ظرف زمان:"
+
+#: web/data/data_const.py:336
+msgid "ظرف مكان:"
+msgstr "ظرف مكان:"
+
+#: web/data/data_const.py:337
+msgid "بناء"
+msgstr "بناء"
+
+#: web/data/data_const.py:338
+msgid "عشوائي"
+msgstr "عشوائي"
+
+#: web/data/data_const.py:339
+msgid "عينة"
+msgstr "عينة"
+
+#: web/data/data_const.py:340
+msgid "حركة الإعراب"
+msgstr "حركة الإعراب"
+
+#: web/data/data_const.py:341
+msgid "مدونتي"
+msgstr "مدونتي"
+
+#: web/data/data_const.py:342
+msgid "الاستضافة بدعم من شركة"
+msgstr "الاستضافة بدعم من شركة"
+
+#: web/data/data_const.py:343
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "إظهار حركة الإعراب في أواخر الكلمات"
+
+#: web/data/data_const.py:344
+msgid "اختيار عشوائي للمفردات"
+msgstr "اختيار عشوائي للمفردات"
+
+#: web/data/data_const.py:345
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "نسخ عينة جيسون للتجارب البرمجية"
+
+#: web/data/data_const.py:346
+msgid "بناء الجملة"
+msgstr "بناء الجملة"
+
 # use iso two letters language code
 #~ msgid "LanguageCode"
 #~ msgstr "ar"
 
 #~ msgid "My Language test"
 #~ msgstr "لغتي العربية"
-
-#~ msgid "نوع الجملة:"
-#~ msgstr "نوع الجملة:"
-
-#~ msgid "فاعل"
-#~ msgstr "فاعل"
-
-#~ msgid "فعل مساعد"
-#~ msgstr "فعل مساعد"
-
-#~ msgid "فعل:"
-#~ msgstr "فعل:"
-
-#~ msgid "زمن:"
-#~ msgstr "زمن:"
-
-#~ msgid "مبني للمعلوم/مجهول:"
-#~ msgstr "مبني للمعلوم/مجهول:"
-
-#~ msgid "مثبت/منفي:"
-#~ msgstr "مثبت/منفي:"
-
-#~ msgid "مفعول"
-#~ msgstr "مفعول"
-
-#~ msgid "ظرف زمان:"
-#~ msgstr "ظرف زمان:"
 
 #~ msgid "دَائِمًا"
 #~ msgstr "دَائِمًا"
@@ -901,9 +954,6 @@ msgstr "مُهَنْدِسٌ"
 #~ msgid "كُلَّ يَوْمٍ"
 #~ msgstr "كُلَّ يَوْمٍ"
 
-#~ msgid "ظرف مكان:"
-#~ msgstr "ظرف مكان:"
-
 #~ msgid "بيت"
 #~ msgstr "بيت"
 
@@ -912,33 +962,3 @@ msgstr "مُهَنْدِسٌ"
 
 #~ msgid "مدرسة"
 #~ msgstr "مدرسة"
-
-#~ msgid "بناء"
-#~ msgstr "بناء"
-
-#~ msgid "عشوائي"
-#~ msgstr "عشوائي"
-
-#~ msgid "عينة"
-#~ msgstr "عينة"
-
-#~ msgid "حركة الإعراب"
-#~ msgstr "حركة الإعراب"
-
-#~ msgid "إظهار حركة الإعراب في أواخر الكلمات"
-#~ msgstr "إظهار حركة الإعراب في أواخر الكلمات"
-
-#~ msgid "اختيار عشوائي للمفردات"
-#~ msgstr "اختيار عشوائي للمفردات"
-
-#~ msgid "نسخ عينة جيسون للتجارب البرمجية"
-#~ msgstr "نسخ عينة جيسون للتجارب البرمجية"
-
-#~ msgid "بناء الجملة"
-#~ msgstr "بناء الجملة"
-
-#~ msgid "مدونتي"
-#~ msgstr "مدونتي"
-
-#~ msgid "الاستضافة بدعم من شركة"
-#~ msgstr "الاستضافة بدعم من شركة"
