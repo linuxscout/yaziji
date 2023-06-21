@@ -1,15 +1,21 @@
 #!/usr/bin/python3
-# -*- coding=UTF-8 -*-
-import sys, os, os.path, re
-import os;
-import locale; 
-os.environ["PYTHONIOENCODING"] = "utf-8"; 
-from glob import glob
-sys.path.append('yaziji/web/');
-sys.path.append('yaziji');
-sys.path.append('yaziji/yaziji');
-from bottle import run
-import testy
+import sys
+import os
+from wsgiref.handlers import CGIHandler
+sys.path.insert(0,"yazijy/webfrontend/")
+#sys.path.insert(0,"/home/tahadz/public_html/cgi-bin/yazijy/web/")
+sys.path.insert(0,"yazijy/web/")
+sys.path.insert(0,"yazijy/yaziji/")
+import cgitb
+cgitb.enable(logdir=os.path.join(os.path.dirname(__file__), 'tmp/logs'),
+            display=True, format='html',)
 
-if __name__ == '__main__':
-    run(testy.app, host='localhost', port=8080, debug=True, server="cgi")    
+from yaziji_webserver import app
+
+os.environ["REQUEST_METHOD"] = "GET"; 
+
+#print("Content-Type: text/html\n\n")
+#print("Hello, worldi Taha3 !\n")
+CGIHandler().run(app)
+
+
