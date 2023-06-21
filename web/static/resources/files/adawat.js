@@ -90,7 +90,7 @@ var more_click = function(e) {
      return  0;
      }
     var prefix = get_prefix_path();
-    console.log("phrase_click:"+prefix+"/ajaxGet")
+    //console.log("phrase_click:"+prefix+"/ajaxGet")
     $.getJSON(prefix+ "/ajaxGet", {
 
       text: document.NewForm.subject.value,
@@ -191,8 +191,8 @@ var prefix = script;
 if(!lang) lang = "ar";
 // generate prefix path
 prefix +="/"+lang;
-console.log("current script path is: "+prefix)
-console.log("catched locale is: "+lang)
+//console.log("current script path is: "+prefix)
+//console.log("catched locale is: "+lang)
 return prefix;
 }
 
@@ -221,7 +221,7 @@ if(!lang || lang === "ar")
     $("#NewForm").css("direction", "rtl");
 else
     $("#NewForm").css("direction", "ltr");
-console.log("Select get :"+prefix+"/selectGet")
+//console.log("Select get :"+prefix+"/selectGet")
 
    $.getJSON(prefix+"/selectGet", {
       text: '',

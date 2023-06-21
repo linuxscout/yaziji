@@ -34,7 +34,7 @@ class streamPattern:
         self.hidden = []
         if stream_type not in STREAMS:
             raise KeyError("steam_pattern.py:Phrase type not exists", stream_type)
-        print(self.stream)
+        #print(self.stream)
     
     def add(self, attribute, before="", after=""):
         """

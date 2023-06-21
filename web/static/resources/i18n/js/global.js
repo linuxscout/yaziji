@@ -21,9 +21,10 @@ jQuery(function() {
   } );
 
   $.i18n().load( {
-    'ar': './resources/i18n/js/i18n/ar.json',
-    'en': './resources/i18n/js/i18n/en.json',
-    'fr': './resources/i18n/js/i18n/fr.json',
+    'ar': './static/resources/i18n/js/i18n/ar.json',
+    'en': './static/resources/i18n/js/i18n/en.json',
+    'fr': './static/resources/i18n/js/i18n/fr.json',
+    'id': './static/resources/i18n/js/i18n/id.json',
     //~ 'ru': './js/i18n/ru-old.json',
     //~ 'en': './js/i18n/en-old.json',
     //~ 'ar': './js/i18n/ar-old.json',

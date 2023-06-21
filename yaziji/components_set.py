@@ -120,7 +120,7 @@ class componentsSet:
 def main(args):
     dataset = componentsSet()
     text = dataset.generate_select()
-    print(text)
+    #print(text)
     return 0
 
 if __name__ == '__main__':
