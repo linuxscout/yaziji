@@ -5,7 +5,7 @@
 ## Import Data
 The query is like:
 ```
-https://tahadz.com/yaziji/en/selectGet
+/en/selectGet
 ```
 This query ask for data in English `en`, the values are in Arabic.
 
@@ -106,7 +106,7 @@ Explain keys
 ## Build a phrase with given inputs
 The query is like:
 ```
-https://tahadz.com/yaziji/en/ajaxGet?text=فَرَاشَةٌ&action=phrase&subject=فَرَاشَةٌ&object=&verb=لَعِبَ&time=بَعْدَ غَدٍ&place=&tense=المضارع المعلوم&voice=معلوم&auxiliary=كَادَ&negative=مثبت&phrase_type=جملة فعلية
+/en/ajaxGet?text=فَرَاشَةٌ&action=phrase&subject=فَرَاشَةٌ&object=&verb=لَعِبَ&time=بَعْدَ غَدٍ&place=&tense=المضارع المعلوم&voice=معلوم&auxiliary=كَادَ&negative=مثبت&phrase_type=جملة فعلية
 ```
 The Reponse is given like
 ```json
