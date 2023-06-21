@@ -11,7 +11,6 @@ from logging.handlers import RotatingFileHandler
 
 from datetime import datetime, timedelta
 
-
 from flask import Flask, render_template, make_response, send_from_directory, request, jsonify, redirect, session
 # ~ from flask_session import Session
 from flask_minify import minify
@@ -56,7 +55,10 @@ else:
 # Configure App
 #----------------
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='/static', 
+            static_folder='static',
+)
 minify(app=app, html=True, js=True, cssless=True)
 
 # used to fix URL path for hosting
@@ -80,17 +82,18 @@ def get_locale():
     # Extract language from URL path
     language = request.path.split('/')[1]
     if language in app.config['BABEL_LANGUAGES']:
-        print("user_language", language)        
+        #print("user_language", language)        
         return language
     else:
-        print("default_language", app.config['BABEL_DEFAULT_LOCALE'])          
+        #print("default_language", app.config['BABEL_DEFAULT_LOCALE'])          
         return app.config['BABEL_DEFAULT_LOCALE']    
 # ~ # sessions
 # ~ app.config["SESSION_PERMANENT"] = False
 # ~ app.config["SESSION_TYPE"] = "filesystem"
 # ~ Session(app)
 
-babel.init_app(app, locale_selector=get_locale)
+babel.init_app(app)
+#babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route("/index/")
@@ -158,7 +161,7 @@ def selectget(lang="ar"):
     #-----------
     # prepare json
     #-------------
-    print("select get lang ", lang)
+    #print("select get lang ", lang)
     with force_locale(lang): 
         return jsonify(data_const.selectValues)#,  default=json_default)
 
@@ -197,6 +200,10 @@ def projects():
 def not_found(e):
     return render_template('404.shtml')
 
+
+@app.route('/<lang>/static', methods=['GET'])
+def lang_static():
+      return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route('/sitemap.txt', methods=['GET'])
