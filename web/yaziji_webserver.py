@@ -73,6 +73,10 @@ app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
 'fr':"Français",
 'bn':"বাংলা",
 'es':"Español",
+'ja':"日本語",
+'zh':"中文",
+'de':"Deutsche",
+"ku":"كوردى",
 }
 
 # create a Bable instance for our app

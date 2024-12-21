@@ -1,0 +1,698 @@
+#. extracted from work/de.csv
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-21 21:42+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 3.12.2\n"
+
+#: Location
+msgid "Arabic"
+msgstr "German"
+
+msgid "جملة فعلية"
+msgstr ""
+
+msgid "جملة اسمية"
+msgstr ""
+
+msgid "اِسْتَطَاعَ"
+msgstr "können"
+
+msgid "أَرَادَ"
+msgstr "wollen"
+
+msgid "كَادَ"
+msgstr ""
+
+msgid "شَرِبَ"
+msgstr "trinken"
+
+msgid "ضَرَبَ"
+msgstr "schlagen"
+
+msgid "ذَهَبَ"
+msgstr "gehen"
+
+msgid "جَلَسَ"
+msgstr "sich hinsetzen"
+
+msgid "شَبِعَ"
+msgstr "sich satt fühlen"
+
+msgid "أَكَلَ"
+msgstr "essen"
+
+msgid "خَرَجَ"
+msgstr "ausgehen"
+
+msgid "مَشَى"
+msgstr "laufen"
+
+msgid "قَامَ"
+msgstr "aufstehen"
+
+msgid "نَجَحَ"
+msgstr "Erfolg haben"
+
+msgid "بَكَى"
+msgstr "weinen"
+
+msgid "سَمِعَ"
+msgstr "hören"
+
+msgid "جَاءَ"
+msgstr "kommen"
+
+msgid "عَرَفَ"
+msgstr "kennen"
+
+msgid "رَسَبَ"
+msgstr "bei einer Prüfung durchfallen"
+
+msgid "تَعَلَّمَ"
+msgstr "lernen"
+
+msgid "لَعِبَ"
+msgstr "spielen"
+
+msgid "جَعَلَ"
+msgstr "machen"
+
+msgid "شَكَرَ"
+msgstr "danken"
+
+msgid "جَهَّزَ"
+msgstr "vorbereiten"
+
+msgid "وَعَدَ"
+msgstr "versprechen"
+
+msgid "عَاشَ"
+msgstr "leben"
+
+msgid "وَقَفَ"
+msgstr "aufstehen"
+
+msgid "سَجَدَ"
+msgstr "sich niederzuwerfen"
+
+msgid "مَاتَ"
+msgstr "sterben"
+
+msgid "قَبَضَ"
+msgstr "auffangen"
+
+msgid "غَفَرَ"
+msgstr "verzeihen"
+
+msgid "صَامَ"
+msgstr "fasten"
+
+msgid "رَسَمَ"
+msgstr "ziehen"
+
+msgid "نَزَلَ"
+msgstr "hinuntergehen"
+
+msgid "رَكَعَ"
+msgstr "knien"
+
+msgid "سَافَرَ"
+msgstr "reisen"
+
+msgid "وَفَى"
+msgstr ""
+
+msgid "لَبِسَ"
+msgstr ""
+
+msgid "اجْتَهَدَ"
+msgstr ""
+
+msgid "وَجَدَ"
+msgstr "finden"
+
+msgid "وَصَلَ"
+msgstr "ankommen"
+
+msgid "قَرَأَ"
+msgstr "lesen"
+
+msgid "قَعَدَ"
+msgstr "sitzen"
+
+msgid "قَالَ"
+msgstr "sagen"
+
+msgid "خَبَّرَ"
+msgstr "erzählen"
+
+msgid "عَلِمَ"
+msgstr "wissen"
+
+msgid "سَأَلَ"
+msgstr "fragen"
+
+msgid "رَمَى"
+msgstr "werfen"
+
+msgid "شَاهَدَ"
+msgstr "beobachten"
+
+msgid "أَخَذَ"
+msgstr "nehmen"
+
+msgid "طَلَعَ"
+msgstr "hochgehen"
+
+msgid "حَفِظَ"
+msgstr ""
+
+msgid "أَخْبَرَ"
+msgstr ""
+
+msgid "نَامَ"
+msgstr "schlafen"
+
+msgid "سَاعَدَ"
+msgstr "unterstützen"
+
+msgid "كَتَبَ"
+msgstr "schreiben"
+
+msgid "حَدَّثَ"
+msgstr "sprechen"
+
+msgid "جَرَى"
+msgstr "laufen"
+
+msgid "اشْتَرَى"
+msgstr "kaufen"
+
+msgid "أَسْرَعَ"
+msgstr "beschleunigen"
+
+msgid "ذَاكَرَ"
+msgstr "überarbeiten"
+
+msgid "وَضَعَ"
+msgstr "setzen"
+
+msgid "بَاعَ"
+msgstr "verkaufen"
+
+msgid "فَهِمَ"
+msgstr "verstehen"
+
+msgid "فَتَحَ"
+msgstr "öffnen"
+
+msgid "عَطِشَ"
+msgstr "durstig sein"
+
+msgid "سَكَنَ"
+msgstr "bewohnen"
+
+msgid "أَعْلَمَ"
+msgstr "informieren"
+
+msgid "كَسَرَ"
+msgstr "aufbrechen"
+
+msgid "دَخَلَ"
+msgstr "betreten"
+
+msgid "الماضي المعلوم"
+msgstr "Vergangenheit"
+
+msgid "المضارع المعلوم"
+msgstr "Gegenwart/Zukunft"
+
+msgid "الأمر"
+msgstr "Imperativ"
+
+msgid "معلوم"
+msgstr "Aktiv"
+
+msgid "مبني للمجهول"
+msgstr "Passiv"
+
+msgid "مثبت"
+msgstr ""
+
+msgid "منفي"
+msgstr ""
+
+msgid "حَلِيبٌ"
+msgstr "Milch"
+
+msgid "بَابٌ"
+msgstr "Tür"
+
+msgid "أنا"
+msgstr "ich"
+
+msgid "نحن"
+msgstr "Wir"
+
+msgid "أنت"
+msgstr "Du (maskuliner Singular)"
+
+msgid "أنتِ"
+msgstr "Ihr (femininer Singular)"
+
+msgid "أنتما"
+msgstr "Ihr (Dual Maskulinum)"
+
+msgid "أنتما مؤ"
+msgstr "Ihr (Dual Femininum)"
+
+msgid "أنتم"
+msgstr "Ihr (Plural Maskulinum)"
+
+msgid "أنتن"
+msgstr "Sie (Plural weiblich)"
+
+msgid "هو"
+msgstr "Er"
+
+msgid "هي"
+msgstr "Sie"
+
+msgid "هما"
+msgstr "Sie (Dual Maskulinum)"
+
+msgid "هما مؤ"
+msgstr "Sie (Dual Femininum)"
+
+msgid "هم"
+msgstr "Sie (männlich)"
+
+msgid "هن"
+msgstr "Sie (feminin)"
+
+msgid "تُفَاحَةٌ"
+msgstr "Apfel"
+
+msgid "تِلْمِيذٌ"
+msgstr "Schüler"
+
+msgid "ثَوْبٌ"
+msgstr "Kleid"
+
+msgid "جَبَلٌ"
+msgstr "Berg"
+
+msgid "حَقِيبَةٌ"
+msgstr "Gepäck"
+
+msgid "خُضَرٌ"
+msgstr "Gemüse"
+
+msgid "دَرْسٌ"
+msgstr "Lektion"
+
+msgid "رَجُلٌ"
+msgstr "Mann"
+
+msgid "شَعْرٌ"
+msgstr "Haare"
+
+msgid "صَحْرَاءٌ"
+msgstr "Wüste"
+
+msgid "صَوْتٌ"
+msgstr "Klang"
+
+msgid "طَعَامٌ"
+msgstr "Essen"
+
+msgid "طَلَبَةٌ"
+msgstr "Studenten"
+
+msgid "عَصِيرٌ"
+msgstr "Saft"
+
+msgid "عَلَمٌ"
+msgstr "Fahne"
+
+msgid "فَوَاكِهٌ"
+msgstr "Früchte"
+
+msgid "قَمَرٌ"
+msgstr "Mond"
+
+msgid "قُرْآنٌ"
+msgstr "Koran"
+
+msgid "قِصَّةٌ"
+msgstr "Geschichte"
+
+msgid "قِطَّةٌ"
+msgstr "Katze"
+
+msgid "كَأْسٌ"
+msgstr "Tasse"
+
+msgid "كُرَةٌ"
+msgstr "Ball"
+
+msgid "كِتَابٌ"
+msgstr "Buch"
+
+msgid "مَرأَةٌ"
+msgstr "Frau"
+
+msgid "مدْرَسةٌ"
+msgstr "Schule"
+
+msgid "مسْرَحِيَّةٌ"
+msgstr "ein Stück"
+
+msgid "مُعَلِمٌ"
+msgstr "Lehrerin"
+
+msgid "مِحْفَظَةٌ"
+msgstr "Brieftasche"
+
+msgid "نَاسٌ"
+msgstr "Menschen"
+
+msgid "أَحْيَانًا"
+msgstr "manchmal"
+
+msgid "البَارِحَةَ"
+msgstr "gestern"
+
+msgid "اليَوْمَ"
+msgstr "heute"
+
+msgid "سَاعَةً"
+msgstr "Stunde"
+
+msgid "سَنَةً"
+msgstr "Jahr"
+
+msgid "شِتَاءً"
+msgstr "Winter"
+
+msgid "صَبَاحًا"
+msgstr "Morgen"
+
+msgid "صَيْفًا"
+msgstr "Sommer"
+
+msgid "ظُهْرًا"
+msgstr ""
+
+msgid "عَصْرًا"
+msgstr ""
+
+msgid "غَدًا"
+msgstr "morgen"
+
+msgid "فَجْرًا"
+msgstr "Sonnenaufgang"
+
+msgid "لَحْظَةَ"
+msgstr "Augenblick"
+
+msgid "لَيْلًا"
+msgstr "Nacht"
+
+msgid "مَسَاءً"
+msgstr "Abend"
+
+msgid "نَهْارًا"
+msgstr "am Tag"
+
+msgid "بَيْتٌ"
+msgstr "Haus"
+
+msgid "حَدِيقَةٌ"
+msgstr "Garten"
+
+msgid "سُوقٌ"
+msgstr "Markt"
+
+msgid "طَرِيقٌ"
+msgstr "Straße"
+
+msgid "غُرْفَةٌ"
+msgstr "Zimmer"
+
+msgid "فِنَاءٌ"
+msgstr "Innenhof"
+
+msgid "مَدِينَةٌ"
+msgstr "Stadt"
+
+msgid "مَدْرَسَةٌ"
+msgstr "Schule"
+
+msgid "مَسْجِدٌ"
+msgstr "Moschee"
+
+msgid "مَطْبَخٌ"
+msgstr "Küche"
+
+msgid "أَنِيقٌ"
+msgstr "elegant"
+
+msgid "بَخِيلٌ"
+msgstr "geizig"
+
+msgid "بَشِعٌ"
+msgstr "hässlich"
+
+msgid "بَطِيءٌ"
+msgstr "langsam"
+
+msgid "جَمِيلٌ"
+msgstr "Schön"
+
+msgid "حَزِينٌ"
+msgstr "traurig"
+
+msgid "حَنُونٌ"
+msgstr "mitfühlend"
+
+msgid "ذَكِيٌ"
+msgstr "klug"
+
+msgid "سَرِيعٌ"
+msgstr "schnell"
+
+msgid "سَعِيدٌ"
+msgstr "glücklich"
+
+msgid "سَمِينٌ"
+msgstr "fett"
+
+msgid "شُجَاعٌ"
+msgstr "mutig"
+
+msgid "ضَعِيفٌ"
+msgstr "schwach"
+
+msgid "طَوِيلٌ"
+msgstr "lang"
+
+msgid "غَبِيٌ"
+msgstr "dumm"
+
+msgid "فَرِحٌ"
+msgstr "freudig"
+
+msgid "قَصِيرٌ"
+msgstr "kurz"
+
+msgid "قَوِيٌ"
+msgstr "stark"
+
+msgid "كَرِيمٌ"
+msgstr "großzügig"
+
+msgid "كَسُولٌ"
+msgstr "faul"
+
+msgid "لَئِيمٌ"
+msgstr "schurkisch"
+
+msgid "مَسْرُورٌ"
+msgstr "erfreut"
+
+msgid "مُبْتَهِجٌ"
+msgstr "heiter"
+
+msgid "مُجْتَهِدٌ"
+msgstr "fleißig"
+
+msgid "مُرْتَفِعٌ"
+msgstr "hoch"
+
+msgid "مُنْخَفِضٌ"
+msgstr "niedrig"
+
+msgid "هَزِيلٌ"
+msgstr "mager"
+
+msgid "وَسِيمٌ"
+msgstr "Gut aussehend"
+
+msgid "أَحْمَد"
+msgstr "Ahmed"
+
+msgid "وَلَدٌ"
+msgstr "Junge"
+
+msgid "أَبٌ"
+msgstr "Vater"
+
+msgid "أَحْمَدُ"
+msgstr "Ahmed"
+
+msgid "أَسَدٌ"
+msgstr "Löwe"
+
+msgid "أُمٌّ"
+msgstr "Mutter"
+
+msgid "اِبْنٌ"
+msgstr "Sohn"
+
+msgid "بِنْتٌ"
+msgstr "Mädchen"
+
+msgid "تَاجِرٌ"
+msgstr "Kaufmann"
+
+msgid "حِصَانٌ"
+msgstr "Pferd"
+
+msgid "دِيكٌ"
+msgstr "Hahn"
+
+msgid "رَضِيعٌ"
+msgstr "Baby"
+
+msgid "زُهُورٌ"
+msgstr "Blumen"
+
+msgid "شُرْطِيٌّ"
+msgstr "Polizist"
+
+msgid "طَالِبٌ"
+msgstr "Student"
+
+msgid "طَبِيبٌ"
+msgstr "Arzt"
+
+msgid "طِفْلٌ"
+msgstr "Kind"
+
+msgid "عَامِلٌ"
+msgstr "Arbeiter"
+
+msgid "عُمَّالٌ"
+msgstr "Arbeiter"
+
+msgid "فَاطِمَةُ"
+msgstr "Fatima"
+
+msgid "فَرَاشَةٌ"
+msgstr "Schmetterling"
+
+msgid "قَاضٌِ"
+msgstr "Richter"
+
+msgid "قِطٌّ"
+msgstr "Katze"
+
+msgid "لَيْلَى"
+msgstr "Layla"
+
+msgid "معَلِّمٌ"
+msgstr "Lehrerin"
+
+msgid "مَرْأَةٌ"
+msgstr "Frau"
+
+msgid "مَطَرٌ"
+msgstr "Regen"
+
+msgid "مُحَمَدُ"
+msgstr "Mohammed"
+
+msgid "مُسْلِمٌ"
+msgstr "Muslim"
+
+msgid "مُهَنْدِسٌ"
+msgstr "Ingenieur"
+
+msgid "فعل:"
+msgstr "Verb:"
+
+msgid "زمن:"
+msgstr "Zeitform:"
+
+msgid "مبني للمعلوم/مجهول:"
+msgstr "Stimme:"
+
+msgid "مثبت/منفي:"
+msgstr ""
+
+msgid "مفعول"
+msgstr "Objekt:"
+
+msgid "ظرف زمان:"
+msgstr "Zeit:"
+
+msgid "ظرف مكان:"
+msgstr "Ort:"
+
+msgid "بناء"
+msgstr "erstellen"
+
+msgid "عشوائي"
+msgstr "Random"
+
+msgid "عينة"
+msgstr "Beispiel"
+
+msgid "حركة الإعراب"
+msgstr "Flexionszeichen"
+
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "Flexionszeichen am Wortende anzeigen"
+
+msgid "اختيار عشوائي للمفردات"
+msgstr "Wörter zufällig auswählen"
+
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "Kopieren eines Json-Beispiels zur Durchführung von Tests"
+
+msgid "بناء الجملة"
+msgstr "Eine Phrase erstellen"
+
+msgid "مدونتي"
+msgstr "Mein Blog"
+
+msgid "الاستضافة بدعم من شركة"
+msgstr "Unterstützt von"
+
+msgid "فاعل"
+msgstr "Betreff"
+
+msgid "فعل مساعد"
+msgstr "Hilfsverb"
+
+msgid "نوع الجملة"
+msgstr "Art der Phrase"

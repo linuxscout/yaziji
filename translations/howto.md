@@ -12,11 +12,16 @@ csv2po bn.csv -t ../main.pot  -o bn.po
 ```
 5- create a folder with name as language code for example 'bn' for bangla
 6- copy lang.po rename file as main_lang.po (lang is 2 letters code)
-cp bn.po bn/main_bn.po
+
+`cp bn.po bn/main_bn.po`
+
+
+
 7- create a directory on web/locales
 mkdir -p web/locales/bn/LC_MESSAGES/
 8- copy into locales
-add a line for tha language
+add a line for the language
+
 ```sh
 make copy_locales
 ```

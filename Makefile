@@ -63,6 +63,10 @@ copy_locales:
 	cp translations/id/main_id.po web/locales/id/LC_MESSAGES/main.po
 	cp translations/bn/main_bn.po web/locales/bn/LC_MESSAGES/main.po
 	cp translations/es/main_es.po web/locales/es/LC_MESSAGES/main.po
+	cp translations/ja/main_ja.po web/locales/ja/LC_MESSAGES/main.po
+	cp translations/zh/main_zh.po web/locales/zh/LC_MESSAGES/main.po
+	cp translations/de/main_de.po web/locales/de/LC_MESSAGES/main.po
+	cp translations/ku/main_ku.po web/locales/ku/LC_MESSAGES/main.po
 mo:
 	#create mo files
 	cd web/locales/ar/LC_MESSAGES/; msgfmt main.po
@@ -71,6 +75,10 @@ mo:
 	cd web/locales/id/LC_MESSAGES/; msgfmt main.po
 	cd web/locales/bn/LC_MESSAGES/; msgfmt main.po
 	cd web/locales/es/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/de/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/zh/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/ja/LC_MESSAGES/; msgfmt main.po
+	cd web/locales/ku/LC_MESSAGES/; msgfmt main.po
 
 
 update_pot:

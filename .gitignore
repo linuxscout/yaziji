@@ -144,3 +144,4 @@ dmypy.json
 /translations/lokalize-scripts/
 /web/flask_session
 /web/logs/
+/myenv

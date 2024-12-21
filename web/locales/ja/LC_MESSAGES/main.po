@@ -1,0 +1,690 @@
+#. extracted from work/ja.csv
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-21 21:42+0100\n"
+"PO-Revision-Date: 2024-12-21 21:55+0100\n"
+"Last-Translator: Taha Zerrouki <taha_zerrouki@hotmail.com>\n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: Location
+msgid "Arabic"
+msgstr ""
+
+msgid "\"جملة فعلية\""
+msgstr "動詞文"
+
+msgid "\"جملة اسمية\""
+msgstr "名詞文"
+
+msgid "اِسْتَطَاعَ"
+msgstr "できる"
+
+msgid "أَرَادَ"
+msgstr "～したい"
+
+msgid "كَادَ"
+msgstr "～しそう。～するところだった"
+
+msgid "شَرِبَ"
+msgstr "飲む"
+
+msgid "ضَرَبَ"
+msgstr "打つ"
+
+msgid "ذَهَبَ"
+msgstr "行く"
+
+msgid "جَلَسَ"
+msgstr "座る"
+
+msgid "شَبِعَ"
+msgstr "満腹になる"
+
+msgid "أَكَلَ"
+msgstr "食べる"
+
+msgid "خَرَجَ"
+msgstr "出かける"
+
+msgid "مَشَى"
+msgstr "歩く"
+
+msgid "قَامَ"
+msgstr "立つ"
+
+msgid "نَجَحَ"
+msgstr "合格する、成功する"
+
+msgid "بَكَى"
+msgstr "泣く"
+
+msgid "سَمِعَ"
+msgstr "聞く"
+
+msgid "جَاءَ"
+msgstr "来る"
+
+msgid "عَرَفَ"
+msgstr "知る"
+
+msgid "رَسَبَ"
+msgstr "不合格になる"
+
+msgid "تَعَلَّمَ"
+msgstr "学ぶ、教わる"
+
+msgid "لَعِبَ"
+msgstr "遊ぶ、スポーツをする"
+
+msgid "جَعَلَ"
+msgstr "～させる"
+
+msgid "شَكَرَ"
+msgstr "感謝する、お礼を言う"
+
+msgid "جَهَّزَ"
+msgstr "用意する、準備する"
+
+msgid "وَعَدَ"
+msgstr "約束する"
+
+msgid "عَاشَ"
+msgstr "暮らす、生活を送る"
+
+msgid "وَقَفَ"
+msgstr "立つ、止まる"
+
+msgid "سَجَدَ"
+msgstr "サジダする"
+
+msgid "مَاتَ"
+msgstr "死ぬ"
+
+msgid "قَبَضَ"
+msgstr "逮捕する"
+
+msgid "غَفَرَ"
+msgstr "赦す"
+
+msgid "صَامَ"
+msgstr "断食する"
+
+msgid "رَسَمَ"
+msgstr "描く"
+
+msgid "نَزَلَ"
+msgstr "降りる"
+
+msgid "رَكَعَ"
+msgstr "ひざまずく"
+
+msgid "سَافَرَ"
+msgstr "旅行する"
+
+msgid "وَفَى"
+msgstr "尽くす"
+
+msgid "لَبِسَ"
+msgstr "着る、身に付ける、着用する"
+
+msgid "اجْتَهَدَ"
+msgstr "努力する"
+
+msgid "وَجَدَ"
+msgstr "見つける"
+
+msgid "وَصَلَ"
+msgstr "着く、到着する、たどり着く"
+
+msgid "قَرَأَ"
+msgstr "読む"
+
+msgid "قَعَدَ"
+msgstr "座る"
+
+msgid "قَالَ"
+msgstr "言う"
+
+msgid "خَبَّرَ"
+msgstr "パンを焼く"
+
+msgid "عَلِمَ"
+msgstr "知る"
+
+msgid "سَأَلَ"
+msgstr "尋ねる、訊く、質問する"
+
+msgid "رَمَى"
+msgstr "投げる、捨てる"
+
+msgid "شَاهَدَ"
+msgstr "観る"
+
+msgid "أَخَذَ"
+msgstr "取る"
+
+msgid "طَلَعَ"
+msgstr "昇る、上る、出る"
+
+msgid "حَفِظَ"
+msgstr "憶える"
+
+msgid "أَخْبَرَ"
+msgstr "知らせる"
+
+msgid "نَامَ"
+msgstr "寝る"
+
+msgid "سَاعَدَ"
+msgstr "手伝う、助ける"
+
+msgid "كَتَبَ"
+msgstr "書く"
+
+msgid "حَدَّثَ"
+msgstr "話す"
+
+msgid "جَرَى"
+msgstr "走る"
+
+msgid "اشْتَرَى"
+msgstr "買う"
+
+msgid "أَسْرَعَ"
+msgstr "急ぐ"
+
+msgid "ذَاكَرَ"
+msgstr "勉強する"
+
+msgid "وَضَعَ"
+msgstr "置く"
+
+msgid "بَاعَ"
+msgstr "売る"
+
+msgid "فَهِمَ"
+msgstr "理解する"
+
+msgid "فَتَحَ"
+msgstr "開く"
+
+msgid "عَطِشَ"
+msgstr "喉が渇く"
+
+msgid "سَكَنَ"
+msgstr "住む"
+
+msgid "أَعْلَمَ"
+msgstr "知らせる"
+
+msgid "كَسَرَ"
+msgstr "壊す"
+
+msgid "دَخَلَ"
+msgstr "入る"
+
+msgid "\"الماضي المعلوم\""
+msgstr "「完了形（肯定）」"
+
+msgid "\"المضارع المعلوم\""
+msgstr "「未完了形（肯定）」"
+
+msgid "الأمر"
+msgstr "命令形"
+
+msgid "معلوم"
+msgstr "能動態"
+
+msgid "\"مبني للمجهول\""
+msgstr "\"受け身\""
+
+msgid "مثبت"
+msgstr "肯定"
+
+msgid "منفي"
+msgstr "否定"
+
+msgid "حَلِيبٌ"
+msgstr "牛乳"
+
+msgid "بَابٌ"
+msgstr "ドア"
+
+msgid "أنا"
+msgstr "私"
+
+msgid "نحن"
+msgstr "私たち"
+
+msgid "أنت"
+msgstr "あなた"
+
+msgid "أنتِ"
+msgstr "あなた（女性）"
+
+msgid "أنتما"
+msgstr "あなた（二人）"
+
+msgid "\"أنتما مؤ\""
+msgstr "\"あなた（二人女性）\""
+
+msgid "أنتم"
+msgstr "あなたたち"
+
+msgid "أنتن"
+msgstr "あなたたち（女性）"
+
+msgid "هو"
+msgstr "彼"
+
+msgid "هي"
+msgstr "彼女"
+
+msgid "هما"
+msgstr "彼ら"
+
+msgid "\"هما مؤ\""
+msgstr "\"彼女ら（二人）\""
+
+msgid "هم"
+msgstr "彼ら"
+
+msgid "هن"
+msgstr "彼女ら"
+
+msgid "تُفَاحَةٌ"
+msgstr "りんご"
+
+msgid "تِلْمِيذٌ"
+msgstr "生徒"
+
+msgid "ثَوْبٌ"
+msgstr "ドレス"
+
+msgid "جَبَلٌ"
+msgstr "山"
+
+msgid "حَقِيبَةٌ"
+msgstr "かばん"
+
+msgid "خُضَرٌ"
+msgstr "野菜"
+
+msgid "دَرْسٌ"
+msgstr "レッスン"
+
+msgid "رَجُلٌ"
+msgstr "男"
+
+msgid "شَعْرٌ"
+msgstr "毛、髪の毛"
+
+msgid "صَحْرَاءٌ"
+msgstr "砂漠"
+
+msgid "صَوْتٌ"
+msgstr "声、音"
+
+msgid "طَعَامٌ"
+msgstr "食べ物"
+
+msgid "طَلَبَةٌ"
+msgstr "学生"
+
+msgid "عَصِيرٌ"
+msgstr "ジュース"
+
+msgid "عَلَمٌ"
+msgstr "旗、国旗"
+
+msgid "فَوَاكِهٌ"
+msgstr "果物"
+
+msgid "قَمَرٌ"
+msgstr "月"
+
+msgid "قُرْآنٌ"
+msgstr "コーラン"
+
+msgid "قِصَّةٌ"
+msgstr "物語"
+
+msgid "قِطَّةٌ"
+msgstr "猫"
+
+msgid "كَأْسٌ"
+msgstr "カップ"
+
+msgid "كُرَةٌ"
+msgstr "ボール"
+
+msgid "كِتَابٌ"
+msgstr "本"
+
+msgid "لمْرأَةٌ"
+msgstr "女性"
+
+msgid "مدْرَسةٌ"
+msgstr "学校"
+
+msgid "مسْرَحِيَّةٌ"
+msgstr "遊び"
+
+msgid "مُعَلِمٌ"
+msgstr "教師"
+
+msgid "مِحْفَظَةٌ"
+msgstr "財布"
+
+msgid "نَاسٌ"
+msgstr "人々"
+
+msgid "أَحْيَانًا"
+msgstr "時々"
+
+msgid "البَارِحَةَ"
+msgstr "昨日"
+
+msgid "اليَوْمَ"
+msgstr "今日"
+
+msgid "سَاعَةً"
+msgstr "一時間"
+
+msgid "سَنَةً"
+msgstr "一年間"
+
+msgid "شِتَاءً"
+msgstr "冬"
+
+msgid "صَبَاحًا"
+msgstr "朝"
+
+msgid "صَيْفًا"
+msgstr "夏に"
+
+msgid "ظُهْرًا"
+msgstr "お昼に"
+
+msgid "عَصْرًا"
+msgstr "夕方"
+
+msgid "غَدًا"
+msgstr "明日"
+
+msgid "فَجْرًا"
+msgstr "夜明け"
+
+msgid "لَحْظَةَ"
+msgstr "一瞬"
+
+msgid "لَيْلًا"
+msgstr "夜"
+
+msgid "مَسَاءً"
+msgstr "晩に"
+
+msgid "نَهْارًا"
+msgstr "日中"
+
+msgid "بَيْتٌ"
+msgstr "家"
+
+msgid "حَدِيقَةٌ"
+msgstr "公園、庭"
+
+msgid "سُوقٌ"
+msgstr "市場"
+
+msgid "طَرِيقٌ"
+msgstr "道"
+
+msgid "غُرْفَةٌ"
+msgstr "部屋"
+
+msgid "فِنَاءٌ"
+msgstr "中庭"
+
+msgid "مَدِينَةٌ"
+msgstr "街"
+
+msgid "مَدْرَسَةٌ"
+msgstr "学校"
+
+msgid "مَسْجِدٌ"
+msgstr "モスク"
+
+msgid "مَطْبَخٌ"
+msgstr "台所"
+
+msgid "أَنِيقٌ"
+msgstr "上品な"
+
+msgid "بَخِيلٌ"
+msgstr "ケチな"
+
+msgid "بَشِعٌ"
+msgstr "ひどい"
+
+msgid "بَطِيءٌ"
+msgstr "遅い"
+
+msgid "جَمِيلٌ"
+msgstr "美しい"
+
+msgid "حَزِينٌ"
+msgstr "悲しい"
+
+msgid "حَنُونٌ"
+msgstr "思いやりがある"
+
+msgid "ذَكِيٌ"
+msgstr "賢い"
+
+msgid "سَرِيعٌ"
+msgstr "速い"
+
+msgid "سَعِيدٌ"
+msgstr "幸せな"
+
+msgid "سَمِينٌ"
+msgstr "太っている"
+
+msgid "شُجَاعٌ"
+msgstr "勇敢な"
+
+msgid "ضَعِيفٌ"
+msgstr "弱い"
+
+msgid "طَوِيلٌ"
+msgstr "背が高い"
+
+msgid "غَبِيٌ"
+msgstr "馬鹿な"
+
+msgid "فَرِحٌ"
+msgstr "喜んでいる"
+
+msgid "قَصِيرٌ"
+msgstr "短い"
+
+msgid "قَوِيٌ"
+msgstr "強い"
+
+msgid "كَرِيمٌ"
+msgstr "気前がいい"
+
+msgid "كَسُولٌ"
+msgstr "怠けている"
+
+msgid "لَئِيمٌ"
+msgstr "ずるい"
+
+msgid "مَسْرُورٌ"
+msgstr "嬉しい"
+
+msgid "مُبْتَهِجٌ"
+msgstr "陽気な"
+
+msgid "مُجْتَهِدٌ"
+msgstr "勤勉な"
+
+msgid "مُرْتَفِعٌ"
+msgstr "高い"
+
+msgid "مُنْخَفِضٌ"
+msgstr "低い"
+
+msgid "هَزِيلٌ"
+msgstr "痩せている"
+
+msgid "وَسِيمٌ"
+msgstr "ハンサム"
+
+msgid "أَحْمَد"
+msgstr "アハマドさん"
+
+msgid "وَلَدٌ"
+msgstr "子供"
+
+msgid "أَبٌ"
+msgstr "お父さん"
+
+msgid "أَحْمَدُ"
+msgstr "アーメド"
+
+msgid "أَسَدٌ"
+msgstr "ライオン"
+
+msgid "أُمٌّ"
+msgstr "母親"
+
+msgid "اِبْنٌ"
+msgstr "息子"
+
+msgid "بِنْتٌ"
+msgstr "娘"
+
+msgid "تَاجِرٌ"
+msgstr "商人"
+
+msgid "حِصَانٌ"
+msgstr "馬"
+
+msgid "دِيكٌ"
+msgstr "ルースター"
+
+msgid "رَضِيعٌ"
+msgstr "赤ちゃん"
+
+msgid "زُهُورٌ"
+msgstr "花"
+
+msgid "شُرْطِيٌّ"
+msgstr "警官"
+
+msgid "طَالِبٌ"
+msgstr "学生"
+
+msgid "طَبِيبٌ"
+msgstr "医者"
+
+msgid "طِفْلٌ"
+msgstr "子供"
+
+msgid "عَامِلٌ"
+msgstr "労働者"
+
+msgid "عُمَّالٌ"
+msgstr "労働者立"
+
+msgid "فَاطِمَةُ"
+msgstr "ファーティマ"
+
+msgid "فَرَاشَةٌ"
+msgstr "蝶"
+
+msgid "قَاضٌِ"
+msgstr "裁判官"
+
+msgid "قِطٌّ"
+msgstr "猫"
+
+msgid "لَيْلَى"
+msgstr "レイラ"
+
+msgid "معَلِّمٌ"
+msgstr "先生"
+
+msgid "مَرْأَةٌ"
+msgstr "鏡"
+
+msgid "مَطَرٌ"
+msgstr "雨"
+
+msgid "مُحَمَدُ"
+msgstr "モハメッド"
+
+msgid "مُسْلِمٌ"
+msgstr "イスラム教徒"
+
+msgid "مُهَنْدِسٌ"
+msgstr "エンジニア"
+
+msgid "فعل:"
+msgstr "動詞"
+
+msgid "زمن:"
+msgstr "時間："
+
+msgid "مبني للمعلوم/مجهول:"
+msgstr "情報のための建物/匿名："
+
+msgid "مثبت/منفي:"
+msgstr "インストール/亡命："
+
+msgid "مفعول"
+msgstr "目的語"
+
+msgid "ظرف زمان:"
+msgstr "時間の副詞"
+
+msgid "ظرف مكان:"
+msgstr "空間名詞"
+
+msgid "بناء"
+msgstr "生成"
+
+msgid "عشوائي"
+msgstr "ランダム"
+
+msgid "عينة"
+msgstr "サンプル"
+
+msgid "حركة الإعراب"
+msgstr "格変化"
+
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "語尾変化表示"
+
+msgid "اختيار عشوائي للمفردات"
+msgstr "語彙のランダム選択"
+
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "ソフトウェア実験のためのJasonサンプル"
+
+msgid "بناء الجملة"
+msgstr "構文"
+
+msgid "مدونتي"
+msgstr "ブログ"
+
+msgid "الاستضافة بدعم من شركة"
+msgstr "サポンサー"
