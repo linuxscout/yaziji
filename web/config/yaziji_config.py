@@ -13,7 +13,8 @@ MODE_DEBUG = False
 if OFFLINE:
     # URL HOST
     # For Testing
-    URL_HOST_PATH = "http://127.0.0.1/yaziji"
+    URL_HOST_PATH = "http://127.0.0.1:5000"
+    #URL_HOST_PATH = "http://127.0.0.1/yaziji"    
     DIR_HOST_PATH = "/var/www/html/yaziji"
 
     #Database config directory
