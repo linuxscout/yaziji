@@ -6,6 +6,8 @@
     <link href="{{ url_for('static', filename='resources/files/favicon1.png')}}" rel="icon" type="image/png">
     <link href="{{ url_for('static', filename='resources/files/adawatstyle.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='resources/files/xzero-rtl/css/bootstrap-arabic.min.css')}}" rel="stylesheet">
+ <!-- Add Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta content="width=device-width, initial-scale=1" name="viewport">
   </head>
   <body dir="rtl">
@@ -111,6 +113,30 @@
           <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
           <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
           <section class="bg-info" id="small_hint"></section>
+        <!-- Toolbar with multiple buttons -->
+        <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with multiple buttons">
+          <!-- Rating Stars -->
+          <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"></label>
+          </div>
+          <!-- Additional buttons -->
+          <div class="btn-group mr-2" role="group" aria-label="Button group">
+            <!-- Copy Button -->
+            <button type="button" class="btn btn-info" id="copy"><i class="fa fa-copy"></i> نسخ</button>
+            <!-- Share Button -->
+            <button type="button" class="btn btn-info" id="shareButton"><i class="fa fa-share"></i> مشاركة</button>
+            <!-- Other buttons with icons -->
+            <button type="button" class="btn btn-danger" id="signal" data-toggle="modal"   title="'إبلاغ عن خطأ'" href="#modal-container-187721"><i class="fa fa-flag"></i>{{_('إبلاغ')}}</button>
+          </div>
         </div>
         <div class="col-md-3 column"> <progress id="loading"></progress>
           <!--              <div class="panel panel-default">

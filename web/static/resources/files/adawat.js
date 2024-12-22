@@ -110,6 +110,7 @@ var more_click = function(e) {
 
     });
   }
+
     var sample_click = function(e) {
         e.preventDefault()
     if((document.NewForm.tense.value == "الأمر")&&(document.NewForm.subject.value.indexOf("أنت") == -1))
@@ -135,6 +136,32 @@ var more_click = function(e) {
     }, function(d) {
       $("#result").html( d.result);
 
+    });
+  }
+
+
+
+    var report_click = function(e) {
+        e.preventDefault()
+     var prefix = get_prefix_path();
+     //~ var prefix = script;
+    $.getJSON(prefix+ "/ajaxGet", {
+      text: document.NewForm.subject.value,
+      action: "report",
+      "subject":document.NewForm.subject.value,
+      "object":document.NewForm.object.value,
+      "verb":document.NewForm.verb.value,
+      "time":document.NewForm.time.value,
+      "place":document.NewForm.place.value,
+      "tense":document.NewForm.tense.value,
+      "voice":document.NewForm.voice.value,
+      "auxiliary":document.NewForm.auxiliary.value,
+      "negative":document.NewForm.negative.value,
+      "phrase_type":document.NewForm.phrase_type.value,
+      "result":$("#result").text(),
+    }, function(d) {
+      $("#result").html(d.result);
+    alert("شكرا لإبلاغنا بالمشكلة..");
     });
   }
     var random_select_click = function(e) {
@@ -250,6 +277,44 @@ else
 
 }
 
+ var rating_change = function(e) {
+        e.preventDefault()
+     var prefix = get_prefix_path();
+       const rating = $(this).val();
+      //~ var prefix = script;
+    $.getJSON(prefix+ "/ajaxGet", {
+      text: document.NewForm.subject.value,
+      action: "rating",
+      "subject":document.NewForm.subject.value,
+      "object":document.NewForm.object.value,
+      "verb":document.NewForm.verb.value,
+      "time":document.NewForm.time.value,
+      "place":document.NewForm.place.value,
+      "tense":document.NewForm.tense.value,
+      "voice":document.NewForm.voice.value,
+      "auxiliary":document.NewForm.auxiliary.value,
+      "negative":document.NewForm.negative.value,
+      "phrase_type":document.NewForm.phrase_type.value,
+      "result":$("#result").text(),
+      "rating":`${rating}`,
+    }, function(d) {
+      $("#result").html(d.result);
+    alert("شكرا لتقييم هذه العملية.");
+    });
+  }
+
+
+//copy result into clipboard
+  var copy_click = function(e) {
+        e.preventDefault()
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($("#result").text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    alert("نسخت البيانات في الحافظة.");
+    //document.NewForm.InputText.value = $("#result").text();
+  }
 
  $().ready(function() {
  draw();
@@ -257,4 +322,6 @@ else
   $(document).on( 'click', '#sample', sample_click );
   $(document).on( 'click', '#random_select', random_select_click );
   $(document).on( 'click', '#copy', copy_click );
+  $(document).on( 'click', '#signal', report_click );
+  $(document).on( 'change', '.rating input', rating_change );
 });

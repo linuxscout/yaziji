@@ -36,6 +36,10 @@ def DoAction(text, action, options = {}):
         return build_phrase(options)
     elif action == "sample":
         return build_sample(options)
+    elif action == "report":
+        return report(options)
+    elif action == "rating":
+        return rating(options)
     else:
 
         return text
@@ -51,7 +55,15 @@ def build_phrase(options):
 def build_sample(options):        
     """generate samples"""
     return repr(options).replace(",", ",\n")
-    
+
+def report(options):
+    """report bugs"""
+    return "REPORT; "+repr(options).replace(",", ",\n")
+
+
+def rating(options):
+    """report bugs"""
+    return "RATING; "+repr(options).replace(",", ",\n")
     
 def main(args):
     return 0
