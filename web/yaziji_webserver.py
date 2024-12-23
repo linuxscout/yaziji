@@ -65,7 +65,8 @@ babel.init_app(app)
 
 @app.route("/index/")
 def index():
-    return render_template("index.html", current_page='home')
+    return render_template("index.html", current_page='index')
+
 
 
 @app.route("/")
