@@ -45,58 +45,69 @@
 
 
 
-{{_('نوع الجملة:')}}
+<!--{{_('نوع الجملة:')}}-->
+               <span id="phrase_type_label">نوع الجملة:</span>
            <select id='phrase_type'  class='form-inline' name='phrase_type'>
 </select>
-<br/>{{_('فاعل')}} <select id='subject'  class='form-inline' name='subject'>
+<br/>
+<!--              {{_('فاعل')}}-->
+               <span id="subject_label">فاعل</span>
+              <select id='subject'  class='form-inline' name='subject'>
     <option value=""></option>
   
 
 </select>
-<br/>{{_('فعل مساعد')}}
+<br/>
+<!--              {{_('فعل مساعد')}}-->
+               <span id="auxiliary_label">فعل مساعد</span>
 : <select id='auxiliary'  class='form-inline' name='auxiliary'>
     <option value=""></option>
 
 </select>
-{{_('فعل:')}}
+<!--{{_('فعل:')}}-->
+                <span id="verb_label">فعل:</span>
 <select id='verb'  class='form-inline' name='verb'>
     <option value=""></option>
 
 </select>
-{{_('زمن:')}}
+<!--{{_('زمن:')}}  -->
+              <span id="tense_label">زمن:</span>
 <select id='tense'  class='form-inline' name='tense'>
   
 
 </select>
-{{_('مبني للمعلوم/مجهول:')}}
+<!--{{_('مبني للمعلوم/مجهول:')}}-->
+              <span id="voice_label">مبني للمعلوم/مجهول:</span>
 <select id='voice'  class='form-inline' name='voice'>
  
 
 </select>
-{{_('مثبت/منفي:')}}
+<!--{{_('مثبت/منفي:')}} -->
+              <span id="negative_label">مثبت/منفي:</span>
 <select id='negative'  class='form-inline' name='negative'>
   
 </select>
-<br/>{{_('مفعول')}} <select id='object'  class='form-inline' name='object'>
+<br/>
+<!--              {{_('مفعول')}}-->
+              <span id="object_label">مفعول</span>
+              <select id='object'  class='form-inline' name='object'>
     <option value=""></option>
 
 </select>
-{{_('ظرف زمان:')}}
+<!--{{_('ظرف زمان:')}}-->
+              <span id="time_label">ظرف زمان:</span>
 <select id='time'  class='form-inline' name='time'>
 
     <option value=""></option>
 
 </select>
-{{_('ظرف مكان:')}}
+<!--{{_('ظرف مكان:')}}-->
+            <span id="place_label">ظرف مكان:</span>
  <select id='place'  class='form-inline' name='place'>
     <option value=""></option>
 
 </select>
-{{_('ظرف مكان:')}}
- <select id='place'  class='form-inline' name='place'>
-    <option value=""></option>
 
-</select>
 
 
 
@@ -178,7 +189,12 @@
 
                 
                 <script async="" src="{{ url_for('static',filename='resources/files/adawat.js')}}"></script> 
-                
+<!--                <script async="" src="{{ url_for('static',filename='resources/json/translate.js')}}"></script>-->
+                  <script>
+                  // set the language path to allow translation
+                  var language_url = "{{ url_for('static',filename='resources/json/')}}";
+                </script>
+
                 
                 </div>
             </div>
