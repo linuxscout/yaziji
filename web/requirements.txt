@@ -6,3 +6,4 @@ six>=1.14.0
 bottle>=0.12.25
 #core>=1.0.1
 flask_babel>=2.0.0
+dotenv>=1.0.1

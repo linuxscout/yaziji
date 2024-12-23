@@ -22,10 +22,8 @@ from flask_babel import Babel, gettext, ngettext, force_locale, get_locale
 sys.path.append(os.path.join(os.path.dirname(__file__), "./lib"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
-from config.yaziji_config import LOGGING_CFG_FILE
-from config.yaziji_config import LOGGING_FILE
-from config.yaziji_config import MODE_DEBUG
-from config.yaziji_config import URL_HOST_PATH
+# from config.yaziji_config import webConfig
+from config.yaziji_config import config_factory
 
 import adaat
 # ~ import data_const_arabic as data_const
@@ -35,14 +33,19 @@ from data import data_const
 
 
 # set output logging in utf
-import locale; 
+import locale
 if locale.getpreferredencoding().upper() != 'UTF-8': 
     locale.setlocale(locale.LC_ALL, 'ar_DZ.UTF-8')
 
-if MODE_DEBUG:
+# Configurate
+mywebconfig = config_factory.facory()
+#LOGGING_FILE = mywebconfig.logging_file
+# URL_HOST_PATH = mywebconfig.url_host_path
+
+if mywebconfig.MODE_DEBUG:
     # to rotate log 
     try:
-        my_handler = RotatingFileHandler(LOGGING_FILE, mode='a', maxBytes=5*1024*1024, 
+        my_handler = RotatingFileHandler(mywebconfig.LOGGING_FILE, mode='a', maxBytes=5*1024*1024,
                                  backupCount=2, encoding=None, delay=0)
     except PermissionError:
         print(__file__, "You may verify the log file permissions")
@@ -50,7 +53,7 @@ if MODE_DEBUG:
         logging.basicConfig(level=logging.DEBUG, handlers=[my_handler]) 
     # ~ logging.basicConfig(filename=LOGGING_FILE, level=logging.DEBUG)
 else:
-    logging.basicConfig(filename=LOGGING_FILE, level=logging.INFO) 
+    logging.basicConfig(filename=mywebconfig.LOGGING_FILE, level=logging.INFO)
 #------------
 # Configure App
 #----------------
@@ -62,22 +65,23 @@ app = Flask(__name__,
 minify(app=app, html=True, js=True, cssless=True)
 
 # used to fix URL path for hosting
-app.config['URL_HOST_PATH'] = URL_HOST_PATH
+#app.config['URL_HOST_PATH'] = mywebconfig.url_host_path
+app.config.from_object(mywebconfig)
 # set default locale to arabic
-app.config["BABEL_DEFAULT_LOCALE"] = "ar"
-app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
-app.config["BABEL_DOMAIN"] = "messages"
-app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
-'en':"English", 
-"id":"Bahasa Indonesia",
-'fr':"Français",
-'bn':"বাংলা",
-'es':"Español",
-'ja':"日本語",
-'zh':"中文",
-'de':"Deutsche",
-"ku":"كوردى",
-}
+# app.config["BABEL_DEFAULT_LOCALE"] = "ar"
+# app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
+# app.config["BABEL_DOMAIN"] = "messages"
+# app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
+# 'en':"English",
+# "id":"Bahasa Indonesia",
+# 'fr':"Français",
+# 'bn':"বাংলা",
+# 'es':"Español",
+# 'ja':"日本語",
+# 'zh':"中文",
+# 'de':"Deutsche",
+# "ku":"كوردى",
+# }
 
 # create a Bable instance for our app
 babel = Babel(app)
