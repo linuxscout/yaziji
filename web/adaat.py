@@ -26,45 +26,94 @@ import sys
 sys.path.append(os.path.join("../yaziji"))
 
 import phrase_generator
-def DoAction(text, action, options = {}):
-    """
-    do action by name
-    """
-    if action == "DoNothing":
-        return text
-    elif action == "phrase":
-        return build_phrase(options)
-    elif action == "sample":
-        return build_sample(options)
-    elif action == "report":
-        return report(options)
-    elif action == "rating":
-        return rating(options)
-    else:
+#
+# def DoAction(text, action, options = {}):
+#     """
+#     do action by name
+#     """
+#     if action == "DoNothing":
+#         return text
+#     elif action == "phrase":
+#         return build_phrase(options)
+#     elif action == "sample":
+#         return build_sample(options)
+#     elif action == "report":
+#         return report(options)
+#     elif action == "rating":
+#         return rating(options)
+#     else:
+#
+#         return text
+#
+# def build_phrase(options):
+#     phraser = phrase_generator.PhraseGenerator()
+#     components = options
+#     phrase = phraser.build(components)
+#     #~ print(u"".join(["<%s>"%x for x in components.values()]))
+#     #~ print(phraser.pattern.stream.__str__())
+#     return phrase
+#
+# def build_sample(options):
+#     """generate samples"""
+#     return repr(options).replace(",", ",\n")
+#
+# def report(options):
+#     """report bugs"""
+#     return "REPORT; "+repr(options).replace(",", ",\n")
+#
+#
+# def rating(options):
+#     """report bugs"""
+#     return "RATING; "+repr(options).replace(",", ",\n")
 
-        return text
+class Adaat:
+    def __init__(self):
+        # Constructor can be used to initialize any instance variables if needed
+        self.phraser = phrase_generator.PhraseGenerator()
 
-def build_phrase(options):        
-    phraser = phrase_generator.PhraseGenerator()
-    components = options
-    phrase = phraser.build(components)
-    #~ print(u"".join(["<%s>"%x for x in components.values()]))
-    #~ print(phraser.pattern.stream.__str__())
-    return phrase
+    def do_action(self, text, action, options={}):
+        """
+        Do action by name
+        """
+        if action == "DoNothing":
+            return text
+        elif action == "phrase":
+            return self.build_phrase(options)
+        elif action == "sample":
+            return self.build_sample(options)
+        elif action == "report":
+            return self.report(options)
+        elif action == "rating":
+            return self.rating(options)
+        else:
+            return text
 
-def build_sample(options):        
-    """generate samples"""
-    return repr(options).replace(",", ",\n")
+    def build_phrase(self, options):
+        """
+        Generate phrase
+        """
+        components = options
+        phrase = self.phraser.build(components)
+        return phrase
 
-def report(options):
-    """report bugs"""
-    return "REPORT; "+repr(options).replace(",", ",\n")
+    def build_sample(self, options):
+        """
+        Generate samples
+        """
+        return repr(options).replace(",", ",\n")
 
+    def report(self, options):
+        """
+        Report bugs
+        """
+        return "REPORT; " + repr(options).replace(",", ",\n")
 
-def rating(options):
-    """report bugs"""
-    return "RATING; "+repr(options).replace(",", ",\n")
-    
+    def rating(self, options):
+        """
+        Report rating
+        """
+        return "RATING; " + repr(options).replace(",", ",\n")
+
 def main(args):
     return 0
 
