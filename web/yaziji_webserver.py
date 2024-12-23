@@ -1,19 +1,17 @@
-#! /usr/bin/python
+#!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
 import sys
-import os.path
-
-import logging.config
+import os
+import logging
 from logging.handlers import RotatingFileHandler
-
-from flask import Flask, render_template,  send_from_directory, request, jsonify
+from flask import Flask, render_template, send_from_directory, request, jsonify
 from flask_minify import minify
 from flask_cors import cross_origin
 from flask_babel import Babel, force_locale
+import locale
 
-
-# local libraries
+# Local libraries
 sys.path.append(os.path.join(os.path.dirname(__file__), "./lib"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
@@ -23,58 +21,43 @@ import adaat
 from data import data_const
 
 
-
-
-# set output logging in utf
-import locale
-if locale.getpreferredencoding().upper() != 'UTF-8': 
+# Ensure UTF-8 encoding for output
+if locale.getpreferredencoding().upper() != 'UTF-8':
     locale.setlocale(locale.LC_ALL, 'ar_DZ.UTF-8')
 
-# Configurate
+# Load configuration
 mywebconfig = config_factory.facory()
 
-
+# Set up logging based on the debug mode in configuration
 if mywebconfig.MODE_DEBUG:
-    # to rotate log 
     try:
-        my_handler = RotatingFileHandler(mywebconfig.LOGGING_FILE, mode='a', maxBytes=5*1024*1024,
-                                 backupCount=2, encoding=None, delay=0)
+        my_handler = RotatingFileHandler(
+            mywebconfig.LOGGING_FILE, mode='a', maxBytes=5 * 1024 * 1024,
+            backupCount=2, encoding=None, delay=0
+        )
     except PermissionError:
         print(__file__, "You may verify the log file permissions")
     else:
-        logging.basicConfig(level=logging.DEBUG, handlers=[my_handler]) 
-    # ~ logging.basicConfig(filename=LOGGING_FILE, level=logging.DEBUG)
+        logging.basicConfig(level=logging.DEBUG, handlers=[my_handler])
 else:
     logging.basicConfig(filename=mywebconfig.LOGGING_FILE, level=logging.INFO)
-#------------
-# Configure App
-#----------------
 
-app = Flask(__name__,
-            static_url_path='/static', 
-            static_folder='static',
-)
+# Configure the Flask app
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 minify(app=app, html=True, js=True, cssless=True)
-
-# used to fix URL path for hosting
 
 app.config.from_object(mywebconfig)
 
-
-# create a Bable instance for our app
+# Create a Babel instance for our app
 babel = Babel(app)
 
 
-
 def get_locale():
-    # Extract language from URL path
+    """Extract language from URL path."""
     language = request.path.split('/')[1]
     if language in app.config['BABEL_LANGUAGES']:
-        #print("user_language", language)        
         return language
-    else:
-        #print("default_language", app.config['BABEL_DEFAULT_LOCALE'])          
-        return app.config['BABEL_DEFAULT_LOCALE']    
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 babel.init_app(app)
@@ -82,7 +65,7 @@ babel.init_app(app)
 
 @app.route("/index/")
 def index():
-    return render_template("index.html",current_page='home')
+    return render_template("index.html", current_page='home')
 
 
 @app.route("/")
@@ -91,57 +74,44 @@ def home(lang="ar"):
     context = {}
     available_languages = app.config['BABEL_LANGUAGES']
     url_host_path = app.config['URL_HOST_PATH']
-    with force_locale(lang):  # Set the locale to French
-        return render_template("index.html", current_page='home',
-                    available_languages=available_languages,
-                    url_host_path = url_host_path,
-        **context)
-
-
-
+    with force_locale(lang):  # Set the locale
+        return render_template(
+            "index.html", current_page='home',
+            available_languages=available_languages,
+            url_host_path=url_host_path, **context
+        )
 
 
 @app.route("/ajaxGet", methods=["POST", "GET"])
 @app.route("/<lang>/ajaxGet", methods=["POST", "GET"])
 @cross_origin()
 def ajax(lang="ar"):
+    """
+    Handle AJAX requests for various actions.
+    """
     default = ""
-    if request.method == "GET":
-        args = request.args
-    elif request.method == "POST":
-        args = request.get_json(silent=True)["data"]
-    else:
-        return jsonify({"text": default})
-    # Request a random text
+    args = request.args if request.method == "GET" else request.get_json(silent=True).get("data", {})
+
     if args.get("response_type", "") == "get_random_text":
         return jsonify({"text": default})
 
     text = args.get("text", "")
     action = args.get("action", "")
     options = dict(request.args)
-    myadaat = adaat.Adaat()
+    myadaat = adaat.Adaat()  # Instantiate the Adaat class
     resulttext = myadaat.do_action(text, action, options)
 
-
-    return jsonify({'result':resulttext, 'order':0})
-
+    return jsonify({'result': resulttext, 'order': 0})
 
 
-    
-    
 @app.route("/selectGet", methods=["POST", "GET"])
 @app.route("/<lang>/selectGet", methods=["POST", "GET"])
 @cross_origin()
 def selectget(lang="ar"):
     """
-    this is an example of using ajax/json
-    to test it visit http://localhost:8080/selectGet"
+    Example of using AJAX/JSON for select values.
     """
-    #-----------
-    # prepare json
-    #-------------
-
-    with force_locale(lang): 
+    with force_locale(lang):
         return jsonify(data_const.selectValues)
 
 
@@ -152,7 +122,6 @@ def result():
         return render_template("result.html", result=result)
 
 
-
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.shtml')
@@ -160,8 +129,7 @@ def not_found(e):
 
 @app.route('/<lang>/static', methods=['GET'])
 def lang_static():
-      return send_from_directory(app.static_folder, request.path[1:])
-
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 if __name__ == "__main__":

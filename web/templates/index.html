@@ -21,20 +21,6 @@
         <div class="col-md-9 column">
 
 
-<!--
-          <ul class="switch-locale">
-              <li><a href="#" data-locale="ar">العربية</a></li>
-              <li><a href="#" data-locale="en">English</a></li>
-              <li><a href="#" data-locale="fr">Français</a></li>
-          </ul>
--->
-<!--
-          <ul>
-              <li><a href="{{ url_for('home', lang='ar') }}">العربية</a></li>
-              <li><a href="{{ url_for('home', lang='en') }}">English</a></li>
-              <li><a href="{{ url_for('home', lang='fr') }}">Français</a></li>
-          </ul>
--->
 <ul>
   {% for language in available_languages %}
     <li><a href="{{ url_for('home', lang=language, locale=language) }}">{{ available_languages[language] }}</a></li>
