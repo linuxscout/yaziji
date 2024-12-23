@@ -3,30 +3,23 @@
 
 import sys
 import os.path
-import re
-from glob import glob
-import logging
+
 import logging.config
 from logging.handlers import RotatingFileHandler
 
-from datetime import datetime, timedelta
-
-from flask import Flask, render_template, make_response, send_from_directory, request, jsonify, redirect, session
-# ~ from flask_session import Session
+from flask import Flask, render_template,  send_from_directory, request, jsonify
 from flask_minify import minify
 from flask_cors import cross_origin
-from flask_babel import Babel, gettext, ngettext, force_locale, get_locale
+from flask_babel import Babel, force_locale
 
 
 # local libraries
 sys.path.append(os.path.join(os.path.dirname(__file__), "./lib"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
-# from config.yaziji_config import webConfig
-from config.yaziji_config import config_factory
 
+from config.yaziji_config import config_factory
 import adaat
-# ~ import data_const_arabic as data_const
 from data import data_const
 
 
@@ -39,8 +32,7 @@ if locale.getpreferredencoding().upper() != 'UTF-8':
 
 # Configurate
 mywebconfig = config_factory.facory()
-#LOGGING_FILE = mywebconfig.logging_file
-# URL_HOST_PATH = mywebconfig.url_host_path
+
 
 if mywebconfig.MODE_DEBUG:
     # to rotate log 
@@ -65,23 +57,9 @@ app = Flask(__name__,
 minify(app=app, html=True, js=True, cssless=True)
 
 # used to fix URL path for hosting
-#app.config['URL_HOST_PATH'] = mywebconfig.url_host_path
+
 app.config.from_object(mywebconfig)
-# set default locale to arabic
-# app.config["BABEL_DEFAULT_LOCALE"] = "ar"
-# app.config["BABEL_TRANSLATION_DIRECTORIES"] = "locales;web/locales"
-# app.config["BABEL_DOMAIN"] = "messages"
-# app.config['BABEL_LANGUAGES'] = {'ar':"العربية",
-# 'en':"English",
-# "id":"Bahasa Indonesia",
-# 'fr':"Français",
-# 'bn':"বাংলা",
-# 'es':"Español",
-# 'ja':"日本語",
-# 'zh':"中文",
-# 'de':"Deutsche",
-# "ku":"كوردى",
-# }
+
 
 # create a Bable instance for our app
 babel = Babel(app)
@@ -97,13 +75,9 @@ def get_locale():
     else:
         #print("default_language", app.config['BABEL_DEFAULT_LOCALE'])          
         return app.config['BABEL_DEFAULT_LOCALE']    
-# ~ # sessions
-# ~ app.config["SESSION_PERMANENT"] = False
-# ~ app.config["SESSION_TYPE"] = "filesystem"
-# ~ Session(app)
+
 
 babel.init_app(app)
-#babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route("/index/")
@@ -132,10 +106,6 @@ def home(lang="ar"):
 @cross_origin()
 def ajax(lang="ar"):
     default = ""
-    resulttext = u"السلام عليكم"
-    text = default
-    action = ""
-    options = {}
     if request.method == "GET":
         args = request.args
     elif request.method == "POST":
@@ -149,10 +119,9 @@ def ajax(lang="ar"):
     text = args.get("text", "")
     action = args.get("action", "")
     options = dict(request.args)
+    myadaat = adaat.Adaat()
+    resulttext = myadaat.do_action(text, action, options)
 
-    resulttext = adaat.DoAction(text, action, options)
-    # ~ results = prepare_result(resulttext, text, action, options,"ajax")
-    results = resulttext
 
     return jsonify({'result':resulttext, 'order':0})
 
@@ -171,9 +140,9 @@ def selectget(lang="ar"):
     #-----------
     # prepare json
     #-------------
-    #print("select get lang ", lang)
+
     with force_locale(lang): 
-        return jsonify(data_const.selectValues)#,  default=json_default)
+        return jsonify(data_const.selectValues)
 
 
 @app.route("/result", methods=["POST", "GET"])
@@ -183,28 +152,6 @@ def result():
         return render_template("result.html", result=result)
 
 
-@app.route("/doc/")
-def doc():
-    return render_template("doc.html",current_page='doc')
-
-
-@app.route("/contact/")
-def contact():
-    return render_template("contact.html",current_page='contact')
-
-
-@app.route("/download/")
-def download():
-    return render_template("download.html",current_page='download')
-
-
-@app.route("/projects/")
-def projects():
-    context = {
-        'libraries':qws_const.libraries,
-        'websites':qws_const.websites
-    }
-    return render_template("projects.html",current_page='projects',**context)
 
 @app.errorhandler(404)
 def not_found(e):
@@ -215,14 +162,6 @@ def not_found(e):
 def lang_static():
       return send_from_directory(app.static_folder, request.path[1:])
 
-
-@app.route('/sitemap.txt', methods=['GET'])
-def sitemap_txt():
-      return send_from_directory(app.static_folder, request.path[1:])
-
-@app.route('/sitemap.xml', methods=['GET'])
-def sitemap_xml():
-      return send_from_directory(app.static_folder, request.path[1:])
 
 
 if __name__ == "__main__":
