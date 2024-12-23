@@ -1,192 +1,216 @@
 <!DOCTYPE html>
 <html lang="ar">
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>مولد الجمل العربية</title>
+
+    <!-- Favicon -->
     <link href="{{ url_for('static', filename='resources/files/favicon1.png')}}" rel="icon" type="image/png">
+
+    <!-- External CSS for styling -->
     <link href="{{ url_for('static', filename='resources/files/adawatstyle.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='resources/files/xzero-rtl/css/bootstrap-arabic.min.css')}}" rel="stylesheet">
- <!-- Add Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Meta tag for responsive design -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
-  </head>
-  <body dir="rtl">
-                   <p> <a href="main"><img alt="مولد الجمل العربية" height="120px"
-                    src="{{ url_for('static', filename='resources/files/logo.png')}}" style='float:right; margin-top:-20px;'> </a></p>
-<h3>مولد الجمل العربية</h3>
+</head>
+<body dir="rtl">
 
-    <div class="container">
-    <h2 style="color:#FF000;">هذه الصفحة اختبارية فقط، لمشاهدة التحديثات استعمل webfrontend</h2>
-      <div class="row clearfix">
-        <div class="col-md-9 column">
+    <!-- Header Section -->
+    <header>
+        <p>
+            <a href="main">
+                <img alt="مولد الجمل العربية" height="120px" src="{{ url_for('static', filename='resources/files/logo.png')}}" style="float:right; margin-top:-20px;">
+            </a>
+        </p>
+        <h3>مولد الجمل العربية</h3>
+    </header>
 
+    <!-- Main Content Section -->
+    <main class="container">
+        <section>
+            <h2 style="color:#FF000;">هذه الصفحة اختبارية فقط، لمشاهدة التحديثات استعمل webfrontend</h2>
+        </section>
 
-<ul>
-  {% for language in available_languages %}
-    <li><a href="{{ url_for('home', lang=language, locale=language) }}">{{ available_languages[language] }}</a></li>
-  {% endfor %}
-</ul>
-
-          <form id="NewForm" name="NewForm" onsubmit="return false"><br>
-
-
-
-<!--{{_('نوع الجملة:')}}-->
-               <span id="phrase_type_label">نوع الجملة:</span>
-           <select id='phrase_type'  class='form-inline' name='phrase_type'>
-</select>
-<br/>
-<!--              {{_('فاعل')}}-->
-               <span id="subject_label">فاعل</span>
-              <select id='subject'  class='form-inline' name='subject'>
-    <option value=""></option>
-  
-
-</select>
-<br/>
-<!--              {{_('فعل مساعد')}}-->
-               <span id="auxiliary_label">فعل مساعد</span>
-: <select id='auxiliary'  class='form-inline' name='auxiliary'>
-    <option value=""></option>
-
-</select>
-<!--{{_('فعل:')}}-->
-                <span id="verb_label">فعل:</span>
-<select id='verb'  class='form-inline' name='verb'>
-    <option value=""></option>
-
-</select>
-<!--{{_('زمن:')}}  -->
-              <span id="tense_label">زمن:</span>
-<select id='tense'  class='form-inline' name='tense'>
-  
-
-</select>
-<!--{{_('مبني للمعلوم/مجهول:')}}-->
-              <span id="voice_label">مبني للمعلوم/مجهول:</span>
-<select id='voice'  class='form-inline' name='voice'>
- 
-
-</select>
-<!--{{_('مثبت/منفي:')}} -->
-              <span id="negative_label">مثبت/منفي:</span>
-<select id='negative'  class='form-inline' name='negative'>
-  
-</select>
-<br/>
-<!--              {{_('مفعول')}}-->
-              <span id="object_label">مفعول</span>
-              <select id='object'  class='form-inline' name='object'>
-    <option value=""></option>
-
-</select>
-<!--{{_('ظرف زمان:')}}-->
-              <span id="time_label">ظرف زمان:</span>
-<select id='time'  class='form-inline' name='time'>
-
-    <option value=""></option>
-
-</select>
-<!--{{_('ظرف مكان:')}}-->
-            <span id="place_label">ظرف مكان:</span>
- <select id='place'  class='form-inline' name='place'>
-    <option value=""></option>
-
-</select>
-
-
-
-
-
-    <br>
-            <div class="form-inline"><a class="btn btn-primary" id="phrase" title="'بناء الجملة'">{{_('بناء')}}</a>
-            <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'">{{_('عشوائي')}}</a>
-            <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'">{{_('عينة')}}</a>
-              <input checked="checked" class="checkbox" id="LastMark" value="1"
-                type="checkbox" title="'إظهار حركة الإعراب في أواخر الكلمات'"> {{_('حركة الإعراب')}}</div>
-
-          </form>
-
-          <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
-          <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
-          <section class="bg-info" id="small_hint"></section>
-        <!-- Toolbar with multiple buttons -->
-        <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with multiple buttons">
-          <!-- Rating Stars -->
-          <div class="rating">
-            <input type="radio" id="star5" name="rating" value="5">
-            <label for="star5"></label>
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4"></label>
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3"></label>
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2"></label>
-            <input type="radio" id="star1" name="rating" value="1">
-            <label for="star1"></label>
-          </div>
-          <!-- Additional buttons -->
-          <div class="btn-group mr-2" role="group" aria-label="Button group">
-            <!-- Copy Button -->
-            <button type="button" class="btn btn-info" id="copy"><i class="fa fa-copy"></i> نسخ</button>
-            <!-- Share Button -->
-            <button type="button" class="btn btn-info" id="shareButton"><i class="fa fa-share"></i> مشاركة</button>
-            <!-- Other buttons with icons -->
-            <button type="button" class="btn btn-danger" id="signal" data-toggle="modal"   title="'إبلاغ عن خطأ'" href="#modal-container-187721"><i class="fa fa-flag"></i>{{_('إبلاغ')}}</button>
-          </div>
-        </div>
-        <div class="col-md-3 column"> <progress id="loading"></progress>
-          <!--              <div class="panel panel-default">
-               <div class="panel-heading"> ادعم مشكال</div>               <div class="panel-body"><a href="https://www.patreon.com/bePatron?u=23679540" data-patreon-widget-type="become-patron-button">ادعمنا على باتريون</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="SAEUNQU5QW834" /><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_DZ/i/scr/pixel.gif" width="1" height="1" /></form></div>--></div>
-        <section class="bg-info" id="hint"></section>
-      </div>
-    </div>
-    <div class="row clearfix">
-      <div class="col-md-9 column"> </div>
-      <div class="col-md-3 column"> </div>
-    </div>
-    <div class="container"><br>
-      <div class="row clearfix">
-        <div class="row clearfix" id="myfooter">
-          <div class="col-md-3 column" id="myprojects">
-            <div class="panel panel-default">
-              <div class="panel-body"> <a href="http://blog.tahadz.com"><span class="glyphicon glyphicon-globe"></span></span>
-              {{_('مدونتي')}}
-                     </a>
-                <!--
-                            <div class="media">-->
-                <!--
-  <div class="media-right">    <img src="resources/files/images/dreamdevdz.png" class="media-object" style="width:100px">  </div>  <div class="media-body">    <h4 class="media-heading">الاس</h4>     من شركة <a href="https://dreamdev.dz/"> DreamDev.dz    </a>  </div>
---><!--
-</div>--> <br>{{_('الاستضافة بدعم من شركة')}} <a href="https://dreamdev.dz/">
-                  DreamDev.dz<span class="glyphicon glyphicon-globe"></span></a>
-                <script>//~ var script = "%(script)s";
-        //~ var script = "http://localhost:8080";
-        //~ const script = "http://127.0.0.1/yaziji";
-        const script = "{{url_host_path}}";
-        //~ const script = "http://127.0.0.1:5000";
-    </script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
- 
-<script async="" src="{{ url_for('static', filename='resources/files/xzero-rtl/js/bootstrap-arabic.min.js')}}"></script>
-
-
-                
-                <script async="" src="{{ url_for('static',filename='resources/files/adawat.js')}}"></script> 
-<!--                <script async="" src="{{ url_for('static',filename='resources/json/translate.js')}}"></script>-->
-                  <script>
-                  // set the language path to allow translation
-                  var language_url = "{{ url_for('static',filename='resources/json/')}}";
-                </script>
-
-                
+        <!-- Language Selection Section -->
+        <section>
+            <div class="row clearfix">
+                <div class="col-md-9 column">
+                    <!-- Heading for language selection -->
+<!--                    <h4 class="text-primary">اختيار اللغة</h4>-->
+                    <!-- Language Dropdown Menu -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-language"></i> اختر اللغة
+                        </button>
+                        <div class="dropdown-menu w-100" aria-labelledby="languageDropdown">
+                            {% for language in available_languages %}
+                                <a class="dropdown-item" href="{{ url_for('home', lang=language, locale=language) }}">
+                                    {{ available_languages[language] }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
+        </section>
+
+
+
+        <!-- Sentence Generation Form Section -->
+        <section>
+            <form id="NewForm" name="NewForm" onsubmit="return false"><br>
+
+                <!-- Type of Sentence -->
+                <div>
+                    <label id="phrase_type_label" for="phrase_type">نوع الجملة:</label>
+                    <select id='phrase_type' class='form-inline' name='phrase_type'></select><br>
+                </div>
+
+                <!-- Subject -->
+                <div>
+                    <label id="subject_label" for="subject">فاعل</label>
+                    <select id='subject' class='form-inline' name='subject'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Auxiliary Verb -->
+                <div>
+                    <label id="auxiliary_label" for="auxiliary">فعل مساعد</label>
+                    <select id='auxiliary' class='form-inline' name='auxiliary'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Main Verb -->
+                <div>
+                    <label id="verb_label" for="verb">فعل:</label>
+                    <select id='verb' class='form-inline' name='verb'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Tense -->
+                <div>
+                    <label id="tense_label" for="tense">زمن:</label>
+                    <select id='tense' class='form-inline' name='tense'></select><br>
+                </div>
+
+                <!-- Voice: Active/Passive -->
+                <div>
+                    <label id="voice_label" for="voice">مبني للمعلوم/مجهول:</label>
+                    <select id='voice' class='form-inline' name='voice'></select><br>
+                </div>
+
+                <!-- Positive/Negative -->
+                <div>
+                    <label id="negative_label" for="negative">مثبت/منفي:</label>
+                    <select id='negative' class='form-inline' name='negative'></select><br>
+                </div>
+
+                <!-- Object -->
+                <div>
+                    <label id="object_label" for="object">مفعول</label>
+                    <select id='object' class='form-inline' name='object'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Time -->
+                <div>
+                    <label id="time_label" for="time">ظرف زمان:</label>
+                    <select id='time' class='form-inline' name='time'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Place -->
+                <div>
+                    <label id="place_label" for="place">ظرف مكان:</label>
+                    <select id='place' class='form-inline' name='place'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-inline">
+                    <a class="btn btn-primary" id="phrase" title="'بناء الجملة'">{{_('بناء')}}</a>
+                    <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'">{{_('عشوائي')}}</a>
+                    <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'">{{_('عينة')}}</a>
+                    <input checked="checked" class="checkbox" id="LastMark" value="1" type="checkbox" title="'إظهار حركة الإعراب في أواخر الكلمات'">
+                    {{_('حركة الإعراب')}}
+                </div>
+            </form>
+        </section>
+
+        <!-- Result Output Section -->
+        <section>
+            <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
+        </section>
+
+        <!-- Toolbar Section -->
+        <section>
+            <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with multiple buttons">
+                <div class="rating">
+                    <!-- Rating Stars -->
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                </div>
+
+                <!-- Button Group with icons -->
+                <div class="btn-group mr-2" role="group" aria-label="Button group">
+                    <button type="button" class="btn btn-info" id="copy"><i class="fa fa-copy"></i> نسخ</button>
+                    <button type="button" class="btn btn-info" id="shareButton"><i class="fa fa-share"></i> مشاركة</button>
+                    <button type="button" class="btn btn-danger" id="signal" data-toggle="modal" title="'إبلاغ عن خطأ'" href="#modal-container-187721">
+                        <i class="fa fa-flag"></i> {{_('إبلاغ')}}
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Progress Section -->
+        <section>
+            <progress id="loading"></progress>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="container">
+        <div class="row clearfix" id="myfooter">
+            <div class="col-md-3 column" id="myprojects">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="http://blog.tahadz.com">
+                            <span class="glyphicon glyphicon-globe"></span> {{_('مدونتي')}}
+                        </a>
+                        <br>
+                        {{_('الاستضافة بدعم من شركة')}}
+                        <a href="https://dreamdev.dz/">
+                            DreamDev.dz<span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                        <script>
+                            // Example script for dynamic content
+                            const script = "{{url_host_path}}";
+                        </script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script async src="{{ url_for('static', filename='resources/files/xzero-rtl/js/bootstrap-arabic.min.js')}}"></script>
+                        <script async src="{{ url_for('static', filename='resources/files/adawat.js')}}"></script>
+                        <script>
+                            // Set language path for translation
+                            var language_url = "{{ url_for('static', filename='resources/json/')}}";
+                        </script>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </footer>
+
+</body>
 </html>
