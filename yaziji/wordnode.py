@@ -114,17 +114,20 @@ class wordNode:
     def update(self, dict_word_tuple):
         wd = dict_word_tuple;
         # general attributes
-        self.vocalized = wd.get_vocalized()
+
         # Noun specitic
         if isinstance(wd, NounTuple):
+            self.vocalized = wd.get_vocalized()
             self.gender = wd.get_gender()
             self.defined = wd.is_defined()
             self.number = wd.get_number()
         elif isinstance(wd, VerbTuple):
+            self.vocalized = wd.get_vocalized()
             self.transitive = wd.is_transitive()
             self.future_type = wd.get_future_type()
         elif isinstance(wd, dict):
-            self.gender = wd.get("gender","")
+            self.vocalized = wd.get("vocalized",self.value)
+            self.gender = wd.get("gender","مذكر")
             self.defined = wd.get("defined",False)
             self.number = wd.get("number","مفرد" )
             self.transitive = wd.get("transitive", True)

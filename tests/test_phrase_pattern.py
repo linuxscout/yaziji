@@ -201,9 +201,13 @@ class TestPhrasePattern(unittest.TestCase):
             },
         ]
         for item in test_set:
-            pronoun, pronoun_aux = self.phrase.get_pronoun(item["word"], item["tense_verb"] ,item["tense_aux"],
-                                                           feminin=item["feminin"],
-                                                           number=item["number"])
+            wd = wordNode("subject", item["word"])
+            item["gender"] = "مؤنث" if item["feminin"] else "مذكر"
+            wd.update(item)
+            pronoun, pronoun_aux = self.phrase.get_pronoun(wd, item["tense_verb"] ,item["tense_aux"],
+                                                           # feminin=item["feminin"],
+                                                           # number=item["number"]
+                                                           )
             #check pronoun
             self.assertEqual(pronoun == item["pronoun"], item["valid"],
                              msg=f"Output Pronoun:'{pronoun}', word:{item['word']}\n{item}")
