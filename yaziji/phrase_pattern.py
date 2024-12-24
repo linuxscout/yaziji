@@ -35,6 +35,7 @@ from arramooz.nountuple import NounTuple
 from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
+import yz_utils
 import stream_pattern
 from wordnode import wordNode
 
@@ -130,7 +131,10 @@ class PhrasePattern:
         # extract tense
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
         # extract pronoun
-        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"].value, tense_verb, tense_aux)
+        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"].value, tense_verb, tense_aux,
+                                                     feminin=self.nodes["subject"].feminin,
+                                                     number=self.nodes["subject"].number,
+                                                     )
 
 
         # Error on pronoun and
@@ -308,33 +312,6 @@ class PhrasePattern:
             factor_verb = u"أَنْ"
             
         return tense_verb, tense_aux, factor_verb, factor_aux
-    @staticmethod
-    def equal_future_type(f_one: str, f_two: str) -> bool:
-        """
-        Test if the first form is the same as the second.
-
-        :param f_one: The first form to compare.
-        :param f_two: The second form to compare.
-        :return: True if the forms are considered equal, False otherwise.
-        """
-
-        # Define groups of equivalent diacritics
-        diacritic_groups = [
-            (araby.DAMMA, "ضمة"),
-            (araby.FATHA, "فتحة"),
-            (araby.KASRA, "كسرة")
-        ]
-
-        # Check direct equality
-        if f_one == f_two:
-            return True
-
-        # Check if both forms belong to any of the diacritic groups
-        for group in diacritic_groups:
-            if f_one in group and f_two in group:
-                return True
-
-        return False
 
     def get_verb_attributes(self, word, auxiliary = False, future_type="NA", transitive="NA"):
         """
@@ -362,7 +339,7 @@ class PhrasePattern:
             if future_type != "NA":
                 word_tuple_result_list = [
                     item for item in word_tuple_result_list
-                    if self.equal_future_type(future_type, item.get_future_type())
+                    if yz_utils.equal_future_type(future_type, item.get_future_type())
                 ]
             # filter by transitive
             if transitive != "NA":
@@ -414,8 +391,9 @@ class PhrasePattern:
                 word_tuple_result = {"vocalized": word}
         # logging.info(f"WORD: {word_tuple_result}, Found List: {foundlist}")
         return word_tuple_result
-    
-    def get_pronoun(self, word, tense_verb, tense_aux):
+
+
+    def get_pronoun(self, word, tense_verb, tense_aux, feminin=False, number=1):
         """
         get the pronoun of the word
         """
@@ -424,12 +402,18 @@ class PhrasePattern:
         if word in vconst.PronounsTable:
             pronoun = word
         else:
-            pronoun = vconst.PronounHuwa
+            pronoun = yz_utils.get_pronoun("غائب",feminin, number)
+
+        #
         pronoun_aux = pronoun
         if tense_aux in vconst.TablePassiveTense:
-            pronoun_aux = vconst.PronounHuwa
+            if feminin:
+                pronoun_aux = vconst.PronounHya
+            else:
+                pronoun_aux = vconst.PronounHuwa
         # test if the pronoun is compatible with tense
-        if (tense_verb == vconst.TenseImperative or tense_aux == vconst.TenseImperative)  and pronoun not in vconst.ImperativePronouns:
+        if not self.is_compatible(tense_verb, pronoun) and not self.is_compatible(tense_aux, pronoun_aux):
+        # if (tense_verb == vconst.TenseImperative or tense_aux == vconst.TenseImperative)  and pronoun not in vconst.ImperativePronouns:
             return False, False
         return pronoun, pronoun_aux
     

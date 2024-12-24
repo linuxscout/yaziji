@@ -34,7 +34,7 @@ class wordNode:
     """
     a word node 
     """
-    def __init__(self, name, value):
+    def __init__(self, name, value, gender="", number="", defined=False):
         """
         Init the word node with a categorical syntax such as verb, noun, adverb, and a value for this category to build a word node,
         inflect the word according to given features
@@ -47,6 +47,12 @@ class wordNode:
         # the given word must be a lemma, not a inflected form
         # for verbs, it must be fully vocalized
         self.value = value
+        # gender attribute
+        self.gender = gender  if gender else "مذكر"
+        # number attribute
+        self.number = number if number else 1
+        # defined attribute
+        self.defined = True if defined else False
         # the word form, initially use the lemma
         self.conjugated = value
         # affixes initially empty
@@ -85,7 +91,15 @@ class wordNode:
         """
         self.hidden = False
 
+    def set_gender(self, gender):
+        self.gender = gender
 
+    def set_number(self, number):
+        self.number = number
+
+    @property
+    def feminin(self):
+        return self.gender == "مؤنث"
 
         
 

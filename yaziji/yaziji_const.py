@@ -27,6 +27,50 @@ FATHA_WORD = "فتحة"
 DAMMA_WORD = "ضمة"
 KASRA_WORD = "كسرة"
 
+PRONOUNS_INDEX = {
+    'متكلم': {
+        'مذكر': {
+            'مفرد': 'أنا',
+            'جمع': 'نحن'
+        },
+        'مؤنث': {
+            'مفرد': 'أنا',
+            'جمع': 'نحن'
+        }
+    },
+    'مخاطب': {
+        'مذكر': {
+            'مفرد': 'أنت',
+            'مثنى': 'أنتما',
+            'جمع': 'أنتم'
+        },
+        'مؤنث': {
+            'مفرد': 'أنتِ',
+            'مثنى': 'أنتما مؤ',
+            'جمع': 'أنتن'
+        }
+    },
+    'غائب': {
+        'مذكر': {
+            'مفرد': 'هو',
+            'مثنى': 'هما',
+            'جمع': 'هم'
+        },
+        'مؤنث': {
+            'مفرد': 'هي',
+            'مثنى': 'هما مؤ',
+            'جمع': 'هن'
+        }
+    }
+}
+
+# Define constants for gender and number types
+GENDER_FEMALE = "مؤنث"
+GENDER_MALE = "مذكر"
+NUMBER_SINGULAR = "مفرد"
+NUMBER_DUAL = "مثنى"
+NUMBER_PLURAL = "جمع"
+
 ENCLITICS = {vconst.PronounAna : u"ني",
             vconst.PronounNahnu : u"نا",
             vconst.PronounAnta : u"ك",
