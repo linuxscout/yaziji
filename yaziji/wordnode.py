@@ -27,6 +27,8 @@ import pyarabic.araby as araby
 import alyahmor.verb_affixer
 import alyahmor.noun_affixer
 import arramooz.arabicdictionary
+from  arramooz.nountuple import NounTuple
+from  arramooz.verbtuple import VerbTuple
 
 import yaziji_const
 import stream_pattern
@@ -109,7 +111,24 @@ class wordNode:
     def is_defined(self):
         return bool(self.defined)
 
-        
+    def update(self, dict_word_tuple):
+        wd = dict_word_tuple;
+        # general attributes
+        self.vocalized = wd.get_vocalized()
+        # Noun specitic
+        if isinstance(wd, NounTuple):
+            self.gender = wd.get_gender()
+            self.defined = wd.is_defined()
+            self.number = wd.get_number()
+        elif isinstance(wd, VerbTuple):
+            self.transitive = wd.is_transitive()
+            self.future_type = wd.get_future_type()
+        elif isinstance(wd, dict):
+            self.gender = wd.get("gender","")
+            self.defined = wd.get("defined",False)
+            self.number = wd.get("number","مفرد" )
+            self.transitive = wd.get("transitive", True)
+            self.future_type = wd.get("future_type",araby.FATHA)
 
 def main(args):
     return 0

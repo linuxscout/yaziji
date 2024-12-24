@@ -61,8 +61,9 @@ class PhrasePattern:
         self.nodes = {}
         #TODO: change the list to dynamic list
         self.nodes_names = ['subject', 'object', 'verb', 'time', 'place', 'tense', 'negative', 'voice', 'auxiliary', 'phrase_type']
-        for attr in self.nodes_names:
-            self.nodes[attr] = wordNode("default", "")
+        self.nodes_names_nouns = ["subject", 'object', "place"]
+        for name  in self.nodes_names:
+            self.nodes[name] = wordNode("default", "")
 
     def add_components(self, components):
         """
@@ -118,7 +119,8 @@ class PhrasePattern:
         :return:
         """
         # مشكلة في التصريف بين الضمير وفعل الأمر
-        if  self.nodes["tense"].value == vconst.TenseImperative and self.nodes["subject"].value  not in vconst.ImperativePronouns:
+        if  (self.nodes["tense"].value == vconst.TenseImperative
+                and self.nodes["subject"].value  not in vconst.ImperativePronouns):
             return -1 # error code
         #TODO:
         # check verbs
@@ -129,31 +131,17 @@ class PhrasePattern:
         extract more data from components
         """
         # prepare the verb
-        if self.nodes["subject"].value:
-            # prepare some attributes
-            attributes = self.get_noun_attributes(self.nodes["subject"].value)
-            # set gender and number
-            self.nodes["subject"].gender = attributes.get_gender()
-            self.nodes["subject"].number = attributes.get_number()
-            self.nodes["subject"].defined = attributes.is_defined()
-            self.nodes["subject"].vocalized = attributes.get_vocalized()
-            if self.nodes["object"].value:
+        for key in self.nodes_names_nouns:
+            if self.nodes[key].value:
                 # prepare some attributes
-                attributes = self.get_noun_attributes(self.nodes["object"].value)
-                # set gender and number
-                self.nodes["object"].gender = attributes.get_gender()
-                self.nodes["object"].number = attributes.get_number()
-                self.nodes["object"].defined = attributes.is_defined()
-                self.nodes["object"].vocalized = attributes.get_vocalized()
+                attributes = self.get_noun_attributes(self.nodes[key].value)
+                # set some attributes from dictionary
+                self.nodes[key].update(attributes)
 
-            # logging.info('self.nodes["subject"] %s %s %s'%(self.nodes["subject"].value,self.nodes["subject"].number, self.nodes["subject"].gender))
         # extract tense
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
-        # extract pronoun
-        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"].value, tense_verb, tense_aux,
-                                                     feminin=self.nodes["subject"].feminin,
-                                                     number=self.nodes["subject"].number,
-                                                     )
+        # extract pronouns
+        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"], tense_verb, tense_aux)
 
 
         # Error on pronoun and
@@ -238,41 +226,41 @@ class PhrasePattern:
         if self.place_circumstance :
             word = self.place_circumstance
             self.nodes["place"].before = u"فِي"
-            self.nodes["place"].conjugated  = self.conjugate_noun(word, u"مجرور")       
-                
+            self.nodes["place"].conjugated  = self.conjugate_noun_by_tags(self.nodes["place"], tags=[MAJROUR, DEFINED])
+        # return True
 
-    def conjugate_noun(self, word, tag):
-        """
-        conjugate a word according to tag
-        """
-        enclitic = u""        
-        proclitic = u""       
-        suffix = ""
-        if tag == u"منصوب":
-            suffix = araby.FATHA
-        elif tag == u"مجرور":
-            suffix = araby.KASRA
-        elif tag == u"مرفوع":
-            suffix = araby.DAMMA
-        else:
-            suffix = araby.FATHA
-            
-        if not self.is_pronoun(word):
-            proclitic = u"ال"
-
-        if word in yaziji_const.SPECIAL_VOCALIZED:
-            voc = yaziji_const.SPECIAL_VOCALIZED[word]
-            conj = voc
-        else:
-            # get vocalized form of the word
-            noun_tuple = self.get_noun_attributes(word)
-            voc = noun_tuple.get("vocalized","")
-            forms = self.nounaffixer.vocalize(voc, proclitic, suffix, enclitic)
-            if forms:
-                conj = forms[0][0] 
-            else:
-                conj = word
-        return conj
+    # def conjugate_noun(self, word, tag):
+    #     """
+    #     conjugate a word according to tag
+    #     """
+    #     enclitic = u""
+    #     proclitic = u""
+    #     suffix = ""
+    #     if tag == u"منصوب":
+    #         suffix = araby.FATHA
+    #     elif tag == u"مجرور":
+    #         suffix = araby.KASRA
+    #     elif tag == u"مرفوع":
+    #         suffix = araby.DAMMA
+    #     else:
+    #         suffix = araby.FATHA
+    #
+    #     if not self.is_pronoun(word):
+    #         proclitic = u"ال"
+    #
+    #     if word in yaziji_const.SPECIAL_VOCALIZED:
+    #         voc = yaziji_const.SPECIAL_VOCALIZED[word]
+    #         conj = voc
+    #     else:
+    #         # get vocalized form of the word
+    #         noun_tuple = self.get_noun_attributes(word)
+    #         voc = noun_tuple.get("vocalized","")
+    #         forms = self.nounaffixer.vocalize(voc, proclitic, suffix, enclitic)
+    #         if forms:
+    #             conj = forms[0][0]
+    #         else:
+    #             conj = word
+    #     return conj
 
     def conjugate_noun_by_tags(self, word_node, tags):
         """
@@ -317,56 +305,101 @@ class PhrasePattern:
         Extract enclitic
         """
         return yaziji_const.ENCLITICS.get(pronoun,"")
-        
+
     def get_tense(self, time_word):
         """
-        Extract tense from time circomstance
+        Extract tense from time circumstance.
         """
-        # get the primary tense
-        tense = ""
-        verb_factor = u""
-        # if not time circum or is neutral
-        if not time_word or not yaziji_const.TENSES.get(time_word,""):
-            if self.nodes["tense"].value:
-                tense = self.nodes["tense"].value
-        else:
-            tense = yaziji_const.TENSES.get(time_word,"")
-        # negative
+        # Determine primary tense based on the time word
+        given_tense =  self.nodes["tense"].value
+        # if time word give tense, use it, else use given tense
+        tense = yaziji_const.TENSES.get(time_word, given_tense if given_tense else "")
+        verb_factor = ""
+
+        # Handle negative tense cases
         if self.nodes["negative"].value == u"منفي":
-            # if past the verb will be future majzum
             if tense == vconst.TensePast:
-                tense = vconst.TenseJussiveFuture
-                verb_factor = u"لَمْ"
+                tense, verb_factor = vconst.TenseJussiveFuture, u"لَمْ"
             elif tense == vconst.TenseFuture:
-                tense = vconst.TenseSubjunctiveFuture
-                verb_factor = u"لَنْ"                
-        #voice active
+                tense, verb_factor = vconst.TenseSubjunctiveFuture, u"لَنْ"
+
+        # Handle passive voice
         if self.nodes["voice"].value == u"مبني للمجهول":
-            if tense == vconst.TensePast:
-                tense = vconst.TensePassivePast
-            elif tense == vconst.TenseFuture:
-                tense = vconst.TensePassiveFuture
-            elif tense == vconst.TenseJussiveFuture:
-                tense = vconst.TensePassiveJussiveFuture
-            elif tense == vconst.TenseSubjunctiveFuture:
-                tense = vconst.TensePassiveSubjunctiveFuture
+            passive_mapping = {
+                vconst.TensePast: vconst.TensePassivePast,
+                vconst.TenseFuture: vconst.TensePassiveFuture,
+                vconst.TenseJussiveFuture: vconst.TensePassiveJussiveFuture,
+                vconst.TenseSubjunctiveFuture: vconst.TensePassiveSubjunctiveFuture,
+            }
+            tense = passive_mapping.get(tense, tense)
+
+        # Prepare auxiliary and verb tenses
         tense_aux = tense
         tense_verb = tense
         factor_aux = verb_factor
         factor_verb = verb_factor
-        
-        # verb and auxiliary
+
+        # Handle auxiliary and main verb adjustments
+        # الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
         if self.verb and self.auxiliary:
-            # auxilary and verb
-            #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
+            # Adjust the main verb for subjunctive future tense
             if self.nodes["voice"].value == u"مبني للمجهول":
                 tense_verb = vconst.TensePassiveSubjunctiveFuture
-            elif self.nodes["voice"].value:
+            else:
                 tense_verb = vconst.TenseSubjunctiveFuture
-            
             factor_verb = u"أَنْ"
-            
+
         return tense_verb, tense_aux, factor_verb, factor_aux
+
+    # def get_tense(self, time_word):
+    #     """
+    #     Extract tense from time circomstance
+    #     """
+    #     # get the primary tense
+    #     tense = ""
+    #     verb_factor = u""
+    #     # if not time circum or is neutral
+    #     if not time_word or not yaziji_const.TENSES.get(time_word,""):
+    #         if self.nodes["tense"].value:
+    #             tense = self.nodes["tense"].value
+    #     else:
+    #         tense = yaziji_const.TENSES.get(time_word,"")
+    #     # negative
+    #     if self.nodes["negative"].value == u"منفي":
+    #         # if past the verb will be future majzum
+    #         if tense == vconst.TensePast:
+    #             tense = vconst.TenseJussiveFuture
+    #             verb_factor = u"لَمْ"
+    #         elif tense == vconst.TenseFuture:
+    #             tense = vconst.TenseSubjunctiveFuture
+    #             verb_factor = u"لَنْ"
+    #     #voice active
+    #     if self.nodes["voice"].value == u"مبني للمجهول":
+    #         if tense == vconst.TensePast:
+    #             tense = vconst.TensePassivePast
+    #         elif tense == vconst.TenseFuture:
+    #             tense = vconst.TensePassiveFuture
+    #         elif tense == vconst.TenseJussiveFuture:
+    #             tense = vconst.TensePassiveJussiveFuture
+    #         elif tense == vconst.TenseSubjunctiveFuture:
+    #             tense = vconst.TensePassiveSubjunctiveFuture
+    #     tense_aux = tense
+    #     tense_verb = tense
+    #     factor_aux = verb_factor
+    #     factor_verb = verb_factor
+    #
+    #     # verb and auxiliary
+    #     if self.verb and self.auxiliary:
+    #         # auxilary and verb
+    #         #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
+    #         if self.nodes["voice"].value == u"مبني للمجهول":
+    #             tense_verb = vconst.TensePassiveSubjunctiveFuture
+    #         elif self.nodes["voice"].value:
+    #             tense_verb = vconst.TenseSubjunctiveFuture
+    #
+    #         factor_verb = u"أَنْ"
+    #
+    #     return tense_verb, tense_aux, factor_verb, factor_aux
 
     def get_verb_attributes(self, word, auxiliary = False, future_type="NA", transitive="NA"):
         """
@@ -448,12 +481,15 @@ class PhrasePattern:
         return word_tuple_result
 
 
-    def get_pronoun(self, word, tense_verb, tense_aux, feminin=False, number=1):
+    def get_pronoun(self, word_node, tense_verb, tense_aux):
         """
         get the pronoun of the word
         """
         pronoun = ""
         pronoun_aux = ""
+        word = word_node.value
+        feminin = word_node.feminin
+        number = word_node.number
         if word in vconst.PronounsTable:
             pronoun = word
         else:

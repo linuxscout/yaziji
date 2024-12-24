@@ -17,62 +17,74 @@ from yaziji.yaziji_const import FATHA_WORD, DAMMA_WORD, KASRA_WORD
 from yaziji.yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED
 
 class TestPhrasePattern(unittest.TestCase):
-
-    # @patch('alyahmor.verb_affixer.verb_affixer')
-    # @patch('alyahmor.noun_affixer.noun_affixer')
-    # @patch('arramooz.arabicdictionary.ArabicDictionary')
-    # @patch('stream_pattern.streamPattern')
     def setUp(self,):
-    # def setUp(self, MockStreamPattern, MockArabicDictionary, MockNounAffixer, MockVerbAffixer):
-        # Mocking the dependencies
-        # self.mock_verb_affixer = MockVerbAffixer.return_value
-        # self.mock_noun_affixer = MockNounAffixer.return_value
-        # self.mock_verb_dict = MockArabicDictionary.return_value
-        # self.mock_noun_dict = MockArabicDictionary.return_value
-        # self.mock_stream_pattern = MockStreamPattern.return_value
-
         # Creating instance of PhrasePattern
         self.phrase = PhrasePattern()
-
     # @unittest.skip("Test later")
     def test_add_components_valid(self):
-        components = {
-            'subject': 'هو',
-            'object': 'كتاب',
-            'verb': 'قرأ',
-            'tense': 'ماض',
-            'negative': 'منفي',
-            'voice': 'مبني للمجهول',
-            'auxiliary': 'كان',
-            'time': 'اليوم',
-            'place': 'المدرسة',
-            'phrase_type': 'جملة فعلية'
-        }
-        result = self.phrase.add_components(components)
-        self.assertTrue(result)  # Should return True if no errors
+        components_list =[ {"id":1, "components":{'subject': 'هو',
+                                    'object': 'كِتَابٌ',
+                                    'verb': 'قَرَأَ',
+                                    'time': 'كُلَّ يَوْمٍ',
+                                    'place': 'غُرْفَةٌ',
+                                    'tense': 'المضارع المعلوم',
+                                    'voice': 'معلوم',
+                                    'auxiliary': 'أَرَادَ',
+                                    'negative': 'مثبت',
+                                    'phrase_type': 'جملة فعلية'},
+                            "valid":True,
+                    },
+                    {"id": 2, "components": {'subject': 'هو',
+                                            'object': 'كِتَابٌ',
+                                            'verb': 'قَرَأَ',
+                                            'time': 'كُلَّ يَوْمٍ',
+                                            'place': 'غُرْفَةٌ',
+                                            'tense': 'المضارع المعلوم',
+                                            'voice': 'معلوم',
+                                            'auxiliary': 'أَرَادَ',
+                                            'negative': 'مثبت',
+                                            'phrase_type': 'جملة فعلية'},
+                    "valid": True,
+                    },
+            ]
+        for item in components_list:
+            result = self.phrase.add_components(item["components"])
+            self.assertTrue(result)  # Should return True if preparation is successful
 
     @unittest.skip("Test later")
-    @patch('libqutrub.classverb.VerbClass')
-    def test_prepare_valid(self, MockVerbClass):
-        # Mocking the VerbClass's behavior
-        mock_conjugate = MagicMock(return_value="مُعَرب")
-        MockVerbClass.return_value.conjugate_tense_for_pronoun = mock_conjugate
+    def test_prepare_valid(self):
+        components_list =[ {"id":1, "components":{'subject': 'هو',
+                                    'object': 'كِتَابٌ',
+                                    'verb': 'قَرَأَ',
+                                    'time': 'كُلَّ يَوْمٍ',
+                                    'place': 'غُرْفَةٌ',
+                                    'tense': 'المضارع المعلوم',
+                                    'voice': 'معلوم',
+                                    'auxiliary': 'أَرَادَ',
+                                    'negative': 'مثبت',
+                                    'phrase_type': 'جملة فعلية'},
+                            "valid":True,
+                    },
+                    {"id": 2, "components": {'subject': 'هو',
+                                            'object': 'كِتَابٌ',
+                                            'verb': 'قَرَأَ',
+                                            'time': 'كُلَّ يَوْمٍ',
+                                            'place': 'غُرْفَةٌ',
+                                            'tense': 'المضارع المعلوم',
+                                            'voice': 'معلوم',
+                                            'auxiliary': 'أَرَادَ',
+                                            'negative': 'مثبت',
+                                            'phrase_type': 'جملة فعلية'},
+                    "valid": True,
+                    },
+            ]
 
-        components = {
-            'subject': 'هو',
-            'object': 'كتاب',
-            'verb': 'قرأ',
-            'tense': 'ماض',
-            'negative': 'منفي',
-            'voice': 'مبني للمجهول',
-            'auxiliary': 'كان',
-            'time': 'اليوم',
-            'place': 'المدرسة',
-            'phrase_type': 'جملة فعلية'
-        }
-        self.phrase.add_components(components)
-        result = self.phrase.prepare()
-        self.assertTrue(result)  # Should return True if preparation is successful
+
+
+        for item in components_list:
+            self.phrase.add_components(item["components"])
+            result = self.phrase.prepare()
+            self.assertIsNone(result)  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def test_check_compatibles_invalid(self):
@@ -144,7 +156,6 @@ class TestPhrasePattern(unittest.TestCase):
                                 number = item["number"],
                                 defined=item["defined"])
             conj = self.phrase.conjugate_noun_by_tags(wordnode,item["tags"])
-            self.assertTrue(self.phrase.conjugate_noun)
             self.assertEqual(conj == item["conjugated"], item["valid"],
                              msg=f"Output Conjugated:'{conj}', word:{item['word']}\n{item}")
 
@@ -221,7 +232,7 @@ class TestPhrasePattern(unittest.TestCase):
             for attr in attr_list:
                 output = attributes.get(attr, "N/A")
                 self.assertEqual(output == item[attr], item['valid'],
-                     msg=f"word:'{item['word']}', attribute:'{attr}', output:{output}, expected:'{item[attr]}'\n{attributes}")  # Ensure it returns the vocalized form
+                     msg=f"word:'{item['word']}', attribute:'{attr}', output:{output}, expected:'{item[attr]}'\n{attributes.get_wordtype()}\n{attributes}")  # Ensure it returns the vocalized form
 
     def test_get_verb_attributes(self):
         ## test how to get valid verbs with respect of future type and transitivity
