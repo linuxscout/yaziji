@@ -21,7 +21,7 @@
 #  MA 02110-1301, USA.
 #  
 #
-from  .yaziji_const import STREAMS
+from yaziji_const import STREAMS
 class streamPattern:
     """
     a class to handle pattern stream order

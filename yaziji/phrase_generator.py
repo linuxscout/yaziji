@@ -20,9 +20,9 @@
 #  MA 02110-1301, USA.
 #  
 #
-import random
+# import random
 
-import libqutrub.verb_const as vconst
+# import libqutrub.verb_const as vconst
 
 import phrase_pattern
 import components_set

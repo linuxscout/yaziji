@@ -1,7 +1,10 @@
 import unittest
 from unittest.mock import patch
 import sys, os
-sys.path.append(os.path.join("../yaziji"))
+# Local libraries
+sys.path.append(os.path.join(os.path.dirname(__file__), "./lib"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
+sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
 from yaziji.yaziji_const import STREAMS
 from yaziji.stream_pattern import streamPattern
 

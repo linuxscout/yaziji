@@ -56,9 +56,14 @@ class wordNode:
         self.after = ""
         self.tense = ""
         # transitivity for verbs
-        self.transitive = True
+        self.transitive = "NA"
+        # future type
+        self.future_type = "NA"
+
         # if the word will be hidden
         self.hidden = False
+
+
 
     def set_null(self,):
         """

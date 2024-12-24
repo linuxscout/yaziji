@@ -19,7 +19,11 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-# 
+#
+
+import logging
+from typing import Dict, Union
+
 import libqutrub.verb_const as vconst
 import libqutrub.classverb
 import libqutrub.verb_db
@@ -27,6 +31,8 @@ import pyarabic.araby as araby
 import alyahmor.verb_affixer
 import alyahmor.noun_affixer
 import arramooz.arabicdictionary
+from arramooz.nountuple import NounTuple
+from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
 import stream_pattern
@@ -51,6 +57,7 @@ class PhrasePattern:
         self.phrase_type = ""
         # init defaul word nodes
         self.nodes = {}
+        #TODO: change the list to dynamic list
         self.nodes_names = ['subject', 'object', 'verb', 'time', 'place', 'tense', 'negative', 'voice', 'auxiliary', 'phrase_type']
         for attr in self.nodes_names:
             self.nodes[attr] = wordNode("default", "")
@@ -62,10 +69,11 @@ class PhrasePattern:
         """
         # collect informations from nodes names from given components
         for name in self.nodes_names:
+            #TODO: change components to give more attributes not only values
             self.nodes[name]  = wordNode(name, components.get(name,""))
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
-        # for example, in Nominal Phrase, the order can be
+        # for example, in Nominal Phrase, the order cacomponentsn be
         # [        "subject",
         #     "auxiliary",
         #         "negation",
@@ -75,10 +83,16 @@ class PhrasePattern:
         #         "time",
         #         ],
         if self.nodes.get("phrase_type", None) :
+            # phrase_type is given in inputs
+            # store it in phrase_type
+            # this determine the way to order phrase words
             self.phrase_type = self.nodes.get("phrase_type").value
         # get the phrase word order (stream) according to phrase type
         self.stream = stream_pattern.streamPattern(self.phrase_type)
 
+        #TODO: this should return a dynamic list to allow adding new phrase parts
+        #TODO: return all attributes
+        #TODO: why extract all this, when we can use nodes as dict
         self.subject   = self.nodes["subject"].value
         self.predicate = self.nodes["object"].value
         self.verb      = self.nodes["verb"].value
@@ -93,8 +107,9 @@ class PhrasePattern:
         response = self.check_compatibles()
         if response < 0:
             return response
-
         return True
+
+
     def check_compatibles(self):
         """
         Check if input components are compatibles
@@ -116,13 +131,16 @@ class PhrasePattern:
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
         # extract pronoun
         pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"].value, tense_verb, tense_aux)
-        
-        # Error on pronoun and 
+
+
+        # Error on pronoun and
         if not pronoun_verb:
             self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
             return False
         if self.nodes["auxiliary"].value and self.nodes["verb"].value:
-            transitive, future_type = self.get_verb_attributes(self.auxiliary, "auxiliary")            
+            ver_tuple = self.get_verb_attributes(self.auxiliary, "auxiliary")
+            transitive = ver_tuple.is_transitive()
+            future_type = ver_tuple.get_future_type()
             vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive, future_type)
             verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun_aux)
             self.nodes["auxiliary"].tense = tense_aux
@@ -132,12 +150,16 @@ class PhrasePattern:
             self.nodes["auxiliary"].hide()
         # verb
         if self.verb:
-            transitive, future_type = self.get_verb_attributes(self.verb)
+            future_type = self.nodes["verb"].future_type
+            transitive = self.nodes["verb"].transitive
+            ver_tuple = self.get_verb_attributes(self.verb, future_type=future_type, transitive=transitive)
+            transitive = ver_tuple.is_transitive()
+            future_type = ver_tuple.get_future_type()
             vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type)
             verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun_verb)
                 
             self.nodes["verb"].tense = tense_verb    
-            self.nodes["verb"].transitive = transitive    
+            # self.nodes["verb"].transitive = transitive
             self.nodes["verb"].conjugated = verb_conjugated
             self.nodes["verb"].before = factor_verb
              
@@ -286,61 +308,113 @@ class PhrasePattern:
             factor_verb = u"أَنْ"
             
         return tense_verb, tense_aux, factor_verb, factor_aux
+    @staticmethod
+    def equal_future_type(f_one: str, f_two: str) -> bool:
+        """
+        Test if the first form is the same as the second.
 
-    def get_verb_attributes(self, word, auxiliary = False):
+        :param f_one: The first form to compare.
+        :param f_two: The second form to compare.
+        :return: True if the forms are considered equal, False otherwise.
+        """
+
+        # Define groups of equivalent diacritics
+        diacritic_groups = [
+            (araby.DAMMA, "ضمة"),
+            (araby.FATHA, "فتحة"),
+            (araby.KASRA, "كسرة")
+        ]
+
+        # Check direct equality
+        if f_one == f_two:
+            return True
+
+        # Check if both forms belong to any of the diacritic groups
+        for group in diacritic_groups:
+            if f_one in group and f_two in group:
+                return True
+
+        return False
+
+    def get_verb_attributes(self, word, auxiliary = False, future_type="NA", transitive="NA"):
         """
         return transitive and future_type
         """
-        transitive = True
-        future_type = araby.FATHA
+
         
         if auxiliary:
-            transitive = True
-            future_type = yaziji_const.AUXILIARY.get(word, araby.FATHA)
-            return transitive, future_type
+            word_tuple_result = VerbTuple({"vocalized":word,
+                                 "unvocalized":araby.strip_harakat(word),
+                                 "transitive": True,
+                                 "future_type": yaziji_const.AUXILIARY.get(word, araby.FATHA)
+                                 })
+        else:
+            word_nm = araby.strip_tashkeel(word)
+            foundlist = self.verb_dict.lookup(word_nm)
+            # Convert foundlist to a list of dictionaries
+            foundlist = [VerbTuple(x) for x in foundlist]
 
-        word_nm = araby.strip_tashkeel(word)
-        foundlist = self.verb_dict.lookup(word_nm)
-        for word_tuple in foundlist:
-            word_tuple = dict(word_tuple)
-            # if found the same vocalization
-            if word == word_tuple['vocalized']:
-                transitive = word_tuple['transitive']
-                future_type = word_tuple['future_type']
-                #~ print("1-Transitive", transitive)
-                #~ print("1-future_type", future_type)                
-                break;
-        else: # no vocalization, try the first one
-            word_tuple = dict(foundlist[0])
-            # if found
-            transitive = word_tuple['transitive']
-            future_type = word_tuple['future_type']
-            #~ print("Transitive", transitive)
-            #~ print("future_type", future_type)
-            #~ print("vocalized", vocalized)
-        #~ print("verb************", word)
-        return transitive, future_type
+            # Find the first matching vocalized form
+            word_tuple_result_list = [
+                item for item in foundlist if araby.vocalizedlike(word, item.get_vocalized())
+            ]
+            # filter by future_type
+            if future_type != "NA":
+                word_tuple_result_list = [
+                    item for item in word_tuple_result_list
+                    if self.equal_future_type(future_type, item.get_future_type())
+                ]
+            # filter by transitive
+            if transitive != "NA":
+                word_tuple_result_list = [
+                    item for item in word_tuple_result_list if transitive == item.is_transitive()
+                ]
 
-    def get_noun_attributes(self, word):
-        """
-        return vocalized form
-        """
-        vocalized = word
-       
-        word_nm = araby.strip_tashkeel(word)
-        foundlist = self.noun_dict.lookup(word_nm)
-        word_tuple_res = None
-        for word_tuple in foundlist:
-            word_tuple = dict(word_tuple)
-            # if found the same vocalization
-            word_tuple_res = word_tuple
-            break
-        else: # no vocalization, try the first one
-            if foundlist:
-                word_tuple_res = dict(foundlist[0])
+            word_tuple_result = None
+            if word_tuple_result_list:
+                word_tuple_result = word_tuple_result_list[0]
             else:
-                word_tuple_res = {"vocalized":word}
-        return word_tuple_res        
+                # No matching vocalization found, use the first result if available
+                if foundlist:
+                    word_tuple_result = foundlist[0]
+                else:
+                    word_tuple_result = VerbTuple({"vocalized": word,
+                                                   "unvocalized": araby.strip_harakat(word),
+                                                   "transitive": True,
+                                                   "future_type": araby.FATHA,
+                                                   })
+
+        return word_tuple_result
+
+    def get_noun_attributes(self, word: str) -> Dict[str, Union[str, None]]:
+        """
+        Returns the vocalized form and other attributes of the given noun.
+        """
+        # Strip diacritics (tashkeel) from the word
+        word_nm = araby.strip_tashkeel(word)
+        vocalized_input = word
+        foundlist = self.noun_dict.lookup(word_nm)
+
+
+        # Convert foundlist to a list of dictionaries
+        foundlist = [NounTuple(x) for x in foundlist]
+
+        # Find the first matching vocalized form
+        word_tuple_result_list = [
+            item for item in foundlist if araby.vocalizedlike(word, item.get_vocalized())
+        ]
+        word_tuple_result = None
+        if word_tuple_result_list:
+            word_tuple_result = word_tuple_result_list[0]
+        else:
+            # No matching vocalization found, use the first result if available
+            if foundlist:
+                word_tuple_result = foundlist[0]
+            else:
+                word_tuple_result = {"vocalized": word}
+        # logging.info(f"WORD: {word_tuple_result}, Found List: {foundlist}")
+        return word_tuple_result
+    
     def get_pronoun(self, word, tense_verb, tense_aux):
         """
         get the pronoun of the word

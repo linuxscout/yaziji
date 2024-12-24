@@ -22,6 +22,11 @@
 # 
 import libqutrub.verb_const as vconst
 import pyarabic.araby as araby
+
+FATHA_WORD = "فتحة"
+DAMMA_WORD = "ضمة"
+KASRA_WORD = "كسرة"
+
 ENCLITICS = {vconst.PronounAna : u"ني",
             vconst.PronounNahnu : u"نا",
             vconst.PronounAnta : u"ك",
