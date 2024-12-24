@@ -47,6 +47,8 @@ class wordNode:
         # the given word must be a lemma, not a inflected form
         # for verbs, it must be fully vocalized
         self.value = value
+        # vocalized
+        self.vocalized = value
         # gender attribute
         self.gender = gender  if gender else "مذكر"
         # number attribute
@@ -100,6 +102,12 @@ class wordNode:
     @property
     def feminin(self):
         return self.gender == "مؤنث"
+    @property
+    def word(self):
+        return self.value
+
+    def is_defined(self):
+        return bool(self.defined)
 
         
 

@@ -12,22 +12,24 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "./lib"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
 from yaziji.phrase_pattern import PhrasePattern  # Assuming the class is in phrase_pattern.py
+from yaziji.wordnode import wordNode
 from yaziji.yaziji_const import FATHA_WORD, DAMMA_WORD, KASRA_WORD
+from yaziji.yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED
 
 class TestPhrasePattern(unittest.TestCase):
 
-    @patch('alyahmor.verb_affixer.verb_affixer')
-    @patch('alyahmor.noun_affixer.noun_affixer')
+    # @patch('alyahmor.verb_affixer.verb_affixer')
+    # @patch('alyahmor.noun_affixer.noun_affixer')
     # @patch('arramooz.arabicdictionary.ArabicDictionary')
-    @patch('stream_pattern.streamPattern')
-    def setUp(self, MockStreamPattern,  MockNounAffixer, MockVerbAffixer):
+    # @patch('stream_pattern.streamPattern')
+    def setUp(self,):
     # def setUp(self, MockStreamPattern, MockArabicDictionary, MockNounAffixer, MockVerbAffixer):
         # Mocking the dependencies
-        self.mock_verb_affixer = MockVerbAffixer.return_value
-        self.mock_noun_affixer = MockNounAffixer.return_value
+        # self.mock_verb_affixer = MockVerbAffixer.return_value
+        # self.mock_noun_affixer = MockNounAffixer.return_value
         # self.mock_verb_dict = MockArabicDictionary.return_value
         # self.mock_noun_dict = MockArabicDictionary.return_value
-        self.mock_stream_pattern = MockStreamPattern.return_value
+        # self.mock_stream_pattern = MockStreamPattern.return_value
 
         # Creating instance of PhrasePattern
         self.phrase = PhrasePattern()
@@ -121,23 +123,30 @@ class TestPhrasePattern(unittest.TestCase):
         self.assertIsInstance(phrase, str)  # Should return a string
         self.assertGreater(len(phrase), 0)  # The phrase should not be empty
 
-    @unittest.skip("Test later")
-    def test_conjugate_noun(self):
+
+    def test_conjugate_noun_by_tags(self):
         # Ensure that the method is callable and runs as expected
         test_set = [
             #valid cases
-            {"vocalized": "فَتَحَ", "future_type": FATHA_WORD, "transitive": True,"valid_future":True, "valid_trans":True,},
-            {"vocalized": "كَتَبَ", "future_type": DAMMA_WORD, "transitive": True,"valid_future":True, "valid_trans":True},
-            {"vocalized": "أَكَلَ", "future_type": DAMMA_WORD, "transitive": True,"valid_future":True, "valid_trans":True},
-            {"vocalized": "ضَرَبَ", "future_type": KASRA_WORD, "transitive": True,"valid_future":True, "valid_trans":True},
+            {"word":"كِتَابٌ", "conjugated":'الْكِتَابُ',
+             "tags":[MARFOU3, DEFINED,],
+             "number":"مفرد", "gender":"مذكر", "defined":False, "valid":True,
+             },
 
-            # invalid cases
-            {"vocalized": "جَلَسَ", "future_type": DAMMA_WORD, "transitive": False, "valid_future": False, "valid_trans":True},
-            {"vocalized": "أَكَلَ", "future_type": KASRA_WORD, "transitive": False, "valid_future": False, "valid_trans":False},
+            #Invalid cases
+            {"word": "أَحْمَدُ", "conjugated": 'الْأَحْمَدُ',
+             "tags": [MARFOU3, DEFINED, ],
+             "number": "مفرد", "gender": "مذكر", "defined": True, "valid": False,
+             },
         ]
-        item = test_set.pop()
-        self.phrase.conjugate_noun("كتاب", "مرفوع")
-        self.assertTrue(self.phrase.conjugate_noun)
+        for item in test_set:
+            wordnode = wordNode("subject", item["word"], gender= item["gender"],
+                                number = item["number"],
+                                defined=item["defined"])
+            conj = self.phrase.conjugate_noun_by_tags(wordnode,item["tags"])
+            self.assertTrue(self.phrase.conjugate_noun)
+            self.assertEqual(conj == item["conjugated"], item["valid"],
+                             msg=f"Output Conjugated:'{conj}', word:{item['word']}\n{item}")
 
     def test_get_pronoun(self,):
         # Mocking noun dictionary lookup to return predefined values
@@ -192,17 +201,27 @@ class TestPhrasePattern(unittest.TestCase):
                              msg=f"Output Auxilary Pronoun:'{pronoun}', word:'{item['word']}'\n{item}")
 
 
-    # @patch('arramooz.arabicdictionary.ArabicDictionary.lookup')
-    # def test_get_noun_attributes(self, MockLookup):
     def test_get_noun_attributes(self,):
         # Mocking noun dictionary lookup to return predefined values
         # MockLookup.return_value = [{"vocalized": "كِتَابٌ"}]
-        word = "كِتاب" #kitab
-        attr = 'vocalized'
-        expected = "كِتَابٌ"
-        attributes = self.phrase.get_noun_attributes(word)
-        output = attributes.get(attr,"N/A")
-        self.assertEqual(output,expected, msg=f"word:'{word}', attribute:'{attr}', expected:'{expected}', output:{output}\n{attributes}")  # Ensure it returns the vocalized form
+        test_set = [
+            {"word" :"كِتاب", #kitab
+            "vocalized": "كِتَابٌ","number":"مفرد","gender":"مذكر", "defined":False, "valid":True,
+             },
+            {"word" :"طاولة", #kitab
+            "vocalized": "طَاوِلَةٌ","number":"مفرد","gender":"مؤنث",  "defined":False,"valid":True,
+            },
+            {"word": "أولاد",  # kitab
+             "vocalized": "أَوْلاَدٌ", "number": "جمع تكسير", "gender": "مذكر",  "defined":False,"valid": True,
+             },
+        ]
+        attr_list = ["vocalized", "number","gender", "defined"]
+        for item in test_set:
+            attributes = self.phrase.get_noun_attributes(item["word"])
+            for attr in attr_list:
+                output = attributes.get(attr, "N/A")
+                self.assertEqual(output == item[attr], item['valid'],
+                     msg=f"word:'{item['word']}', attribute:'{attr}', output:{output}, expected:'{item[attr]}'\n{attributes}")  # Ensure it returns the vocalized form
 
     def test_get_verb_attributes(self):
         ## test how to get valid verbs with respect of future type and transitivity

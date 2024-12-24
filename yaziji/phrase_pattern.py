@@ -35,6 +35,7 @@ from arramooz.nountuple import NounTuple
 from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
+from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
@@ -128,6 +129,24 @@ class PhrasePattern:
         extract more data from components
         """
         # prepare the verb
+        if self.nodes["subject"].value:
+            # prepare some attributes
+            attributes = self.get_noun_attributes(self.nodes["subject"].value)
+            # set gender and number
+            self.nodes["subject"].gender = attributes.get_gender()
+            self.nodes["subject"].number = attributes.get_number()
+            self.nodes["subject"].defined = attributes.is_defined()
+            self.nodes["subject"].vocalized = attributes.get_vocalized()
+            if self.nodes["object"].value:
+                # prepare some attributes
+                attributes = self.get_noun_attributes(self.nodes["object"].value)
+                # set gender and number
+                self.nodes["object"].gender = attributes.get_gender()
+                self.nodes["object"].number = attributes.get_number()
+                self.nodes["object"].defined = attributes.is_defined()
+                self.nodes["object"].vocalized = attributes.get_vocalized()
+
+            # logging.info('self.nodes["subject"] %s %s %s'%(self.nodes["subject"].value,self.nodes["subject"].number, self.nodes["subject"].gender))
         # extract tense
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
         # extract pronoun
@@ -188,14 +207,18 @@ class PhrasePattern:
                 # ما لم يسم فاعله
                 # او خبر
                 elif self.nodes['voice'].value =="مبني للمجهول" and not self.nodes['auxiliary'].value:
-                    self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+                    # self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")
+                    self.nodes["object"].conjugated = self.conjugate_noun_by_tags(self.nodes["object"],
+                                                                                  tags=[MARFOU3, DEFINED])
 
                 else:
 
-                    self.nodes["object"].conjugated  = self.conjugate_noun(word, u"منصوب")       
+                    # self.nodes["object"].conjugated  = self.conjugate_noun(word, u"منصوب")
+                    self.nodes["object"].conjugated = self.conjugate_noun_by_tags(self.nodes["object"],
+                                                                                  tags=[MANSOUB, DEFINED])
             else:
                 # مبتدأ وخبر
-                self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+                self.nodes["object"].conjugated  = self.conjugate_noun_by_tags(self.nodes["object"], tags=[MARFOU3, DEFINED])
                 
         if self.subject :
             # if is there is verb
@@ -207,10 +230,10 @@ class PhrasePattern:
                     and ( self.is_pronoun(self.subject) or self.nodes['voice'].value == "مبني للمجهول")
                    ):
                     # hide the subject from stream
-                    self.nodes['subject'].hide()
+                    self.nodes["subject"].hide()
    
             # مبتدأ وخبر
-            self.nodes["subject"].conjugated  = self.conjugate_noun(word, u"مرفوع")       
+            self.nodes["subject"].conjugated  = self.conjugate_noun_by_tags(self.nodes["subject"], tags=[MARFOU3, DEFINED])
 
         if self.place_circumstance :
             word = self.place_circumstance
@@ -250,8 +273,40 @@ class PhrasePattern:
             else:
                 conj = word
         return conj
-        
-            
+
+    def conjugate_noun_by_tags(self, word_node, tags):
+        """
+        Conjugate a noun according to the given tags.
+        """
+        # Handle special cases for words like pronouns
+        vocalized = yaziji_const.SPECIAL_VOCALIZED.get(word_node.word, "")
+        if vocalized:
+            return vocalized
+
+        # Initialize affix components
+        proclitic = ""
+        enclitic = ""
+        suffix = ""
+
+        # Build proclitic for defined nouns
+        if "تعريف" in tags and not word_node.is_defined():
+            proclitic = u"ال"
+
+        # Determine suffix based on tags
+        suffix_mapping = {
+            MANSOUB: araby.FATHA,
+            MAJROUR: araby.KASRA,
+            MARFOU3: araby.DAMMA,
+        }
+        suffix = next((suffix_mapping[tag] for tag in tags if tag in suffix_mapping), araby.FATHA)
+
+        # Apply affixation and retrieve forms
+        word = word_node.value
+        forms = self.nounaffixer.vocalize(word_node.vocalized, proclitic, suffix, enclitic)
+
+        # Return the conjugated form or the original word
+        return forms[0][0] if forms else word
+
     def is_compatible(self, tense, pronoun):
         
         if tense == vconst.TenseImperative and pronoun not in vconst.ImperativePronouns:
@@ -388,7 +443,7 @@ class PhrasePattern:
             if foundlist:
                 word_tuple_result = foundlist[0]
             else:
-                word_tuple_result = {"vocalized": word}
+                word_tuple_result = NounTuple({"vocalized": word})
         # logging.info(f"WORD: {word_tuple_result}, Found List: {foundlist}")
         return word_tuple_result
 

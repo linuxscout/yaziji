@@ -70,6 +70,11 @@ GENDER_MALE = "مذكر"
 NUMBER_SINGULAR = "مفرد"
 NUMBER_DUAL = "مثنى"
 NUMBER_PLURAL = "جمع"
+NUMBER_IRRGULAR_PLURAL = "جمع تكسير"
+MARFOU3 = "مرفوع"
+MANSOUB = "منصوب"
+MAJROUR = "مجرور"
+DEFINED = "تعريف"
 
 ENCLITICS = {vconst.PronounAna : u"ني",
             vconst.PronounNahnu : u"نا",

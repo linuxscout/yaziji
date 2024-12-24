@@ -1,6 +1,6 @@
 
 from yaziji_const import PRONOUNS_INDEX, DAMMA_WORD, FATHA_WORD, KASRA_WORD
-from yaziji_const import GENDER_FEMALE, GENDER_MALE, NUMBER_SINGULAR, NUMBER_DUAL, NUMBER_PLURAL
+from yaziji_const import GENDER_FEMALE, GENDER_MALE, NUMBER_SINGULAR, NUMBER_DUAL, NUMBER_PLURAL, NUMBER_IRRGULAR_PLURAL
 from pyarabic import araby
 from typing import Union
 
@@ -26,7 +26,9 @@ def get_pronoun(person: str, feminin: bool = False, number: Union[int, str] = 1)
             number = NUMBER_SINGULAR  # Default to singular if the number is invalid
 
     # Ensure number is in the valid set of values
-    if number not in (NUMBER_SINGULAR, NUMBER_DUAL, NUMBER_PLURAL):
+    if number == NUMBER_IRRGULAR_PLURAL:
+        number = NUMBER_PLURAL
+    elif number not in (NUMBER_SINGULAR, NUMBER_DUAL, NUMBER_PLURAL):
         number = NUMBER_SINGULAR
 
     # Determine gender
