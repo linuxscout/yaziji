@@ -112,7 +112,7 @@ class TestPhrasePattern(unittest.TestCase):
         for item in components_list:
             self.phrase.add_components(item["components"])
             result = self.phrase.prepare()
-            self.assertIsNone(result)  # Should return True if preparation is successful
+            self.assertTrue(result)  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def test_check_compatibles_invalid(self):
@@ -122,10 +122,10 @@ class TestPhrasePattern(unittest.TestCase):
         tense = TenseImperative
         for pronoun in PronounsTable:
             if pronoun not in ImperativePronouns:
-                self.phrase.nodes["tense"].value = tense
+                self.phrase.phrase_features["tense"] = tense
                 self.phrase.nodes["subject"].value = pronoun
                 result = self.phrase.check_compatibles()
-                self.assertEqual(result, -1, msg=f"الزمن {tense}  غير متوافق مع الضمير {pronoun}")  # Should return -1 if incompatible
+                self.assertEqual(result, -1, msg=f"الزمن ' {tense}'  غير متوافق مع الضمير '{pronoun}'.") # Should return -1 if incompatible
 
     # @unittest.skip("Test later")
     def test_check_compatibles_valid(self):
@@ -193,14 +193,14 @@ class TestPhrasePattern(unittest.TestCase):
         test_set = [
             { "word":"كِتاب", #kitab
               "feminin":False,
-              "number":1,
+              "number":"مفرد",
                     "pronoun":'هو',  "valid":True,
                     "pronoun_aux":'هو', "valid_aux":True,
                     "tense_verb":TensePast, "tense_aux": TensePast
             },
             { "word":"أم", #kitab
               "feminin": True,
-              "number": 1,
+              "number": "مفرد",
                     "pronoun":'هي',  "valid":True,
                     "pronoun_aux":'هي', "valid_aux":True,
                     "tense_verb":TensePast, "tense_aux": TensePast
@@ -208,14 +208,14 @@ class TestPhrasePattern(unittest.TestCase):
 
             { "word":"أم", #kitab
               "feminin": True,
-              "number": 2,
+              "number": "مثنى",
                     "pronoun":'هما مؤ',  "valid":True,
                     "pronoun_aux":'هما مؤ', "valid_aux":True,
                     "tense_verb":TensePast, "tense_aux": TensePast
             },
             { "word":"أم", #kitab
               "feminin": True,
-              "number": 3,
+              "number": "جمع",
                     "pronoun":'هن',  "valid":True,
                     "pronoun_aux":'هن', "valid_aux":True,
                     "tense_verb":TensePast, "tense_aux": TensePast

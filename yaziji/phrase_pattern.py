@@ -214,83 +214,161 @@ class PhrasePattern:
         # check verbs
         return True
 
-    def prepare(self,):
+    def prepare(self):
         """
-        extract more data from components
+        Extract and prepare data from components.
         """
-        # prepare the noun type nodes
+        # Prepare noun-type nodes
         for key in self.nodes_names_nouns:
             value = self.get_node_value(key)
             if value:
-                # prepare some attributes
                 attributes = self.get_noun_attributes(value)
-                # set some attributes from dictionary
                 self.nodes[key].update(attributes)
 
-        # extract tense
-        tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.get_node_value("time"))
-        self.phrase_features["tense_verb"] = tense_verb
-        self.phrase_features["tense_aux"] = tense_aux
-        self.phrase_features["factor_verb"] = factor_verb
-        self.phrase_features["factor_aux"] = factor_aux
+        # Extract tense features
+        time_value = self.get_node_value("time")
+        tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(time_value)
+        self.phrase_features.update({
+            "tense_verb": tense_verb,
+            "tense_aux": tense_aux,
+            "factor_verb": factor_verb,
+            "factor_aux": factor_aux,
+        })
 
-        # extract pronouns
-        pronoun_verb, pronoun_aux = self.get_pronoun(self.get_node("subject"), tense_verb, tense_aux)
-        self.phrase_features["pronoun_verb"] = pronoun_verb
-        self.phrase_features["pronoun_aux"] = pronoun_aux
-        # Error on pronoun and
+        # Extract pronouns
+        subject_node = self.get_node("subject")
+        pronoun_verb, pronoun_aux = self.get_pronoun(subject_node, tense_verb, tense_aux)
+        self.phrase_features.update({
+            "pronoun_verb": pronoun_verb,
+            "pronoun_aux": pronoun_aux,
+        })
+
+        # Handle missing pronoun errors
         if not pronoun_verb:
             self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
             return False
-        if self.get_feature_value("has_auxiliary") and self.get_feature_value("has_verb"):
-            self.prepare_verb(self.nodes["auxiliary"],"auxiliary")
 
+        # Prepare auxiliary verb
+        if self.get_feature_value("has_auxiliary") and self.get_feature_value("has_verb"):
+            self.prepare_verb(self.nodes["auxiliary"], "auxiliary")
         else:
             self.nodes["auxiliary"].hide()
-        # verb
+
+        # Prepare main verb
         if self.get_feature_value("has_verb"):
-            self.prepare_verb(self.nodes["verb"],vtype="")
+            self.prepare_verb(self.nodes["verb"], vtype="")
             self.phrase_features["transitive"] = self.nodes["verb"].transitive
 
-             
-                
-            # if the object is a pronoun
-            if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.get_feature_value("voice") != PASSIVE_VOICE :
+            # Handle pronoun objects for transitive active verbs
+            if (
+                    self.is_pronoun(self.predicate)
+                    and self.nodes["verb"].transitive
+                    and self.get_feature_value("voice") != PASSIVE_VOICE
+            ):
                 v_enclitic = self.get_enclitic(self.predicate)
-                # save enclitic to be used later
-                self.nodes["verb"].encilitc = self.get_enclitic(self.predicate)
+                self.nodes["verb"].encilitc = v_enclitic
                 self.nodes["verb"].proclitic = ""
-                verb_conjugated =  self.nodes["verb"].conjugated
+                verb_conjugated = self.nodes["verb"].conjugated
                 forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
-                # seletc first one of generated forms
-                verb_conjugated = forms[0][0]
-                self.nodes["verb"].conjugated = verb_conjugated
+                self.nodes["verb"].conjugated = forms[0][0]
 
-        if self.predicate :
+        # Prepare object (predicate)
+        if self.predicate:
             self.prepare_predicate(self.nodes["object"])
 
-        if self.subject :
-            # if is there is verb
-            word = self.subject
+        # Prepare subject
+        if self.subject:
             tags = [MARFOU3, DEFINED]
-            if self.get_feature_value("has_verb"):
-                # إذا كان الضمير متصلا
-                # أو الفعل مبني للمجهول
-                if (self.phrase_type == VERBAL_PHRASE
-                    and ( self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE)
-                   ):
-                    # hide the subject from stream
-                    tags = [HIDDEN, ]
-                    # self.nodes["subject"].hide()
-   
-            # مبتدأ وخبر
-            self.nodes["subject"].conjugated  = self.conjugate_noun_by_tags(self.nodes["subject"], tags=tags)
+            if self.get_feature_value("has_verb") and self.phrase_type == VERBAL_PHRASE:
+                if self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE:
+                    tags = [HIDDEN]  # Hide the subject
+            self.nodes["subject"].conjugated = self.conjugate_noun_by_tags(self.nodes["subject"], tags=tags)
 
-        if self.place_circumstance :
-            word = self.place_circumstance
+        # Prepare place circumstance
+        if self.place_circumstance:
             self.nodes["place"].before = u"فِي"
-            self.nodes["place"].conjugated  = self.conjugate_noun_by_tags(self.nodes["place"], tags=[MAJROUR, DEFINED])
-        # return True
+            self.nodes["place"].conjugated = self.conjugate_noun_by_tags(
+                self.nodes["place"], tags=[MAJROUR, DEFINED]
+            )
+
+        return True
+
+    # def prepare(self,):
+    #     """
+    #     extract more data from components
+    #     """
+    #     # prepare the noun type nodes
+    #     for key in self.nodes_names_nouns:
+    #         value = self.get_node_value(key)
+    #         if value:
+    #             # prepare some attributes
+    #             attributes = self.get_noun_attributes(value)
+    #             # set some attributes from dictionary
+    #             self.nodes[key].update(attributes)
+    #
+    #     # extract tense
+    #     tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.get_node_value("time"))
+    #     self.phrase_features["tense_verb"] = tense_verb
+    #     self.phrase_features["tense_aux"] = tense_aux
+    #     self.phrase_features["factor_verb"] = factor_verb
+    #     self.phrase_features["factor_aux"] = factor_aux
+    #
+    #     # extract pronouns
+    #     pronoun_verb, pronoun_aux = self.get_pronoun(self.get_node("subject"), tense_verb, tense_aux)
+    #     self.phrase_features["pronoun_verb"] = pronoun_verb
+    #     self.phrase_features["pronoun_aux"] = pronoun_aux
+    #     # Error on pronoun and
+    #     if not pronoun_verb:
+    #         self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
+    #         return False
+    #     if self.get_feature_value("has_auxiliary") and self.get_feature_value("has_verb"):
+    #         self.prepare_verb(self.nodes["auxiliary"],"auxiliary")
+    #     else:
+    #         self.nodes["auxiliary"].hide()
+    #     # verb
+    #     if self.get_feature_value("has_verb"):
+    #         self.prepare_verb(self.nodes["verb"],vtype="")
+    #         self.phrase_features["transitive"] = self.nodes["verb"].transitive
+    #
+    #
+    #
+    #         # if the object is a pronoun
+    #         if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.get_feature_value("voice") != PASSIVE_VOICE :
+    #             v_enclitic = self.get_enclitic(self.predicate)
+    #             # save enclitic to be used later
+    #             self.nodes["verb"].encilitc = self.get_enclitic(self.predicate)
+    #             self.nodes["verb"].proclitic = ""
+    #             verb_conjugated =  self.nodes["verb"].conjugated
+    #             forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
+    #             # seletc first one of generated forms
+    #             verb_conjugated = forms[0][0]
+    #             self.nodes["verb"].conjugated = verb_conjugated
+    #
+    #     if self.predicate :
+    #         self.prepare_predicate(self.nodes["object"])
+    #
+    #     if self.subject :
+    #         # if is there is verb
+    #         word = self.subject
+    #         tags = [MARFOU3, DEFINED]
+    #         if self.get_feature_value("has_verb"):
+    #             # إذا كان الضمير متصلا
+    #             # أو الفعل مبني للمجهول
+    #             if (self.phrase_type == VERBAL_PHRASE
+    #                 and ( self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE)
+    #                ):
+    #                 # hide the subject from stream
+    #                 tags = [HIDDEN, ]
+    #                 # self.nodes["subject"].hide()
+    #
+    #         # مبتدأ وخبر
+    #         self.nodes["subject"].conjugated  = self.conjugate_noun_by_tags(self.nodes["subject"], tags=tags)
+    #
+    #     if self.place_circumstance :
+    #         word = self.place_circumstance
+    #         self.nodes["place"].before = u"فِي"
+    #         self.nodes["place"].conjugated  = self.conjugate_noun_by_tags(self.nodes["place"], tags=[MAJROUR, DEFINED])
+    #     # return True
 
     def prepare_predicate(self, word_node):
         """
@@ -540,8 +618,9 @@ class PhrasePattern:
         """
         pronoun = ""
         pronoun_aux = ""
-        if not isinstance(word_node, wordNode):
-            return  False, False
+        # if not isinstance(word_node, wordNode):
+        #     print("not instance", type(word_node))
+        #     return  False, False
         word = word_node.value
         feminin = word_node.feminin
         number = word_node.number
@@ -558,6 +637,7 @@ class PhrasePattern:
             else:
                 pronoun_aux = vconst.PronounHuwa
         # test if the pronoun is compatible with tense
+        # print(f" verb '{tense_verb}'-'{pronoun}', auxilairy '{tense_aux}'-'{pronoun_aux}',")
         if not self.is_compatible(tense_verb, pronoun) and not self.is_compatible(tense_aux, pronoun_aux):
         # if (tense_verb == vconst.TenseImperative or tense_aux == vconst.TenseImperative)  and pronoun not in vconst.ImperativePronouns:
             return False, False
@@ -569,32 +649,60 @@ class PhrasePattern:
         """
         return word in vconst.PronounsTable
 
-           
-        
-    def build(self,):
+    def build(self) -> str:
         """
-        build a phrase
+        Build a phrase based on the stream of word roles and their conjugated forms.
         """
-        # build phrase according to stream
-        phrase = []
-        # a strean contains the word role order in the phrase
-        for key in self.stream.__list__():
-            # each word node has conjugated form
-            wn = self.nodes.get(key, None)
-            # some words can be hidden like a pronoun for a verb
-            # أنت تلعب ==> تلعب
-            if wn and wn.value and not wn.hidden:
-                # some words generate particles  to be added before and after
-                # for example a majzoum future tense need "لم" partical
-                if wn.before:
-                    phrase.append(wn.before)
+        # Initialize an empty list to construct the phrase
+        phrase_parts = []
 
-                phrase.append(wn.conjugated) 
-                if wn.after:
-                    phrase.append(wn.after)                
-        phrase = u" ".join(phrase)
-        return phrase
-        
+        # Iterate through the word role order in the stream
+        for key in self.stream.to_list():
+            # Retrieve the corresponding word node
+            word_node = self.nodes.get(key)
+            #  some words can be hidden like a pronoun for a verb
+            #   # أنت تلعب ==> تلعب
+            # Skip if the word node is hidden or has no value
+            if word_node and word_node.value and not word_node.hidden:
+                # some words generate particles  to be added before and after
+                # for example a majzoum future tense need "لم" particalrd
+                if word_node.before:
+                    phrase_parts.append(word_node.before)
+
+                # Add the conjugated word itself
+                phrase_parts.append(word_node.conjugated)
+
+                # Add any particles or suffixes after the word
+                if word_node.after:
+                    phrase_parts.append(word_node.after)
+
+        # Join the phrase parts with spaces and return the resulting phrase
+        return " ".join(phrase_parts)
+
+    # def build(self,):
+    #     """
+    #     build a phrase
+    #     """
+    #     # build phrase according to stream
+    #     phrase = []
+    #     # a strean contains the word role order in the phrase
+    #     for key in self.stream.__list__():
+    #         # each word node has conjugated form
+    #         wn = self.nodes.get(key, None)
+    #         # some words can be hidden like a pronoun for a verb
+    #         # أنت تلعب ==> تلعب
+    #         if wn and wn.value and not wn.hidden:
+    #             # some words generate particles  to be added before and after
+    #             # for example a majzoum future tense need "لم" partical
+    #             if wn.before:
+    #                 phrase.append(wn.before)
+    #
+    #             phrase.append(wn.conjugated)
+    #             if wn.after:
+    #                 phrase.append(wn.after)
+    #     phrase = u" ".join(phrase)
+    #     return phrase
+    #
 
 def main(args):
     return 0

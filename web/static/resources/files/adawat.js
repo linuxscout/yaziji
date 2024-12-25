@@ -36,7 +36,9 @@ const phraseClick = (e) => {
     // Send data via GET request
     $.getJSON(`${prefix}/ajaxGet`, formData, (response) => {
         if (response?.result) {
-            $("#result").html(`<div class='tashkeel'>${response.result}</div>`);
+            $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
+            $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
+            ${response.result.inflection}</div>`);
         } else {
             console.error("Unexpected response:", response);
         }
@@ -164,7 +166,7 @@ const randomSelectClick = (e) => {
         "#negative",
         "#auxiliary",
         "#phrase_type",
-        "#tense",
+      //  "#tense",
         "#voice",
         "#subject"
     ];

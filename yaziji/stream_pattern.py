@@ -65,6 +65,12 @@ class streamPattern:
         """
         list of content
         """
+        return self.to_list()
+
+    def to_list(self,):
+        """
+        list of content
+        """
         return list([x for x in self.stream])
 
     def __str__(self,):

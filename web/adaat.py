@@ -93,8 +93,9 @@ class Adaat:
         Generate phrase
         """
         components = options
-        phrase = self.phraser.build(components)
-        return phrase
+        result_dict = self.phraser.build(components)
+        phrase = result_dict.get("phrase")
+        return result_dict
 
     def build_sample(self, options):
         """
