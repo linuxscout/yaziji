@@ -45,13 +45,39 @@ class TestPhrasePattern(unittest.TestCase):
                                             'negative': 'مثبت',
                                             'phrase_type': 'جملة فعلية'},
                     "valid": True,
+                     },
+
+                    {"id": 3, "components": {'subject': 'هو',
+                                            'object': 'كِتَابٌ',
+                                            'verb': 'قَرَأَ',
+                                            'time': 'كُلَّ يَوْمٍ',
+                                            'place': 'غُرْفَةٌ',
+                                            'tense': 'المضارع المعلوم',
+                                            'voice': 'معلوم',
+                                            'auxiliary': 'أَرَادَ',
+                                            'negative': 'مثبت',
+                                            #'phrase_type': 'جملة فعلية'
+                                              },
+                    "valid": False,
+                    },
+                    {"id": 4, "components": {'subject': 'هو',
+                                            'object': 'كِتَابٌ',
+                                            'verb': 'قَرَأَ',
+                                            'time': 'كُلَّ يَوْمٍ',
+                                            'place': 'غُرْفَةٌ',
+                                            'tense': 'المضارع المعلوم',
+                                            'voice': 'معلوم',
+                                            'auxiliary': 'أَرَادَ',
+                                            'negative': 'مثبت',
+                                            'phrase_type': 'جملة فعلية',
+                                            'wrong_name': 'حقل غير معروف'
+                                              },
+                    "valid": False,
                     },
             ]
         for item in components_list:
             result = self.phrase.add_components(item["components"])
-            # for node in self.phrase.nodes:
-            #     print(node.__str__())
-            self.assertFalse(result, msg=f"add components \nnames{self.phrase.nodes}\nfeatures{self.phrase.phrase_features}")  # Should return True if preparation is successful
+            self.assertEqual(result > 0,item["valid"], msg=f"add components \nnames{self.phrase.nodes}\nfeatures{self.phrase.phrase_features}")  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def test_prepare_valid(self):

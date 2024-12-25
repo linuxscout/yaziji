@@ -50,12 +50,27 @@ class PhraseGenerator:
             phrase  += "[%s]"%self.pattern.phrase_type
 
         return phrase
-
+    #
+    # def error_message(self, error_no):
+    #     if error_no == -1:
+    #         return "Imperative Tense Incompatible with pronoun"
+    #     if error_no == -2:
+    #         return "A required name not found. "
+    #     if error_no == -3:
+    #         return "Unsupported component key."
+    #     if error_no == -4:
+    #         return "ERROR: Required Phrase type is empty."
+    #     else:
+    #         return "Input Error"
     def error_message(self, error_no):
-        if error_no == -1:
-            return "Imperative Tense Incompatible with pronoun"
-        else:
-            return "Input Error"
+        error_messages = {
+            -1: "Imperative Tense Incompatible with pronoun.",
+            -2: "A required name not found.",
+            -3: "Unsupported component key.",
+            -4: "ERROR: Required Phrase type is empty.",
+        }
+        return error_messages.get(error_no, "Input Error")
+
 
 def main(args):
     return 0

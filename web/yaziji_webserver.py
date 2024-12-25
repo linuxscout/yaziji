@@ -98,7 +98,8 @@ def ajax(lang="ar"):
 
     text = args.get("text", "")
     action = args.get("action", "")
-    options = dict(request.args)
+    # remove "text" and "action" if from options
+    options = {key: value for key, value in dict(request.args).items() if key not in ["text","action"]}
     myadaat = adaat.Adaat()  # Instantiate the Adaat class
     resulttext = myadaat.do_action(text, action, options)
 

@@ -19,7 +19,7 @@ const phraseClick = (e) => {
 
     // Collect form data
     const formData = {
-        text: subject.value || "",
+        //text: subject.value || "",
         action: "phrase",
         subject: subject.value || "",
         object: document.NewForm.object.value || "",

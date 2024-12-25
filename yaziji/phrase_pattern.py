@@ -92,34 +92,25 @@ class PhrasePattern:
         """
         # collect informations from nodes names from given components
         for name in self.nodes_names:
-            #TODO: change components to give more attributes not only values
-            # if name in self.phrase_features:
-            #     self.phrase_features[name] = components.get(name, "")
-            # else:
-            #     self.nodes[name] = wordNode(name, components.get(name, ""))
-
-                # print('bame', name)
-            # print("name type", name, self.components_config.get_type(name) )
+            # check if a required name is not found
+            if self.is_required(name) and components.get(name, "") == "":
+                response = -2
+                logging.info(f"ERROR: A required name '{name}' not found. ")
+                return response
             if self.components_config.get_type(name) == "word":
-                print(self.components_config.get_type(name) )
+
                 self.nodes[name]  = wordNode(name, components.get(name,""))
             elif self.components_config.get_type(name) == "feature":
-                #TODO: remove this line
-                self.nodes[name] = wordNode(name, components.get(name, ""))
                 # save features in features table
                 self.phrase_features[name] = components.get(name, "")
-                print("feature", name, components.get(name, "") )
             else:
                 self.nodes[name] = wordNode(name, components.get(name, ""))
-        # print("Names", self.nodes_names)
-        # print("Nodes", self.nodes)
-        # for nm in self.nodes_names:
-        #     print("\n **** ****\n",str(self.nodes[nm]))
-        #
-        # print("Features:", self.phrase_features)
-        # print("components:",  components)
-        # import sys
-        # sys.exit()
+        # check for extra components not supported
+        for key in components:
+            if key not in self.nodes_names and not key in self.phrase_features:
+                response = -3
+                logging.info(f"ERROR: Unsupported component key '{key}'.")
+                return response
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
         # for example, in Nominal Phrase, the order cacomponentsn be
@@ -136,8 +127,11 @@ class PhrasePattern:
             # phrase_type is given in inputs
             # store it in phrase_type
             # this determine the way to order phrase words
-            # print("")
             self.phrase_type = self.get_feature_value("phrase_type")
+        else:
+            response = -4
+            logging.info(f"ERROR: Required Phrase type is empty'.")
+            return response
         # get the phrase word order (stream) according to phrase type
         self.stream = stream_pattern.streamPattern(self.phrase_type)
 
@@ -145,7 +139,7 @@ class PhrasePattern:
         #TODO: return all attributes
         #TODO: why extract all this, when we can use nodes as dict
         # words
-        self.subject   =  self.get_node_value("subject")
+        self.subject   = self.get_node_value("subject")
         self.predicate = self.get_node_value("object")
         self.verb      = self.get_node_value("verb")
         self.auxiliary = self.get_node_value("auxiliary")
@@ -157,12 +151,21 @@ class PhrasePattern:
         self.negative  = self.get_feature_value("negative")
         self.voice     = self.get_feature_value("voice")
 
-        
+
         #check for errors
         response = self.check_compatibles()
         if response < 0:
+            logging.info(f"ERROR: Imcompatible Subject {self.subject} and tense '{self.tense}'.")
             return response
         return True
+
+    def is_required(self,name):
+        """
+        check if name is required
+        :param name:
+        :return:
+        """
+        return self.components_config.is_required(name)
 
     def get_feature_value(self, feature, default=""):
         """
@@ -218,14 +221,9 @@ class PhrasePattern:
                 self.nodes[key].update(attributes)
 
         # extract tense
-        print(self.nodes)
-        print(self.nodes.keys())
-        # print("------------Subject ",self.nodes["subject"])
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.get_node_value("time"))
         # extract pronouns
-        print(f"Pronouns: '{self.get_node_value('subject')}', {tense_verb}, {tense_aux}")
         pronoun_verb, pronoun_aux = self.get_pronoun(self.get_node("subject"), tense_verb, tense_aux)
-        print(f"Pronouns:{pronoun_verb} {pronoun_aux}, {self.get_node_value('subject')}, {tense_verb}, {tense_aux}")
 
         # Error on pronoun and
         if not pronoun_verb:

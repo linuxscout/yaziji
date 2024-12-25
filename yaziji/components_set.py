@@ -35,17 +35,17 @@ class componentsSet:
         # components setting
         self.nodes_config= {
             # features
-            "phrase_type": {"type": "feature", "conjugable": False, "wordtype": "phrase"},
-            "tense": {"type": "feature", "conjugable": False, "wordtype": ""},
-            "voice": {"type": "feature", "conjugable": False, "wordtype": "voice"},
-            "negative": {"type": "feature", "conjugable": False, "wordtype": "negative"},
+            "phrase_type": {"type": "feature", "conjugable": False, "wordtype": "", "required":True},
+            "tense": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
+            "voice": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
+            "negative": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
             # words
-            "subject":   {"type": "word", "conjugable": True, "wordtype": "noun"},
-            "object":    {"type": "word", "conjugable": True, "wordtype": "noun"},
-            "verb":      {"type": "word", "conjugable": True, "wordtype": "verb"},
-            "auxiliary": {"type": "word", "conjugable": True, "wordtype": "verb"},
-            "time":   {"type": "word", "conjugable": False, "wordtype": "adverb"},
-            "place":  {"type": "word", "conjugable": True, "wordtype": "noun"},
+            "subject":   {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
+            "object":    {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
+            "verb":      {"type": "word", "conjugable": True, "wordtype": "verb", "required":False},
+            "auxiliary": {"type": "word", "conjugable": True, "wordtype": "verb", "required":False},
+            "time":   {"type": "word", "conjugable": False, "wordtype": "adverb", "required":False},
+            "place":  {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
         }
         self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
         self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 
@@ -165,6 +165,13 @@ class componentsSet:
         :return: The value of the feature or None if not found.
         """
         return self.nodes_config.get(key, {}).get(feature, "")
+
+    def is_required(self,key):
+        """"
+        check if teh name is required,
+
+        """
+        return self.nodes_config.get(key, {}).get("required", False)
 
     def extract_names_by_feature(self, feature, value):
         """
