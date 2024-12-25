@@ -133,7 +133,7 @@ STREAMS= {
         "place",
         "time",
         ],
-    u"جملة اسمية": [        "subject", 
+    u"جملة اسمية": ["subject",
     "auxiliary",
         "negation",
         "verb",

@@ -93,22 +93,24 @@ class PhrasePattern:
         # collect informations from nodes names from given components
         for name in self.nodes_names:
             #TODO: change components to give more attributes not only values
-            self.nodes[name] = wordNode(name, components.get(name, ""))
-            if name in self.phrase_features:
-                self.phrase_features[name] = components.get(name, "")
-                # print('bame', name)
-            # print("name type", name, self.components_config.get_type(name) )
-            # if self.components_config.get_type(name) == "word":
-            #     print(self.components_config.get_type(name) )
-            #     self.nodes[name]  = wordNode(name, components.get(name,""))
-            # elif self.components_config.get_type(name) == "feature":
-            #     #TODO: remove this line
-            #     self.nodes[name] = wordNode(name, components.get(name, ""))
-            #     # save features in features table
+            # if name in self.phrase_features:
             #     self.phrase_features[name] = components.get(name, "")
-            #     print("feature", name, components.get(name, "") )
             # else:
             #     self.nodes[name] = wordNode(name, components.get(name, ""))
+
+                # print('bame', name)
+            # print("name type", name, self.components_config.get_type(name) )
+            if self.components_config.get_type(name) == "word":
+                print(self.components_config.get_type(name) )
+                self.nodes[name]  = wordNode(name, components.get(name,""))
+            elif self.components_config.get_type(name) == "feature":
+                #TODO: remove this line
+                self.nodes[name] = wordNode(name, components.get(name, ""))
+                # save features in features table
+                self.phrase_features[name] = components.get(name, "")
+                print("feature", name, components.get(name, "") )
+            else:
+                self.nodes[name] = wordNode(name, components.get(name, ""))
         # print("Names", self.nodes_names)
         # print("Nodes", self.nodes)
         # for nm in self.nodes_names:
