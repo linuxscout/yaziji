@@ -76,7 +76,8 @@ MANSOUB = "منصوب"
 MAJROUR = "مجرور"
 DEFINED = "تعريف"
 PASSIVE_VOICE = "مبني للمجهول"
-VERBAL_PHRASE = "جملة فعلية"
+VERBAL_PHRASE  = "جملة فعلية"
+NOMINAL_PHRASE = "جملة اسمية"
 HIDDEN ="مخفي"
 
 ENCLITICS = {vconst.PronounAna : u"ني",

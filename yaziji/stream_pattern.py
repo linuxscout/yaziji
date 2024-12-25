@@ -28,13 +28,13 @@ class streamPattern:
     """
     def __init__(self, stream_type):
         # get the phrase words order from stream
+        if stream_type not in STREAMS:
+            raise KeyError("steam_pattern.py:Phrase type not exists", stream_type)
         self.type = stream_type
         self.stream = STREAMS.get(stream_type, STREAMS.get('default',{}))
         # hidden nodes on the stream order
         self.hidden = []
-        if stream_type not in STREAMS:
-            raise KeyError("steam_pattern.py:Phrase type not exists", stream_type)
-        #print(self.stream)
+
     
     def add(self, attribute, before="", after=""):
         """

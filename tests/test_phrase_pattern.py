@@ -140,29 +140,28 @@ class TestPhrasePattern(unittest.TestCase):
         #TODO: Add more imcompatible cases
 
     # @unittest.skip("Test later")
-    @patch('libqutrub.classverb.VerbClass')
-    def test_build(self, MockVerbClass):
-        mock_conjugate = MagicMock(return_value="مُعَرب")
-        MockVerbClass.return_value.conjugate_tense_for_pronoun = mock_conjugate
-
-        components = {
-            'subject': 'هو',
-            'object': 'كتاب',
-            'verb': 'قرأ',
-            'tense': 'ماض',
-            'negative': 'منفي',
-            'voice': 'مبني للمجهول',
-            'auxiliary': 'كان',
-            'time': 'اليوم',
-            'place': 'المدرسة',
-            'phrase_type': 'جملة فعلية'
-        }
-        self.phrase.add_components(components)
-        self.phrase.prepare()
-        phrase = self.phrase.build()
-        self.assertIsInstance(phrase, str)  # Should return a string
-        self.assertGreater(len(phrase), 0)  # The phrase should not be empty
-
+    def test_build(self):
+        test_set=[ {"id":1,
+                    "components":{'subject': 'تَاجِرٌ', 'object': '', 'verb': 'سَافَرَ', 'time': 'البَارِحَةَ', 'place': 'طَرِيقٌ',
+                       'tense': 'الماضي المعلوم', 'voice': 'مبني للمجهول', 'auxiliary': 'اِسْتَطَاعَ',
+                       'negative': 'منفي', 'phrase_type': 'جملة اسمية'},
+                     "phrase":"التَّاجِرُ لَمْ يُسْتَطَعْ أَنْ يُسَافَرَ فِي الطَّرِيقِ البَارِحَةَ",
+                    "valid":True,
+                    },
+                    {"id":1,
+                    "components":{'subject': 'مُهَنْدِسٌ', 'object': '', 'verb': 'اشْتَرَى', 'time': 'أَمْسِ',
+                                  'place': 'سُوقٌ', 'tense': 'الماضي المعلوم', 'voice': 'معلوم',
+                                  'auxiliary': '', 'negative': 'منفي', 'phrase_type': 'جملة فعلية'},
+                      "phrase":"لَمْ يَشْتَرِ الْمُهَنْدِسُ فِي السُّوقِ أَمْسِ",
+                      "valid":True,
+                    },
+        ]
+        for item in test_set:
+            self.phrase.add_components(item["components"])
+            self.phrase.prepare()
+            result = self.phrase.build()
+            self.assertEqual(result == item["phrase"], item["valid"],
+                            msg= f"\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
 
     def test_conjugate_noun_by_tags(self):
         # Ensure that the method is callable and runs as expected
