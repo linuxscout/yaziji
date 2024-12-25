@@ -32,6 +32,21 @@ class componentsSet:
     A class to generate random data
     """
     def __init__(self,):
+        # components setting
+        self.nodes_config= {
+            # features
+            "phrase_type": {"type": "feature", "conjugable": False, "wordtype": "phrase"},
+            "tense": {"type": "feature", "conjugable": False, "wordtype": ""},
+            "voice": {"type": "feature", "conjugable": False, "wordtype": "voice"},
+            "negative": {"type": "feature", "conjugable": False, "wordtype": "negative"},
+            # words
+            "subject":   {"type": "word", "conjugable": True, "wordtype": "noun"},
+            "object":    {"type": "word", "conjugable": True, "wordtype": "noun"},
+            "verb":      {"type": "word", "conjugable": True, "wordtype": "verb"},
+            "auxiliary": {"type": "word", "conjugable": True, "wordtype": "verb"},
+            "time":   {"type": "word", "conjugable": False, "wordtype": "adverb"},
+            "place":  {"type": "word", "conjugable": True, "wordtype": "noun"},
+        }
         self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
         self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 
         self.verbs = [ u"", u"شَرِبَ",
@@ -117,6 +132,73 @@ class componentsSet:
                 text += u"\n".join(["\t<option>%s</option>"%x for x in self.comp[key]])
                 text += u"\n</select>\n"
         return text
+
+    def get_type(self, key):
+        """
+        Retrieve the 'type' attribute for a specific key in the dictionary.
+        :param key: The key whose 'type' attribute is to be retrieved.
+        :return: The value of the 'type' attribute or None if not found.
+        """
+        return self.nodes_config.get(key, {}).get("type", "")
+
+    def get_conjugable(self, key):
+        """
+        Retrieve the 'conjugable' attribute for a specific key in the dictionary.
+        :param key: The key whose 'conjugable' attribute is to be retrieved.
+        :return: The value of the 'conjugable' attribute or None if not found.
+        """
+        return self.nodes_config.get(key, {}).get("conjugable", False)
+
+    def get_wordtype(self, key):
+        """
+        Retrieve the 'wordtype' attribute for a specific key in the dictionary.
+        :param key: The key whose 'wordtype' attribute is to be retrieved.
+        :return: The value of the 'wordtype' attribute or None if not found.
+        """
+        return self.nodes_config.get(key, {}).get("wordtype", "")
+
+    def get_feature(self, key, feature):
+        """
+        Retrieve a specific feature for a given key in the dictionary.
+        :param key: The key whose feature is to be retrieved.
+        :param feature: The name of the feature to retrieve.
+        :return: The value of the feature or None if not found.
+        """
+        return self.nodes_config.get(key, {}).get(feature, "")
+
+    def extract_names_by_feature(self, feature, value):
+        """
+        Extract all keys that have a specific feature value.
+        :param feature: The feature to filter by.
+        :param value: The value of the feature to match.
+        :return: A list of keys with the specified feature value.
+        """
+        return [key for key, attributes in self.nodes_config.items() if attributes.get(feature) == value]
+
+    def get_names_by_type(self, value):
+        """
+        Extract all keys that have a specific type value.
+        :param value: The value of the feature to match.
+        :return: A list of keys with the specified feature value.
+        """
+        return [key for key, attributes in self.nodes_config.items() if attributes.get("type") == value]
+
+    def get_names_by_wordtype(self, value):
+        """
+        Extract all keys that have a specific wordtype value.
+        :param value: The value of the feature to match.
+        :return: A list of keys with the specified feature value.
+        """
+        return [key for key, attributes in self.nodes_config.items() if attributes.get("wordtype") == value]
+
+    def get_names_by_conjugable(self, value):
+        """
+        Extract all keys that have a specific conjugable value.
+        :param value: The value of the feature to match.
+        :return: A list of keys with the specified feature value.
+        """
+        return [key for key, attributes in self.nodes_config.items() if attributes.get("conjugable") == value]
+
 def main(args):
     dataset = componentsSet()
     text = dataset.generate_select()

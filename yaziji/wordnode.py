@@ -73,7 +73,8 @@ class wordNode:
         # if the word will be hidden
         self.hidden = False
 
-
+    def __str__(self):
+        return f"name='{self.name}', value='{self.value}'"
 
     def set_null(self,):
         """

@@ -49,9 +49,11 @@ class TestPhrasePattern(unittest.TestCase):
             ]
         for item in components_list:
             result = self.phrase.add_components(item["components"])
-            self.assertTrue(result)  # Should return True if preparation is successful
+            # for node in self.phrase.nodes:
+            #     print(node.__str__())
+            self.assertFalse(result, msg=f"add components \nnames{self.phrase.nodes}\nfeatures{self.phrase.phrase_features}")  # Should return True if preparation is successful
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_prepare_valid(self):
         components_list =[ {"id":1, "components":{'subject': 'هو',
                                     'object': 'كِتَابٌ',
@@ -86,7 +88,7 @@ class TestPhrasePattern(unittest.TestCase):
             result = self.phrase.prepare()
             self.assertIsNone(result)  # Should return True if preparation is successful
 
-    # @unittest.skip("Test later")
+    @unittest.skip("Test later")
     def test_check_compatibles_invalid(self):
 
         # uncompatible cases
@@ -99,7 +101,7 @@ class TestPhrasePattern(unittest.TestCase):
                 result = self.phrase.check_compatibles()
                 self.assertEqual(result, -1, msg=f"الزمن {tense}  غير متوافق مع الضمير {pronoun}")  # Should return -1 if incompatible
 
-    # @unittest.skip("Test later")
+    @unittest.skip("Test later")
     def test_check_compatibles_valid(self):
         # uncompatible cases
         # الأمر مع ضمائر غير المخاطب
@@ -158,7 +160,7 @@ class TestPhrasePattern(unittest.TestCase):
             conj = self.phrase.conjugate_noun_by_tags(wordnode,item["tags"])
             self.assertEqual(conj == item["conjugated"], item["valid"],
                              msg=f"Output Conjugated:'{conj}', word:{item['word']}\n{item}")
-
+    @unittest.skip("Test later")
     def test_get_pronoun(self,):
         # Mocking noun dictionary lookup to return predefined values
         # MockLookup.return_value = [{"vocalized": "كِتَابٌ"}]

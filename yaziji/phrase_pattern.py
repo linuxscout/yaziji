@@ -35,17 +35,18 @@ from arramooz.nountuple import NounTuple
 from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
-from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED
+from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, PASSIVE_VOICE, VERBAL_PHRASE
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
-
+from components_set import componentsSet
 class PhrasePattern:
     """
     A class to generator
     """
     def __init__(self):
-        
+
+        # Init objects
         self.stream = stream_pattern.streamPattern("default")
         
         # a verb affixer to conjugate and affixe a verb
@@ -56,14 +57,33 @@ class PhrasePattern:
         self.verb_dict = arramooz.arabicdictionary.ArabicDictionary('verbs')
         self.noun_dict = arramooz.arabicdictionary.ArabicDictionary('nouns')
 
+        self.components_config = componentsSet()
+
         self.phrase_type = ""
         # init defaul word nodes
         self.nodes = {}
+        # init default features
+        self.phrase_features ={
+            'phrase_type':"",
+            "tense":"",
+            'negative':"",
+            "voice":"",
+            "tense_verb":"",
+            "tense_aux":"",
+            "pronoun":"",
+            "pronoun_aux":"",
+        }
         #TODO: change the list to dynamic list
-        self.nodes_names = ['subject', 'object', 'verb', 'time', 'place', 'tense', 'negative', 'voice', 'auxiliary', 'phrase_type']
-        self.nodes_names_nouns = ["subject", 'object', "place"]
+
+        self.nodes_names = ["phrase_type","subject", "object", "verb", "time", "place", "tense", "negative", "voice",  "auxiliary"]
+
+        self.nodes_names_nouns = self.components_config.get_names_by_wordtype("noun")
+
+        # init nodes
+        # prepare only nodes with word type
         for name  in self.nodes_names:
             self.nodes[name] = wordNode("default", "")
+        # prepare features nodes
 
     def add_components(self, components):
         """
@@ -73,7 +93,31 @@ class PhrasePattern:
         # collect informations from nodes names from given components
         for name in self.nodes_names:
             #TODO: change components to give more attributes not only values
-            self.nodes[name]  = wordNode(name, components.get(name,""))
+            self.nodes[name] = wordNode(name, components.get(name, ""))
+            if name in self.phrase_features:
+                self.phrase_features[name] = components.get(name, "")
+                # print('bame', name)
+            # print("name type", name, self.components_config.get_type(name) )
+            # if self.components_config.get_type(name) == "word":
+            #     print(self.components_config.get_type(name) )
+            #     self.nodes[name]  = wordNode(name, components.get(name,""))
+            # elif self.components_config.get_type(name) == "feature":
+            #     #TODO: remove this line
+            #     self.nodes[name] = wordNode(name, components.get(name, ""))
+            #     # save features in features table
+            #     self.phrase_features[name] = components.get(name, "")
+            #     print("feature", name, components.get(name, "") )
+            # else:
+            #     self.nodes[name] = wordNode(name, components.get(name, ""))
+        # print("Names", self.nodes_names)
+        # print("Nodes", self.nodes)
+        # for nm in self.nodes_names:
+        #     print("\n **** ****\n",str(self.nodes[nm]))
+        #
+        # print("Features:", self.phrase_features)
+        # print("components:",  components)
+        # import sys
+        # sys.exit()
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
         # for example, in Nominal Phrase, the order cacomponentsn be
@@ -85,26 +129,32 @@ class PhrasePattern:
         #         "place",
         #         "time",
         #         ],
-        if self.nodes.get("phrase_type", None) :
+        # if self.get_feature_value("phrase_type",VERBAL_PHRASE) :
+        if self.get_feature_value("phrase_type","") :
             # phrase_type is given in inputs
             # store it in phrase_type
             # this determine the way to order phrase words
-            self.phrase_type = self.nodes.get("phrase_type").value
+            # print("")
+            self.phrase_type = self.get_feature_value("phrase_type")
         # get the phrase word order (stream) according to phrase type
         self.stream = stream_pattern.streamPattern(self.phrase_type)
 
         #TODO: this should return a dynamic list to allow adding new phrase parts
         #TODO: return all attributes
         #TODO: why extract all this, when we can use nodes as dict
-        self.subject   = self.nodes["subject"].value
-        self.predicate = self.nodes["object"].value
-        self.verb      = self.nodes["verb"].value
-        self.tense     = self.nodes["tense"].value
-        self.negative  = self.nodes["negative"].value
-        self.voice     = self.nodes["voice"].value
-        self.auxiliary = self.nodes["auxiliary"].value
-        self.time_circumstance  = self.nodes["time"].value
-        self.place_circumstance = self.nodes["place"].value
+        # words
+        self.subject   =  self.get_node_value("subject")
+        self.predicate = self.get_node_value("object")
+        self.verb      = self.get_node_value("verb")
+        self.auxiliary = self.get_node_value("auxiliary")
+        self.time_circumstance = self.get_node_value("time")
+        self.place_circumstance = self.get_node_value("place")
+
+        #featues
+        self.tense     = self.get_feature_value("tense")
+        self.negative  = self.get_feature_value("negative")
+        self.voice     = self.get_feature_value("voice")
+
         
         #check for errors
         response = self.check_compatibles()
@@ -112,6 +162,32 @@ class PhrasePattern:
             return response
         return True
 
+    def get_feature_value(self, feature, default=""):
+        """
+        get feature value
+        :param feature:
+        :return:
+        """
+        # return self.get_node_value(feature)
+        return self.phrase_features.get(feature, default)
+
+    def get_node_value(self, name, default=""):
+        """
+        get feature value
+        :param feature:
+        :return:
+        """
+        if self.nodes.get(name, None):
+            return self.nodes.get(name, None).value
+        return default
+
+    def get_node(self, name):
+        """
+        get feature value
+        :param feature:
+        :return:
+        """
+        return  self.nodes.get(name, None)
 
     def check_compatibles(self):
         """
@@ -119,8 +195,8 @@ class PhrasePattern:
         :return:
         """
         # مشكلة في التصريف بين الضمير وفعل الأمر
-        if  (self.nodes["tense"].value == vconst.TenseImperative
-                and self.nodes["subject"].value  not in vconst.ImperativePronouns):
+        if  (self.get_feature_value("tense") == vconst.TenseImperative
+                and  self.get_node_value("subject")  not in vconst.ImperativePronouns):
             return -1 # error code
         #TODO:
         # check verbs
@@ -130,25 +206,30 @@ class PhrasePattern:
         """
         extract more data from components
         """
-        # prepare the verb
+        # prepare the noun type nodes
         for key in self.nodes_names_nouns:
-            if self.nodes[key].value:
+            value = self.get_node_value(key)
+            if value:
                 # prepare some attributes
-                attributes = self.get_noun_attributes(self.nodes[key].value)
+                attributes = self.get_noun_attributes(value)
                 # set some attributes from dictionary
                 self.nodes[key].update(attributes)
 
         # extract tense
-        tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.nodes["time"].value)
+        print(self.nodes)
+        print(self.nodes.keys())
+        # print("------------Subject ",self.nodes["subject"])
+        tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.get_node_value("time"))
         # extract pronouns
-        pronoun_verb, pronoun_aux = self.get_pronoun(self.nodes["subject"], tense_verb, tense_aux)
-
+        print(f"Pronouns: '{self.get_node_value('subject')}', {tense_verb}, {tense_aux}")
+        pronoun_verb, pronoun_aux = self.get_pronoun(self.get_node("subject"), tense_verb, tense_aux)
+        print(f"Pronouns:{pronoun_verb} {pronoun_aux}, {self.get_node_value('subject')}, {tense_verb}, {tense_aux}")
 
         # Error on pronoun and
         if not pronoun_verb:
             self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
             return False
-        if self.nodes["auxiliary"].value and self.nodes["verb"].value:
+        if self.get_node_value("auxiliary") and self.get_node_value("verb"):
             ver_tuple = self.get_verb_attributes(self.auxiliary, "auxiliary")
             transitive = ver_tuple.is_transitive()
             future_type = ver_tuple.get_future_type()
@@ -176,7 +257,7 @@ class PhrasePattern:
              
                 
             # if the object is a pronoun
-            if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.nodes["voice"].value != u"مبني للمجهول" :
+            if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.get_feature_value("voice") != PASSIVE_VOICE :
                 v_enclitic = self.get_enclitic(self.predicate)
                 #~ self.verb_conjugated += "-" + v_enclitic
                 forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
@@ -186,15 +267,15 @@ class PhrasePattern:
         if self.predicate :
             # if is there a verb
             word = self.predicate
-            if self.nodes['verb'].value:
+            if self.get_feature_value("negative"):
                 # إذا كان الضمير متصلا
                 # أو الفعل لازما
-                if self.is_pronoun(self.predicate) or not self.nodes['verb'].transitive:
+                if self.is_pronoun(self.predicate) or not self.nodes["verb"].transitive:
                     self.nodes["object"].set_null()
                 # إذا كان مبنيا للمجهول
                 # ما لم يسم فاعله
                 # او خبر
-                elif self.nodes['voice'].value =="مبني للمجهول" and not self.nodes['auxiliary'].value:
+                elif self.get_feature_value("voice") ==PASSIVE_VOICE and not self.get_node_value("auxiliary"):
                     # self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")
                     self.nodes["object"].conjugated = self.conjugate_noun_by_tags(self.nodes["object"],
                                                                                   tags=[MARFOU3, DEFINED])
@@ -211,11 +292,11 @@ class PhrasePattern:
         if self.subject :
             # if is there is verb
             word = self.subject
-            if self.nodes['verb'].value:
+            if self.get_node_value("verb"):
                 # إذا كان الضمير متصلا
                 # أو الفعل مبني للمجهول
-                if (self.phrase_type == "جملة فعلية"
-                    and ( self.is_pronoun(self.subject) or self.nodes['voice'].value == "مبني للمجهول")
+                if (self.phrase_type == VERBAL_PHRASE
+                    and ( self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE)
                    ):
                     # hide the subject from stream
                     self.nodes["subject"].hide()
@@ -311,20 +392,20 @@ class PhrasePattern:
         Extract tense from time circumstance.
         """
         # Determine primary tense based on the time word
-        given_tense =  self.nodes["tense"].value
+        given_tense =  self.get_feature_value("tense")
         # if time word give tense, use it, else use given tense
         tense = yaziji_const.TENSES.get(time_word, given_tense if given_tense else "")
         verb_factor = ""
 
         # Handle negative tense cases
-        if self.nodes["negative"].value == u"منفي":
+        if self.get_feature_value("negative") == u"منفي":
             if tense == vconst.TensePast:
                 tense, verb_factor = vconst.TenseJussiveFuture, u"لَمْ"
             elif tense == vconst.TenseFuture:
                 tense, verb_factor = vconst.TenseSubjunctiveFuture, u"لَنْ"
 
         # Handle passive voice
-        if self.nodes["voice"].value == u"مبني للمجهول":
+        if self.get_feature_value("voice") == PASSIVE_VOICE:
             passive_mapping = {
                 vconst.TensePast: vconst.TensePassivePast,
                 vconst.TenseFuture: vconst.TensePassiveFuture,
@@ -343,7 +424,7 @@ class PhrasePattern:
         # الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
         if self.verb and self.auxiliary:
             # Adjust the main verb for subjunctive future tense
-            if self.nodes["voice"].value == u"مبني للمجهول":
+            if self.get_feature_value("voice") == PASSIVE_VOICE:
                 tense_verb = vconst.TensePassiveSubjunctiveFuture
             else:
                 tense_verb = vconst.TenseSubjunctiveFuture
@@ -351,55 +432,7 @@ class PhrasePattern:
 
         return tense_verb, tense_aux, factor_verb, factor_aux
 
-    # def get_tense(self, time_word):
-    #     """
-    #     Extract tense from time circomstance
-    #     """
-    #     # get the primary tense
-    #     tense = ""
-    #     verb_factor = u""
-    #     # if not time circum or is neutral
-    #     if not time_word or not yaziji_const.TENSES.get(time_word,""):
-    #         if self.nodes["tense"].value:
-    #             tense = self.nodes["tense"].value
-    #     else:
-    #         tense = yaziji_const.TENSES.get(time_word,"")
-    #     # negative
-    #     if self.nodes["negative"].value == u"منفي":
-    #         # if past the verb will be future majzum
-    #         if tense == vconst.TensePast:
-    #             tense = vconst.TenseJussiveFuture
-    #             verb_factor = u"لَمْ"
-    #         elif tense == vconst.TenseFuture:
-    #             tense = vconst.TenseSubjunctiveFuture
-    #             verb_factor = u"لَنْ"
-    #     #voice active
-    #     if self.nodes["voice"].value == u"مبني للمجهول":
-    #         if tense == vconst.TensePast:
-    #             tense = vconst.TensePassivePast
-    #         elif tense == vconst.TenseFuture:
-    #             tense = vconst.TensePassiveFuture
-    #         elif tense == vconst.TenseJussiveFuture:
-    #             tense = vconst.TensePassiveJussiveFuture
-    #         elif tense == vconst.TenseSubjunctiveFuture:
-    #             tense = vconst.TensePassiveSubjunctiveFuture
-    #     tense_aux = tense
-    #     tense_verb = tense
-    #     factor_aux = verb_factor
-    #     factor_verb = verb_factor
-    #
-    #     # verb and auxiliary
-    #     if self.verb and self.auxiliary:
-    #         # auxilary and verb
-    #         #الفعل المساعد يأخذ التصريف والفعل الأصلي يصبح مضارعا منصوبا
-    #         if self.nodes["voice"].value == u"مبني للمجهول":
-    #             tense_verb = vconst.TensePassiveSubjunctiveFuture
-    #         elif self.nodes["voice"].value:
-    #             tense_verb = vconst.TenseSubjunctiveFuture
-    #
-    #         factor_verb = u"أَنْ"
-    #
-    #     return tense_verb, tense_aux, factor_verb, factor_aux
+
 
     def get_verb_attributes(self, word, auxiliary = False, future_type="NA", transitive="NA"):
         """
@@ -487,6 +520,8 @@ class PhrasePattern:
         """
         pronoun = ""
         pronoun_aux = ""
+        if not isinstance(word_node, wordNode):
+            return  False, False
         word = word_node.value
         feminin = word_node.feminin
         number = word_node.number
