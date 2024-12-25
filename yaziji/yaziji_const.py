@@ -77,6 +77,7 @@ MAJROUR = "مجرور"
 DEFINED = "تعريف"
 PASSIVE_VOICE = "مبني للمجهول"
 VERBAL_PHRASE = "جملة فعلية"
+HIDDEN ="مخفي"
 
 ENCLITICS = {vconst.PronounAna : u"ني",
             vconst.PronounNahnu : u"نا",

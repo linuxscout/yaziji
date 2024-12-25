@@ -36,6 +36,7 @@ from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
 from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, PASSIVE_VOICE, VERBAL_PHRASE
+from yaziji_const import HIDDEN
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
@@ -70,8 +71,10 @@ class PhrasePattern:
             "voice":"",
             "tense_verb":"",
             "tense_aux":"",
-            "pronoun":"",
+            "pronoun_verb":"",
             "pronoun_aux":"",
+            "factor_verb":"",
+            "factor_aux":"",
         }
         #TODO: change the list to dynamic list
 
@@ -150,6 +153,10 @@ class PhrasePattern:
         self.tense     = self.get_feature_value("tense")
         self.negative  = self.get_feature_value("negative")
         self.voice     = self.get_feature_value("voice")
+        self.phrase_features["has_verb"]       = bool(self.get_node_value("verb"))
+        self.phrase_features["has_auxiliary"]  = bool(self.get_node_value("auxiliary"))
+        self.phrase_features["transitive"]  = True
+
 
 
         #check for errors
@@ -222,87 +229,62 @@ class PhrasePattern:
 
         # extract tense
         tense_verb, tense_aux, factor_verb, factor_aux = self.get_tense(self.get_node_value("time"))
+        self.phrase_features["tense_verb"] = tense_verb
+        self.phrase_features["tense_aux"] = tense_aux
+        self.phrase_features["factor_verb"] = factor_verb
+        self.phrase_features["factor_aux"] = factor_aux
+
         # extract pronouns
         pronoun_verb, pronoun_aux = self.get_pronoun(self.get_node("subject"), tense_verb, tense_aux)
-
+        self.phrase_features["pronoun_verb"] = pronoun_verb
+        self.phrase_features["pronoun_aux"] = pronoun_aux
         # Error on pronoun and
         if not pronoun_verb:
             self.nodes["verb"].conjugated = "[ImperativeError Pronoun]"
             return False
-        if self.get_node_value("auxiliary") and self.get_node_value("verb"):
-            ver_tuple = self.get_verb_attributes(self.auxiliary, "auxiliary")
-            transitive = ver_tuple.is_transitive()
-            future_type = ver_tuple.get_future_type()
-            vbc_aux = libqutrub.classverb.VerbClass(self.auxiliary, transitive, future_type)
-            verb_aux = vbc_aux.conjugate_tense_for_pronoun(tense_aux, pronoun_aux)
-            self.nodes["auxiliary"].tense = tense_aux
-            self.nodes["auxiliary"].conjugated = verb_aux
-            self.nodes["auxiliary"].before = factor_aux
+        if self.get_feature_value("has_auxiliary") and self.get_feature_value("has_verb"):
+            self.prepare_verb(self.nodes["auxiliary"],"auxiliary")
+
         else:
             self.nodes["auxiliary"].hide()
         # verb
-        if self.verb:
-            future_type = self.nodes["verb"].future_type
-            transitive = self.nodes["verb"].transitive
-            ver_tuple = self.get_verb_attributes(self.verb, future_type=future_type, transitive=transitive)
-            transitive = ver_tuple.is_transitive()
-            future_type = ver_tuple.get_future_type()
-            vbc = libqutrub.classverb.VerbClass(self.verb, transitive,future_type)
-            verb_conjugated = vbc.conjugate_tense_for_pronoun(tense_verb, pronoun_verb)
-                
-            self.nodes["verb"].tense = tense_verb    
-            # self.nodes["verb"].transitive = transitive
-            self.nodes["verb"].conjugated = verb_conjugated
-            self.nodes["verb"].before = factor_verb
+        if self.get_feature_value("has_verb"):
+            self.prepare_verb(self.nodes["verb"],vtype="")
+            self.phrase_features["transitive"] = self.nodes["verb"].transitive
+
              
                 
             # if the object is a pronoun
             if self.is_pronoun(self.predicate) and  self.nodes["verb"].transitive and self.get_feature_value("voice") != PASSIVE_VOICE :
                 v_enclitic = self.get_enclitic(self.predicate)
-                #~ self.verb_conjugated += "-" + v_enclitic
+                # save enclitic to be used later
+                self.nodes["verb"].encilitc = self.get_enclitic(self.predicate)
+                self.nodes["verb"].proclitic = ""
+                verb_conjugated =  self.nodes["verb"].conjugated
                 forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
+                # seletc first one of generated forms
                 verb_conjugated = forms[0][0]
                 self.nodes["verb"].conjugated = verb_conjugated
 
         if self.predicate :
-            # if is there a verb
-            word = self.predicate
-            if self.get_feature_value("negative"):
-                # إذا كان الضمير متصلا
-                # أو الفعل لازما
-                if self.is_pronoun(self.predicate) or not self.nodes["verb"].transitive:
-                    self.nodes["object"].set_null()
-                # إذا كان مبنيا للمجهول
-                # ما لم يسم فاعله
-                # او خبر
-                elif self.get_feature_value("voice") ==PASSIVE_VOICE and not self.get_node_value("auxiliary"):
-                    # self.nodes["object"].conjugated  = self.conjugate_noun(word, u"مرفوع")
-                    self.nodes["object"].conjugated = self.conjugate_noun_by_tags(self.nodes["object"],
-                                                                                  tags=[MARFOU3, DEFINED])
+            self.prepare_predicate(self.nodes["object"])
 
-                else:
-
-                    # self.nodes["object"].conjugated  = self.conjugate_noun(word, u"منصوب")
-                    self.nodes["object"].conjugated = self.conjugate_noun_by_tags(self.nodes["object"],
-                                                                                  tags=[MANSOUB, DEFINED])
-            else:
-                # مبتدأ وخبر
-                self.nodes["object"].conjugated  = self.conjugate_noun_by_tags(self.nodes["object"], tags=[MARFOU3, DEFINED])
-                
         if self.subject :
             # if is there is verb
             word = self.subject
-            if self.get_node_value("verb"):
+            tags = [MARFOU3, DEFINED]
+            if self.get_feature_value("has_verb"):
                 # إذا كان الضمير متصلا
                 # أو الفعل مبني للمجهول
                 if (self.phrase_type == VERBAL_PHRASE
                     and ( self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE)
                    ):
                     # hide the subject from stream
-                    self.nodes["subject"].hide()
+                    tags = [HIDDEN, ]
+                    # self.nodes["subject"].hide()
    
             # مبتدأ وخبر
-            self.nodes["subject"].conjugated  = self.conjugate_noun_by_tags(self.nodes["subject"], tags=[MARFOU3, DEFINED])
+            self.nodes["subject"].conjugated  = self.conjugate_noun_by_tags(self.nodes["subject"], tags=tags)
 
         if self.place_circumstance :
             word = self.place_circumstance
@@ -310,43 +292,81 @@ class PhrasePattern:
             self.nodes["place"].conjugated  = self.conjugate_noun_by_tags(self.nodes["place"], tags=[MAJROUR, DEFINED])
         # return True
 
-    # def conjugate_noun(self, word, tag):
-    #     """
-    #     conjugate a word according to tag
-    #     """
-    #     enclitic = u""
-    #     proclitic = u""
-    #     suffix = ""
-    #     if tag == u"منصوب":
-    #         suffix = araby.FATHA
-    #     elif tag == u"مجرور":
-    #         suffix = araby.KASRA
-    #     elif tag == u"مرفوع":
-    #         suffix = araby.DAMMA
-    #     else:
-    #         suffix = araby.FATHA
-    #
-    #     if not self.is_pronoun(word):
-    #         proclitic = u"ال"
-    #
-    #     if word in yaziji_const.SPECIAL_VOCALIZED:
-    #         voc = yaziji_const.SPECIAL_VOCALIZED[word]
-    #         conj = voc
-    #     else:
-    #         # get vocalized form of the word
-    #         noun_tuple = self.get_noun_attributes(word)
-    #         voc = noun_tuple.get("vocalized","")
-    #         forms = self.nounaffixer.vocalize(voc, proclitic, suffix, enclitic)
-    #         if forms:
-    #             conj = forms[0][0]
-    #         else:
-    #             conj = word
-    #     return conj
+    def prepare_predicate(self, word_node):
+        """
+        :return:
+        """
+        # if is there a verb
+        word = self.predicate
+        if self.get_feature_value("has_verb"):
+            # إذا كان الضمير متصلا
+            # أو الفعل لازما
+            if self.is_pronoun(self.predicate) or not self.get_feature_value("transitive"):
+                # word_node.set_null()
+                word_node.hide()
+                tags = [HIDDEN]
+            # إذا كان مبنيا للمجهول
+            # ما لم يسم فاعله
+            # او خبر
+            elif self.get_feature_value("voice") == PASSIVE_VOICE and not self.get_feature_value("has_auxiliary"):
+                # word_node.conjugated  = self.conjugate_noun(word, u"مرفوع")
+                # word_node.conjugated = self.conjugate_noun_by_tags(word_node,
+                #                                                               tags=[MARFOU3, DEFINED])
+                tags = [MARFOU3, DEFINED]
+            else:
+
+                # word_node.conjugated  = self.conjugate_noun(word, u"منصوب")
+                # word_node.conjugated = self.conjugate_noun_by_tags(word_node,
+                #                                                               tags=[MANSOUB, DEFINED])
+                tags=[MANSOUB, DEFINED]
+        else:
+            # مبتدأ وخبر
+            # word_node.conjugated  = self.conjugate_noun_by_tags(word_node, tags=[MARFOU3, DEFINED])
+            tags = [MARFOU3, DEFINED]
+        word_node.tags = tags
+        word_node.conjugated  = self.conjugate_noun_by_tags(word_node, tags)
+
+    def prepare_verb(self, wordnode , vtype=""):
+        """
+        prepare verb to be conjugated
+        :param wordnode: 
+        :param vtype:
+        :return: 
+        """
+
+        future_type = wordnode.future_type
+        transitive = wordnode.transitive
+        ver_tuple = self.get_verb_attributes(wordnode.value, future_type=future_type, transitive=transitive,
+                                             auxiliary= bool(vtype == "auxiliary"))
+        transitive  = ver_tuple.is_transitive()
+        future_type = ver_tuple.get_future_type()
+        vocalized   = ver_tuple.get_vocalized()
+
+        # add suffix to get auxiliary features
+        suffix = "_aux" if vtype == "auxiliary" else "_verb"
+        tense = self.get_feature_value("tense"+suffix)
+        pronoun = self.get_feature_value("pronoun"+suffix)
+        factor = self.get_feature_value("factor"+suffix)
+        #conjugation
+        # to move
+        vbc = libqutrub.classverb.VerbClass(vocalized, transitive, future_type)
+        conj = vbc.conjugate_tense_for_pronoun(tense,pronoun)
+        # print(f"vbc {conj}, {suffix}, {vocalized}, '{pronoun}', {tense} feature aux {self.get_feature_value('tense_aux')}")
+        # save attributes
+        wordnode.tense = tense
+        wordnode.conjugated = conj
+        wordnode.before = factor
+        wordnode.transitive = transitive
+        wordnode.future_type = future_type
+        wordnode.pronoun = pronoun
 
     def conjugate_noun_by_tags(self, word_node, tags):
         """
         Conjugate a noun according to the given tags.
         """
+        if HIDDEN in word_node.tags or HIDDEN in tags:
+            word_node.hide()
+            return ""
         # Handle special cases for words like pronouns
         vocalized = yaziji_const.SPECIAL_VOCALIZED.get(word_node.word, "")
         if vocalized:

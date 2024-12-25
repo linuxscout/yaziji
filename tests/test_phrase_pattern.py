@@ -114,7 +114,7 @@ class TestPhrasePattern(unittest.TestCase):
             result = self.phrase.prepare()
             self.assertIsNone(result)  # Should return True if preparation is successful
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_check_compatibles_invalid(self):
 
         # uncompatible cases
@@ -127,7 +127,7 @@ class TestPhrasePattern(unittest.TestCase):
                 result = self.phrase.check_compatibles()
                 self.assertEqual(result, -1, msg=f"الزمن {tense}  غير متوافق مع الضمير {pronoun}")  # Should return -1 if incompatible
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_check_compatibles_valid(self):
         # uncompatible cases
         # الأمر مع ضمائر غير المخاطب
@@ -139,7 +139,7 @@ class TestPhrasePattern(unittest.TestCase):
             self.assertTrue(result, msg=f"الزمن {tense}  متوافق مع الضمير {pronoun}")  # Should return True if compatible
         #TODO: Add more imcompatible cases
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     @patch('libqutrub.classverb.VerbClass')
     def test_build(self, MockVerbClass):
         mock_conjugate = MagicMock(return_value="مُعَرب")
@@ -186,7 +186,7 @@ class TestPhrasePattern(unittest.TestCase):
             conj = self.phrase.conjugate_noun_by_tags(wordnode,item["tags"])
             self.assertEqual(conj == item["conjugated"], item["valid"],
                              msg=f"Output Conjugated:'{conj}', word:{item['word']}\n{item}")
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_get_pronoun(self,):
         # Mocking noun dictionary lookup to return predefined values
         # MockLookup.return_value = [{"vocalized": "كِتَابٌ"}]

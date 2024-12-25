@@ -59,12 +59,20 @@ class wordNode:
         self.defined = True if defined else False
         # the word form, initially use the lemma
         self.conjugated = value
+        # used for conjugation
+        self.tags = []
+
         # affixes initially empty
         self.prefix = ""
         self.suffix = ""
         self.before = ""
         self.after = ""
+
+
+
+        # used for verbs
         self.tense = ""
+        self.pronoun = ""
         # transitivity for verbs
         self.transitive = "NA"
         # future type
