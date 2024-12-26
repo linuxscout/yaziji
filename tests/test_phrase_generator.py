@@ -62,7 +62,7 @@ class TestPhraseGenerator(unittest.TestCase):
                                   'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
                       # "phrase":"Imperative Tense Incompatible with pronoun.",
                       "phrase":"",
-                      "error":"Error received -1: ERROR: Imcompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
+                      "error":"Error received -1: ERROR: Incompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
                       "valid":True,
                     },
         ]
