@@ -32,7 +32,10 @@ sys.path.append(os.path.join("../yaziji"))
 
 import phrase_generator
 import components_set
+import json
+DEFAULT_FILE = os.path.join(os.path.dirname(__file__), "samples/samples40.json")
 
+from utils import open_file
 def grabargs():
     parser = argparse.ArgumentParser(description='Test Yaziji phrase generateor.')
     # add file name to import and filename to export
@@ -49,14 +52,21 @@ def grabargs():
     args = parser.parse_args()
     return args
     
-def build_phrase(options):        
+def build_phrase(options):
+    """
+    return a dict
+    :param options:
+    :return:
+    """
     options = dict(options)
     phraser = phrase_generator.PhraseGenerator()
     components = options
-    phrase = phraser.build(components)
-    print(u"".join(["<%s>"%x for x in components.values()]))
-    print(phraser.pattern.stream.__str__())
-    return phrase
+    result = phraser.build(components)
+    phrase = result.get("phrase")
+    # print(u"".join(["<%s>"%x for x in components.values()]))
+    # print(phraser.pattern.stream.__str__())
+    # return phrase
+    return result
 
 def get_data():
     """
@@ -83,6 +93,49 @@ def show(data):
     print(dict(data))
     return "inside data"
 
+
+def read_data(infile):
+    # tests data from file or from data set
+    if not infile:
+        infile = DEFAULT_FILE
+    dataset = open_file(infile)
+    if dataset is None:
+        dataset = get_data()
+        dataset = pd.DataFrame(dataset)
+    return dataset
+
+def treat_data(df, command, infile):
+    """
+    treat data
+    :param df:
+    :param command:
+    :param infile:
+    :return:
+    """
+    # df["output"] = df.apply(build_phrase, axis=1)
+    # if command == "test" and infile:
+    #     df["eval"] = df.apply(lambda x: x['target'] == x["output"], axis=1)
+    # return df
+    # Columns to exclude
+    exclude_columns = ['phrase', 'inflection', 'errors', "valid"]
+
+    # Select columns except the excluded ones
+    columns_to_apply = df.columns.difference(exclude_columns)
+
+    # Apply an operation (e.g., multiply by 2) on the selected columns
+    # df["output"] = df[columns_to_apply].apply(build_phrase, axis=1)
+    result = df[columns_to_apply].apply(build_phrase, axis=1)
+    # Convert the resulting Series of dicts into a DataFrame and concatenate
+    expanded_columns = pd.DataFrame(result.tolist())
+    # Add a prefix to column names
+    expanded_columns = expanded_columns.add_prefix("out_")
+    df = pd.concat([df, expanded_columns], axis=1)
+
+    if command == "test":
+        df["eval"] = df.apply(lambda x: x['phrase'] == x["out_phrase"], axis=1)
+    return df
+
+
 def main(args):
     args = grabargs()
     command = args.command
@@ -97,26 +150,19 @@ def main(args):
         dataset = compo.get_random(10)
         df = pd.DataFrame(dataset)        
     else:
-        
-        # tests data from file or from data set
-        if not infile:
-            dataset = get_data()
-            df = pd.DataFrame(dataset)            
-        else:
-            # read data set from file
-            df = pd.read_csv(infile,encoding="utf8", delimiter="\t", index_col=0)
-       
+        # read data from file or return a defined data
+        df = read_data(infile)
     # avoid NaN values
-    df.fillna('', inplace=True)  
-    df["output"] = df.apply(build_phrase, axis = 1)
-    if command ==  "test" and infile:
-        df["eval"] = df.apply(lambda x: x['target']==x["output"],axis=1)
+    df = treat_data(df, command, infile)
+    # df["output"] = df.apply(build_phrase, axis = 1)
+    # if command ==  "test" and infile:
+    #     df["eval"] = df.apply(lambda x: x['target']==x["output"],axis=1)
      
     # pandas
     if outfile:
-        #~ df = pd.DataFrame(dataset)
-        #~ df["output"] = df.apply(build_phrase, axis = 1)
         df.to_csv(outfile, encoding="utf8", sep="\t")
+    else:
+        print(df)
     return 0
 
 if __name__ == '__main__':

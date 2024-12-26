@@ -24,7 +24,7 @@
 import os.path
 import sys
 sys.path.append(os.path.join("../yaziji"))
-
+import logging
 import phrase_generator
 #
 # def DoAction(text, action, options = {}):
@@ -101,7 +101,11 @@ class Adaat:
         """
         Generate samples
         """
-        return repr(options).replace(",", ",\n")
+        result = self.build_phrase(options)
+        new_options  = options.copy()
+        new_options.update(result)
+        logging.info(f"{new_options},")
+        return repr(new_options).replace(",", ",\n")
 
     def report(self, options):
         """

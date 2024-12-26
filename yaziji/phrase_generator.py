@@ -45,7 +45,13 @@ class PhraseGenerator:
         # Try to add components to prepare the phrase,
         # if there are some errors, response will be negative
         # else : build phrase within phrase_pattern module
+        self.error_observer.reset()
+        if not isinstance(table_compononts, dict):
+            table_compononts = dict(table_compononts)
         response = self.pattern.add_components(table_compononts)
+        # print(table_compononts.items)
+        # print(type(table_compononts))
+        # print(self.error_observer.show_errors_to_string())
         if response < 0:
             # phrase = self.error_message(response)
             #TODO: return an empty phrase with a list of possible errors separatly
