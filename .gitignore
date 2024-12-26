@@ -145,3 +145,4 @@ dmypy.json
 /web/flask_session
 /web/logs/
 /myenv
+/web/data/rating.db
