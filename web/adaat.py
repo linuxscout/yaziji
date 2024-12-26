@@ -71,7 +71,8 @@ class Adaat:
     def __init__(self):
         # Constructor can be used to initialize any instance variables if needed
         self.phraser = phrase_generator.PhraseGenerator()
-        self.db = RatingOptionsDatabaseSQLite()
+        db_path = os.path.join(os.path.dirname(__file__), "./data/rating.db")
+        self.db = RatingOptionsDatabaseSQLite(db_path)
 
     def do_action(self, text, action, options={}):
         """
