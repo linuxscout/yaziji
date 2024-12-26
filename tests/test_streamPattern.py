@@ -34,61 +34,106 @@ class TestStreamPattern(unittest.TestCase):
 
                 self.assertEqual(str(context.exception), f"('steam_pattern.py:Phrase type not exists', '{item['type']}')")
 
-    @unittest.skip("Test later")
-    def test_initialization_invalid_stream(self):
-        # Test initialization with invalid stream type
-        with self.assertRaises(KeyError):
-            streamPattern('invalid_type')
-
-    @unittest.skip("Test later")
+    @unittest.skip("Test later, Not Implemented")
     def test_add_method(self):
         # Test add method (currently does nothing)
-        sp = streamPattern('type1')
-        sp.add('d', before='b')
-        # As add method is not implemented, we can't test any outcome
-        self.assertIsNone(sp.add('d', before='b'))
+        test_set = [
+            {"type":VERBAL_PHRASE, 'add':"IF", "before":"subject",
+             "stream":['auxiliary', 'IF', 'subject', 'negation', 'verb', 'object', 'place', 'time'], "valid":True},
+            {"type":NOMINAL_PHRASE, 'add':"IF", "after":"object",
+             "stream": ['subject', 'IF','auxiliary',  'negation', 'verb', 'object', 'place', 'time'], "valid":True},
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            if "before" in item:
+                sp.add(item["add"], before=item["before"])
+            else:
+                sp.add(item["add"], after=item["after"])
+            # As add method is not implemented, we can't test any outcome
+            self.assertEqual(sp.to_list(),item["stream"])
 
-    @unittest.skip("Test later")
-    def test_remove_existing(self):
-        # Test remove method with existing item
-        sp = streamPattern('type1')
-        sp.remove('b')
-        self.assertNotIn('b', sp.stream)
+    # @unittest.skip("Test later")
+    def test_remove(self):
+        # Test remove method
+        test_set = [
+            {"id":1, "type":VERBAL_PHRASE, 'remove':"negation", "valid":True,
+             "stream":['auxiliary', 'subject', 'verb', 'object', 'place', 'time'], },
+            {"id":2, "type":NOMINAL_PHRASE, 'remove':"negation", "valid":True,
+             "stream": ['subject', 'auxiliary', 'verb', 'object', 'place', 'time'],},
+            {"id":3, "type":NOMINAL_PHRASE, 'remove':"negationNotExisting", "valid":True,
+             "stream": ['subject', 'auxiliary', 'negation', 'verb', 'object', 'place', 'time'],},
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            sp.remove(item["remove"])
+            # As add method is not implemented, we can't test any outcome
+            self.assertEqual(sp.to_list(),item["stream"], msg=f"example n°{item['id']}")
 
-    @unittest.skip("Test later")
-    def test_remove_non_existing(self):
-        # Test remove method with non-existing item
-        sp = streamPattern('type1')
-        sp.remove('z')  # Not in stream
-        self.assertEqual(sp.stream, ['a', 'b', 'c'])  # Stream should remain the same
-
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_hide_method(self):
         # Test hide method
-        sp = streamPattern('type1')
-        sp.hide('a')
-        self.assertIn('a', sp.hidden)
+        test_set = [
+            {"id":1, "type":VERBAL_PHRASE, 'hide':"negation", "valid":True,
+             "stream":['auxiliary', 'subject', 'verb', 'object', 'place', 'time'], },
+            {"id":2, "type":NOMINAL_PHRASE, 'hide':"negation", "valid":True,
+             "stream": ['subject', 'auxiliary', 'verb', 'object', 'place', 'time'],},
+            {"id":3, "type":NOMINAL_PHRASE, 'hide':"negationNotExisting", "valid":False,
+             "stream": ['subject', 'auxiliary', 'negation', 'verb', 'object', 'place', 'time'],},
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            sp.hide(item["hide"])
+            if item["valid"]:
+                self.assertIn(item["hide"], sp.hidden)
+            else:
+                self.assertNotIn(item["hide"], sp.hidden)
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_unhide_method(self):
         # Test unhide method
-        sp = streamPattern('type1')
-        sp.hide('a')
-        sp.unhide('a')
-        self.assertNotIn('a', sp.hidden)
+        test_set = [
+            {"id":1, "type":VERBAL_PHRASE, 'hide':"negation", "valid":True,
+             "stream":['auxiliary', 'subject', 'verb', 'object', 'place', 'time'], },
+            {"id":2, "type":NOMINAL_PHRASE, 'hide':"negation", "valid":True,
+             "stream": ['subject', 'auxiliary', 'verb', 'object', 'place', 'time'],},
+            {"id":3, "type":NOMINAL_PHRASE, 'hide':"negationNotExisting", "valid":False,
+             "stream": ['subject', 'auxiliary', 'negation', 'verb', 'object', 'place', 'time'],},
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            sp.hide(item["hide"])
+            sp.unhide(item["hide"])
+            self.assertNotIn(item["hide"], sp.hidden)
 
-    @unittest.skip("Test later")
+    # @unittest.skip("Test later")
     def test_list_method(self):
         # Test list method
-        sp = streamPattern('type1')
-        result = sp.__list__()
-        self.assertEqual(result, ['a', 'b', 'c'])
-    @unittest.skip("Test later")
+        test_set = [
+            {"id":1, "type":VERBAL_PHRASE,  "valid":True,
+             "stream":['auxiliary', 'subject', 'negation','verb', 'object', 'place', 'time'], },
+            {"id":2, "type":NOMINAL_PHRASE,  "valid":True,
+             "stream": ['subject', 'auxiliary', 'negation','verb', 'object', 'place', 'time'],},
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            self.assertEqual(sp.to_list(),item["stream"], msg=f"example n°{item['id']}")
+
+
     def test_str_method(self):
         # Test string representation method
-        sp = streamPattern('type1')
-        result = sp.__str__()
-        self.assertEqual(result, "<a><b><c>")
+        test_set = [
+            {"id":1, "type":VERBAL_PHRASE,  "valid":True,
+             "stream":['auxiliary', 'subject', 'negation','verb', 'object', 'place', 'time'],
+             "str":"<auxiliary><subject><negation><verb><object><place><time>"},
+            {"id":2, "type":NOMINAL_PHRASE,  "valid":True,
+             "stream": ['subject', 'auxiliary', 'negation','verb', 'object', 'place', 'time'],
+             "str":"<subject><auxiliary><negation><verb><object><place><time>",
+             },
+        ]
+        for item in test_set:
+            sp = streamPattern(item["type"])
+            result = sp.__str__()
+            self.assertEqual(result, item["str"], msg=f"example n°{item['id']}")
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ class streamPattern:
         if stream_type not in STREAMS:
             raise KeyError("steam_pattern.py:Phrase type not exists", stream_type)
         self.type = stream_type
-        self.stream = STREAMS.get(stream_type, STREAMS.get('default',{}))
+        self.stream = STREAMS.get(stream_type, STREAMS.get('default',{})).copy()
         # hidden nodes on the stream order
         self.hidden = []
 
@@ -51,7 +51,7 @@ class streamPattern:
         """
         Hide a component from stream
         """
-        if name not in self.hidden:
+        if name in self.stream and name not in self.hidden:
             self.hidden.append(name)
 
     def unhide(self, name):
