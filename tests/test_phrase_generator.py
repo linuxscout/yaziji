@@ -53,6 +53,7 @@ class TestPhraseGenerator(unittest.TestCase):
                        'tense': TensePast, 'voice': PASSIVE_VOICE, 'auxiliary': 'اِسْتَطَاعَ',
                        'negative': NEGATIVE, 'phrase_type': NOMINAL_PHRASE},
                      "phrase":"التَّاجِرُ لَمْ يُسْتَطَعْ أَنْ يُسَافَرَ فِي الطَّرِيقِ البَارِحَةَ",
+                    "error":"",
                     "valid":True,
                     },
                     {"id":1,
@@ -60,15 +61,19 @@ class TestPhraseGenerator(unittest.TestCase):
                                   'place': 'سُوقٌ', 'tense': TenseImperative, 'voice': ACTIVE_VOICE,
                                   'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
                       # "phrase":"Imperative Tense Incompatible with pronoun.",
-                      "phrase":"Error received -1: ERROR: Imcompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
+                      "phrase":"",
+                      "error":"Error received -1: ERROR: Imcompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
                       "valid":True,
                     },
         ]
         for item in test_set:
             result = self.phrase_generator.build(item["components"])
             phrase = result.get("phrase",'')
+            errors = result.get("errors",'')
             self.assertEqual(phrase == item["phrase"], item["valid"],
-                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")
+            self.assertEqual(errors == item["error"], item["valid"],
+                             msg=f"\nResult  :{errors}\nExpected:{item['error']}")
 
 
     def test_error_message(self):

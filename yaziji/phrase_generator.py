@@ -49,7 +49,7 @@ class PhraseGenerator:
         if response < 0:
             # phrase = self.error_message(response)
             #TODO: return an empty phrase with a list of possible errors separatly
-            phrase = self.error_observer.show_errors_to_string()
+            phrase = ""
         else:
             self.pattern.prepare()
             phrase = self.pattern.build()

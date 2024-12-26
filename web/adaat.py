@@ -94,7 +94,7 @@ class Adaat:
         """
         components = options
         result_dict = self.phraser.build(components)
-        phrase = result_dict.get("phrase")
+        # phrase = result_dict.get("phrase")
         return result_dict
 
     def build_sample(self, options):

@@ -38,7 +38,8 @@ const phraseClick = (e) => {
         if (response?.result) {
             $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
             $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
-            ${response.result.inflection}</div>`);
+            ${response.result.inflection}<br/>
+            ${response.result.errors}</div>`);
         } else {
             console.error("Unexpected response:", response);
         }

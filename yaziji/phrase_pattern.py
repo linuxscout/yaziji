@@ -100,7 +100,8 @@ class PhrasePattern:
             # check if a required name is not found
             if self.is_required(name) and components.get(name, "") == "":
                 response = -2
-                self.notify_error(response,f"ERROR: A required name '{name}' not found. ")
+                # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+                self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
                 return response
             if self.components_config.get_type(name) == "word":
 
@@ -114,7 +115,8 @@ class PhrasePattern:
         for key in components:
             if key not in self.nodes_names and not key in self.phrase_features:
                 response = -3
-                self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
+                # self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
+                self.notify_error_id(response,"UNSUPPORTED_COMPONENT", {"name":key})
                 return response
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
@@ -135,7 +137,8 @@ class PhrasePattern:
             self.phrase_type = self.get_feature_value("phrase_type")
         else:
             response = -4
-            self.notify_error(response,f"ERROR: Required Phrase type is empty'.")
+            # self.notify_error(response,f"ERROR: Required Phrase type is empty'.")
+            self.notify_error_id(response, "EMPTY_PHRASE_TYPE")
             return response
         # get the phrase word order (stream) according to phrase type
         self.stream = stream_pattern.streamPattern(self.phrase_type)
@@ -164,7 +167,8 @@ class PhrasePattern:
         #check for errors
         response = self.check_compatibles()
         if response < 0:
-            self.notify_error(response,f"ERROR: Imcompatible Subject {self.subject} and tense '{self.tense}'.")
+            # self.notify_error(response,f"ERROR: Incompatible Subject {self.subject} and tense '{self.tense}'.")
+            self.notify_error_id(response, "INCOMPATIBLE_SUBJECT_TENSE", {"subject":self.subject,"tense":self.tense})
             return response
         return True
 
@@ -694,6 +698,15 @@ class PhrasePattern:
         else:
             logging.info(f"ERROR #{errorno}: {message}")
         return True
+
+    def notify_error_id(self, errorno, message_id, args={}):
+        # get error message from observer
+        if self.error_observer:
+            error_message = self.error_observer.error_message(message_id)
+            formatted_message = f"{error_message}".format_map(args)
+        else:
+            formatted_message = message_id + str(args)
+        return self.notify_error(errorno, formatted_message)
 
     def log(selfself, location, message):
         logging.info(f"PHRASE_Pattern DEBUG: #{location}: {message}")
