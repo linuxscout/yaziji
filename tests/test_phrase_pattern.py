@@ -14,6 +14,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
 from yaziji.phrase_pattern import PhrasePattern  # Assuming the class is in phrase_pattern.py
 from yaziji.wordnode import wordNode
+from yaziji.error_listener import ErrorListener
 from yaziji.yaziji_const import FATHA_WORD, DAMMA_WORD, KASRA_WORD
 from yaziji.yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, VERBAL_PHRASE, NOMINAL_PHRASE
 from yaziji.yaziji_const import ACTIVE_VOICE, PASSIVE_VOICE, AFFIRMATIVE, NEGATIVE
@@ -50,6 +51,20 @@ class TestPhrasePattern(unittest.TestCase):
             result = self.phrase.check_compatibles()
             self.assertTrue(result, msg=f"الزمن {tense}  متوافق مع الضمير {pronoun}")  # Should return True if compatible
         #TODO: Add more imcompatible cases
+
+
+    def test_notify_error(self):
+        # test how to manage errors
+        self.phrase.error_observer = ErrorListener()
+        self.assertIsNotNone(self.phrase.error_observer, msg="Error lister is None")
+
+        self.phrase.notify_error(-1, "Just a test")
+        message = 'Error received -1: Just a test'
+        # return a list of message
+        result_list = self.phrase.error_observer.show_errors()
+        self.assertIn(message, result_list, "Message not in list errors")
+
+
 
     def test_conjugate_noun_by_tags(self):
         # Ensure that the method is callable and runs as expected
