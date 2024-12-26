@@ -26,6 +26,7 @@ import sys
 sys.path.append(os.path.join("../yaziji"))
 import logging
 import phrase_generator
+from db_manager.db_sqlite import RatingOptionsDatabaseSQLite
 #
 # def DoAction(text, action, options = {}):
 #     """
@@ -70,6 +71,7 @@ class Adaat:
     def __init__(self):
         # Constructor can be used to initialize any instance variables if needed
         self.phraser = phrase_generator.PhraseGenerator()
+        self.db = RatingOptionsDatabaseSQLite()
 
     def do_action(self, text, action, options={}):
         """
@@ -111,12 +113,20 @@ class Adaat:
         """
         Report bugs
         """
+        rating = -1
+        self.db.insert_record(rating, options)
         return "REPORT; " + repr(options).replace(",", ",\n")
 
     def rating(self, options):
         """
         Report rating
         """
+        rating = options.get("rating",5)
+        try:
+            rating = int(rating)
+        except:
+            rating = 0
+        self.db.insert_record(rating, options)
         return "RATING; " + repr(options).replace(",", ",\n")
 
 def main(args):
