@@ -27,17 +27,54 @@
 import phrase_pattern
 import components_set
 import error_listener
+import os
+import json
+import logging
 class PhraseGenerator:
     """
     A class to generator
     """
-    def __init__(self):
+    def __init__(self, dict_path=""):
         # init error observer
         self.error_observer = error_listener.ErrorListener()
         # self.error_observer = None
         # add error observer to phrase pattern
         self.pattern = phrase_pattern.PhrasePattern(error_observer=self.error_observer)
+        #load default word_dictionary
+        if not dict_path:
+            dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
+        self.small_dictionary = self.load_dictionary(dict_path)
+
+
+    def load_dictionary(self, file_path):
+        """
+        load word dictionary
+        :return:
+        """
+        data = {}
+        try:
+            with open(file_path, 'r', encoding='utf-8') as json_file:
+                data = json.load(json_file)
+            logging.info(f"Success: Small dictionary loaded from {file_path}")
+        except:
+            logging.info(f"ERROR: Can't Open small dictionary file {file_path}")
+            return None
+        return data
+
+    def add_features(self, data):
+        """
+        Extract Data for each option.
+        Convert the dict (key, value} into {key, dict}
+        :param options:
+        :return:
+        """
+        converted = {value: self.small_dictionary.get(value,{}) for value in data.values()
+                     if self.small_dictionary.get(value,{})}
+        # clean data
+
+        return converted
     
+    # def build(self, table_compononts, featured_data=None):
     def build(self, table_compononts):
         """
         
@@ -48,7 +85,12 @@ class PhraseGenerator:
         self.error_observer.reset()
         if not isinstance(table_compononts, dict):
             table_compononts = dict(table_compononts)
-        response = self.pattern.add_components(table_compononts)
+        # add a small dictionary that contains words and attributes
+        featured_data = self.add_features(table_compononts)
+        logging.info(f"FEATURED:{featured_data}")
+        # print(f"FEATURED:",featured_data)
+
+        response = self.pattern.add_components(table_compononts, featured_data)
         # print(table_compononts.items)
         # print(type(table_compononts))
         # print(self.error_observer.show_errors_to_string())

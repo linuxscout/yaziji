@@ -20,11 +20,13 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-#  
+#
+import json
 import os.path
 import sys
 sys.path.append(os.path.join("../yaziji"))
 import logging
+import json
 import phrase_generator
 from db_manager.db_sqlite import RatingOptionsDatabaseSQLite
 #
@@ -70,9 +72,24 @@ from db_manager.db_sqlite import RatingOptionsDatabaseSQLite
 class Adaat:
     def __init__(self):
         # Constructor can be used to initialize any instance variables if needed
-        self.phraser = phrase_generator.PhraseGenerator()
+
+        dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
+        self.phraser = phrase_generator.PhraseGenerator(dict_path=dict_path)
+
         db_path = os.path.join(os.path.dirname(__file__), "./data/rating.db")
         self.db = RatingOptionsDatabaseSQLite(db_path)
+        # self.small_dictionary = self.load_dictionary(dict_path)
+        self.phraser.load_dictionary(dict_path)
+
+    # def load_dictionary(self, file_path):
+    #     """
+    #     load word dictionary
+    #     :return:
+    #     """
+    #     data = {}
+    #     with open(file_path, 'r', encoding='utf-8') as json_file:
+    #         data = json.load(json_file)
+    #     return data
 
     def do_action(self, text, action, options={}):
         """
@@ -90,13 +107,28 @@ class Adaat:
             return self.rating(options)
         else:
             return text
-
+    # def add_features(self, data):
+    #     """
+    #     Extract Data for each option.
+    #     Convert the dict (key, value} into {key, dict}
+    #     :param options:
+    #     :return:
+    #     """
+    #     converted = {value: self.small_dictionary.get(value,{}) for value in data.values()
+    #                  if self.small_dictionary.get(value,{})}
+    #     # clean data
+    #
+    #     return converted
     def build_phrase(self, options):
         """
         Generate phrase
         """
         components = options
+        # featured_data = self.add_features(options)
+        # logging.info(f"FEATURED:{featured_data}")
+        # print(f"FEATURED:",featured_data)
         result_dict = self.phraser.build(components)
+        # result_dict = self.phraser.build(components, featured_data)
         # phrase = result_dict.get("phrase")
         return result_dict
 

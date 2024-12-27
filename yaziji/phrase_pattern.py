@@ -36,7 +36,7 @@ from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
 from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, PASSIVE_VOICE, VERBAL_PHRASE
-from yaziji_const import HIDDEN
+from yaziji_const import HIDDEN, GENDER_FEMALE
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
@@ -61,6 +61,8 @@ class PhrasePattern:
 
         self.components_config = componentsSet()
 
+        # used to store nodes features and trributes about nouns and verbs
+        self.nodes_word_attributes = {}
 
         self.phrase_type = ""
         # init defaul word nodes
@@ -90,27 +92,57 @@ class PhrasePattern:
             self.nodes[name] = wordNode("default", "")
         # prepare features nodes
 
-    def add_components(self, components):
+    def get_comp_value(self, components, name):
+        """
+        used to encapsulare returning value from component
+        :param components:
+        :param name:
+        :return:
+        """
+        # to be replaced by a dict of dict
+        return components.get(name, "")
+        # The new way
+        return components.get(name, {}).get("value","")
+
+    def get_word_attributes(self, word):
+        """
+        get word attributes from given data
+        :param word:
+        :return:
+        """
+        return self.nodes_word_attributes.get(word,{})
+
+    def get_word_attribute(self, word, attrib):
+        """
+        get word attributes from given data
+        :param word:
+        :return:
+        """
+        return self.nodes_word_attributes.get(word, {}).get(attrib,"")
+    
+
+    def add_components(self, components, featured_data=None):
         """
         Add components
 
         """
+        self.nodes_word_attributes  = featured_data
         # collect informations from nodes names from given components
         for name in self.nodes_names:
             # check if a required name is not found
-            if self.is_required(name) and components.get(name, "") == "":
+            if self.is_required(name) and self.get_comp_value(components, name) == "":
                 response = -2
                 # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
                 self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
                 return response
             if self.components_config.get_type(name) == "word":
 
-                self.nodes[name]  = wordNode(name, components.get(name,""))
+                self.nodes[name]  = wordNode(name, self.get_comp_value(components, name))
             elif self.components_config.get_type(name) == "feature":
                 # save features in features table
-                self.phrase_features[name] = components.get(name, "")
+                self.phrase_features[name] = self.get_comp_value(components, name)
             else:
-                self.nodes[name] = wordNode(name, components.get(name, ""))
+                self.nodes[name] = wordNode(name, self.get_comp_value(components, name))
         # check for extra components not supported
         for key in components:
             if key not in self.nodes_names and not key in self.phrase_features:
@@ -230,6 +262,13 @@ class PhrasePattern:
             if value:
                 attributes = self.get_noun_attributes(value)
                 self.nodes[key].update(attributes)
+                # if value=="بِنْتٌ":
+                # #     self.nodes[key].set_gender(GENDER_FEMALE)
+                # given_attributes = self.nodes_word_attributes.get(value,{})
+                # if given_attributes:
+                #     self.nodes[key].update(given_attributes)
+                # print("Recived:",value, given_attributes)
+                # print("Arramooz:",value,attributes)
 
         # Extract tense features
         time_value = self.get_node_value("time")
@@ -417,14 +456,20 @@ class PhrasePattern:
         :param vtype:
         :return: 
         """
-
-        future_type = wordnode.future_type
-        transitive = wordnode.transitive
-        ver_tuple = self.get_verb_attributes(wordnode.value, future_type=future_type, transitive=transitive,
+        # given_attributes = self.nodes_word_attributes.get(wordnode.value, {})
+        # if given_attributes:
+        #     wordnode.update(given_attributes)
+        #     print("Verb Recived:", wordnode.value, given_attributes)
+        # print("word future type",wordnode.future_type)
+        # future_type = wordnode.future_type
+        # transitive = wordnode.transitive
+        ver_tuple = self.get_verb_attributes(wordnode.value, #future_type=future_type, transitive=transitive,
                                              auxiliary= bool(vtype == "auxiliary"))
-        transitive  = ver_tuple.is_transitive()
-        future_type = ver_tuple.get_future_type()
-        vocalized   = ver_tuple.get_vocalized()
+        wordnode.update(ver_tuple)
+        # transitive  = ver_tuple.is_transitive()
+        # future_type = ver_tuple.get_future_type()
+        # print("word future type", hex(ord(future_type)), bool(future_type))
+        # vocalized   = ver_tuple.get_vocalized()
 
         # add suffix to get auxiliary features
         suffix = "_aux" if vtype == "auxiliary" else "_verb"
@@ -433,15 +478,15 @@ class PhrasePattern:
         factor = self.get_feature_value("factor"+suffix)
         #conjugation
         # to move
-        vbc = libqutrub.classverb.VerbClass(vocalized, transitive, future_type)
+        vbc = libqutrub.classverb.VerbClass(wordnode.vocalized, wordnode.transitive, wordnode.future_type)
         conj = vbc.conjugate_tense_for_pronoun(tense,pronoun)
         # print(f"vbc {conj}, {suffix}, {vocalized}, '{pronoun}', {tense} feature aux {self.get_feature_value('tense_aux')}")
         # save attributes
         wordnode.tense = tense
         wordnode.conjugated = conj
         wordnode.before = factor
-        wordnode.transitive = transitive
-        wordnode.future_type = future_type
+        # wordnode.transitive = transitive
+        # wordnode.future_type = future_type
         wordnode.pronoun = pronoun
 
     def conjugate_noun_by_tags(self, word_node, tags):
@@ -550,6 +595,11 @@ class PhrasePattern:
                                  "transitive": True,
                                  "future_type": yaziji_const.AUXILIARY.get(word, araby.FATHA)
                                  })
+        elif self.nodes_word_attributes and word in self.nodes_word_attributes:
+            given_attributes = self.nodes_word_attributes.get(word,{})
+            if given_attributes:
+                # print("Recived [verb]:", word, given_attributes)
+                return given_attributes;
         else:
             word_nm = araby.strip_tashkeel(word)
             foundlist = self.verb_dict.lookup(word_nm)
@@ -558,7 +608,8 @@ class PhrasePattern:
 
             # Find the first matching vocalized form
             word_tuple_result_list = [
-                item for item in foundlist if araby.vocalizedlike(word, item.get_vocalized())
+                # item for item in foundlist if araby.vocalizedlike(word, item.get_vocalized())
+                item for item in foundlist if word == item.get_vocalized()
             ]
             # filter by future_type
             if future_type != "NA":
@@ -592,6 +643,13 @@ class PhrasePattern:
         """
         Returns the vocalized form and other attributes of the given noun.
         """
+        # #If word exists in our dictionary, use attributes
+        if self.nodes_word_attributes and word in self.nodes_word_attributes:
+            given_attributes = self.nodes_word_attributes.get(word,{})
+            if given_attributes:
+                # print("Recived:", word, given_attributes)
+                # print("Arramooz:",word,word_tuple_result)
+                return given_attributes;
         # Strip diacritics (tashkeel) from the word
         word_nm = araby.strip_tashkeel(word)
         vocalized_input = word
@@ -615,6 +673,7 @@ class PhrasePattern:
             else:
                 word_tuple_result = NounTuple({"vocalized": word})
         # logging.info(f"WORD: {word_tuple_result}, Found List: {foundlist}")
+
         return word_tuple_result
 
 
