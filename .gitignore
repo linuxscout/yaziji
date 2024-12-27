@@ -146,3 +146,4 @@ dmypy.json
 /web/logs/
 /myenv
 /web/data/rating.db
+/tests/samples/tmp/

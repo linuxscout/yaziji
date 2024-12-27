@@ -51,10 +51,10 @@ class TestPhraseGenerator(unittest.TestCase):
             phrase = result.get("phrase",'')
             if  item["valid"]:
                 self.assertEqual(phrase , item["phrase"],
-                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+                             msg=f"Example n°{num}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
             if  not item["valid"]:
                 self.assertNotEqual(phrase , item["phrase"],
-                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+                             msg=f"Example n°{num}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def build_dataframe(self, dataframe):
@@ -107,14 +107,14 @@ class TestPhraseGenerator(unittest.TestCase):
     def test_build_error_handling(self):
         # Arrange
         test_set=[]
-        for item in test_set:
+        for num, item in enumerate(test_set):
             result = self.phrase_generator.build(item["components"])
             phrase = result.get("phrase",'')
             errors = result.get("errors",'')
             self.assertEqual(phrase == item["phrase"], item["valid"],
-                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")
+                             msg=f"Example n°{num}\nResult  :{result}\nExpected:{item['phrase']}")
             self.assertEqual(errors == item["error"], item["valid"],
-                             msg=f"\nResult  :{errors}\nExpected:{item['error']}")
+                             msg=f"Example n°{num}\nResult  :{errors}\nExpected:{item['error']}")
 
 if __name__ == '__main__':
     unittest.main()
