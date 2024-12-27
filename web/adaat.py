@@ -100,6 +100,8 @@ class Adaat:
             return text
         elif action == "phrase":
             return self.build_phrase(options)
+        elif action == "randomtext":
+            return "RANDOM TEXT TEST نص عشوائي"
         elif action == "sample":
             return self.build_sample(options)
         elif action == "report":
@@ -148,20 +150,23 @@ class Adaat:
         Report bugs
         """
         rating = -1
+        print("OPTIONS", options)
         self.db.insert_record(rating, options)
-        return "REPORT; " + repr(options).replace(",", ",\n")
+        return "REPORT: " + repr(options).replace(",", ",\n")
 
     def rating(self, options):
         """
         Report rating
         """
+        print("OPTIONS", options)
         rating = options.get("rating",5)
         try:
             rating = int(rating)
         except:
             rating = 0
         self.db.insert_record(rating, options)
-        return "RATING; " + repr(options).replace(",", ",\n")
+        print("OPTIONS", options)
+        return "RATING: " + repr(options).replace(",", ",\n")
 
 def main(args):
     return 0

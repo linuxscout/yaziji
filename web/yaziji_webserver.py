@@ -91,7 +91,7 @@ def ajax(lang="ar"):
     Handle AJAX requests for various actions.
     """
     default = ""
-    args = request.args if request.method == "GET" else request.get_json(silent=True).get("data", {})
+    args = request.args if request.method == "GET" else request.get_json(silent=True).get("data",{})
 
     if args.get("response_type", "") == "get_random_text":
         return jsonify({"text": default})
@@ -99,7 +99,8 @@ def ajax(lang="ar"):
     text = args.get("text", "")
     action = args.get("action", "")
     # remove "text" and "action" if from options
-    options = {key: value for key, value in dict(request.args).items() if key not in ["text","action"]}
+    options = {key: value for key, value in dict(args).items() if key not in ["text","action"]}
+    print("OPTIONS in ajax ", options)
     myadaat = adaat.Adaat()  # Instantiate the Adaat class
     resulttext = myadaat.do_action(text, action, options)
 
@@ -117,16 +118,17 @@ def selectget(lang="ar"):
         return jsonify(data_const.selectValues)
 
 
-@app.route("/result", methods=["POST", "GET"])
-def result():
-    if request.method == "POST":
-        result = request.form
-        return render_template("result.html", result=result)
+# @app.route("/result", methods=["POST", "GET"])
+# def result():
+#     if request.method == "POST":
+#         result = request.form
+#         return render_template("result.html", result=result)
 
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template('404.html')
+    return render_template('404.html')\
+#
 
 
 @app.route('/<lang>/static', methods=['GET'])
