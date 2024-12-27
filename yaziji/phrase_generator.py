@@ -68,11 +68,12 @@ class PhraseGenerator:
         :param options:
         :return:
         """
-        converted = {value: self.small_dictionary.get(value,{}) for value in data.values()
-                     if self.small_dictionary.get(value,{})}
-        # clean data
+        mydict = self.small_dictionary.get("wordindex",{})
+        # mydict = self.small_dictionary
+        featured = {value: mydict.get(value,{}) for value in data.values()
+                     if mydict.get(value,{})}
 
-        return converted
+        return featured
     
     # def build(self, table_compononts, featured_data=None):
     def build(self, table_compononts):

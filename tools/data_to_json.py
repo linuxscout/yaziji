@@ -1,24 +1,67 @@
 import pandas as pd
 import json
+from collections import defaultdict
 import argparse
+import random
+def fillna(df):
+    # apply on na values
+    return df.apply(lambda col: col.fillna('') if col.dtypes == 'object' else col.fillna(0))
+def read_sheet(input_file, sheet):
+    df = pd.read_excel(input_file, sheet_name=sheet)
+    df = fillna(df)
+    trans_data = df[["class", "category", "arabic"]]
+    trans_data["translation"] = trans_data["arabic"]
+    # Convert defaultdict to a regular dictionary (optional)
+    grouped_data = defaultdict(list)
+    for _, row in df.iterrows():
+        grouped_data[row["category"]].append(row["arabic"])
+    return dict(grouped_data)
 
-def excel_to_json(input_file, output_file):
+def randomize(data):
+    """
+    randomize data from a dict of list
+    :param data:
+    :return:
+    """
+    return {key: random.choice(value) for key, value in data.items()}
+
+def extract_data(input_file):
     try:
         # Read the Excel file
-        df = pd.read_excel(input_file)
+        datatable = {}
+        df = pd.read_excel(input_file, sheet_name="words")
+        df = fillna(df)
 
-        df = df.set_index("arabic")
+        # to be used for translation
+        trans_data_words = df[["class","category", "arabic"]]
+        df_words = df.set_index("arabic")
         # Convert the DataFrame to JSON
-        json_data = df.to_json(orient="index", force_ascii=False, indent=4)
+        # json_data['wordindex'] = df_words.to_json(orient="index", force_ascii=False, indent=4)
+        datatable['wordindex'] = df_words.to_dict(orient="index")
 
-        # Write the JSON data to the output file
-        with open(output_file, 'w', encoding='utf-8') as json_file:
-            json_file.write(json_data)
 
-        print(f"Successfully converted '{input_file}' to '{output_file}'.")
 
+        for sheet in [ "words", "features","labels"]:
+            datatable[sheet] = read_sheet(input_file, sheet)
+
+        # Rename the key
+        datatable["data"] = datatable.pop("words")
+        # update data
+        for key, value in  datatable['features'].items():
+            if not value:
+                value = ['']
+            if key in datatable['data']:
+                datatable['data'][key].append(value[0])
+            else:
+                datatable['data'][key] = value
+        # json_data['data'].update(dict(grouped_data))
+
+        datatable['names'] = list(datatable["data"].keys())
+
+        return datatable
     except Exception as e:
         print(f"An error occurred: {e}")
+        return None
 
 if __name__ == "__main__":
     # Create argument parser
@@ -30,4 +73,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Convert Excel to JSON
-    excel_to_json(args.input, args.output)
+    datatable = extract_data(args.input)
+    if datatable:
+        print(datatable)
+        # Write the JSON data to the output file
+        # Convert dictionary to JSON and save to a file
+        with open(args.output, 'w', encoding='utf-8') as json_file:
+            json.dump(datatable, json_file, ensure_ascii=False, indent=4)
+
+        # randomized sample
+        print("SAMPLE", randomize(datatable["data"]))
+        print(f"Successfully converted '{args.input}' to '{args.output}'.")

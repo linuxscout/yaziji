@@ -73,7 +73,8 @@ class Adaat:
     def __init__(self):
         # Constructor can be used to initialize any instance variables if needed
 
-        dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
+        dict_path = os.path.join(os.path.dirname(__file__), "./data/data.new.json")
+        # dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
         self.phraser = phrase_generator.PhraseGenerator(dict_path=dict_path)
 
         db_path = os.path.join(os.path.dirname(__file__), "./data/rating.db")
