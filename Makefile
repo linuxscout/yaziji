@@ -40,6 +40,9 @@ test2:
 	cd tests;python3  test.py -c test --limit 10 -o output/text.out.csv
 test:
 	cd tests;python3 -m pytest
+testweb:
+	cd web/tests;python3 -m pytest
+
 gen:
 	cd tests;python3  test.py -c generate --limit 10 -o output/text.sample.csv
 eval:ods
