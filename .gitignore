@@ -147,3 +147,6 @@ dmypy.json
 /myenv
 /web/data/rating.db
 /tests/samples/tmp/
+/yaziji/data/data.old.json
+/doc/tmp/
+*.backup
