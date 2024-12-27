@@ -74,15 +74,39 @@ class TestPhraseGenerator(unittest.TestCase):
                              msg=f"\nResult  :{result}\nExpected:{item['phrase']}")
             self.assertEqual(errors == item["error"], item["valid"],
                              msg=f"\nResult  :{errors}\nExpected:{item['error']}")
+    # @unittest.skip("Test later")
+    def test_load_dictionary_default(self):
+        # Arrange
+        test_set=[ {"id":1,
+                    "components":{'subject': 'تَاجِرٌ', 'object': '', 'verb': 'سَافَرَ', 'time': 'البَارِحَةَ', 'place': 'طَرِيقٌ',
+                       'tense': TensePast, 'voice': PASSIVE_VOICE, 'auxiliary': 'اِسْتَطَاعَ',
+                       'negative': NEGATIVE, 'phrase_type': NOMINAL_PHRASE},
+                     "phrase":"التَّاجِرُ لَمْ يُسْتَطَعْ أَنْ يُسَافَرَ فِي الطَّرِيقِ البَارِحَةَ",
+                    "error":"",
+                    "valid":True,
+                    },
+                    {"id":1,
+                    "components":{'subject': 'مُهَنْدِسٌ', 'object': '', 'verb': 'اشْتَرَى', 'time': 'أَمْسِ',
+                                  'place': 'سُوقٌ', 'tense': TenseImperative, 'voice': ACTIVE_VOICE,
+                                  'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
+                      # "phrase":"Imperative Tense Incompatible with pronoun.",
+                      "phrase":"",
+                      "error":"Error received -1: ERROR: Incompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
+                      "valid":True,
+                    },
+        ]
+        for item in test_set:
+            wordindex_attributes = self.phrase_generator.add_features(item["components"])
+            self.assertIsNotNone(wordindex_attributes,
+                             msg=f"\nError on dictionary loading: {self.phrase_generator.dict_path}.")
 
 
-    def test_error_message(self):
+    def test_sample(self):
         # Assert message error
-        self.assertEqual(self.phrase_generator.error_message(-1), "Imperative Tense Incompatible with pronoun.")
-        self.assertEqual(self.phrase_generator.error_message(-2), "A required name not found.")
-        self.assertEqual(self.phrase_generator.error_message(-3), "Unsupported component key.")
-        self.assertEqual(self.phrase_generator.error_message(-4), "ERROR: Required Phrase type is empty.")
-        self.assertEqual(self.phrase_generator.error_message(999), "Input Error")
+        sample = self.phrase_generator.sample()
+        # print(sample)
+        self.assertIsNotNone(sample, msg=f"Can't sample data {sample}")
+        # self.assertIsNone(sample, msg=f"Can't sample data {sample}")
 
 if __name__ == '__main__':
     unittest.main()

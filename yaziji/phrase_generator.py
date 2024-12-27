@@ -28,6 +28,7 @@ import phrase_pattern
 import components_set
 import error_listener
 import os
+import random
 import json
 import logging
 class PhraseGenerator:
@@ -43,6 +44,7 @@ class PhraseGenerator:
         #load default word_dictionary
         if not dict_path:
             dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
+        self.dict_path = dict_path
         self.small_dictionary = self.load_dictionary(dict_path)
 
 
@@ -74,7 +76,20 @@ class PhraseGenerator:
                      if mydict.get(value,{})}
 
         return featured
-    
+
+    def sample(self):
+        """
+        randomize data from a dict of list
+        :param data:
+        :return:
+        """
+
+        if not self.small_dictionary:
+            return {}
+        data = self.small_dictionary.get("data",{})
+        return {key: random.choice(value) for key, value in data.items()}
+
+
     # def build(self, table_compononts, featured_data=None):
     def build(self, table_compononts):
         """
