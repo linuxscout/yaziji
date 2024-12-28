@@ -152,3 +152,4 @@ dmypy.json
 *.backup
 docs/tmp/
 /web/static/resources/json/tmp/
+/web/tests/output/

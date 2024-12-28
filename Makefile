@@ -119,4 +119,4 @@ update_pofrompo:
 build_wordindex:
 	python tools/data_to_json.py doc/yaziji-data_features.ods tests/output/data.new.json
 build_trans:
-	python tools/data_to_translate.py doc/yaziji-data_features.ods tests/output/data.trans.csv
+	python tools/data_to_translate_csv.py doc/yaziji-data_features.ods tests/output/data.trans.csv
