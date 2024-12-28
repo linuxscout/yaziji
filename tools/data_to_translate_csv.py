@@ -7,6 +7,9 @@ def fillna(df):
     # apply on na values
     return df.apply(lambda col: col.fillna('') if col.dtypes == 'object' else col.fillna(0))
 
+# This script generate CSV file for any langauge
+# to translate within excel
+# generate empty file
 
 def extract_data(input_file):
     try:

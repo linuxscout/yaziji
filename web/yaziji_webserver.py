@@ -44,7 +44,7 @@ else:
 
 # Configure the Flask app
 app = Flask(__name__, static_url_path='/static', static_folder='static')
-minify(app=app, html=True, js=True, cssless=True)
+# minify(app=app, html=True, js=True, cssless=True)
 
 app.config.from_object(mywebconfig)
 

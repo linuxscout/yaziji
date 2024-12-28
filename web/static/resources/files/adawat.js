@@ -38,8 +38,12 @@ const phraseClick = (e) => {
         if (response?.result) {
             $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
             $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
-            ${response.result.inflection}<br/>
+//            ${response.result.inflection}<br/>
             ${response.result.errors}</div>`);
+//       if (response?.result) {
+//            $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
+//            $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
+//            ${response.result.errors}</div>`);
         } else {
             console.error("Unexpected response:", response);
         }
@@ -531,7 +535,11 @@ function translateLabel(lang, part) {
 
         // Update the label's text content with the translation
                 // For Arabic, only display the value
-        if (lang !== "ar") {
+        if (lang === "ar") {
+        partLabel.textContent = `${originalText}`;
+        }
+        else
+        {
         partLabel.textContent = `${originalText} [${translatedText}]`;
         }
     } else {
