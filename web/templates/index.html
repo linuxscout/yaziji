@@ -44,18 +44,45 @@ index.html
                     <!-- Heading for language selection -->
 <!--                    <h4 class="text-primary">اختيار اللغة</h4>-->
                     <!-- Language Dropdown Menu -->
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-language"></i> اختر اللغة
-                        </button>
-                        <div class="dropdown-menu w-100" aria-labelledby="languageDropdown">
-                            {% for language in available_languages %}
-                                <a class="dropdown-item" href="{{ url_for('home', lang=language, locale=language) }}">
-                                    {{ available_languages[language] }}
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </div>
+<select id="language" class="language">
+    <option value="ar">🟩 العربية</option>
+    <option value="bn">🇧🇩 বাংলা - البنغالية</option>
+    <option value="de">🇩🇪 Deutsch - الألمانية</option>
+    <option value="en">🇺🇸 English - الإنجليزية</option>
+    <option value="es">🇪🇸 Español  - الإسبانية</option>
+    <option value="fr">🇫🇷 Français  - الفرنسية</option>
+    <option value="id">🇮🇩 Bahasa Indonesia - الإندونيسية</option>
+    <option value="ja">🇯🇵 日本語  - اليابانية</option>
+    <option value="ku">🌄 کوردی - الكردية</option>
+    <option value="zh">🇨🇳 中文  - الصينية</option>
+</select>
+
+
+<!--                    <div class="header-text">-->
+<!--  <p class="RecentGrad"> Recent graduate & aspiring developer</p>-->
+<!--                        <span class="option1">Extra</span> No-->
+<!--                            <span class="option2">EXTROOOOO</span>-->
+<!--</div>-->
+
+<!--      <select id="color" class="color">-->
+<!--        <option value="Red">Red</option>-->
+<!--        <option value="Blue">Blue</option>-->
+<!--        <option value="Green">Green</option>-->
+<!--        <option value="Yellow">Yellow</option>-->
+<!--    </select>-->
+<!--                    Old way to translate interface-->
+<!--                    <div class="dropdown">-->
+<!--                        <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                            <i class="fa fa-language"></i> اختر اللغة-->
+<!--                        </button>-->
+<!--                        <div class="dropdown-menu w-100" aria-labelledby="languageDropdown">-->
+<!--                            {% for language in available_languages %}-->
+<!--                                <a class="dropdown-item" href="{{ url_for('home', lang=language, locale=language) }}">-->
+<!--                                    {{ available_languages[language] }}-->
+<!--                                </a>-->
+<!--                            {% endfor %}-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </section>
@@ -68,13 +95,13 @@ index.html
 
                 <!-- Type of Sentence -->
                 <div>
-                    <label id="phrase_type_label" for="phrase_type">نوع الجملة:</label>
+                    <label id="phrase_type_label" for="phrase_type" data-original-text="نوع الجملة:">نوع الجملة:</label>
                     <select id='phrase_type' class='form-inline' name='phrase_type'></select><br>
                 </div>
 
                 <!-- Subject -->
                 <div>
-                    <label id="subject_label" for="subject">فاعل</label>
+                    <label id="subject_label" for="subject" data-original-text="فاعل">فاعل</label>
                     <select id='subject' class='form-inline' name='subject'>
                         <option value=""></option>
                     </select><br>
@@ -82,7 +109,7 @@ index.html
 
                 <!-- Auxiliary Verb -->
                 <div>
-                    <label id="auxiliary_label" for="auxiliary">فعل مساعد</label>
+                    <label id="auxiliary_label" for="auxiliary" data-original-text="فعل مساعد">فعل مساعد</label>
                     <select id='auxiliary' class='form-inline' name='auxiliary'>
                         <option value=""></option>
                     </select><br>
@@ -90,7 +117,7 @@ index.html
 
                 <!-- Main Verb -->
                 <div>
-                    <label id="verb_label" for="verb">فعل:</label>
+                    <label id="verb_label" for="verb" data-original-text="فعل:">فعل:</label>
                     <select id='verb' class='form-inline' name='verb'>
                         <option value=""></option>
                     </select><br>
@@ -98,25 +125,25 @@ index.html
 
                 <!-- Tense -->
                 <div>
-                    <label id="tense_label" for="tense">زمن:</label>
+                    <label id="tense_label" for="tense" data-original-text="زمن:">زمن:</label>
                     <select id='tense' class='form-inline' name='tense'></select><br>
                 </div>
 
                 <!-- Voice: Active/Passive -->
                 <div>
-                    <label id="voice_label" for="voice">مبني للمعلوم/مجهول:</label>
+                    <label id="voice_label" for="voice" data-original-text="مبني للمعلوم/مجهول:">مبني للمعلوم/مجهول:</label>
                     <select id='voice' class='form-inline' name='voice'></select><br>
                 </div>
 
                 <!-- Positive/Negative -->
                 <div>
-                    <label id="negative_label" for="negative">مثبت/منفي:</label>
+                    <label id="negative_label" for="negative" data-original-text="مثبت/منفي:">مثبت/منفي:</label>
                     <select id='negative' class='form-inline' name='negative'></select><br>
                 </div>
 
                 <!-- Object -->
                 <div>
-                    <label id="object_label" for="object">مفعول</label>
+                    <label id="object_label" for="object" data-original-text="مفعول">مفعول</label>
                     <select id='object' class='form-inline' name='object'>
                         <option value=""></option>
                     </select><br>
@@ -124,7 +151,7 @@ index.html
 
                 <!-- Time -->
                 <div>
-                    <label id="time_label" for="time">ظرف زمان:</label>
+                    <label id="time_label" for="time" data-original-text="ظرف زمان:">ظرف زمان:</label>
                     <select id='time' class='form-inline' name='time'>
                         <option value=""></option>
                     </select><br>
@@ -132,7 +159,7 @@ index.html
 
                 <!-- Place -->
                 <div>
-                    <label id="place_label" for="place">ظرف مكان:</label>
+                    <label id="place_label" for="place" data-original-text="ظرف مكان:">ظرف مكان:</label>
                     <select id='place' class='form-inline' name='place'>
                         <option value=""></option>
                     </select><br>
@@ -140,11 +167,12 @@ index.html
 
                 <!-- Action Buttons -->
                 <div class="form-inline">
-                    <a class="btn btn-primary" id="phrase" title="'بناء الجملة'">{{_('بناء')}}</a>
-                    <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'">{{_('عشوائي')}}</a>
-                    <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'">{{_('عينة')}}</a>
+                    <a class="btn btn-primary" id="phrase" title="'بناء الجملة'" data-original-text="بناء">{{_('بناء')}}</a>
+                    <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'" data-original-text="عشوائي">{{_('عشوائي')}}</a>
+                    <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'" data-original-text="عينة">{{_('عينة')}}</a>
                     <input checked="checked" class="checkbox" id="LastMark" value="1" type="checkbox" title="'إظهار حركة الإعراب في أواخر الكلمات'">
-                    {{_('حركة الإعراب')}}
+                    <label id="LastMark_label" for="LastMark" data-original-text="حركة الإعراب">{{_('حركة الإعراب')}}</label>
+
                 </div>
             </form>
         </section>
@@ -209,6 +237,11 @@ index.html
                             // Set language path for translation
                             var language_url = "{{ url_for('static', filename='resources/json/')}}";
                         </script>
+
+                        <script>
+
+
+</script>
                     </div>
                 </div>
             </div>

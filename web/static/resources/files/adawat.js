@@ -353,6 +353,199 @@ class DrawForm {
     }
 }
 
+
+//// Load translations dynamically
+//    let jsontrans = {};
+//async function loadTranslationFile(lang) {
+//            const fileName = language_url+`${lang}.json`; // File name based on ISO code
+//            try {
+//                const response = await fetch(fileName);
+//                if (!response.ok) {
+//                    throw new Error(`Error loading ${fileName}: ${response.status}`);
+//                }
+//                return await response.json();
+//            } catch (error) {
+//                console.error("Failed to load translation file:", error);
+//                return null;
+//            }
+//        }
+//
+//
+//const selectLanguage = function() {
+//        let lang = this.value ;
+//        console.log("lang", lang);
+//        translateUI(lang);
+//        };
+//
+//
+//async function translateUI(lang) {
+//
+//           jsontrans[lang] = await loadTranslationFile(lang);
+////    if (!translation) {
+//    if (!jsontrans[lang]) {
+//        console.warn(`No translations found for language: ${lang}`);
+//        return;
+//    }
+//
+//  //Translate part select options
+//const list = ["phrase_type", "subject", "object", "verb", "time", "place", "tense", "negative", "voice", "auxiliary"];
+//
+//list.forEach(part=> {
+// translateSelect(lang, part);
+//});
+//
+//}
+//function translateSelect(lang, part)
+//{
+//            const partSelect = document.querySelector('#'+part);
+//            const partTranslations = jsontrans[lang][part];
+//            Array.from(partSelect.options).forEach(option => {
+//                const value = option.value; // Use the option's value as a key
+//                if(lang=="ar")
+//                {option.textContent =value;}
+//                else{
+//                if (partTranslations[value]) {
+//                    option.textContent =value +'  ['+partTranslations[value]+']';
+//                }
+//                }
+//            });
+//}
+//// Initialize the app
+////loadTranslations();
+//loadTranslationFile("ar")
+
+// Object to store translations
+let jsontrans = {};
+
+// Load translation file dynamically based on ISO code
+async function loadTranslationFile(lang) {
+    const fileName = `${language_url}${lang}.json`; // File name based on ISO code
+    try {
+        const response = await fetch(fileName);
+        if (!response.ok) {
+            throw new Error(`Error loading ${fileName}: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to load translation file:", error);
+        return null; // Return null in case of an error
+    }
+}
+
+// Select language change event handler
+const selectLanguage = function () {
+    const lang = this.value;
+    console.log("Selected language:", lang);
+    translateUI(lang); // Translate UI elements
+};
+
+// Main function to translate UI elements
+async function translateUI(lang) {
+    // Load the translation for the selected language
+    jsontrans[lang] = await loadTranslationFile(lang);
+
+    // If translation is not found, log a warning and exit
+    if (!jsontrans[lang]) {
+        console.warn(`No translations found for language: ${lang}`);
+        return;
+    }
+
+    // Translate select options based on loaded translation
+    const list = ["phrase_type", "subject", "object", "verb", "time", "place", "tense", "negative", "voice", "auxiliary"];
+    list.forEach(part => {
+        translateSelect(lang, part); // Translate each part
+    });
+    const listLabel = ["phrase_type_label", "subject_label", "object_label", "verb_label", "time_label",
+     "place_label", "tense_label", "negative_label", "voice_label", "auxiliary_label",
+     // buttons
+     "phrase","random_select", "sample","LastMark_label"];
+    listLabel.forEach(part => {
+        translateLabel(lang, part);
+    });
+}
+
+// Function to translate the options of select elements
+function translateSelect(lang, part) {
+    const partSelect = document.querySelector(`#${part}`);
+
+    // Ensure the select element exists
+    if (!partSelect) {
+        console.warn(`Select element with ID "${part}" not found.`);
+        return;
+    }
+
+    // Get the translations for the current part
+    const partTranslations = jsontrans[lang][part];
+
+    // Ensure translations exist for the part
+    if (!partTranslations) {
+        console.warn(`No translations found for part: "${part}" in language: ${lang}`);
+        return;
+    }
+
+    // Loop through the options and translate their text content
+    Array.from(partSelect.options).forEach(option => {
+        const value = option.value; // Use the option's value as a key
+
+        // For Arabic, only display the value
+        if (lang === "ar") {
+            option.textContent = value;
+        } else {
+            // Translate the option text and append it with the translation
+            if (partTranslations[value]) {
+                option.textContent = `${value} [${partTranslations[value]}]`;
+            }
+        }
+    });
+}
+
+// Function to translate the labels of HTML elements
+function translateLabel(lang, part) {
+    const partLabel = document.querySelector(`#${part}`);
+
+    // Ensure the label element exists
+    if (!partLabel) {
+        console.warn(`Label element with ID "${part}" not found.`);
+        return;
+    }
+
+    // Get the translations for the current part
+    const labelTranslations = jsontrans[lang]["web-labels"];
+//    console.log("labelTranslations", labelTranslations);
+
+    // Ensure translations exist for the part
+    if (!labelTranslations) {
+        console.warn(`No translations found for labels in language: ${lang}`);
+        return;
+    }
+
+    // Access the original label's text (assuming you're using `textContent`)
+//    const originalText = partLabel.textContent.trim();  // Text in the label, e.g., "Username"
+    const originalText = partLabel.getAttribute('data-original-text');  // Text in the label, e.g., "Username"
+//    console.log("Original label text:", originalText);
+
+    // If translation for this label exists in the selected language
+    if (labelTranslations[originalText]) {
+        const translatedText = labelTranslations[originalText];
+//        console.log("Translated label text:", translatedText);
+
+        // Update the label's text content with the translation
+                // For Arabic, only display the value
+        if (lang !== "ar") {
+        partLabel.textContent = `${originalText} [${translatedText}]`;
+        }
+    } else {
+        console.warn(`No translation found for "${originalText}" in language: ${lang}`);
+    }
+}
+
+// Initialize the app by loading the Arabic translations as default
+loadTranslationFile("ar").then(translations => {
+    if (translations) {
+        jsontrans["ar"] = translations; // Store the Arabic translations
+    }
+});
+
 $(document).ready(() => {
     // Initialize the DrawForm instance
     const myDraw = new DrawForm(language_url);
@@ -366,6 +559,8 @@ $(document).ready(() => {
         .on('click', '#random_select', randomSelectClick)
         .on('click', '#copy', copyToClipboard)
         .on('click', '#signal', reportClick)
-        .on('change', '.rating input', ratingChange);
+        .on('change', '.rating input', ratingChange)
+        .on('change', '#language', selectLanguage);
+
 });
 
