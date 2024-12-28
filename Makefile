@@ -120,3 +120,17 @@ build_wordindex:
 	python tools/data_to_json.py doc/yaziji-data_features.ods tests/output/data.new.json
 build_trans:
 	python tools/data_to_translate_csv.py doc/yaziji-data_features.ods tests/output/data.trans.csv
+
+build_lang_json:
+	# build a data json file, based on transaltions in PO/Mo compiled files
+	# specify parameters if needed
+	# -d for data file, wich contains all words, and labels, and used for yaziji phrase generation
+	# -t for PO/Mo compiled directory
+	# -o output direcoty
+	python tools/translate_json_from_po.py -d web/data/data.new.json -t web/locales -o tests/output/json
+
+update_lang_json:
+	# copy data json file translations, like ar.json, en.json
+	# the json locales directoy is web/static/resources/json/
+	python tests/output/json/*.json web/static/resources/json/
+

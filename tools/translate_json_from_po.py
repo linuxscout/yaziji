@@ -8,7 +8,7 @@
 import os
 import json
 from babel.support import Translations
-
+import argparse
 
 class Translator:
     def __init__(self, translation_directory, locale="ar"):
@@ -124,6 +124,38 @@ class Translator:
             # Translate dictionary with list values
             return translated_data
         return {}
+def parse_args():
+    """
+
+    :return:
+    """
+# Initialize the argument parser
+    parser = argparse.ArgumentParser(description="Process parameters for translation.")
+
+    # Add arguments
+    parser.add_argument(
+        "-d", "--data-file",
+        type=str,
+        required=True,
+        help="Path to the input data file."
+    )
+    parser.add_argument(
+        "-t", "--translation-dir",
+        type=str,
+        required=True,
+        help="Path to the translation directory."
+    )
+    parser.add_argument(
+        "-o", "--output-dir",
+        type=str,
+        required=True,
+        help="Path to the output directory."
+    )
+
+    # Parse the arguments
+    args = parser.parse_args()
+    return args
+
 def maintest():
     # Set up translation directory and initial locale (default is 'ar')
     translation_directory = os.path.join(os.path.dirname(__file__), "../web/locales")
@@ -185,15 +217,15 @@ def mainjson():
         print("Translated Data (en):", translated_data_en)
         translator.save_json(translated_data_en, "../tests/output/bn.json")
 
-def generate_lang_json():
+def generate_lang_json(dict_path, translation_directory, output_directory):
     # Set up translation directory and initial locale (default is 'ar')
-    translation_directory = os.path.join(os.path.dirname(__file__), "../web/locales")
+    # translation_directory = os.path.join(os.path.dirname(__file__), "../web/locales")
 
     # Initialize Translator with default locale 'ar'
     translator = Translator(translation_directory, "ar")
 
     # Open JSON file
-    dict_path = os.path.join(os.path.dirname(__file__), "../web/data/data.new.json")
+    # dict_path = os.path.join(os.path.dirname(__file__), "../web/data/data.new.json")
     data = translator.open_json(dict_path)
 
     # Change locale dynamically and translate again
@@ -211,8 +243,15 @@ def generate_lang_json():
         if data:
             translated_data_en =     translated_data = translator.translate_web_data(data)
             print(f"Translated Data {lang}:", translated_data_en)
-            translator.save_json(translated_data_en, f"../tests/output/{lang}.json")
+            translator.save_json(translated_data_en, output_directory+f"/{lang}.json")
 if __name__ == "__main__":
     # maintest()
     # mainjson()
-    generate_lang_json()
+    args = parse_args()
+    # Output the parsed arguments
+    # dict_path = args.data_file
+    # translation_directory args.translation_dir, output_directory
+    # print("Data file:", args.data_file)
+    # print("Translation directory:", args.translation_dir)
+    # print("Output directory:", args.output_dir)
+    generate_lang_json(args.data_file, args.translation_dir, args.output_dir)
