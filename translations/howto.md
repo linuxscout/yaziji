@@ -150,7 +150,10 @@ The JSON files will be copied to the `web/static/resources/json/` directory.
 ## **13. Verify the Integration**
 - Test the application to ensure the new language is visible and functional.
 - Verify that the translations display correctly in the user interface.
-
+You can make web tests
+```sh
+make testweb
+```
 ---
 
 ## **Reference: Native Language Names**
