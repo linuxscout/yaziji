@@ -74,6 +74,7 @@ class TestPhraseGenerator(unittest.TestCase):
                              msg=f"\nResult  :{result}\nExpected:{item['phrase']}")
             self.assertEqual(errors == item["error"], item["valid"],
                              msg=f"\nResult  :{errors}\nExpected:{item['error']}")
+
     # @unittest.skip("Test later")
     def test_load_dictionary_default(self):
         # Arrange

@@ -18,7 +18,7 @@ from yaziji.phrase_generator import PhraseGenerator
 
 from utils import open_file
 
-class TestPhraseGenerator(unittest.TestCase):
+class TestPhraseGeneratorByData(unittest.TestCase):
     def setUp(self):
         self.phrase_generator = PhraseGenerator()
         self.dataset = []
@@ -45,16 +45,26 @@ class TestPhraseGenerator(unittest.TestCase):
     def test_build_error_success(self):
         # Arrange
         test_set = self.dataset
+        wrong_examples=[]
+        wrong_invalid_examples = []
         for num, item in enumerate(test_set):
             components = self.get_components(item)
             result = self.phrase_generator.build(components)
             phrase = result.get("phrase",'')
             if  item["valid"]:
-                self.assertEqual(phrase , item["phrase"],
-                             msg=f"Example n°{num}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+                if not (phrase == item["phrase"]):
+                    wrong_examples.append(num)
+                # self.assertEqual(phrase , item["phrase"],
+                #              msg=f"Example n°{num+1}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
             if  not item["valid"]:
-                self.assertNotEqual(phrase , item["phrase"],
-                             msg=f"Example n°{num}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+                if (phrase == item["phrase"]):
+                    wrong_invalid_examples.append(num)
+                # self.assertNotEqual(phrase , item["phrase"],
+                #              msg=f"Example n°{num+1}\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
+        self.assertEqual( wrong_examples,[],
+                     msg=f"\nThere are errors in Data '{ wrong_examples}'")  # Should return True if preparation is successful
+        self.assertEqual( wrong_invalid_examples,[],
+                     msg=f"\nThere are errors in Data Invalid examples!'{ wrong_invalid_examples}'")  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def build_dataframe(self, dataframe):
