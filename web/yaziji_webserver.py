@@ -91,7 +91,7 @@ def ajax(lang="ar"):
     Handle AJAX requests for various actions.
     """
     default = ""
-    args = request.args if request.method == "GET" else request.get_json(silent=True).get("data",{})
+    args = request.args.to_dict() if request.method == "GET" else request.get_json(silent=True).get("data",{})
 
     if args.get("response_type", "") == "get_random_text":
         return jsonify({"text": default})
@@ -99,11 +99,31 @@ def ajax(lang="ar"):
     text = args.get("text", "")
     action = args.get("action", "")
     # remove "text" and "action" if from options
-    options = {key: value for key, value in dict(args).items() if key not in ["text","action"]}
+    options = parse_options(args)
+
     myadaat = adaat.Adaat()  # Instantiate the Adaat class
     resulttext = myadaat.do_action(text, action, options)
 
     return jsonify({'result': resulttext, 'order': 0})
+
+def parse_options(args):
+    """
+    Parse options
+    :param args:
+    :return:
+    """
+    excluded_fields = ["text", "action"]
+    options = {}
+    # look up for keys starting by "options["
+    for key, value in args.items():
+        if key.startswith("options[") and key.endswith("]"):
+            # Extract the nested key name
+            nested_key = key[len("options["):-1]
+            options[nested_key] = value
+    # if no options found, look in other papameters
+    if not options:
+        options = {key: value for key, value in dict(args).items() if key not in excluded_fields}
+    return options
 
 
 @app.route("/selectGet", methods=["POST", "GET"])

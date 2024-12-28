@@ -1,6 +1,19 @@
 
 
-
+function get_options()
+{
+    return {subject: subject.value || "",
+        object: document.NewForm.object.value || "",
+        verb: document.NewForm.verb.value || "",
+        time: document.NewForm.time.value || "",
+        place: document.NewForm.place.value || "",
+        tense: tense.value || "",
+        voice: document.NewForm.voice.value || "",
+        auxiliary: document.NewForm.auxiliary.value || "",
+        negative: document.NewForm.negative.value || "",
+        phrase_type: document.NewForm.phrase_type.value || "",
+    };
+}
 /**
  * Handles the phrase click event to validate input and send data via AJAX.
  * @param {Event} e - The event object.
@@ -16,21 +29,21 @@ const phraseClick = (e) => {
     }
 
     const prefix = getPrefixPath();
-
     // Collect form data
     const formData = {
         //text: subject.value || "",
         action: "phrase",
-        subject: subject.value || "",
-        object: document.NewForm.object.value || "",
-        verb: document.NewForm.verb.value || "",
-        time: document.NewForm.time.value || "",
-        place: document.NewForm.place.value || "",
-        tense: tense.value || "",
-        voice: document.NewForm.voice.value || "",
-        auxiliary: document.NewForm.auxiliary.value || "",
-        negative: document.NewForm.negative.value || "",
-        phrase_type: document.NewForm.phrase_type.value || "",
+        options :get_options(),
+//        subject: subject.value || "",
+//        object: document.NewForm.object.value || "",
+//        verb: document.NewForm.verb.value || "",
+//        time: document.NewForm.time.value || "",
+//        place: document.NewForm.place.value || "",
+//        tense: tense.value || "",
+//        voice: document.NewForm.voice.value || "",
+//        auxiliary: document.NewForm.auxiliary.value || "",
+//        negative: document.NewForm.negative.value || "",
+//        phrase_type: document.NewForm.phrase_type.value || "",
     };
 
     // Send data via GET request
@@ -38,7 +51,7 @@ const phraseClick = (e) => {
         if (response?.result) {
             $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
             $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
-//            ${response.result.inflection}<br/>
+            ${response.result.inflection}<br/>
             ${response.result.errors}</div>`);
 //       if (response?.result) {
 //            $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
@@ -75,16 +88,17 @@ const sampleClick = (e) => {
     const formData = {
         text: subject.value || "",
         action: "sample",
-        subject: subject.value || "",
-        object: document.NewForm.object.value || "",
-        verb: document.NewForm.verb.value || "",
-        time: document.NewForm.time.value || "",
-        place: document.NewForm.place.value || "",
-        tense: tense.value || "",
-        voice: document.NewForm.voice.value || "",
-        auxiliary: document.NewForm.auxiliary.value || "",
-        negative: document.NewForm.negative.value || "",
-        phrase_type: document.NewForm.phrase_type.value || "",
+        options :get_options(),
+//        subject: subject.value || "",
+//        object: document.NewForm.object.value || "",
+//        verb: document.NewForm.verb.value || "",
+//        time: document.NewForm.time.value || "",
+//        place: document.NewForm.place.value || "",
+//        tense: tense.value || "",
+//        voice: document.NewForm.voice.value || "",
+//        auxiliary: document.NewForm.auxiliary.value || "",
+//        negative: document.NewForm.negative.value || "",
+//        phrase_type: document.NewForm.phrase_type.value || "",
     };
 
     // Send data via GET request
@@ -116,16 +130,17 @@ const reportClick = (e) => {
     const formData = {
         text: document.NewForm.subject.value || "",
         action: "report",
-        subject: document.NewForm.subject.value || "",
-        object: document.NewForm.object.value || "",
-        verb: document.NewForm.verb.value || "",
-        time: document.NewForm.time.value || "",
-        place: document.NewForm.place.value || "",
-        tense: document.NewForm.tense.value || "",
-        voice: document.NewForm.voice.value || "",
-        auxiliary: document.NewForm.auxiliary.value || "",
-        negative: document.NewForm.negative.value || "",
-        phrase_type: document.NewForm.phrase_type.value || "",
+        options :get_options(),
+//        subject: document.NewForm.subject.value || "",
+//        object: document.NewForm.object.value || "",
+//        verb: document.NewForm.verb.value || "",
+//        time: document.NewForm.time.value || "",
+//        place: document.NewForm.place.value || "",
+//        tense: document.NewForm.tense.value || "",
+//        voice: document.NewForm.voice.value || "",
+//        auxiliary: document.NewForm.auxiliary.value || "",
+//        negative: document.NewForm.negative.value || "",
+//        phrase_type: document.NewForm.phrase_type.value || "",
         result: $("#result").text() || "",
     };
 
@@ -233,16 +248,17 @@ const ratingChange = function(e) {
     const formData = {
         text: document.NewForm.subject.value,
         action: "rating",
-        subject: document.NewForm.subject.value,
-        object: document.NewForm.object.value,
-        verb: document.NewForm.verb.value,
-        time: document.NewForm.time.value,
-        place: document.NewForm.place.value,
-        tense: document.NewForm.tense.value,
-        voice: document.NewForm.voice.value,
-        auxiliary: document.NewForm.auxiliary.value,
-        negative: document.NewForm.negative.value,
-        phrase_type: document.NewForm.phrase_type.value,
+        options :get_options(),
+//        subject: document.NewForm.subject.value,
+//        object: document.NewForm.object.value,
+//        verb: document.NewForm.verb.value,
+//        time: document.NewForm.time.value,
+//        place: document.NewForm.place.value,
+//        tense: document.NewForm.tense.value,
+//        voice: document.NewForm.voice.value,
+//        auxiliary: document.NewForm.auxiliary.value,
+//        negative: document.NewForm.negative.value,
+//        phrase_type: document.NewForm.phrase_type.value,
         result: $("#result").text(),
         rating: `${rating}`
     };
