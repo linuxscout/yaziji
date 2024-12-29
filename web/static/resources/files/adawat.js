@@ -14,26 +14,56 @@ function get_options()
         phrase_type: document.NewForm.phrase_type.value || "",
     };
 }
+/***
+*  Validation: Ensure correct pronoun usage with imperative tense
+*/
+    function test_compatibility(options)
+    {
+//    console.log("options ", options);
+    // Validation: Ensure correct pronoun usage with imperative tense
+//  const { tense, subject } = document.NewForm;
+////    console.log("first case ", tense.value ,subject.value,subject.value.includes("أنت"),tense.value === "الأمر" && !subject.value.includes("أنت"));
+////    console.log("second case ", options["tense"] ,options.subject)
+//////    console.log("second case ", options.tense.value ,options.subject.value,
+//////    options.subject.value.includes("أنت"),options.tense.value === "الأمر" && !options.subject.value.includes("أنت"));
+//
+////    if (tense.value === "الأمر" && !subject.value.includes("أنت")) {
+////        alert(`خطأ في الضمير [${subject.value}] غير متطابق مع التصريف في الأمر`);
+////        return;
+////    }
+
+     // Validation: Ensure correct pronoun usage with imperative tense
+    if (options.tense === "الأمر" && !options.subject.includes("أنت")) {
+        alert(`خطأ في الضمير [${options.subject}] غير متطابق مع التصريف في الأمر`);
+        return;
+    }
+    return true;
+    }
+
 /**
  * Handles the phrase click event to validate input and send data via AJAX.
  * @param {Event} e - The event object.
  */
 const phraseClick = (e) => {
     e.preventDefault();
-
-    // Validation: Ensure correct pronoun usage with imperative tense
-    const { tense, subject } = document.NewForm;
-    if (tense.value === "الأمر" && !subject.value.includes("أنت")) {
-        alert(`خطأ في الضمير [${subject.value}] غير متطابق مع التصريف في الأمر`);
-        return;
-    }
+    options = get_options();
+    // test compatiblity between phrase parts input
+    if (!test_compatibility(options))
+    {return;}
+//    console.log("options ", options);
+//    // Validation: Ensure correct pronoun usage with imperative tense
+//    const { tense, subject } = document.NewForm;
+//    if (tense.value === "الأمر" && !subject.value.includes("أنت")) {
+//        alert(`خطأ في الضمير [${subject.value}] غير متطابق مع التصريف في الأمر`);
+//        return;
+//    }
 
     const prefix = getPrefixPath();
     // Collect form data
     const formData = {
         //text: subject.value || "",
         action: "phrase",
-        options :get_options(),
+        options :options,
 //        subject: subject.value || "",
 //        object: document.NewForm.object.value || "",
 //        verb: document.NewForm.verb.value || "",
@@ -374,65 +404,6 @@ class DrawForm {
 }
 
 
-//// Load translations dynamically
-//    let jsontrans = {};
-//async function loadTranslationFile(lang) {
-//            const fileName = language_url+`${lang}.json`; // File name based on ISO code
-//            try {
-//                const response = await fetch(fileName);
-//                if (!response.ok) {
-//                    throw new Error(`Error loading ${fileName}: ${response.status}`);
-//                }
-//                return await response.json();
-//            } catch (error) {
-//                console.error("Failed to load translation file:", error);
-//                return null;
-//            }
-//        }
-//
-//
-//const selectLanguage = function() {
-//        let lang = this.value ;
-//        console.log("lang", lang);
-//        translateUI(lang);
-//        };
-//
-//
-//async function translateUI(lang) {
-//
-//           jsontrans[lang] = await loadTranslationFile(lang);
-////    if (!translation) {
-//    if (!jsontrans[lang]) {
-//        console.warn(`No translations found for language: ${lang}`);
-//        return;
-//    }
-//
-//  //Translate part select options
-//const list = ["phrase_type", "subject", "object", "verb", "time", "place", "tense", "negative", "voice", "auxiliary"];
-//
-//list.forEach(part=> {
-// translateSelect(lang, part);
-//});
-//
-//}
-//function translateSelect(lang, part)
-//{
-//            const partSelect = document.querySelector('#'+part);
-//            const partTranslations = jsontrans[lang][part];
-//            Array.from(partSelect.options).forEach(option => {
-//                const value = option.value; // Use the option's value as a key
-//                if(lang=="ar")
-//                {option.textContent =value;}
-//                else{
-//                if (partTranslations[value]) {
-//                    option.textContent =value +'  ['+partTranslations[value]+']';
-//                }
-//                }
-//            });
-//}
-//// Initialize the app
-////loadTranslations();
-//loadTranslationFile("ar")
 
 // Object to store translations
 let jsontrans = {};
@@ -575,7 +546,12 @@ $(document).ready(() => {
     const myDraw = new DrawForm(language_url);
     myDraw.load_languages();
     myDraw.draw();
+    if(!CONFIG_DEBUG_MODE)
+    { // hide some buttons
 
+    $("#random_select").hide();
+    $("#sample").hide();
+    }
     // Event bindings
     $(document)
         .on('click', '#phrase', phraseClick)
