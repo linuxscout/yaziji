@@ -153,3 +153,4 @@ docs/tmp/
 /web/static/resources/json/tmp/
 /web/tests/output/
 *.ods#
+*.json~

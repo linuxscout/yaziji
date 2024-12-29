@@ -1,167 +1,220 @@
 <!DOCTYPE html>
 <html lang="ar">
-  <head>
+
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  <![endif]-->
     <title>مولد الجمل العربية</title>
+
+    <!-- Favicon -->
     <link href="resources/files/favicon1.png" rel="icon" type="image/png">
+
+    <!-- External CSS for styling -->
     <link href="resources/files/adawatstyle.css" rel="stylesheet">
-
     <link href="resources/files/xzero-rtl/css/bootstrap-arabic.min.css" rel="stylesheet">
-    <!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
-    <!--
-    <link href="resources/files/bootstrap-rtl.min.css" rel="stylesheet">-->
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Meta tag for responsive design -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
-  </head>
-  <body dir="rtl">
-                   <p> <a href="main"><img alt="مولد الجمل العربية" height="120px" src="resources/files/logo.png" style='float:right; margin-top:-20px;'> </a></p>
-<h3>مولد الجمل العربية</h3>
-    <div class="container">
-      <div class="row clearfix">
-        <div class="col-md-9 column">
-          <ul class="switch-locale">
-              <li><a href="#" data-locale="ar">العربية</a></li>
-              <li><a href="#" data-locale="en">English</a></li>
-              <li><a href="#" data-locale="fr">Français</a></li>
-          </ul>        
-          <form id="NewForm" name="NewForm" onsubmit="return false"><br>
+    <meta name="file-name" content="index.html">
+</head>
+<body dir="rtl">
+    <!-- Header Section -->
+    <header>
+        <p>
+            <a href=".">
+                <img alt="مولد الجمل العربية" height="120px" src="resources/files/logo.png" style="float:right; margin-top:-20px;">
+            </a>
+        </p>
+        <h3>مولد الجمل العربية</h3>
+    </header>
 
-
-
-<span class="translate" data-args='نوع الجملة:' ></span>
-           <select id='phrase_type'  class='form-inline' name='phrase_type'>
-</select>
-<br/><span class="translate" data-args='فاعل'></span> <select id='subject'  class='form-inline' name='subject'>
-    <option value=""></option>
-  
-
-</select>
-<br/><span class="translate" data-args='فعل مساعد'></span>
-: <select id='auxiliary'  class='form-inline' name='auxiliary'>
-    <option value=""></option>
-
-</select>
-<span class="translate" data-args='فعل:'></span>
-<select id='verb'  class='form-inline' name='verb'>
-    <option value=""></option>
-
-</select>
-<span class="translate" data-args='زمن:'></span>
-<select id='tense'  class='form-inline' name='tense'>
-  
-
-</select>
-<span class="translate" data-args='مبني للمعلوم/مجهول:'></span>
-<select id='voice'  class='form-inline' name='voice'>
- 
-
-</select>
-<span class="translate" data-args='مثبت/منفي:'></span>
-<select id='negative'  class='form-inline' name='negative'>
-  
-</select>
-<br/><span class="translate" data-args='مفعول'></span> <select id='object'  class='form-inline' name='object'>
-    <option value=""></option>
-
-</select>
-<span class="translate" data-args='ظرف زمان:'></span>
-<select id='time'  class='form-inline' name='time'>
-
-    <option value=""></option>
-
-</select>
-<span class="translate" data-args='ظرف مكان:'></span>
- <select id='place'  class='form-inline' name='place'>
-    <option value=""></option>
-
-</select>
-<span class="translate" data-args='ظرف مكان:'></span>
- <select id='place'  class='form-inline' name='place'>
-    <option value=""></option>
-
+    <!-- Main Content Section -->
+    <main class="container">
+        <!-- Language Selection Section -->
+        <section>
+            <div class="row clearfix">
+                <div class="col-md-9 column">
+                    <!-- Heading for language selection -->
+<!--                    <h4 class="text-primary">اختيار اللغة</h4>-->
+                    <!-- Language Dropdown Menu -->
+<select id="language" class="language">
+    <option value="ar">🟩 العربية</option>
+    <option value="bn">🇧🇩 বাংলা - البنغالية</option>
+    <option value="de">🇩🇪 Deutsch - الألمانية</option>
+    <option value="en">🇺🇸 English - الإنجليزية</option>
+    <option value="es">🇪🇸 Español  - الإسبانية</option>
+    <option value="fr">🇫🇷 Français  - الفرنسية</option>
+    <option value="id">🇮🇩 Bahasa Indonesia - الإندونيسية</option>
+    <option value="ja">🇯🇵 日本語  - اليابانية</option>
+    <option value="ku">🌄 کوردی - الكردية</option>
+    <option value="zh">🇨🇳 中文  - الصينية</option>
 </select>
 
 
-
-
-    <br>
-            <div class="form-inline"><a class="btn btn-primary" id="phrase" title="{{ _('بناء الجملة') }}"><span class="translate" data-args='بناء'></span></a>
-            <a class="btn btn-primary" id="random_select" title="{{ _('اختيار عشوائي للمفردات') }}"><span class="translate" data-args='عشوائي'></span></a>
-            <a class="btn btn-primary" id="sample" title="{{ _('نسخ عينة جيسون للتجارب البرمجية') }}"><span  class="translate" data-args='عينة'></span></a>
-              <input checked="checked" class="checkbox" id="LastMark" value="1"
-                type="checkbox" title="{{ _('إظهار حركة الإعراب في أواخر الكلمات') }}"> <span  class="translate" data-args='حركة الإعراب'></span></div>
-
-          </form>
-<!--hidden parts only used to extract gettext
-                    {{ _('إظهار حركة الإعراب في أواخر الكلمات') }}
-                    {{ _('اختيار عشوائي للمفردات') }}
-                    {{ _('نسخ عينة جيسون للتجارب البرمجية') }
-                    {{ _('بناء الجملة') }}
-                    
--->
-          <!--<section class="bg-danger text-white"> أضفنا زرا لتسهيل النسخ</section>-->
-          <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
-          <section class="bg-info" id="small_hint"></section>
-        </div>
-        <div class="col-md-3 column"> <progress id="loading"></progress>
-          <!--              <div class="panel panel-default">
-               <div class="panel-heading"> ادعم مشكال</div>               <div class="panel-body"><a href="https://www.patreon.com/bePatron?u=23679540" data-patreon-widget-type="become-patron-button">ادعمنا على باتريون</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick" /><input type="hidden" name="hosted_button_id" value="SAEUNQU5QW834" /><input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_DZ/i/scr/pixel.gif" width="1" height="1" /></form></div>--></div>
-        <section class="bg-info" id="hint"></section>
-      </div>
-    </div>
-    <div class="row clearfix">
-      <div class="col-md-9 column"> </div>
-      <div class="col-md-3 column"> </div>
-    </div>
-    <div class="container"><br>
-      <div class="row clearfix">
-        <div class="row clearfix" id="myfooter">
-          <div class="col-md-3 column" id="myprojects">
-            <div class="panel panel-default">
-              <div class="panel-body"> <a href="http://blog.tahadz.com"><span class="glyphicon glyphicon-globe"></span></span>
-              <span class="translate" data-args='مدونتي'></span>
-                     </a>
-                <!--
-                            <div class="media">-->
-                <!--
-  <div class="media-right">    <img src="resources/files/images/dreamdevdz.png" class="media-object" style="width:100px">  </div>  <div class="media-body">    <h4 class="media-heading">الاس</h4>     من شركة <a href="https://dreamdev.dz/"> DreamDev.dz    </a>  </div>
---><!--
-</div>--> <br><span class="translate" data-args='الاستضافة بدعم من شركة'></span> <a href="https://dreamdev.dz/">
-                  DreamDev.dz<span class="glyphicon glyphicon-globe"></span></a>
-                <script>//~ var script = "%(script)s";
-        //~ var script = "http://localhost:8080";
-        const script = "http://127.0.0.1:5000";
-    </script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-                <script async="" src="resources/files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
-<!--
-                <script async="" src="_data/data_{{ _('LanguageCode') }}.json"></script> </div>
--->
-                  <script src="resources/i18n/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.language.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
-  <script src="resources/i18n/js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
-  <script src="resources/i18n/js/lib/history/jquery.history.js"></script>
-  <script src="resources/i18n/js/lib/url/url.min.js"></script>
-
-  <script src="resources/i18n/js/global.js"></script>
-                
-                <script async="" src="resources/files/adawat.js"></script> 
-                
-                
                 </div>
             </div>
-          </div>
+        </section>
+
+
+
+        <!-- Sentence Generation Form Section -->
+        <section>
+            <form id="NewForm" name="NewForm" onsubmit="return false"><br>
+
+                <!-- Type of Sentence -->
+                <div>
+                    <label id="phrase_type_label" for="phrase_type" data-original-text="نوع الجملة:">نوع الجملة:</label>
+                    <select id='phrase_type' class='form-inline' name='phrase_type'></select><br>
+                </div>
+
+                <!-- Subject -->
+                <div>
+                    <label id="subject_label" for="subject" data-original-text="فاعل">فاعل</label>
+                    <select id='subject' class='form-inline' name='subject'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Auxiliary Verb -->
+                <div>
+                    <label id="auxiliary_label" for="auxiliary" data-original-text="فعل مساعد">فعل مساعد</label>
+                    <select id='auxiliary' class='form-inline' name='auxiliary'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Main Verb -->
+                <div>
+                    <label id="verb_label" for="verb" data-original-text="فعل:">فعل:</label>
+                    <select id='verb' class='form-inline' name='verb'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Tense -->
+                <div>
+                    <label id="tense_label" for="tense" data-original-text="زمن:">زمن:</label>
+                    <select id='tense' class='form-inline' name='tense'></select><br>
+                </div>
+
+                <!-- Voice: Active/Passive -->
+                <div>
+                    <label id="voice_label" for="voice" data-original-text="مبني للمعلوم/مجهول:">مبني للمعلوم/مجهول:</label>
+                    <select id='voice' class='form-inline' name='voice'></select><br>
+                </div>
+
+                <!-- Positive/Negative -->
+                <div>
+                    <label id="negative_label" for="negative" data-original-text="مثبت/منفي:">مثبت/منفي:</label>
+                    <select id='negative' class='form-inline' name='negative'></select><br>
+                </div>
+
+                <!-- Object -->
+                <div>
+                    <label id="object_label" for="object" data-original-text="مفعول">مفعول</label>
+                    <select id='object' class='form-inline' name='object'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Time -->
+                <div>
+                    <label id="time_label" for="time" data-original-text="ظرف زمان:">ظرف زمان:</label>
+                    <select id='time' class='form-inline' name='time'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Place -->
+                <div>
+                    <label id="place_label" for="place" data-original-text="ظرف مكان:">ظرف مكان:</label>
+                    <select id='place' class='form-inline' name='place'>
+                        <option value=""></option>
+                    </select><br>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-inline">
+                    <a class="btn btn-primary" id="phrase" title="'بناء الجملة'" data-original-text="بناء">بناء</a>
+                    <a class="btn btn-primary" id="random_select" title="'اختيار عشوائي للمفردات'" data-original-text="عشوائي">عشوائي</a>
+                    <a class="btn btn-primary" id="sample" title="'نسخ عينة جيسون للتجارب البرمجية'" data-original-text="عينة">عينة</a>
+                    <input checked="checked" class="checkbox" id="LastMark" value="1" type="checkbox" title="'إظهار حركة الإعراب في أواخر الكلمات'">
+                    <label id="LastMark_label" for="LastMark" data-original-text="حركة الإعراب">حركة الإعراب</label>
+
+                </div>
+            </form>
+        </section>
+
+        <!-- Result Output Section -->
+        <section>
+            <output id="result" class="form-control" width="100%%">{{ResultText}}</output>
+            <output id="extra"  width="100%%">{{ExtraText}}</output>
+        </section>
+
+        <!-- Toolbar Section -->
+        <section>
+            <div class="btn-toolbar justify-content-end" role="toolbar" aria-label="Toolbar with multiple buttons">
+                <div class="rating">
+                    <!-- Rating Stars -->
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                </div>
+
+                <!-- Button Group with icons -->
+                <div class="btn-group mr-2" role="group" aria-label="Button group">
+                    <button type="button" class="btn btn-info" id="copy"><i class="fa fa-copy"></i> نسخ</button>
+                    <button type="button" class="btn btn-info" id="shareButton"><i class="fa fa-share"></i> مشاركة</button>
+                    <button type="button" class="btn btn-danger" id="signal" data-toggle="modal" title="'إبلاغ عن خطأ'" href="#modal-container-187721">
+                        <i class="fa fa-flag"></i> إبلاغ
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Progress Section -->
+        <section>
+            <progress id="loading"></progress>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="container">
+        <div class="row clearfix" id="myfooter">
+            <div class="col-md-3 column" id="myprojects">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="http://blog.tahadz.com">
+                            <span class="glyphicon glyphicon-globe"></span> مدونتي
+                        </a>
+                        <br>
+                        الاستضافة بدعم من شركة
+                        <a href="https://dreamdev.dz/">
+                            DreamDev.dz<span class="glyphicon glyphicon-globe"></span>
+                        </a>
+                        <script>
+                            // Example script for dynamic content
+                            const script = "http://127.0.0.1:5000/";
+                        </script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script async src="resources/files/xzero-rtl/js/bootstrap-arabic.min.js"></script>
+                        <script async src="resources/files/adawat.js"></script>
+                        <script>
+                            // Set language path for translation
+                            var language_url = "resources/json/";
+                        </script>
+
+                        <script>
+</script>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </footer>
+
+</body>
 </html>
