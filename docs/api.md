@@ -1,7 +1,3 @@
-Here’s an enhanced version of your API documentation with improved organization, readability, and clarity:
-
-------
-
 # **API Documentation for Yaziji: Arabic Sentence Generator**
 
 ## **Overview**
