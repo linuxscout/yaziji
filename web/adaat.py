@@ -110,18 +110,7 @@ class Adaat:
             return self.rating(options)
         else:
             return text
-    # def add_features(self, data):
-    #     """
-    #     Extract Data for each option.
-    #     Convert the dict (key, value} into {key, dict}
-    #     :param options:
-    #     :return:
-    #     """
-    #     converted = {value: self.small_dictionary.get(value,{}) for value in data.values()
-    #                  if self.small_dictionary.get(value,{})}
-    #     # clean data
-    #
-    #     return converted
+
     def build_phrase(self, options):
         """
         Generate phrase

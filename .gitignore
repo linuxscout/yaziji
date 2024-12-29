@@ -139,7 +139,6 @@ dmypy.json
 /web/web/lib
 .xdp-ma*
 /web/archive/
-/translations/work/
 /translations/index.lokalize
 /translations/lokalize-scripts/
 /web/flask_session
