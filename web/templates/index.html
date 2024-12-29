@@ -233,8 +233,10 @@
                         <script async src="{{ url_for('static', filename='resources/files/xzero-rtl/js/bootstrap-arabic.min.js')}}"></script>
                         <script async src="{{ url_for('static', filename='resources/files/adawat.js')}}"></script>
                         <script>
+                            //*------------Configuration
                             // Set language path for translation
                             var language_url = "{{ url_for('static', filename='resources/json/')}}";
+                            const CONFIG_DEBUG_MODE = true;
                         </script>
 
                         <script>
