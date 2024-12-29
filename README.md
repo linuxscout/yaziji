@@ -55,7 +55,7 @@ A web application designed to help non-native Arabic learners construct simple s
  
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <img src="docs/images/yaziji-demo1-ar.png" alt="Image 1" width="45%" />
-  <img src="docs/images/yaziji-demo1-ar.png" alt="Image 2" width="45%" />
+  <img src="docs/images/yaziji-demo1-en.png" alt="Image 2" width="45%" />
 </div>
 
 ------
