@@ -2,9 +2,12 @@
 
 **Yaziji** is an advanced tool designed for generating grammatically correct Arabic phrases with full diacritics. It is primarily aimed at teaching Arabic to non-native speakers and supports multilingual localization. Yaziji offers a customizable phrase generator for various educational and linguistic applications.
 
+<div dir="rtl">
+
 - ## **يازجي**: مولد العبارات العربية
 
   **يازجي**:  مولد الجمل العربية، أداة متقدمة مصممة لتوليد الجمل عربية صحيحة نحويًا مشكولة بالكامل. تستهدف تعليم اللغة العربية للناطقين بغيرها وتدعم لغات متعددة. يقدم يازجي مولد جُمل قابلًا للتخصيص لمختلف التطبيقات التعليمية واللغوية.
+<div/>
 
   > **[تجربة على tahadz.com/yaziji](http://tahadz.com/yaziji)**
 
@@ -22,7 +25,7 @@
 
 ### **The Idea الفكرة**
 <div dir="rtl"> 
-  تطبيق ويب مصمم لمساعدة متعلمي اللغة العربية من الناطقين بغيرها على تركيب جمل بسيطة بناءً على مدخلات منمطة.
+:**الفكرة**   تطبيق ويب مصمم لمساعدة متعلمي اللغة العربية من الناطقين بغيرها على تركيب جمل بسيطة بناءً على مدخلات منمطة.
    على سبيل المثال:
 
   - **الفاعل**: أحمد
