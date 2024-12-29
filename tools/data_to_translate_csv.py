@@ -1,3 +1,16 @@
+"""
+**`data_to_translate_csv.py`**: This script is used to generate a CSV file that contains the data required for translation. The resulting CSV file is designed for contributors who prefer working with spreadsheets (such as Excel or Google Docs) to handle the translation process.
+
+The CSV file will include: **Arabic words** and corresponding **translation fields**. Any additional properties needed specifically for translation purposes.
+
+Parameters:
+
+- **Input file**: The input data file contains all the necessary words, labels, and components used for Yaziji phrase generation.
+
+  The used part is  **"data"** which set (components and their values) that can be utilized in the user interface for translation work.
+
+- **Output file**: Specifies the file path for the resulting CSV file, formatted for translation purposes.
+"""
 import pandas as pd
 import json
 from collections import defaultdict

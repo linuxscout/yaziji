@@ -4,6 +4,25 @@
 # This script generate json file fro languages,
 #based on Babel,
 # From po and mo files
+"""
+**`translate_json_from_po.py`**: This script is used to generate a JSON file based on translations from **PO/MO compiled files**. It extracts the translations and applies them to the corresponding data structure for use in the Yaziji phrase generation system.
+
+### Parameters:
+
+- **`-d`**: Specifies the data file that contains all the words, labels, and components used for Yaziji phrase generation.
+- **`-t`**: Specifies the directory containing the compiled **PO/MO** translation files.
+- **`-o`**: Specifies the output directory where the resulting JSON file will be saved.
+
+Usage:
+
+- The script processes the **PO/MO** compiled files, extracting translations and applying them to the relevant components and fields from the input data file.
+
+- The resulting JSON file can then be used in the phrase generation system, ensuring that translations are integrated without altering the core data.
+
+- > [!NOTE]
+  >
+  > For more details on translation please refer to [Translation Guide](translation_guide.md)
+"""
 
 import os
 import json

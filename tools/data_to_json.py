@@ -1,3 +1,16 @@
+"""
+This script is used to build a JSON file containing a dictionary of data for the phrase generator. The resulting JSON file serves multiple purposes, including:
+
+- Storing **word attributes**, **phrase components features**, and **fields** required for phrase generation.
+- Generating a **"data" structure** (components and their values) that can be used in the user interface without directly modifying the core data.
+- The output JSON file will be used by the **`PhraseGenerator`** class as a dictionary to facilitate phrase generation.
+- It allows you to use the data in the **web API** or other interfaces, ensuring that the core data remains unaltered.
+
+Parameters:
+
+- **Input file**: The input data file contains all the necessary words, labels, and components used for Yaziji phrase generation.
+- **Output file**: Specifies the file path for the resulting JSON file.
+"""
 import pandas as pd
 import json
 from collections import defaultdict
