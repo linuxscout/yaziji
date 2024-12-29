@@ -52,10 +52,11 @@ A web application designed to help non-native Arabic learners construct simple s
 **Result**:
  **أَحْمَدُ يَأْكُلُ التُّفَاحَةَ فِي الْحَدِيقَةِ**
  (Ahmed eats the apple in the garden).
-
-![Yaziji Demo (Arabic)](docs/images/yaziji-demo1-ar.png)
-
-![Yaziji Demo (English)](docs/images/yaziji-demo1-en.png)
+ 
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <img src="docs/images/yaziji-demo1-ar.png" alt="Image 1" width="45%" />
+  <img src="docs/images/yaziji-demo1-ar.png" alt="Image 2" width="45%" />
+</div>
 
 ------
 
