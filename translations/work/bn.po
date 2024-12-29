@@ -1,0 +1,913 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#. extracted from bn.csv
+msgid ""
+msgstr ""
+"Project-Id-Version: Yaziji 0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-21 18:08+0100\n"
+"PO-Revision-Date: 2023-06-19 19:41+0100\n"
+"Last-Translator: \n"
+"Language-Team: taha.zerrouki@gmail.com\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: web/data/data_const.py:39 web/data/data_const.py:326
+msgid "جملة فعلية"
+msgstr "মৌখিক বাক্যাংশ"
+
+#: web/data/data_const.py:40 web/data/data_const.py:327
+msgid "جملة اسمية"
+msgstr "নামমাত্র বাক্যাংশ"
+
+#: web/data/data_const.py:43
+msgid "اِسْتَطَاعَ"
+msgstr "করতে পারেন"
+
+#: web/data/data_const.py:44
+msgid "أَرَادَ"
+msgstr "চাইতে"
+
+#: web/data/data_const.py:45
+msgid "كَادَ"
+msgstr "মে"
+
+#: web/data/data_const.py:48 web/data/data_const.py:105
+msgid "شَرِبَ"
+msgstr "পান করতে"
+
+#: web/data/data_const.py:49 web/data/data_const.py:90
+msgid "ضَرَبَ"
+msgstr "আঘাত করার জন্য"
+
+#: web/data/data_const.py:50 web/data/data_const.py:106
+msgid "ذَهَبَ"
+msgstr "যাও"
+
+#: web/data/data_const.py:51 web/data/data_const.py:110
+msgid "جَلَسَ"
+msgstr "সাইট ডাউনলোড"
+
+#: web/data/data_const.py:52
+msgid "شَبِعَ"
+msgstr "খাবারে পরিপূর্ণ হতে"
+
+#: web/data/data_const.py:53
+msgid "أَكَلَ"
+msgstr "খেতে"
+
+#: web/data/data_const.py:54
+msgid "خَرَجَ"
+msgstr "বাইরে যেতে"
+
+#: web/data/data_const.py:55
+msgid "مَشَى"
+msgstr "হাঁটতে"
+
+#: web/data/data_const.py:56
+msgid "قَامَ"
+msgstr "ওঠা"
+
+#: web/data/data_const.py:57
+msgid "نَجَحَ"
+msgstr "সফল"
+
+#: web/data/data_const.py:58
+msgid "بَكَى"
+msgstr "কাদতে"
+
+#: web/data/data_const.py:59
+msgid "سَمِعَ"
+msgstr "শুনতে"
+
+#: web/data/data_const.py:60
+msgid "جَاءَ"
+msgstr "আসা"
+
+#: web/data/data_const.py:61
+msgid "عَرَفَ"
+msgstr "জানতে"
+
+#: web/data/data_const.py:62
+msgid "رَسَبَ"
+msgstr "ব্যর্থ"
+
+#: web/data/data_const.py:63
+msgid "تَعَلَّمَ"
+msgstr "শিখতে"
+
+#: web/data/data_const.py:64
+msgid "لَعِبَ"
+msgstr "পান করা"
+
+#: web/data/data_const.py:65
+msgid "جَعَلَ"
+msgstr "করতে"
+
+#: web/data/data_const.py:66
+msgid "شَكَرَ"
+msgstr "আপনি"
+
+#: web/data/data_const.py:67
+msgid "جَهَّزَ"
+msgstr "প্রস্তুত করা"
+
+#: web/data/data_const.py:68
+msgid "وَعَدَ"
+msgstr "অঙ্গীকার"
+
+#: web/data/data_const.py:69
+msgid "عَاشَ"
+msgstr "বাঁচতে"
+
+#: web/data/data_const.py:70
+msgid "وَقَفَ"
+msgstr "উঠে দাঁড়াতে"
+
+#: web/data/data_const.py:71
+msgid "سَجَدَ"
+msgstr "সিজদা"
+
+#: web/data/data_const.py:72
+msgid "مَاتَ"
+msgstr "মরতে"
+
+#: web/data/data_const.py:73
+msgid "قَبَضَ"
+msgstr "ধরা"
+
+#: web/data/data_const.py:74
+msgid "غَفَرَ"
+msgstr "ক্ষমা করুন"
+
+#: web/data/data_const.py:75
+msgid "صَامَ"
+msgstr "দ্রুত"
+
+#: web/data/data_const.py:76
+msgid "رَسَمَ"
+msgstr "আঁকা"
+
+#: web/data/data_const.py:77
+msgid "نَزَلَ"
+msgstr "ডাউনলোড যেতে"
+
+#: web/data/data_const.py:78
+msgid "رَكَعَ"
+msgstr "হাঁটু"
+
+#: web/data/data_const.py:79
+msgid "سَافَرَ"
+msgstr "ভ্রমণ করতে"
+
+#: web/data/data_const.py:80
+msgid "وَفَى"
+msgstr "অনুগত হতে"
+
+#: web/data/data_const.py:81
+msgid "لَبِسَ"
+msgstr "পরতে"
+
+#: web/data/data_const.py:82
+msgid "اجْتَهَدَ"
+msgstr "কঠোর পরিশ্রম করতে"
+
+#: web/data/data_const.py:83
+msgid "وَجَدَ"
+msgstr "খুঁজতে"
+
+#: web/data/data_const.py:84
+msgid "وَصَلَ"
+msgstr "পৌঁছা"
+
+#: web/data/data_const.py:85
+msgid "قَرَأَ"
+msgstr "পড়তে"
+
+#: web/data/data_const.py:86
+msgid "قَعَدَ"
+msgstr "বসা"
+
+#: web/data/data_const.py:87
+msgid "قَالَ"
+msgstr "বলতে"
+
+#: web/data/data_const.py:88
+msgid "خَبَّرَ"
+msgstr "বলতে"
+
+#: web/data/data_const.py:89
+msgid "عَلِمَ"
+msgstr "জানতে"
+
+#: web/data/data_const.py:91
+msgid "سَأَلَ"
+msgstr "জিজ্ঞাসা করা"
+
+#: web/data/data_const.py:92
+msgid "رَمَى"
+msgstr "নিক্ষেপ করা"
+
+#: web/data/data_const.py:93
+msgid "شَاهَدَ"
+msgstr "দেখা"
+
+#: web/data/data_const.py:94
+msgid "أَخَذَ"
+msgstr "নিতে"
+
+#: web/data/data_const.py:95
+msgid "طَلَعَ"
+msgstr "উপরে যেতে"
+
+#: web/data/data_const.py:96
+msgid "حَفِظَ"
+msgstr "বাঁচাতে"
+
+#: web/data/data_const.py:97
+msgid "أَخْبَرَ"
+msgstr "বলতে"
+
+#: web/data/data_const.py:98
+msgid "نَامَ"
+msgstr "ঘুমাতে"
+
+#: web/data/data_const.py:99
+msgid "سَاعَدَ"
+msgstr "সহায়তা"
+
+#: web/data/data_const.py:100
+msgid "كَتَبَ"
+msgstr "লিখতে"
+
+#: web/data/data_const.py:101
+msgid "حَدَّثَ"
+msgstr "বলা"
+
+#: web/data/data_const.py:102
+msgid "جَرَى"
+msgstr "চালানোর জন্য"
+
+#: web/data/data_const.py:103
+msgid "اشْتَرَى"
+msgstr "কেনার জন্য"
+
+#: web/data/data_const.py:104
+msgid "أَسْرَعَ"
+msgstr "গতি বাড়ানো"
+
+#: web/data/data_const.py:107
+msgid "ذَاكَرَ"
+msgstr "সংশোধন করতে"
+
+#: web/data/data_const.py:108
+msgid "وَضَعَ"
+msgstr "পাব"
+
+#: web/data/data_const.py:109
+msgid "بَاعَ"
+msgstr "সেল"
+
+#: web/data/data_const.py:111
+msgid "فَهِمَ"
+msgstr "আন্ডারস্ট্যান্ড"
+
+#: web/data/data_const.py:112
+msgid "فَتَحَ"
+msgstr "খুলতে"
+
+#: web/data/data_const.py:113
+msgid "عَطِشَ"
+msgstr "থ্র্যাক্ট হতে"
+
+#: web/data/data_const.py:114
+msgid "سَكَنَ"
+msgstr "অধিষ্ঠান করা"
+
+#: web/data/data_const.py:115
+msgid "أَعْلَمَ"
+msgstr "অবহিত"
+
+#: web/data/data_const.py:116
+msgid "كَسَرَ"
+msgstr "ডাউনলোড ব্রেক"
+
+#: web/data/data_const.py:117
+msgid "دَخَلَ"
+msgstr "প্রবেশ করতে"
+
+#: web/data/data_const.py:120
+msgid "الماضي المعلوم"
+msgstr "অতীত"
+
+#: web/data/data_const.py:121
+msgid "المضارع المعلوم"
+msgstr "পার্স/ভবিষ্যত"
+
+#: web/data/data_const.py:122
+msgid "الأمر"
+msgstr "অপূর্ণ"
+
+#: web/data/data_const.py:125
+msgid "معلوم"
+msgstr "সক্রিয়"
+
+#: web/data/data_const.py:126
+msgid "مبني للمجهول"
+msgstr "প্যাসিভ"
+
+#: web/data/data_const.py:129
+msgid "مثبت"
+msgstr "ইতিবাচক"
+
+#: web/data/data_const.py:130
+msgid "منفي"
+msgstr "নেতিবাচক"
+
+#: web/data/data_const.py:133 web/data/data_const.py:154
+msgid "حَلِيبٌ"
+msgstr "দুধ"
+
+#: web/data/data_const.py:134
+msgid "بَابٌ"
+msgstr "দরজা"
+
+#: web/data/data_const.py:135 web/data/data_const.py:276
+msgid "أنا"
+msgstr "আমি"
+
+#: web/data/data_const.py:136 web/data/data_const.py:277
+msgid "نحن"
+msgstr "আমরা"
+
+#: web/data/data_const.py:137 web/data/data_const.py:278
+msgid "أنت"
+msgstr "আপনি (পুংলিঙ্গ একক)"
+
+#: web/data/data_const.py:138 web/data/data_const.py:279
+msgid "أنتِ"
+msgstr "আপনি (fminine একক)"
+
+#: web/data/data_const.py:139 web/data/data_const.py:280
+msgid "أنتما"
+msgstr "আপনি (দ্বৈত পুংলিঙ্গ)"
+
+#: web/data/data_const.py:140 web/data/data_const.py:281
+msgid "أنتما مؤ"
+msgstr "আপনি (দ্বৈত fminine)"
+
+#: web/data/data_const.py:141 web/data/data_const.py:282
+msgid "أنتم"
+msgstr "আপনি (বহুবচন পুংলিঙ্গ)"
+
+#: web/data/data_const.py:142 web/data/data_const.py:283
+msgid "أنتن"
+msgstr "আপনি (বহুবচন মেয়েলি)"
+
+#: web/data/data_const.py:143 web/data/data_const.py:284
+msgid "هو"
+msgstr "তিনি"
+
+#: web/data/data_const.py:144 web/data/data_const.py:285
+msgid "هي"
+msgstr "সে"
+
+#: web/data/data_const.py:145 web/data/data_const.py:286
+msgid "هما"
+msgstr "তারা (দ্বৈত পুংলিঙ্গ)"
+
+#: web/data/data_const.py:146 web/data/data_const.py:287
+msgid "هما مؤ"
+msgstr "তারা (দ্বৈত fminine)"
+
+#: web/data/data_const.py:147 web/data/data_const.py:288
+msgid "هم"
+msgstr "তারা (পুংলিঙ্গ)"
+
+#: web/data/data_const.py:148 web/data/data_const.py:289
+msgid "هن"
+msgstr "তারা (মেয়েলি)"
+
+#: web/data/data_const.py:149
+msgid "تُفَاحَةٌ"
+msgstr "অ্যাপল"
+
+#: web/data/data_const.py:150 web/data/data_const.py:297
+msgid "تِلْمِيذٌ"
+msgstr "ছাত্র"
+
+#: web/data/data_const.py:151
+msgid "ثَوْبٌ"
+msgstr "পোষাক"
+
+#: web/data/data_const.py:152
+msgid "جَبَلٌ"
+msgstr "পর্বত"
+
+#: web/data/data_const.py:153
+msgid "حَقِيبَةٌ"
+msgstr "লটবহর"
+
+#: web/data/data_const.py:155
+msgid "خُضَرٌ"
+msgstr "শাকসবজি"
+
+#: web/data/data_const.py:156
+msgid "دَرْسٌ"
+msgstr "পাঠ"
+
+#: web/data/data_const.py:157 web/data/data_const.py:300
+msgid "رَجُلٌ"
+msgstr "মানুষ"
+
+#: web/data/data_const.py:158
+msgid "شَعْرٌ"
+msgstr "চুল"
+
+#: web/data/data_const.py:159
+msgid "صَحْرَاءٌ"
+msgstr "মরুভূমি"
+
+#: web/data/data_const.py:160
+msgid "صَوْتٌ"
+msgstr "শব্দ"
+
+#: web/data/data_const.py:161
+msgid "طَعَامٌ"
+msgstr "খাদ্য"
+
+#: web/data/data_const.py:162
+msgid "طَلَبَةٌ"
+msgstr "শিক্ষার্থীরা"
+
+#: web/data/data_const.py:163
+msgid "عَصِيرٌ"
+msgstr "রস"
+
+#: web/data/data_const.py:164
+msgid "عَلَمٌ"
+msgstr "পতাকা"
+
+#: web/data/data_const.py:165
+msgid "فَوَاكِهٌ"
+msgstr "ফল"
+
+#: web/data/data_const.py:166
+msgid "قَمَرٌ"
+msgstr "চাঁদ"
+
+#: web/data/data_const.py:167
+msgid "قُرْآنٌ"
+msgstr "কুরআন"
+
+#: web/data/data_const.py:168
+msgid "قِصَّةٌ"
+msgstr "গল্প"
+
+#: web/data/data_const.py:169
+msgid "قِطَّةٌ"
+msgstr "বিড়াল"
+
+#: web/data/data_const.py:170
+msgid "كَأْسٌ"
+msgstr "কাপ"
+
+#: web/data/data_const.py:171
+msgid "كُرَةٌ"
+msgstr "বল"
+
+#: web/data/data_const.py:172
+msgid "كِتَابٌ"
+msgstr "বই"
+
+#: web/data/data_const.py:173
+msgid "لمْرأَةٌ"
+msgstr ""
+
+#: web/data/data_const.py:174
+msgid "مدْرَسةٌ"
+msgstr "বিদ্যালয়"
+
+#: web/data/data_const.py:175
+msgid "مسْرَحِيَّةٌ"
+msgstr "একটি খেলা"
+
+#: web/data/data_const.py:176
+msgid "مُعَلِمٌ"
+msgstr "শিক্ষক"
+
+#: web/data/data_const.py:177
+msgid "مِحْفَظَةٌ"
+msgstr "ওয়ালেট"
+
+#: web/data/data_const.py:178
+msgid "نَاسٌ"
+msgstr "মানুষ"
+
+#: web/data/data_const.py:193
+msgid "أَحْيَانًا"
+msgstr "কখনও কখনও"
+
+#: web/data/data_const.py:194
+msgid "البَارِحَةَ"
+msgstr "গতকাল"
+
+#: web/data/data_const.py:195
+msgid "اليَوْمَ"
+msgstr "আজ"
+
+#: web/data/data_const.py:197
+msgid "سَاعَةً"
+msgstr "ঘন্টা"
+
+#: web/data/data_const.py:198
+msgid "سَنَةً"
+msgstr "বছর"
+
+#: web/data/data_const.py:199
+msgid "شِتَاءً"
+msgstr "শীত"
+
+#: web/data/data_const.py:200
+msgid "صَبَاحًا"
+msgstr "সকাল"
+
+#: web/data/data_const.py:201
+msgid "صَيْفًا"
+msgstr "গ্রীষ্ম"
+
+#: web/data/data_const.py:202
+msgid "ظُهْرًا"
+msgstr "দুপুরের পর (যোহরের নামাজের পর)"
+
+#: web/data/data_const.py:204
+msgid "عَصْرًا"
+msgstr "দুপুরের পর (আসরের নামাজের পর)"
+
+#: web/data/data_const.py:205
+msgid "غَدًا"
+msgstr "আগামীকাল"
+
+#: web/data/data_const.py:206
+msgid "فَجْرًا"
+msgstr "সূর্য উত্থান"
+
+#: web/data/data_const.py:208
+msgid "لَحْظَةَ"
+msgstr "মুহূর্ত"
+
+#: web/data/data_const.py:209
+msgid "لَيْلًا"
+msgstr "রাত"
+
+#: web/data/data_const.py:210
+msgid "مَسَاءً"
+msgstr "সন্ধ্যা"
+
+#: web/data/data_const.py:211
+msgid "نَهْارًا"
+msgstr "দিনে"
+
+#: web/data/data_const.py:215
+msgid "بَيْتٌ"
+msgstr "গৃহ"
+
+#: web/data/data_const.py:216
+msgid "حَدِيقَةٌ"
+msgstr "বাগান"
+
+#: web/data/data_const.py:217
+msgid "سُوقٌ"
+msgstr "বাজার"
+
+#: web/data/data_const.py:218
+msgid "طَرِيقٌ"
+msgstr "রাস্তা"
+
+#: web/data/data_const.py:219
+msgid "غُرْفَةٌ"
+msgstr "ঘর"
+
+#: web/data/data_const.py:220
+msgid "فِنَاءٌ"
+msgstr "উঠোন"
+
+#: web/data/data_const.py:221
+msgid "مَدِينَةٌ"
+msgstr "শহর"
+
+#: web/data/data_const.py:222
+msgid "مَدْرَسَةٌ"
+msgstr "বিদ্যালয়"
+
+#: web/data/data_const.py:223
+msgid "مَسْجِدٌ"
+msgstr "মসজিদ"
+
+#: web/data/data_const.py:224
+msgid "مَطْبَخٌ"
+msgstr "রান্নাঘর"
+
+#: web/data/data_const.py:244
+msgid "أَنِيقٌ"
+msgstr "মার্জিত"
+
+#: web/data/data_const.py:245
+msgid "بَخِيلٌ"
+msgstr "স্টিনি"
+
+#: web/data/data_const.py:246
+msgid "بَشِعٌ"
+msgstr "কুরুচিপূর্ণ"
+
+#: web/data/data_const.py:247
+msgid "بَطِيءٌ"
+msgstr "ধীর"
+
+#: web/data/data_const.py:248
+msgid "جَمِيلٌ"
+msgstr "বিউটিফুল"
+
+#: web/data/data_const.py:249
+msgid "حَزِينٌ"
+msgstr "দু: খিত"
+
+#: web/data/data_const.py:250
+msgid "حَنُونٌ"
+msgstr "সহানুভূতিশীল"
+
+#: web/data/data_const.py:251
+msgid "ذَكِيٌ"
+msgstr "স্মার্ট"
+
+#: web/data/data_const.py:252
+msgid "سَرِيعٌ"
+msgstr "দ্রুত"
+
+#: web/data/data_const.py:253
+msgid "سَعِيدٌ"
+msgstr "খুশি"
+
+#: web/data/data_const.py:254
+msgid "سَمِينٌ"
+msgstr "চর্বি"
+
+#: web/data/data_const.py:255
+msgid "شُجَاعٌ"
+msgstr "সাহসী"
+
+#: web/data/data_const.py:256
+msgid "ضَعِيفٌ"
+msgstr "দুর্বল"
+
+#: web/data/data_const.py:257
+msgid "طَوِيلٌ"
+msgstr "দীর্ঘ"
+
+#: web/data/data_const.py:258
+msgid "غَبِيٌ"
+msgstr "বোকা"
+
+#: web/data/data_const.py:259
+msgid "فَرِحٌ"
+msgstr "আনন্দময়"
+
+#: web/data/data_const.py:260
+msgid "قَصِيرٌ"
+msgstr "সংক্ষিপ্ত"
+
+#: web/data/data_const.py:261
+msgid "قَوِيٌ"
+msgstr "শক্তিশালী"
+
+#: web/data/data_const.py:262
+msgid "كَرِيمٌ"
+msgstr "উদার"
+
+#: web/data/data_const.py:263
+msgid "كَسُولٌ"
+msgstr "অলস"
+
+#: web/data/data_const.py:264
+msgid "لَئِيمٌ"
+msgstr "দুর্বৃত্ত"
+
+#: web/data/data_const.py:265
+msgid "مَسْرُورٌ"
+msgstr "খুশি"
+
+#: web/data/data_const.py:266
+msgid "مُبْتَهِجٌ"
+msgstr "চেরি"
+
+#: web/data/data_const.py:267 web/data/data_const.py:317
+msgid "مُجْتَهِدٌ"
+msgstr "পরিশ্রমী"
+
+#: web/data/data_const.py:268
+msgid "مُرْتَفِعٌ"
+msgstr "উচ্চ"
+
+#: web/data/data_const.py:269
+msgid "مُنْخَفِضٌ"
+msgstr "কম"
+
+#: web/data/data_const.py:270
+msgid "هَزِيلٌ"
+msgstr "স্বল্প"
+
+#: web/data/data_const.py:271
+msgid "وَسِيمٌ"
+msgstr "সুদর্শন"
+
+#: web/data/data_const.py:274
+msgid "أَحْمَد"
+msgstr "আহমেদ"
+
+#: web/data/data_const.py:275 web/data/data_const.py:321
+msgid "وَلَدٌ"
+msgstr "ছেলে"
+
+#: web/data/data_const.py:290
+msgid "أَبٌ"
+msgstr "পিতা"
+
+#: web/data/data_const.py:291
+msgid "أَحْمَدُ"
+msgstr "আহমেদ"
+
+#: web/data/data_const.py:292
+msgid "أَسَدٌ"
+msgstr "সিংহ"
+
+#: web/data/data_const.py:293
+msgid "أُمٌّ"
+msgstr "মা"
+
+#: web/data/data_const.py:294
+msgid "اِبْنٌ"
+msgstr "পুত্র"
+
+#: web/data/data_const.py:295
+msgid "بِنْتٌ"
+msgstr "মেয়ে"
+
+#: web/data/data_const.py:296
+msgid "تَاجِرٌ"
+msgstr "বণিক"
+
+#: web/data/data_const.py:298
+msgid "حِصَانٌ"
+msgstr "ঘোড়া"
+
+#: web/data/data_const.py:299
+msgid "دِيكٌ"
+msgstr "মোরগ"
+
+#: web/data/data_const.py:301
+msgid "رَضِيعٌ"
+msgstr "বাবু"
+
+#: web/data/data_const.py:302
+msgid "زُهُورٌ"
+msgstr "ফুল"
+
+#: web/data/data_const.py:303
+msgid "شُرْطِيٌّ"
+msgstr "পুলিশ সদস্য"
+
+#: web/data/data_const.py:304
+msgid "طَالِبٌ"
+msgstr "ছাত্র"
+
+#: web/data/data_const.py:305
+msgid "طَبِيبٌ"
+msgstr "ডাক্তার"
+
+#: web/data/data_const.py:306
+msgid "طِفْلٌ"
+msgstr "শিশু"
+
+#: web/data/data_const.py:307
+msgid "عَامِلٌ"
+msgstr "কর্মী"
+
+#: web/data/data_const.py:308
+msgid "عُمَّالٌ"
+msgstr "শ্রমিকরা"
+
+#: web/data/data_const.py:309
+msgid "فَاطِمَةُ"
+msgstr "ফাতিমা"
+
+#: web/data/data_const.py:310
+msgid "فَرَاشَةٌ"
+msgstr "প্রজাপতি"
+
+#: web/data/data_const.py:311
+msgid "قَاضٌِ"
+msgstr "বিচারক"
+
+#: web/data/data_const.py:312
+msgid "قِطٌّ"
+msgstr "বিড়াল"
+
+#: web/data/data_const.py:313
+msgid "لَيْلَى"
+msgstr "লায়লা"
+
+#: web/data/data_const.py:314
+msgid "معَلِّمٌ"
+msgstr "শিক্ষক"
+
+#: web/data/data_const.py:315
+msgid "مَرْأَةٌ"
+msgstr "মহিলা"
+
+#: web/data/data_const.py:316
+msgid "مَطَرٌ"
+msgstr "বৃষ্টি"
+
+#: web/data/data_const.py:318
+msgid "مُحَمَدُ"
+msgstr "মোহাম্মদ"
+
+#: web/data/data_const.py:319
+msgid "مُسْلِمٌ"
+msgstr "মুসলিম"
+
+#: web/data/data_const.py:320
+msgid "مُهَنْدِسٌ"
+msgstr "প্রকৌশলী"
+
+#: web/data/data_const.py:325
+msgid "نوع الجملة:"
+msgstr ""
+
+#: web/data/data_const.py:328
+msgid "فاعل"
+msgstr ""
+
+#: web/data/data_const.py:329
+msgid "فعل مساعد"
+msgstr ""
+
+#: web/data/data_const.py:330
+msgid "فعل:"
+msgstr "ক্রিয়া:"
+
+#: web/data/data_const.py:331
+msgid "زمن:"
+msgstr "ক্রিয়ার কাল:"
+
+#: web/data/data_const.py:332
+msgid "مبني للمعلوم/مجهول:"
+msgstr "ভয়েস:"
+
+#: web/data/data_const.py:333
+msgid "مثبت/منفي:"
+msgstr "ইতিবাচক/নেতিবাচক:"
+
+#: web/data/data_const.py:334
+msgid "مفعول"
+msgstr "অবজেক্ট"
+
+#: web/data/data_const.py:335
+msgid "ظرف زمان:"
+msgstr "সময়:"
+
+#: web/data/data_const.py:336
+msgid "ظرف مكان:"
+msgstr "স্থান:"
+
+#: web/data/data_const.py:337
+msgid "بناء"
+msgstr "বিল্ড"
+
+#: web/data/data_const.py:338
+msgid "عشوائي"
+msgstr "এলোমেলো"
+
+#: web/data/data_const.py:339
+msgid "عينة"
+msgstr "নমুনা"
+
+#: web/data/data_const.py:340
+msgid "حركة الإعراب"
+msgstr "প্রতিচ্ছবি চিহ্ন"
+
+#: web/data/data_const.py:341
+msgid "مدونتي"
+msgstr "আমার ব্লগ"
+
+#: web/data/data_const.py:342
+msgid "الاستضافة بدعم من شركة"
+msgstr "দ্বারা সমর্থিত"

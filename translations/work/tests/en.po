@@ -1,0 +1,679 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: ezgif.com\n"
+
+msgid "جملة فعلية"
+msgstr "Verbal phrase"
+
+msgid "جملة اسمية"
+msgstr "Nominal Phrase"
+
+msgid "اِسْتَطَاعَ"
+msgstr "to can"
+
+msgid "أَرَادَ"
+msgstr "to want"
+
+msgid "كَادَ"
+msgstr "to may"
+
+msgid "شَرِبَ"
+msgstr "to drink"
+
+msgid "ضَرَبَ"
+msgstr "to hit"
+
+msgid "ذَهَبَ"
+msgstr "to go"
+
+msgid "جَلَسَ"
+msgstr "to sit down"
+
+msgid "شَبِعَ"
+msgstr ""
+
+msgid "أَكَلَ"
+msgstr "to eat"
+
+msgid "خَرَجَ"
+msgstr "to go out"
+
+msgid "مَشَى"
+msgstr "to walk"
+
+msgid "قَامَ"
+msgstr "to get up"
+
+msgid "نَجَحَ"
+msgstr "to success"
+
+msgid "بَكَى"
+msgstr "to cry"
+
+msgid "سَمِعَ"
+msgstr "to hear"
+
+msgid "جَاءَ"
+msgstr "to come"
+
+msgid "عَرَفَ"
+msgstr "to know"
+
+msgid "رَسَبَ"
+msgstr "to fail"
+
+msgid "تَعَلَّمَ"
+msgstr "to learn"
+
+msgid "لَعِبَ"
+msgstr "drink"
+
+msgid "جَعَلَ"
+msgstr "to make"
+
+msgid "شَكَرَ"
+msgstr "to thank"
+
+msgid "جَهَّزَ"
+msgstr "to prepare"
+
+msgid "وَعَدَ"
+msgstr "to promise"
+
+msgid "عَاشَ"
+msgstr "to live"
+
+msgid "وَقَفَ"
+msgstr "to stand up"
+
+msgid "سَجَدَ"
+msgstr "prostrate"
+
+msgid "مَاتَ"
+msgstr "to die"
+
+msgid "قَبَضَ"
+msgstr "to catch"
+
+msgid "غَفَرَ"
+msgstr "forgive"
+
+msgid "صَامَ"
+msgstr "to fast"
+
+msgid "رَسَمَ"
+msgstr "to draw"
+
+msgid "نَزَلَ"
+msgstr "to go down"
+
+msgid "رَكَعَ"
+msgstr "kneel"
+
+msgid "سَافَرَ"
+msgstr "to travel"
+
+msgid "وَفَى"
+msgstr ""
+
+msgid "لَبِسَ"
+msgstr "to wear"
+
+msgid "اجْتَهَدَ"
+msgstr ""
+
+msgid "وَجَدَ"
+msgstr "to find"
+
+msgid "وَصَلَ"
+msgstr "to arrive"
+
+msgid "قَرَأَ"
+msgstr "to read"
+
+msgid "قَعَدَ"
+msgstr "to sit"
+
+msgid "قَالَ"
+msgstr "to say"
+
+msgid "خَبَّرَ"
+msgstr "to tell"
+
+msgid "عَلِمَ"
+msgstr "to know"
+
+msgid "سَأَلَ"
+msgstr "to ask"
+
+msgid "رَمَى"
+msgstr "to throw"
+
+msgid "شَاهَدَ"
+msgstr "to watch"
+
+msgid "أَخَذَ"
+msgstr "to take"
+
+msgid "طَلَعَ"
+msgstr "to go up"
+
+msgid "حَفِظَ"
+msgstr "to save"
+
+msgid "أَخْبَرَ"
+msgstr "to tell"
+
+msgid "نَامَ"
+msgstr "to sleep"
+
+msgid "سَاعَدَ"
+msgstr "to assist"
+
+msgid "كَتَبَ"
+msgstr "to write"
+
+msgid "حَدَّثَ"
+msgstr "to talk"
+
+msgid "جَرَى"
+msgstr "to run"
+
+msgid "اشْتَرَى"
+msgstr "to buy"
+
+msgid "أَسْرَعَ"
+msgstr "to speed up"
+
+msgid "ذَاكَرَ"
+msgstr "to revise"
+
+msgid "وَضَعَ"
+msgstr "to put"
+
+msgid "بَاعَ"
+msgstr "to sell"
+
+msgid "فَهِمَ"
+msgstr "to understand"
+
+msgid "فَتَحَ"
+msgstr "to open"
+
+msgid "عَطِشَ"
+msgstr "to be thirst"
+
+msgid "سَكَنَ"
+msgstr "to inhabit"
+
+msgid "أَعْلَمَ"
+msgstr "to inform"
+
+msgid "كَسَرَ"
+msgstr "to break down"
+
+msgid "دَخَلَ"
+msgstr "to enter"
+
+msgid "الماضي المعلوم"
+msgstr "Past"
+
+msgid "المضارع المعلوم"
+msgstr "Present/Future"
+
+msgid "الأمر"
+msgstr "Imperative"
+
+msgid "معلوم"
+msgstr "Active"
+
+msgid "مبني للمجهول"
+msgstr "passive"
+
+msgid "مثبت"
+msgstr "Affirmative"
+
+msgid "منفي"
+msgstr "Negative"
+
+msgid "حَلِيبٌ"
+msgstr "Milk"
+
+msgid "بَابٌ"
+msgstr "Door"
+
+msgid "أنا"
+msgstr "I"
+
+msgid "نحن"
+msgstr "We"
+
+msgid "أنت"
+msgstr "You (masculine singular)"
+
+msgid "أنتِ"
+msgstr "You (feminine singular)"
+
+msgid "أنتما"
+msgstr "You (dual masculine)"
+
+msgid "أنتما مؤ"
+msgstr "You (dual feminine)"
+
+msgid "أنتم"
+msgstr "You (plural masculine)"
+
+msgid "أنتن"
+msgstr "You (plural feminine)"
+
+msgid "هو"
+msgstr "He"
+
+msgid "هي"
+msgstr "She"
+
+msgid "هما"
+msgstr "They (dual masculine)"
+
+msgid "هما مؤ"
+msgstr "They (Dual Feminine)"
+
+msgid "هم"
+msgstr "They (masculine)"
+
+msgid "هن"
+msgstr "They (feminine)"
+
+msgid "تُفَاحَةٌ"
+msgstr "apple"
+
+msgid "تِلْمِيذٌ"
+msgstr "pupil"
+
+msgid "ثَوْبٌ"
+msgstr "dress"
+
+msgid "جَبَلٌ"
+msgstr "mountain"
+
+msgid "حَقِيبَةٌ"
+msgstr "luggage"
+
+msgid "خُضَرٌ"
+msgstr "vegetables"
+
+msgid "دَرْسٌ"
+msgstr "Lesson"
+
+msgid "رَجُلٌ"
+msgstr "man"
+
+msgid "شَعْرٌ"
+msgstr "hair"
+
+msgid "صَحْرَاءٌ"
+msgstr "desert"
+
+msgid "صَوْتٌ"
+msgstr "sound"
+
+msgid "طَعَامٌ"
+msgstr "food"
+
+msgid "طَلَبَةٌ"
+msgstr "Students"
+
+msgid "عَصِيرٌ"
+msgstr "juice"
+
+msgid "عَلَمٌ"
+msgstr "flag"
+
+msgid "فَوَاكِهٌ"
+msgstr "fruits"
+
+msgid "قَمَرٌ"
+msgstr "moon"
+
+msgid "قُرْآنٌ"
+msgstr "Quran"
+
+msgid "قِصَّةٌ"
+msgstr "story"
+
+msgid "قِطَّةٌ"
+msgstr "cat"
+
+msgid "كَأْسٌ"
+msgstr "cup"
+
+msgid "كُرَةٌ"
+msgstr "ball"
+
+msgid "كِتَابٌ"
+msgstr "book"
+
+msgid "مَرأَةٌ"
+msgstr "A woman"
+
+msgid "مدْرَسةٌ"
+msgstr "school"
+
+msgid "مسْرَحِيَّةٌ"
+msgstr "a play"
+
+msgid "مُعَلِمٌ"
+msgstr "Teacher"
+
+msgid "مِحْفَظَةٌ"
+msgstr "wallet"
+
+msgid "نَاسٌ"
+msgstr "people"
+
+msgid "أَحْيَانًا"
+msgstr "sometimes"
+
+msgid "البَارِحَةَ"
+msgstr "yesterday"
+
+msgid "اليَوْمَ"
+msgstr "today"
+
+msgid "سَاعَةً"
+msgstr "hour"
+
+msgid "سَنَةً"
+msgstr "year"
+
+msgid "شِتَاءً"
+msgstr "winter"
+
+msgid "صَبَاحًا"
+msgstr "morning"
+
+msgid "صَيْفًا"
+msgstr "summer"
+
+msgid "ظُهْرًا"
+msgstr ""
+
+msgid "عَصْرًا"
+msgstr ""
+
+msgid "غَدًا"
+msgstr "tomorrow"
+
+msgid "فَجْرًا"
+msgstr "sun rise"
+
+msgid "لَحْظَةَ"
+msgstr "Moment"
+
+msgid "لَيْلًا"
+msgstr "night"
+
+msgid "مَسَاءً"
+msgstr "evening"
+
+msgid "نَهْارًا"
+msgstr "in the day"
+
+msgid "بَيْتٌ"
+msgstr "house"
+
+msgid "حَدِيقَةٌ"
+msgstr "garden"
+
+msgid "سُوقٌ"
+msgstr "market"
+
+msgid "طَرِيقٌ"
+msgstr "road"
+
+msgid "غُرْفَةٌ"
+msgstr "room"
+
+msgid "فِنَاءٌ"
+msgstr "Courtyard"
+
+msgid "مَدِينَةٌ"
+msgstr "city"
+
+msgid "مَدْرَسَةٌ"
+msgstr "school"
+
+msgid "مَسْجِدٌ"
+msgstr "Mosque"
+
+msgid "مَطْبَخٌ"
+msgstr "kitchen"
+
+msgid "أَنِيقٌ"
+msgstr "elegant"
+
+msgid "بَخِيلٌ"
+msgstr "stingy"
+
+msgid "بَشِعٌ"
+msgstr "ugly"
+
+msgid "بَطِيءٌ"
+msgstr "slow"
+
+msgid "جَمِيلٌ"
+msgstr "Beautiful"
+
+msgid "حَزِينٌ"
+msgstr "sad"
+
+msgid "حَنُونٌ"
+msgstr "compassionate"
+
+msgid "ذَكِيٌ"
+msgstr "smart"
+
+msgid "سَرِيعٌ"
+msgstr "fast"
+
+msgid "سَعِيدٌ"
+msgstr "happy"
+
+msgid "سَمِينٌ"
+msgstr "fat"
+
+msgid "شُجَاعٌ"
+msgstr "brave"
+
+msgid "ضَعِيفٌ"
+msgstr "weak"
+
+msgid "طَوِيلٌ"
+msgstr "long"
+
+msgid "غَبِيٌ"
+msgstr "stupid"
+
+msgid "فَرِحٌ"
+msgstr "joyful"
+
+msgid "قَصِيرٌ"
+msgstr "short"
+
+msgid "قَوِيٌ"
+msgstr "strong"
+
+msgid "كَرِيمٌ"
+msgstr "generous"
+
+msgid "كَسُولٌ"
+msgstr "lazy"
+
+msgid "لَئِيمٌ"
+msgstr "miscreant"
+
+msgid "مَسْرُورٌ"
+msgstr "pleased"
+
+msgid "مُبْتَهِجٌ"
+msgstr "cheery"
+
+msgid "مُجْتَهِدٌ"
+msgstr "diligent"
+
+msgid "مُرْتَفِعٌ"
+msgstr "high"
+
+msgid "مُنْخَفِضٌ"
+msgstr "low"
+
+msgid "هَزِيلٌ"
+msgstr "meager"
+
+msgid "وَسِيمٌ"
+msgstr "Handsome"
+
+msgid "أَحْمَد"
+msgstr "Ahmed"
+
+msgid "وَلَدٌ"
+msgstr "Boy"
+
+msgid "أَبٌ"
+msgstr "Father"
+
+msgid "أَحْمَدُ"
+msgstr "Ahmed"
+
+msgid "أَسَدٌ"
+msgstr "Lion"
+
+msgid "أُمٌّ"
+msgstr "Mother"
+
+msgid "اِبْنٌ"
+msgstr "son"
+
+msgid "بِنْتٌ"
+msgstr "girl"
+
+msgid "تَاجِرٌ"
+msgstr "merchant"
+
+msgid "حِصَانٌ"
+msgstr "horse"
+
+msgid "دِيكٌ"
+msgstr "rooster"
+
+msgid "رَضِيعٌ"
+msgstr "baby"
+
+msgid "زُهُورٌ"
+msgstr "flowers"
+
+msgid "شُرْطِيٌّ"
+msgstr "policeman"
+
+msgid "طَالِبٌ"
+msgstr "student"
+
+msgid "طَبِيبٌ"
+msgstr "doctor"
+
+msgid "طِفْلٌ"
+msgstr "child"
+
+msgid "عَامِلٌ"
+msgstr "Worker"
+
+msgid "عُمَّالٌ"
+msgstr "Workers"
+
+msgid "فَاطِمَةُ"
+msgstr "Fatima"
+
+msgid "فَرَاشَةٌ"
+msgstr "butterfly"
+
+msgid "قَاضٌِ"
+msgstr "judge"
+
+msgid "قِطٌّ"
+msgstr "cat"
+
+msgid "لَيْلَى"
+msgstr "Layla"
+
+msgid "معَلِّمٌ"
+msgstr "Teacher"
+
+msgid "مَرْأَةٌ"
+msgstr "Woman"
+
+msgid "مَطَرٌ"
+msgstr "rain"
+
+msgid "مُحَمَدُ"
+msgstr "Mohammed"
+
+msgid "مُسْلِمٌ"
+msgstr "Muslim"
+
+msgid "مُهَنْدِسٌ"
+msgstr "Engineer"
+
+msgid "فعل:"
+msgstr "Verb:"
+
+msgid "زمن:"
+msgstr "Tense:"
+
+msgid "مبني للمعلوم/مجهول:"
+msgstr "Voice:"
+
+msgid "مثبت/منفي:"
+msgstr "affirmative/negative:"
+
+msgid "مفعول"
+msgstr "Object"
+
+msgid "ظرف زمان:"
+msgstr "Time:"
+
+msgid "ظرف مكان:"
+msgstr "Place:"
+
+msgid "بناء"
+msgstr "Build"
+
+msgid "عشوائي"
+msgstr "Random"
+
+msgid "عينة"
+msgstr "sample"
+
+msgid "حركة الإعراب"
+msgstr "Inflection mark"
+
+msgid "إظهار حركة الإعراب في أواخر الكلمات"
+msgstr "Show inflection mark on word ending"
+
+msgid "اختيار عشوائي للمفردات"
+msgstr "Choose words Randomly "
+
+msgid "نسخ عينة جيسون للتجارب البرمجية"
+msgstr "Copy a Json sample to make tests"
+
+msgid "بناء الجملة"
+msgstr "Build a phrase"
+
+msgid "مدونتي"
+msgstr "My blog"
+
+msgid "الاستضافة بدعم من شركة"
+msgstr "Supported by"
+

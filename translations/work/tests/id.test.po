@@ -1,0 +1,523 @@
+#. extracted from id.csv
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-20 11:59+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.5.0\n"
+
+#: Arabic
+msgid "indonosien"
+msgstr ""
+
+#: %D8%AC%D9%85%D9%84%D8%A9+%D9%81%D8%B9%D9%84%D9%8A%D8%A9
+msgid "kata kerja"
+msgstr ""
+
+#: %D8%AC%D9%85%D9%84%D8%A9+%D8%A7%D8%B3%D9%85%D9%8A%D8%A9
+msgid "kata benda"
+msgstr ""
+
+#: %D8%A7%D9%90%D8%B3%D9%92%D8%AA%D9%8E%D8%B7%D9%8E%D8%A7%D8%B9%D9%8E
+msgid "bisa/mampu"
+msgstr ""
+
+#: %D8%A3%D9%8E%D8%B1%D9%8E%D8%A7%D8%AF%D9%8E
+msgid "ingin"
+msgstr ""
+
+#: %D9%83%D9%8E%D8%A7%D8%AF%D9%8E
+msgid "hampir"
+msgstr ""
+
+#: %D8%B4%D9%8E%D8%B1%D9%90%D8%A8%D9%8E
+msgid "meminum"
+msgstr ""
+
+#: %D8%B6%D9%8E%D8%B1%D9%8E%D8%A8%D9%8E
+msgid "memukul"
+msgstr ""
+
+#: %D8%B0%D9%8E%D9%87%D9%8E%D8%A8%D9%8E
+msgid "pergi"
+msgstr ""
+
+#: %D8%AC%D9%8E%D9%84%D9%8E%D8%B3%D9%8E
+msgid "duduk"
+msgstr ""
+
+#: %D8%B4%D9%8E%D8%A8%D9%90%D8%B9%D9%8E
+msgid "kenyang"
+msgstr ""
+
+#: %D8%A3%D9%8E%D9%83%D9%8E%D9%84%D9%8E
+msgid "memakan"
+msgstr ""
+
+#: %D8%AE%D9%8E%D8%B1%D9%8E%D8%AC%D9%8E
+msgid "keluar"
+msgstr ""
+
+#: %D9%85%D9%8E%D8%B4%D9%8E%D9%89
+msgid "berjalan"
+msgstr ""
+
+#: %D9%82%D9%8E%D8%A7%D9%85%D9%8E
+msgid "berdiri/bangkit"
+msgstr ""
+
+#: %D9%86%D9%8E%D8%AC%D9%8E%D8%AD%D9%8E
+msgid "berhasil/sukses"
+msgstr ""
+
+#: %D8%A8%D9%8E%D9%83%D9%8E%D9%89
+msgid "menangis"
+msgstr ""
+
+#: %D8%B3%D9%8E%D9%85%D9%90%D8%B9%D9%8E
+msgid "mendengar"
+msgstr ""
+
+#: %D8%AC%D9%8E%D8%A7%D8%A1%D9%8E
+msgid "datang/tiba"
+msgstr ""
+
+#: %D8%B9%D9%8E%D8%B1%D9%8E%D9%81%D9%8E
+msgctxt "عَرَفَ"
+msgid "mengetahui"
+msgstr ""
+
+#: %D8%B1%D9%8E%D8%B3%D9%8E%D8%A8%D9%8E
+msgid "gagal"
+msgstr ""
+
+#: %D8%AA%D9%8E%D8%B9%D9%8E%D9%84%D9%91%D9%8E%D9%85%D9%8E
+msgid "belajar"
+msgstr ""
+
+#: %D9%84%D9%8E%D8%B9%D9%90%D8%A8%D9%8E
+msgid "bermain"
+msgstr ""
+
+#: %D8%AC%D9%8E%D8%B9%D9%8E%D9%84%D9%8E
+msgid "membuat/ menjadikan"
+msgstr ""
+
+#: %D8%B4%D9%8E%D9%83%D9%8E%D8%B1%D9%8E
+msgid "berterima kasih"
+msgstr ""
+
+#: %D8%AC%D9%8E%D9%87%D9%91%D9%8E%D8%B2%D9%8E
+msgid "mempersiapkan"
+msgstr ""
+
+#: %D9%88%D9%8E%D8%B9%D9%8E%D8%AF%D9%8E
+msgid "berjanji"
+msgstr ""
+
+#: %D8%B9%D9%8E%D8%A7%D8%B4%D9%8E
+msgid "Hidup"
+msgstr ""
+
+#: %D9%88%D9%8E%D9%82%D9%8E%D9%81%D9%8E
+msgid "berdiri"
+msgstr ""
+
+#: %D8%B3%D9%8E%D8%AC%D9%8E%D8%AF%D9%8E
+msgid "bersujud"
+msgstr ""
+
+#: %D9%85%D9%8E%D8%A7%D8%AA%D9%8E
+msgid "mati/eninggal"
+msgstr ""
+
+#: %D9%82%D9%8E%D8%A8%D9%8E%D8%B6%D9%8E
+msgid "menangkap"
+msgstr ""
+
+#: %D8%BA%D9%8E%D9%81%D9%8E%D8%B1%D9%8E
+msgid "memaafkan"
+msgstr ""
+
+#: %D8%B5%D9%8E%D8%A7%D9%85%D9%8E
+msgid "berpuasa"
+msgstr ""
+
+#: %D8%B1%D9%8E%D8%B3%D9%8E%D9%85%D9%8E
+msgid "menggambar"
+msgstr ""
+
+#: %D9%86%D9%8E%D8%B2%D9%8E%D9%84%D9%8E
+msgid "turun"
+msgstr ""
+
+#: %D8%B1%D9%8E%D9%83%D9%8E%D8%B9%D9%8E
+msgid "berlutut"
+msgstr ""
+
+#: %D8%B3%D9%8E%D8%A7%D9%81%D9%8E%D8%B1%D9%8E
+msgid "Bepergian"
+msgstr ""
+
+#: %D9%88%D9%8E%D9%81%D9%8E%D9%89
+msgid "memenuhi"
+msgstr ""
+
+#: %D9%84%D9%8E%D8%A8%D9%90%D8%B3%D9%8E
+msgid "memakai"
+msgstr ""
+
+#: %D8%A7%D8%AC%D9%92%D8%AA%D9%8E%D9%87%D9%8E%D8%AF%D9%8E
+msgid "berjuang/ bersungguh sungguh"
+msgstr ""
+
+#: %D9%88%D9%8E%D8%AC%D9%8E%D8%AF%D9%8E
+msgid "menemukan"
+msgstr ""
+
+#: %D9%88%D9%8E%D8%B5%D9%8E%D9%84%D9%8E
+msgid "sampai"
+msgstr ""
+
+#: %D9%82%D9%8E%D8%B1%D9%8E%D8%A3%D9%8E
+msgid "membaca"
+msgstr ""
+
+#: %D9%82%D9%8E%D8%B9%D9%8E%D8%AF%D9%8E
+msgid "Duduk"
+msgstr ""
+
+#: %D9%82%D9%8E%D8%A7%D9%84%D9%8E
+msgid "mengatakan"
+msgstr ""
+
+#: %D8%AE%D9%8E%D8%A8%D9%91%D9%8E%D8%B1%D9%8E
+msgid "memberikan kabar/informasi"
+msgstr ""
+
+#: %D8%B9%D9%8E%D9%84%D9%90%D9%85%D9%8E
+msgctxt "عَلِمَ"
+msgid "mengetahui"
+msgstr ""
+
+#: %D8%B3%D9%8E%D8%A3%D9%8E%D9%84%D9%8E
+msgid "bertanya"
+msgstr ""
+
+#: %D8%B1%D9%8E%D9%85%D9%8E%D9%89
+msgid "Melempar"
+msgstr ""
+
+#: %D8%B4%D9%8E%D8%A7%D9%87%D9%8E%D8%AF%D9%8E
+msgid "menyaksikan"
+msgstr ""
+
+#: %D8%A3%D9%8E%D8%AE%D9%8E%D8%B0%D9%8E
+msgid "mengambil"
+msgstr ""
+
+#: %D8%B7%D9%8E%D9%84%D9%8E%D8%B9%D9%8E
+msgid "menelaah"
+msgstr ""
+
+#: %D8%AD%D9%8E%D9%81%D9%90%D8%B8%D9%8E
+msgid "menyimpan/ menjaga"
+msgstr ""
+
+#: %D8%A3%D9%8E%D8%AE%D9%92%D8%A8%D9%8E%D8%B1%D9%8E
+msgid "Memberi tahu"
+msgstr ""
+
+#: %D9%86%D9%8E%D8%A7%D9%85%D9%8E
+msgid "tidur"
+msgstr ""
+
+#: %D8%B3%D9%8E%D8%A7%D8%B9%D9%8E%D8%AF%D9%8E
+msgid "Membantu"
+msgstr ""
+
+#: %D9%83%D9%8E%D8%AA%D9%8E%D8%A8%D9%8E
+msgid "menulis"
+msgstr ""
+
+#: %D8%AD%D9%8E%D8%AF%D9%91%D9%8E%D8%AB%D9%8E
+msgid "bercerita"
+msgstr " berbicara"
+
+#: %D8%AC%D9%8E%D8%B1%D9%8E%D9%89
+msgid "berlari"
+msgstr ""
+
+#: %D8%A7%D8%B4%D9%92%D8%AA%D9%8E%D8%B1%D9%8E%D9%89
+msgid "membeli"
+msgstr ""
+
+#: %D8%A3%D9%8E%D8%B3%D9%92%D8%B1%D9%8E%D8%B9%D9%8E
+msgid "lebih cepat"
+msgstr ""
+
+#: %D8%B0%D9%8E%D8%A7%D9%83%D9%8E%D8%B1%D9%8E
+msgid "mengingat"
+msgstr ""
+
+#: %D9%88%D9%8E%D8%B6%D9%8E%D8%B9%D9%8E
+msgid "meletakkan"
+msgstr ""
+
+#: %D8%A8%D9%8E%D8%A7%D8%B9%D9%8E
+msgid "menjual"
+msgstr ""
+
+#: %D9%81%D9%8E%D9%87%D9%90%D9%85%D9%8E
+msgid "memahami"
+msgstr ""
+
+#: %D9%81%D9%8E%D8%AA%D9%8E%D8%AD%D9%8E
+msgid "membuka"
+msgstr ""
+
+#: %D8%B9%D9%8E%D8%B7%D9%90%D8%B4%D9%8E
+msgid "haus"
+msgstr ""
+
+#: %D8%B3%D9%8E%D9%83%D9%8E%D9%86%D9%8E
+msgid "tinggal"
+msgstr ""
+
+#: %D8%A3%D9%8E%D8%B9%D9%92%D9%84%D9%8E%D9%85%D9%8E
+msgid "memberitahu"
+msgstr ""
+
+#: %D9%83%D9%8E%D8%B3%D9%8E%D8%B1%D9%8E
+msgid "hancur"
+msgstr ""
+
+#: %D8%AF%D9%8E%D8%AE%D9%8E%D9%84%D9%8E
+msgid "masuk"
+msgstr ""
+
+#: %D8%A7%D9%84%D9%85%D8%A7%D8%B6%D9%8A+%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85
+msgid "Kata kerja masa lalu aktif"
+msgstr ""
+
+#: %D8%A7%D9%84%D9%85%D8%B6%D8%A7%D8%B1%D8%B9+%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85
+msgid "kata kerja masa sekarang aktif"
+msgstr ""
+
+#: %D8%A7%D9%84%D8%A3%D9%85%D8%B1
+msgid "bentuk perintah"
+msgstr ""
+
+#: %D9%85%D8%B9%D9%84%D9%88%D9%85
+msgid "aktif"
+msgstr ""
+
+#: %D9%85%D8%A8%D9%86%D9%8A+%D9%84%D9%84%D9%85%D8%AC%D9%87%D9%88%D9%84
+msgid "Isim yang tidak berubah (Mabni) pasif"
+msgstr ""
+
+#: %D9%85%D8%AB%D8%A8%D8%AA
+msgid "Menetapkan"
+msgstr ""
+
+#: %D9%85%D9%86%D9%81%D9%8A
+msgid "Meniadakan"
+msgstr ""
+
+#: %D8%AD%D9%8E%D9%84%D9%90%D9%8A%D8%A8%D9%8C
+msgid "susu"
+msgstr ""
+
+#: %D8%A8%D9%8E%D8%A7%D8%A8%D9%8C
+msgid "pintu"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%A7
+msgid "SAYA"
+msgstr ""
+
+#: %D9%86%D8%AD%D9%86
+msgid "Kami"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA
+msgid "Anda laki-laki"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA%D9%90
+msgid "Anda perempuan"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA%D9%85%D8%A7
+msgid "Anda berdua laki-laki"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA%D9%85%D8%A7+%D9%85%D8%A4
+msgid "Anda berdua perempuan"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA%D9%85
+msgid "kalian semua laki-laki"
+msgstr ""
+
+#: %D8%A3%D9%86%D8%AA%D9%86
+msgid "kaliam semua perempuan"
+msgstr ""
+
+#: %D9%87%D9%88
+msgid "Dia laki-laki"
+msgstr ""
+
+#: %D9%87%D9%8A
+msgid "dia perempuan"
+msgstr ""
+
+#: %D9%87%D9%85%D8%A7
+msgid "Mereka berdua laki-laki"
+msgstr ""
+
+#: %D9%87%D9%85%D8%A7+%D9%85%D8%A4
+msgid ""
+"Mereka berdua perempuan\n"
+"هم,mereka semua laki-laki\n"
+"هن,Mereka semua perempuan\n"
+"تُفَاحَةٌ,apel\n"
+"تِلْمِيذٌ,Murid/ siswa\n"
+"ثَوْبٌ,gaun/palaian\n"
+"جَبَلٌ,gunung\n"
+"حَقِيبَةٌ,tas\n"
+"خُضَرٌ,hijau\n"
+"دَرْسٌ,Pelajaran\n"
+"رَجُلٌ,pria\n"
+"شَعْرٌ,Puisi\n"
+"صَحْرَاءٌ,gurun\n"
+"صَوْتٌ,suara\n"
+"طَعَامٌ,makanan\n"
+"طَلَبَةٌ,murid perempuan/siswi\n"
+"عَصِيرٌ,jus\n"
+"عَلَمٌ,bendera/panji\n"
+"فَوَاكِهٌ,buah-buahan\n"
+"قَمَرٌ,bulan\n"
+"قُرْآنٌ,Al-Quran\n"
+"قِصَّةٌ,cerita/kisah\n"
+"قِطَّةٌ,kucing\n"
+"كَأْسٌ,cangkir/ gelas\n"
+"كُرَةٌ,bola\n"
+"كِتَابٌ,buku\n"
+"مَرأَةٌ,Seorang wanita\n"
+"مدْرَسةٌ,sekolah\n"
+"مسْرَحِيَّةٌ,sebuah drama\n"
+"مُعَلِمٌ,Guru\n"
+"مِحْفَظَةٌ,dompet\n"
+"نَاسٌ,rakyat/ manusia\n"
+"أَحْيَانًا,Kadang-kadang\n"
+"البَارِحَةَ,semalam\n"
+"اليَوْمَ,Hari ini\n"
+"سَاعَةً,dalam satu jam\n"
+"سَنَةً,dalam satu tahun\n"
+"شِتَاءً,musim dingin\n"
+"صَبَاحًا,waktu pagi\n"
+"صَيْفًا,waktu musim panas\n"
+"ظُهْرًا,waktu dhuhur\n"
+"عَصْرًا,waktu ashar\n"
+"غَدًا,besok\n"
+"فَجْرًا,waktu fajar\n"
+"لَحْظَةَ,sejenak, sekejap\n"
+"لَيْلًا,waktu malam\n"
+"مَسَاءً,waktu sore\n"
+"نَهْارًا,waktu siang\n"
+"بَيْتٌ,rumah\n"
+"حَدِيقَةٌ,kebun\n"
+"سُوقٌ,pasar\n"
+"طَرِيقٌ,jalan\n"
+"غُرْفَةٌ,kamar\n"
+"فِنَاءٌ,Halaman\n"
+"مَدِينَةٌ,kota\n"
+"مَدْرَسَةٌ,sekolah\n"
+"مَسْجِدٌ,Masjid\n"
+"مَطْبَخٌ,dapur\n"
+"أَنِيقٌ,anggun\n"
+"بَخِيلٌ,pelit\n"
+"بَشِعٌ,buruk, jelek\n"
+"بَطِيءٌ,lambat\n"
+"جَمِيلٌ,Cantik\n"
+"حَزِينٌ,sedih\n"
+"حَنُونٌ,penuh kasih\n"
+"ذَكِيٌ,lezat\n"
+"سَرِيعٌ,cepat\n"
+"سَعِيدٌ,senang\n"
+"سَمِينٌ,gemuk\n"
+"شُجَاعٌ,berani\n"
+"ضَعِيفٌ,lemah\n"
+"طَوِيلٌ,panjang\n"
+"غَبِيٌ,bodoh\n"
+"فَرِحٌ,sukacita\n"
+"قَصِيرٌ,pendek\n"
+"قَوِيٌ,kuat\n"
+"كَرِيمٌ,mulia\n"
+"كَسُولٌ,malas\n"
+"لَئِيمٌ,lembut\n"
+"مَسْرُورٌ,senang\n"
+"مُبْتَهِجٌ,riang\n"
+"مُجْتَهِدٌ,kerja keras\n"
+"مُرْتَفِعٌ,tinggi\n"
+"مُنْخَفِضٌ,rendah\n"
+"هَزِيلٌ,kurus\n"
+"وَسِيمٌ,Tampan\n"
+"أَحْمَد,Ahmed\n"
+"وَلَدٌ,anak\n"
+"أَبٌ,ayah\n"
+"أَحْمَدُ,Ahmed\n"
+"أَسَدٌ,Singa\n"
+"أُمٌّ,Ibu\n"
+"اِبْنٌ,putra\n"
+"بِنْتٌ,anak perempuan\n"
+"تَاجِرٌ,pedagang\n"
+"حِصَانٌ,kuda\n"
+"دِيكٌ,ayam jantan\n"
+"رَضِيعٌ,yang masih menyusu, menetek\n"
+"زُهُورٌ,bunga\n"
+"شُرْطِيٌّ,polisi\n"
+"طَالِبٌ,murid laki-laki\n"
+"طَبِيبٌ,dokter\n"
+"طِفْلٌ,anak\n"
+"عَامِلٌ,pekerja\n"
+"عُمَّالٌ,para pekerja\n"
+"فَاطِمَةُ,Fatima\n"
+"فَرَاشَةٌ,kupu -kupu\n"
+"قَاضٌِ,hakim\n"
+"قِطٌّ,kucing\n"
+"لَيْلَى,Layla\n"
+"معَلِّمٌ,Guru\n"
+"مَرْأَةٌ,wanita/perempuan\n"
+"مَطَرٌ,hujan\n"
+"مُحَمَدُ,muhammad\n"
+"مُسْلِمٌ,Muslim\n"
+"مُهَنْدِسٌ,Insinyur\n"
+"فعل:,kata kerja\n"
+"زمن:,waktu:\n"
+"مبني للمعلوم/مجهول:,benuk aktif/pasif\n"
+"مثبت/منفي:,menetapkan/meniadakan\n"
+"مفعول,objek\n"
+"ظرف زمان:,isim yang menunjukkan waktu\n"
+"ظرف مكان:,isim yang menunjukkan tempat\n"
+"بناء,bangunan\n"
+"عشوائي,acak\n"
+"عينة,contoh/sampel\n"
+"حركة الإعراب,Harakat i'rab\n"
+"إظهار حركة الإعراب في أواخر الكلمات,Menampakkan harakat i'rab di akhir "
+"kalimat\n"
+"اختيار عشوائي للمفردات,Pilihan acak untuk kosa kata\n"
+"نسخ عينة جيسون للتجارب البرمجية,salin sampel jason untuk percobaan perangkat "
+"lunak\n"
+"بناء الجملة,kalimat yang mabni (tidak dapat berubah)\n"
+"مدونتي,blog saya\n"
+"الاستضافة بدعم من شركة,didukung oleh\n"
+"\n"
+msgstr ""
