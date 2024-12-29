@@ -1,66 +1,217 @@
-# Yaziji: Arabic Phrase Generator
-# يازجي: مولّد الجمل العربية
-Yaziji : Arabic phrase generator
-<div dir="rtl">
-أداة لمساعدة المتعلم في تكوين جمل عربية صحيحة
+# **Yaziji**: Arabic Phrase generator
+
+**Yaziji** is an advanced tool designed for generating grammatically correct Arabic phrases with full diacritics. It is primarily aimed at teaching Arabic to non-native speakers and supports multilingual localization. Yaziji offers a customizable phrase generator for various educational and linguistic applications.
+
+- ## **يازجي**: مولد العبارات العربية
+
+  **يازجي**:  مولد الجمل العربية، أداة متقدمة مصممة لتوليد الجمل عربية صحيحة نحويًا مشكولة بالكامل. تستهدف تعليم اللغة العربية للناطقين بغيرها وتدعم لغات متعددة. يقدم يازجي مولد جُمل قابلًا للتخصيص لمختلف التطبيقات التعليمية واللغوية.
+
+  > **[تجربة على tahadz.com/yaziji](http://tahadz.com/yaziji)**
+
+
+| **Feature** | **Value**                                                    |
+| ----------- | ------------------------------------------------------------ |
+| **Website** | [tahadz.com/yaziji](https://tahadz.com/yaziji)               |
+| **Authors** | [Authors.md](https://github.com/linuxscout/yaziji/master/AUTHORS.md) |
+| **Release** | 0.1                                                          |
+| **License** | [GPL](https://github.com/linuxscout/yaziji/master/LICENSE)   |
+| **Tracker** | [Issues](https://github.com/linuxscout/yaziji/issues)        |
+| **Docs**    | [Documentation](https://github.com/linuxscout/yaziji/docs/)  |
+| **Source**  | [GitHub](https://github.com/linuxscout/yaziji)               |
+| **Credits** | [Credits](https://github.com/linuxscout/yaziji/CREDITS)      |
+
+### **The Idea الفكرة**
+<div dir="rtl"> 
+  تطبيق ويب مصمم لمساعدة متعلمي اللغة العربية من الناطقين بغيرها على تركيب جمل بسيطة بناءً على مدخلات منمطة.
+   على سبيل المثال:
+
+  - **الفاعل**: أحمد
+  - **الفعل**: أكل
+  - **المفعول به**: تفاحة
+  - **ظرف المكان**: حديقة
+
+  **النتيجة**:
+   **أَحْمَدُ يَأْكُلُ التُّفَاحَةَ فِي الْحَدِيقَةِ**
 </div>
 
-## Idea
+A web application designed to help non-native Arabic learners construct simple sentences based on structured inputs.
+ For example:
+
+- **Subject**: Ahmed
+- **Verb**: ate
+- **Object**: an apple
+- **Time Adverb**: in the garden
+
+**Result**:
+ **أَحْمَدُ يَأْكُلُ التُّفَاحَةَ فِي الْحَدِيقَةِ**
+ (Ahmed eats the apple in the garden).
+
+![Yaziji Demo (Arabic)](docs/images/yaziji-demo1-ar.png)
+
+![Yaziji Demo (English)](docs/images/yaziji-demo1-en.png)
+
+------
+
+## **Table of Contents**
+
+1. [Features](#features)
+2. [Getting Started](#getting-started)
+3. [Project Structure](#project-structure)
+4. [Usage Instructions](#usage-instructions)
+5. [Contributing](#contributing)
+6. [Future Enhancements](#future-enhancements)
+7. [Name Meaning](#name-meaning)
+8. [License](#license)
+
+------
 <div dir="rtl">
-موقع أو تطبيق يساعد المتعلم للعربية غير الناطق بها لتركيب جمل بسيطة بالاعتماد على مدخلات نمطية
-مثلا:
 
-* الضمير: أنا
-* الفعل : ذهب
-* المفعول به: السوق
-* ظرف الزمان: غدا 
+## **المزايا**
 
-النتيجة :  سَأُذْهِبُ إِلَى السُّوقِ غَدَا
+  - **مولد الجمل**: ينشئء عبارات عربية صحيحة نحويًا مشكولة بالكامل.
+  - **اللغات**: يدعم عدة لغات، ليساعد الناطقين بغير العربية على تعلمها.
+  - يتكون النظام من **نواة أساسية** لتوليد الجمل العربية و**طبقة ترجمة خارجية** تدعم لغات أخرى مثل ليابانية والإنجليزية.
+  - **النواة الأساسية**: تعالج المدخلات الأساسية (مثل الفاعل، المفعول به، الفعل، الأفعال المساعدة، الزمن، المكان) لإنتاج جمل عربية مشكولة بالكامل.
+  - **طبقة الترجمة**: تتيح للمتعلمين اختيار كلمات بلغتهم الأصلية التي تُترجم إلى العربية، ثم تُرسل للنواة لتوليد جملة صحيحة نحويًا.
+  - **واجهة قابلة للتخصيص**: تتكيف مع لغة المتعلم، مع إمكانية تعديل بنية الجمل حسب اللغة مثل اليابانية أو الإنجليزية.
 
-</div>
+<div/>
 
-## Name meaning
+## **Features**
 
-Yaziji, alternatively Yazigi or Yazji (Arabic: يازجي‎ [jɑzɪdʒiː], Yāzijī) is an Arabic surname of Turkish origin meaning 'clerk' or 'writer'. The Arabic definite article "Al-" is often added to render it Al-Yaziji or Al-Yazigi.
+- **Phrase Generator**: Constructs grammatically accurate Arabic phrases with full diacritics.
+- **Localization**: Supports multiple languages, helping non-native speakers learn Arabic.
 
-The Turkish equivalent is Yazici ([jazɯdʒɯ])
-
-Yaziji/Yazigi/Yazji may refer to:
-
-* Ibrahim al-Yaziji, Lebanese philologist
-* John X (Yazigi) of Antioch (born 1955), Patriarch of Antioch and All The East, primate of the Greek Orthodox Patriarchate of Antioch and All The East
-* Nasif al-Yaziji, Lebanese author
-* Rosie Yazigi, Lebanese actress and voice actress
-* Zina Yazji, Syrian journalist, news agency reporter and news anchor
-
-## Demo
-## To Do
-
-نحتاج إلى ملء بيانات البرنامج بالكلمات الشائعة عند المبتدئين المتعلمين الناطقين بالعربية او بغيرها،
-
-وأقصد بالبيانات
-### المفردات
-
-- الأفعال مثل شرب، أكل، سمع
-- الأسماء التي تأتي فاعلا مثل الولد، البنت، الأسد 
-- ما يأتي مفعولا، مثل التفاح، الطعام، الحليب،
-- ما يأتي اسم مكان، مثل السوق، البيت، الحديقة،
-- ما يأتي اسم زمان او ظرفا، مثل غدا وامس،
-
-### العلاقات الدلالية 
-ثم نحتاج إلى ضبط العلاقات الدلالية بما يجوز وما لا يجوز من ربط الأفعال بالفاعلين والمفعول بهم،
-- مثلا يجوز استعمل الفعل شرب  مع فاعل مثل ولد وبنت وأسد
-- ولا يجوز مع فاعل مثل شجرة وطاولة.
-- و يجوز أن يشرب الحليب مفعولا به أو الماء ولا يجوز  أن تُشرب الطاولة أو الفنجان.
-- والعلاقة بين الفاعل والمفعول فالولد يشرب القهوة، والأسد لا يشربها.
-
-### ترجمة المفردات
-- ثم سنترجم كل هذه البيانات للغات مثا الفرنسية والإنجليزية واليابانية
-
-[Demo](http://tahadz.com/yaziji/) 
+- The system consists of a **core module** for generating Arabic sentences and an **external translation layer** that supports other languages, including Japanese and English.
+- **Core Module**: Processes essential inputs (e.g., subject, object, verb, auxiliary verb, tense, place, and time) to generate fully-formed, diacritized Arabic sentences.
+- **Translation Layer**: Allows learners to select words in their native language, which are translated into Arabic and passed to the core module for sentence generation.
+- **Customizable Interface**: Adapts to the learner's language, with customizable  structures for different languages such as Japanese or English.
 
 
+------
 
+## **Getting Started**
 
+### **1. Set Up the Development Environment**
 
+1. Clone the repository:
 
+   ```bash
+   git clone https://github.com/linuxscout/yaziji.git
+   cd yaziji
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Configure the environment using files in the `config/` directory, if applicable.
+
+### **2. Run the Application**
+
+To start the server:
+
+```bash
+make server
+```
+
+Alternatively:
+
+```bash
+cd web
+python3 yaziji_webserver.py
+```
+
+The server will run on `http://127.0.0.1:5000`.
+
+------
+
+## **Project Structure**
+
+Yaziji consists of three main components: the **core module**, **web API**, and **frontend interface**.
+ Key directories include:
+
+- **`yaziji/`**: Core logic for phrase generation.
+- **`data-source/`**: Raw data and feature definitions.
+- **`web/`**: Web API built with Flask.
+- **`web-frontend/`**: Frontend interface connected to the web API.
+- **`tools/`**: Scripts for data conversion and translation management.
+- **`translations/`**: Language translation files.
+- **`tests/`**: Unit tests for system validation.
+
+------
+
+## **Usage Instructions**
+
+### **1. Adding a New Language**
+
+Refer to the Translation Guide for steps to add and manage new languages.
+
+### **2. Customizing the Interface**
+
+Modify the following directories to customize the user interface:
+
+- **Frontend**: `web-frontend/`
+- **Static Resources**: `static/`
+
+### **3. Testing**
+
+Run the test suite to validate the system:
+
+```bash
+python -m unittest discover -s tests
+```
+
+Debug issues using logs stored in the `logs/` directory.
+
+------
+
+## **Contributing**
+
+We welcome contributions from the community!
+
+1. Fork the repository.
+
+2. Create a feature branch:
+
+   ```bash
+   git checkout -b feature-name
+   ```
+
+3. Make changes and commit:
+
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+
+4. Push to your fork and create a pull request.
+
+For more details, see the Development Documentation.
+
+------
+
+## **Name Meaning**
+
+The name **Yaziji** (Arabic: يازجي) is derived from Turkish origins and means "clerk" or "writer." Variations include **Yazigi** and **Yazji**.
+
+Notable figures with this surname include:
+
+- **Ibrahim al-Yaziji** – Lebanese philologist.
+- **Nasif al-Yaziji** – Lebanese author.
+- **Zina Yazji** – Syrian journalist.
+
+------
+
+## **Future Enhancements**
+
+- Add support for more languages.
+- Optimize database performance for faster phrase generation.
+- Enhance the UI for improved accessibility and engagement.
+
+------
+
+## **License**
+
+This project is licensed under the GNU GPL License.
