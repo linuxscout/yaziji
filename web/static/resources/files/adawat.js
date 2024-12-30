@@ -379,7 +379,7 @@ class DrawForm {
     }
 
     // Draw the form with translated values
-    draw() {
+    draw_form() {
         const lang = getLang();
         const prefix = getPrefixPath();
 
@@ -393,8 +393,9 @@ class DrawForm {
             }
 
             const selectValues = data;
-
+//                 selectValues["adjective"] =  selectValues["adjectives"];
             selectValues.fields.forEach(field => {
+                console.log("field to draw", field)
                 const fieldLabel = $(`#${field}_label`);
                 const ar_label = fieldLabel.text();
                 const tr_label = this.translate_label(ar_label, lang);
@@ -557,7 +558,7 @@ $(document).ready(() => {
     // Initialize the DrawForm instance
     const myDraw = new DrawForm(language_url);
     myDraw.load_languages();
-    myDraw.draw();
+    myDraw.draw_form();
     if(!CONFIG_DEBUG_MODE)
     { // hide some buttons
 
