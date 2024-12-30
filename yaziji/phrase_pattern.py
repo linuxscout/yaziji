@@ -41,11 +41,12 @@ import yz_utils
 import stream_pattern
 from wordnode import wordNode
 from components_set import componentsSet
+from validator import  Validator
 class PhrasePattern:
     """
     A class to generator
     """
-    def __init__(self, error_observer=None):
+    def __init__(self, error_observer=None, validator=None):
         # init error_observer
         self.error_observer = error_observer
         # Init objects
@@ -61,6 +62,8 @@ class PhrasePattern:
 
         self.components_config = componentsSet()
 
+        # get an external validatior
+        self.validator = validator;
         # used to store nodes features and trributes about nouns and verbs
         self.nodes_word_attributes = {}
 
@@ -71,6 +74,8 @@ class PhrasePattern:
         self.phrase_features ={
             'phrase_type':"",
             "tense":"",
+            "transitive":True,
+            "transitive_type":"",
             'negative':"",
             "voice":"",
             "tense_verb":"",
@@ -79,10 +84,17 @@ class PhrasePattern:
             "pronoun_aux":"",
             "factor_verb":"",
             "factor_aux":"",
+            "has_verb":False,
+            "has_auxiliary":False,
+            "has_object":False,
+            "has_subject":False,
         }
         #TODO: change the list to dynamic list
 
-        self.nodes_names = ["phrase_type","subject", "object", "verb", "time", "place", "tense", "negative", "voice",  "auxiliary"]
+        self.nodes_names = ["phrase_type","subject", "object", "verb", "time", "place", "tense",
+                            "negative", "voice",  "auxiliary",
+                            #TODO
+                            "adjective"]
 
         self.nodes_names_nouns = self.components_config.get_names_by_wordtype("noun")
 
@@ -119,30 +131,15 @@ class PhrasePattern:
         :return:
         """
         return self.nodes_word_attributes.get(word, {}).get(attrib,"")
-    
 
-    def add_components(self, components, featured_data=None):
+    def check_components(self, components:dict):
         """
-        Add components
-
+        Checking components before any operation
+        :param components:
+        :return:
         """
-        self.nodes_word_attributes  = featured_data
-        # collect informations from nodes names from given components
-        for name in self.nodes_names:
-            # check if a required name is not found
-            if self.is_required(name) and self.get_comp_value(components, name) == "":
-                response = -2
-                # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
-                self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
-                return response
-            if self.components_config.get_type(name) == "word":
+        # Checking components before any operation
 
-                self.nodes[name]  = wordNode(name, self.get_comp_value(components, name))
-            elif self.components_config.get_type(name) == "feature":
-                # save features in features table
-                self.phrase_features[name] = self.get_comp_value(components, name)
-            else:
-                self.nodes[name] = wordNode(name, self.get_comp_value(components, name))
         # check for extra components not supported
         for key in components:
             if key not in self.nodes_names and not key in self.phrase_features:
@@ -150,6 +147,69 @@ class PhrasePattern:
                 # self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
                 self.notify_error_id(response,"UNSUPPORTED_COMPONENT", {"name":key})
                 return response
+        # check if a required name is not found
+        for name in self.nodes_names:
+            if self.is_required(name) and self.get_comp_value(components, name) == "":
+                response = -2
+                # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+                self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
+                return response
+
+        if self.validator is not None:
+            # print("I'm Validaror I'm here", type(components))
+            # Chek for sufficient_components
+            check = self.validator.check_sufficient_components(components)
+            if not check:
+                self.notify_error(-15, self.validator.get_note())
+                return -15
+
+            check = self.validator.check_semantic(components)
+            if not check:
+                self.notify_error(-17, self.validator.get_note())
+                return -17
+        return True
+
+    def add_components(self, components, featured_data=None):
+        """
+        Add components
+        """
+
+        # Checking components before any operation
+        response = self.check_components(components)
+        if response < 0:
+            return response
+        # check for extra components not supported
+        # for key in components:
+        #     if key not in self.nodes_names and not key in self.phrase_features:
+        #         response = -3
+        #         # self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
+        #         self.notify_error_id(response,"UNSUPPORTED_COMPONENT", {"name":key})
+        #         return response
+        # # check if a required name is not found
+        # for name in self.nodes_names:
+        #     if self.is_required(name) and self.get_comp_value(components, name) == "":
+        #         response = -2
+        #         # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+        #         self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
+        #         return response
+        ##
+        self.nodes_word_attributes  = featured_data
+        # collect informations from nodes names from given components
+        for name in self.nodes_names:
+            # check if a required name is not found
+            # if self.is_required(name) and self.get_comp_value(components, name) == "":
+            #     response = -2
+            #     # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+            #     self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
+            #     return response
+            if self.components_config.get_type(name) == "word":
+                self.nodes[name]  = wordNode(name, self.get_comp_value(components, name))
+            elif self.components_config.get_type(name) == "feature":
+                # save features in features table
+                self.phrase_features[name] = self.get_comp_value(components, name)
+            else:
+                self.nodes[name] = wordNode(name, self.get_comp_value(components, name))
+
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
         # for example, in Nominal Phrase, the order cacomponentsn be
@@ -197,10 +257,10 @@ class PhrasePattern:
 
 
         #check for errors
-        response = self.check_compatibles()
+        response = self.check_features_compatibility()
         if response < 0:
             # self.notify_error(response,f"ERROR: Incompatible Subject {self.subject} and tense '{self.tense}'.")
-            self.notify_error_id(response, "INCOMPATIBLE_SUBJECT_TENSE", {"subject":self.subject,"tense":self.tense})
+            # self.notify_error_id(response, "INCOMPATIBLE_SUBJECT_TENSE", {"subject":self.subject,"tense":self.tense})
             return response
         return True
 
@@ -239,15 +299,37 @@ class PhrasePattern:
         """
         return  self.nodes.get(name, None)
 
-    def check_compatibles(self):
+    def check_features_compatibility(self):
         """
         Check if input components are compatibles
         :return:
         """
+
+        if self.validator:
+            components = {}
+            # Chek for sufficient_components
+            # check = self.validator.check_sufficient_components(components)
+            # if not check:
+            #     self.notify_error(-15, self.validator.get_note())
+            #     return -15
+            # # Chek for compatible features
+            # check = self.validator.check_features(self.phrase_features)
+            # if not check:
+            #     self.notify_error(-16, self.validator.get_note())
+            #     return -16
+            check = self.validator.check_semantic(components)
+            if not check:
+                self.notify_error(-17, self.validator.get_note())
+                return -17
+
         # مشكلة في التصريف بين الضمير وفعل الأمر
-        if  (self.get_feature_value("tense") == vconst.TenseImperative
-                and  self.get_node_value("subject")  not in vconst.ImperativePronouns):
-            return -1 # error code
+        # deprecated, moved to validator
+        # tense = self.get_feature_value("tense")
+        # subject = self.get_node_value("subject")
+        # if  (tense == vconst.TenseImperative
+        #         and  subject  not in vconst.ImperativePronouns):
+        #     self.notify_error_id(-1, "INCOMPATIBLE_SUBJECT_TENSE", {"subject":subject,"tense":tense})
+        #     return -1 # error code
         #TODO:
         # check verbs
         return True

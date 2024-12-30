@@ -27,6 +27,8 @@
 import phrase_pattern
 import components_set
 import error_listener
+import validator
+import worddictionary
 import os
 import random
 import json
@@ -39,13 +41,61 @@ class PhraseGenerator:
         # init error observer
         self.error_observer = error_listener.ErrorListener()
         # self.error_observer = None
-        # add error observer to phrase pattern
-        self.pattern = phrase_pattern.PhrasePattern(error_observer=self.error_observer)
+
         #load default word_dictionary
-        if not dict_path:
-            dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
+        # if not dict_path:
+        #     dict_path = os.path.join(os.path.dirname(__file__), "./data/data.json")
         self.dict_path = dict_path
-        self.small_dictionary = self.load_dictionary(dict_path)
+        # self.small_dictionary = self.load_dictionary(dict_path)
+        self.small_dictionary = worddictionary.WordDictionary(dict_path)
+        # the validator use dictionay to validate fields and features
+        # the main task is to validate semantic relationship between words
+        self.validator = validator.Validator(dictionary=self.small_dictionary)
+        # add error observer to phrase pattern
+        self.pattern = phrase_pattern.PhrasePattern(error_observer=self.error_observer,
+                                                   validator=self.validator)
+
+    #
+    # def load_dictionary(self, file_path):
+    #     """
+    #     load word dictionary
+    #     :return:
+    #     """
+    #     data = {}
+    #     try:
+    #         with open(file_path, 'r', encoding='utf-8') as json_file:
+    #             data = json.load(json_file)
+    #         logging.info(f"Success: Small dictionary loaded from {file_path}")
+    #     except:
+    #         logging.info(f"ERROR: Can't Open small dictionary file {file_path}")
+    #         return None
+    #     return data
+    #
+    # def add_features(self, data):
+    #     """
+    #     Extract Data for each option.
+    #     Convert the dict (key, value} into {key, dict}
+    #     :param options:
+    #     :return:
+    #     """
+    #     mydict = self.small_dictionary.get("wordindex",{})
+    #     # mydict = self.small_dictionary
+    #     featured = {value: mydict.get(value,{}) for value in data.values()
+    #                  if mydict.get(value,{})}
+    #
+    #     return featured
+    #
+    # def sample(self):
+    #     """
+    #     randomize data from a dict of list
+    #     :param data:
+    #     :return:
+    #     """
+    #
+    #     if not self.small_dictionary:
+    #         return {}
+    #     data = self.small_dictionary.get("data",{})
+    #     return {key: random.choice(value) for key, value in data.items()}
 
 
     def load_dictionary(self, file_path):
@@ -53,15 +103,7 @@ class PhraseGenerator:
         load word dictionary
         :return:
         """
-        data = {}
-        try:
-            with open(file_path, 'r', encoding='utf-8') as json_file:
-                data = json.load(json_file)
-            logging.info(f"Success: Small dictionary loaded from {file_path}")
-        except:
-            logging.info(f"ERROR: Can't Open small dictionary file {file_path}")
-            return None
-        return data
+        return self.small_dictionary.load_dictionary(file_path)
 
     def add_features(self, data):
         """
@@ -70,12 +112,7 @@ class PhraseGenerator:
         :param options:
         :return:
         """
-        mydict = self.small_dictionary.get("wordindex",{})
-        # mydict = self.small_dictionary
-        featured = {value: mydict.get(value,{}) for value in data.values()
-                     if mydict.get(value,{})}
-
-        return featured
+        return self.small_dictionary.add_features(data)
 
     def sample(self):
         """
@@ -84,13 +121,8 @@ class PhraseGenerator:
         :return:
         """
 
-        if not self.small_dictionary:
-            return {}
-        data = self.small_dictionary.get("data",{})
-        return {key: random.choice(value) for key, value in data.items()}
+        return self.small_dictionary.sample()
 
-
-    # def build(self, table_compononts, featured_data=None):
     def build(self, table_compononts):
         """
         

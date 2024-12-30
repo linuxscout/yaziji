@@ -12,6 +12,7 @@ function get_options()
         auxiliary: document.NewForm.auxiliary.value || "",
         negative: document.NewForm.negative.value || "",
         phrase_type: document.NewForm.phrase_type.value || "",
+        adjective: document.NewForm.adjective.value || "",
     };
 }
 /***
@@ -33,10 +34,10 @@ function get_options()
 ////    }
 
      // Validation: Ensure correct pronoun usage with imperative tense
-    if (options.tense === "الأمر" && !options.subject.includes("أنت")) {
+ /*   if (options.tense === "الأمر" && !options.subject.includes("أنت")) {
         alert(`خطأ في الضمير [${options.subject}] غير متطابق مع التصريف في الأمر`);
         return;
-    }
+    }*/
     return true;
     }
 
@@ -216,7 +217,8 @@ const randomSelectClick = (e) => {
         "#negative",
         "#auxiliary",
         "#phrase_type",
-      //  "#tense",
+        "#tense",
+        "#object",
         "#voice",
         "#subject"
     ];

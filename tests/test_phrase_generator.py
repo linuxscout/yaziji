@@ -62,7 +62,8 @@ class TestPhraseGenerator(unittest.TestCase):
                                   'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
                       # "phrase":"Imperative Tense Incompatible with pronoun.",
                       "phrase":"",
-                      "error":"Error received -1: ERROR: Incompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
+                      # "error":"Error received -1: ERROR: Incompatible Subject مُهَنْدِسٌ and tense 'الأمر'.",
+                      "error":"Error received -15: INVALID: Incompatible Subject with Imperative tense",
                       "valid":True,
                     },
         ]
@@ -71,9 +72,9 @@ class TestPhraseGenerator(unittest.TestCase):
             phrase = result.get("phrase",'')
             errors = result.get("errors",'')
             self.assertEqual(phrase == item["phrase"], item["valid"],
-                             msg=f"\nResult  :{result}\nExpected:{item['phrase']}")
+                             msg=f"\nResult  :'{result}'\nExpected:'{item['phrase']}'")
             self.assertEqual(errors == item["error"], item["valid"],
-                             msg=f"\nResult  :{errors}\nExpected:{item['error']}")
+                             msg=f"\nResult  :'{errors}'\nExpected:'{item['error']}'")
 
     # @unittest.skip("Test later")
     def test_load_dictionary_default(self):

@@ -83,6 +83,12 @@ VERBAL_PHRASE  = "جملة فعلية"
 NOMINAL_PHRASE = "جملة اسمية"
 HIDDEN ="مخفي"
 
+TRANSITIVE_COMMON ="مشترك"
+TRANSITIVE_INDIRECT ="متعدي بحرف"
+TRANSITIVE_DOUBLE ="متعدي لمفعولين"
+TRANSITIVE_INTRANSITIVE ="لازم"
+TRANSITIVE_TYPE_VALUES = [TRANSITIVE_COMMON , TRANSITIVE_INDIRECT, TRANSITIVE_DOUBLE, TRANSITIVE_INTRANSITIVE]
+
 ENCLITICS = {vconst.PronounAna : u"ني",
             vconst.PronounNahnu : u"نا",
             vconst.PronounAnta : u"ك",
