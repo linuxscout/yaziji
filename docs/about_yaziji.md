@@ -210,3 +210,14 @@ Created الاثنين 06 يوليو 2020
 * فعل ومفعول به،
 
    مثال: أكل الولد الطعام، ممكن، أكل الولد الطاولة(مفعول)، غير ممكن
+
+### Validation process 
+
+The `Validator` class is a comprehensive utility for validating and ensuring the grammatical correctness and semantic compatibility of Arabic phrases input parts. This class leverages predefined rules to perform various checks on sentence components such as:
+
+Key functionalities of the class include:
+
+1. **Component Validation:**  assess whether a sentence contains the necessary components (e.g., verb and subject in verbal phrases or subject and predicate in nominal phrases) to form a meaningful phrase. The method also handles edge cases, such as missing imperative pronouns or mismatched voice and verb structures.
+2. **Feature Compatibility:** The `check_features` method evaluates compatibility between features such as transitivity, voice, and pronoun agreement. For example, it flags errors when a transitive verb lacks an object or when an imperative verb is used with an incompatible pronoun.
+3. **Semantic Checks:** The `check_semantic` method ensures the semantic alignment between verbs and their corresponding subjects or objects, reinforcing meaningful sentence construction.
+4. **Error Reporting:** The class maintains a log of validation notes, enabling users to track and understand any identified errors or inconsistencies.

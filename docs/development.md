@@ -100,6 +100,8 @@ Below is the directory structure of the Yaziji project, along with a description
 │   ├── stream_pattern.py
 │   ├── wordnode.py
 │   ├── components_set.py
+│   ├── worddictionary.py
+│   ├── validator.py
 │   ├── error_listener.py
 │   ├── yaziji_const.py
 │   └── yz_utils.py
@@ -110,6 +112,7 @@ Below is the directory structure of the Yaziji project, along with a description
 │   ├── data_to_translate_csv.py
 │   ├── translate_json_from_po.py
 │   ├── get_json_lang_from_server.py
+│   ├── generate_features_sample.py
 │   └── convert_list.py
 ├── translations
 │   ├── existing.pot
@@ -162,6 +165,8 @@ The `yaziji/` directory contains the main components responsible for generating 
 - **`stream_pattern.py`**: Handles word stream processing, ensuring words are combined in the correct order according to grammar rules.
 - **`wordnode.py`**: Implements the **WordNode** class, which represents individual words or word components. Each word can have multiple attributes and relationships with other words in a phrase.
 - **`components_set.py`**: Manages sets of available components (word types, attributes, etc.) for use in phrase generation.
+- **`worddictionary.py`**: Manage words informations and attributes, data structure, word semantic fields.
+- **`validator.py`**: is a comprehensive utility for validating and ensuring the grammatical correctness and semantic compatibility of Arabic phrases input parts. This class leverages predefined rules to perform various checks on sentence components.
 - **`error_listener.py`**: Listens for errors during the phrase generation process, logging and reporting issues that occur.
 - **`yaziji_const.py`**: Contains constant values, configuration settings, and default parameters used throughout the Yaziji system.
 - **`yz_utils.py`**: Provides utility functions for common tasks such as data manipulation, transformations, and other helper operations.
@@ -230,7 +235,9 @@ The `tools/` directory holds several scripts used for data conversion, language 
 
     
 
-- **`get_json_lang_from_server.py`**: This scipt+generate json lang file by calling yaziji server, It uses babel flask
+- **``generate_features_sample.py``**: A script that generates a sample dataset for features list, used to test ``validator.py``.
+
+- **`get_json_lang_from_server.py`**: This script to generate json lang file by calling yaziji server, It uses babel flask
 
   > [!WARNING]
   >
