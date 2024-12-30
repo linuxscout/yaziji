@@ -83,6 +83,11 @@ VERBAL_PHRASE  = "جملة فعلية"
 NOMINAL_PHRASE = "جملة اسمية"
 HIDDEN ="مخفي"
 
+
+PARTICAL_LAM = "لَمْ"
+PARTICAL_LAN = "لَنْ"
+PARTICAL_LA = "لا"
+
 TRANSITIVE_COMMON ="مشترك"
 TRANSITIVE_INDIRECT ="متعدي بحرف"
 TRANSITIVE_DOUBLE ="متعدي لمفعولين"

@@ -36,7 +36,7 @@ from arramooz.verbtuple import VerbTuple
 
 import yaziji_const
 from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, PASSIVE_VOICE, VERBAL_PHRASE
-from yaziji_const import HIDDEN, GENDER_FEMALE
+from yaziji_const import HIDDEN, GENDER_FEMALE, NEGATIVE, PARTICAL_LA, PARTICAL_LAM, PARTICAL_LAN
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
@@ -629,11 +629,13 @@ class PhrasePattern:
         verb_factor = ""
 
         # Handle negative tense cases
-        if self.get_feature_value("negative") == u"منفي":
+        if self.get_feature_value("negative") == NEGATIVE:
             if tense == vconst.TensePast:
-                tense, verb_factor = vconst.TenseJussiveFuture, u"لَمْ"
+                tense, verb_factor = vconst.TenseJussiveFuture, PARTICAL_LAM
             elif tense == vconst.TenseFuture:
-                tense, verb_factor = vconst.TenseSubjunctiveFuture, u"لَنْ"
+                tense, verb_factor = vconst.TenseSubjunctiveFuture, PARTICAL_LAN
+            elif tense == vconst.TenseImperative:
+                tense, verb_factor = vconst.TenseJussiveFuture, PARTICAL_LA
 
         # Handle passive voice
         if self.get_feature_value("voice") == PASSIVE_VOICE:
