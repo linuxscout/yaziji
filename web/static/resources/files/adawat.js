@@ -15,31 +15,90 @@ function get_options()
         adjective: document.NewForm.adjective.value || "",
     };
 }
-/***
-*  Validation: Ensure correct pronoun usage with imperative tense
-*/
-    function test_compatibility(options)
-    {
-//    console.log("options ", options);
-    // Validation: Ensure correct pronoun usage with imperative tense
-//  const { tense, subject } = document.NewForm;
-////    console.log("first case ", tense.value ,subject.value,subject.value.includes("أنت"),tense.value === "الأمر" && !subject.value.includes("أنت"));
-////    console.log("second case ", options["tense"] ,options.subject)
-//////    console.log("second case ", options.tense.value ,options.subject.value,
-//////    options.subject.value.includes("أنت"),options.tense.value === "الأمر" && !options.subject.value.includes("أنت"));
-//
-////    if (tense.value === "الأمر" && !subject.value.includes("أنت")) {
-////        alert(`خطأ في الضمير [${subject.value}] غير متطابق مع التصريف في الأمر`);
-////        return;
-////    }
 
-     // Validation: Ensure correct pronoun usage with imperative tense
- /*   if (options.tense === "الأمر" && !options.subject.includes("أنت")) {
-        alert(`خطأ في الضمير [${options.subject}] غير متطابق مع التصريف في الأمر`);
-        return;
-    }*/
-    return true;
+
+function test_compatibility(options) {
+    /**
+     * Check if the sentence contains sufficient components (subject, verb, object, etc.).
+     * @param {Object} options - The sentence components to check.
+     * @return {boolean} - Returns true if the sentence is valid, false otherwise.
+     */
+    const PASSIVE_VOICE = "مبني للمجهول";
+    const ACTIVE_VOICE = "معلوم";
+    const VERBAL_PHRASE = "جملة فعلية";
+    const NOMINAL_PHRASE = "جملة اسمية";
+    const TenseImperative = "الأمر";
+
+    const verb = options.verb || '';
+    const subject = options.subject || '';
+    const object = options.object || '';
+    const place = options.place || '';
+    const predicate = options.adjective || '';
+    const activeVoice = options.voice === ACTIVE_VOICE;
+    const passiveVoice = options.voice === PASSIVE_VOICE;
+    const imperative = options.tense === TenseImperative;
+    const verbal = options.phrase_type === VERBAL_PHRASE;
+    const nominal = options.phrase_type === NOMINAL_PHRASE;
+
+    // Verbal phrase without verb, return false
+    if (verbal && !verb) {
+        alert("غير صالح: جملة فعلية بدون فعل");
+        return false;
     }
+
+    // Nominal phrase without subject, or no subject, but object, within passive voice and verb
+    if (nominal && !subject && !object) {
+        alert("غير صالح: جملة اسمية بدون اسم (مبتدأ أو مفعول به)");
+        return false;
+    }
+
+    // Verb without subject or object
+    if (verb && !subject && !object) {
+        alert("غير صالح: فعل بدون فاعل أو مفعول به");
+        return false;
+    }
+
+    // Subject not starting with "أنت" and tense is imperative
+    if (!subject.startsWith("أنت") && imperative) {
+        alert(`غير صالح: فاعل[${subject}] غير متوافق مع زمن الأمر`);
+        return false;
+    }
+
+    // Active voice without subject
+    if (!subject && activeVoice) {
+        alert("غير صالح: المبني للمعلوم بدون فاعل");
+        return false;
+    }
+
+    // Minimal valid sentence: verb + subject
+    if (verb && subject) {
+        // alert("صالح: جملة فعلية تحتوي على فعل وفاعل");
+        return true;
+    }
+
+    // Minimal valid nominal phrase: subject + place
+    if (subject && place) {
+        // alert("صالح: جملة اسمية تحتوي على مبتدأ ومكان");
+        return true;
+    }
+
+    // Minimal valid nominal phrase: subject + predicate
+    if (subject && predicate) {
+        // alert("صالح: جملة اسمية تحتوي على مبتدأ وصفة");
+        return true;
+    }
+
+    // Minimal valid passive sentence: verb + object + passive voice
+//    alert(`الموضوع: ${subject}, الفعل: ${verb}, المفعول به: ${object}, الأمر: ${imperative}, المبني للمجهول: ${passiveVoice}`);
+    if (!subject && verb && object && !imperative && passiveVoice) {
+        // alert("صالح: جملة تحتوي على فعل ومفعول به ومبني للمجهول");
+        return true;
+    }
+
+    alert("غير صالح: مكونات غير كافية لتكوين جملة مفيدة");
+    return false;
+}
+
 
 /**
  * Handles the phrase click event to validate input and send data via AJAX.
@@ -51,13 +110,7 @@ const phraseClick = (e) => {
     // test compatiblity between phrase parts input
     if (!test_compatibility(options))
     {return;}
-//    console.log("options ", options);
-//    // Validation: Ensure correct pronoun usage with imperative tense
-//    const { tense, subject } = document.NewForm;
-//    if (tense.value === "الأمر" && !subject.value.includes("أنت")) {
-//        alert(`خطأ في الضمير [${subject.value}] غير متطابق مع التصريف في الأمر`);
-//        return;
-//    }
+
 
     const prefix = getPrefixPath();
     // Collect form data
@@ -65,16 +118,6 @@ const phraseClick = (e) => {
         //text: subject.value || "",
         action: "phrase",
         options :options,
-//        subject: subject.value || "",
-//        object: document.NewForm.object.value || "",
-//        verb: document.NewForm.verb.value || "",
-//        time: document.NewForm.time.value || "",
-//        place: document.NewForm.place.value || "",
-//        tense: tense.value || "",
-//        voice: document.NewForm.voice.value || "",
-//        auxiliary: document.NewForm.auxiliary.value || "",
-//        negative: document.NewForm.negative.value || "",
-//        phrase_type: document.NewForm.phrase_type.value || "",
     };
 
     // Send data via GET request
@@ -84,10 +127,6 @@ const phraseClick = (e) => {
             $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
             ${response.result.inflection}<br/>
             ${response.result.errors}</div>`);
-//       if (response?.result) {
-//            $("#result").html(`<div class='tashkeel'>${response.result.phrase}</div>`);
-//            $("#extra").html(`<div class='tashkeel'>${response.result.phrase_type} <br/>
-//            ${response.result.errors}</div>`);
         } else {
             console.error("Unexpected response:", response);
         }
@@ -120,16 +159,6 @@ const sampleClick = (e) => {
         text: subject.value || "",
         action: "sample",
         options :get_options(),
-//        subject: subject.value || "",
-//        object: document.NewForm.object.value || "",
-//        verb: document.NewForm.verb.value || "",
-//        time: document.NewForm.time.value || "",
-//        place: document.NewForm.place.value || "",
-//        tense: tense.value || "",
-//        voice: document.NewForm.voice.value || "",
-//        auxiliary: document.NewForm.auxiliary.value || "",
-//        negative: document.NewForm.negative.value || "",
-//        phrase_type: document.NewForm.phrase_type.value || "",
     };
 
     // Send data via GET request
@@ -162,16 +191,6 @@ const reportClick = (e) => {
         text: document.NewForm.subject.value || "",
         action: "report",
         options :get_options(),
-//        subject: document.NewForm.subject.value || "",
-//        object: document.NewForm.object.value || "",
-//        verb: document.NewForm.verb.value || "",
-//        time: document.NewForm.time.value || "",
-//        place: document.NewForm.place.value || "",
-//        tense: document.NewForm.tense.value || "",
-//        voice: document.NewForm.voice.value || "",
-//        auxiliary: document.NewForm.auxiliary.value || "",
-//        negative: document.NewForm.negative.value || "",
-//        phrase_type: document.NewForm.phrase_type.value || "",
         result: $("#result").text() || "",
     };
 
@@ -220,7 +239,8 @@ const randomSelectClick = (e) => {
         "#tense",
         "#object",
         "#voice",
-        "#subject"
+        "#subject",
+        "#adjective"
     ];
 
     // Apply random selection to each dropdown
@@ -281,16 +301,6 @@ const ratingChange = function(e) {
         text: document.NewForm.subject.value,
         action: "rating",
         options :get_options(),
-//        subject: document.NewForm.subject.value,
-//        object: document.NewForm.object.value,
-//        verb: document.NewForm.verb.value,
-//        time: document.NewForm.time.value,
-//        place: document.NewForm.place.value,
-//        tense: document.NewForm.tense.value,
-//        voice: document.NewForm.voice.value,
-//        auxiliary: document.NewForm.auxiliary.value,
-//        negative: document.NewForm.negative.value,
-//        phrase_type: document.NewForm.phrase_type.value,
         result: $("#result").text(),
         rating: `${rating}`
     };
@@ -444,12 +454,12 @@ async function translateUI(lang) {
     }
 
     // Translate select options based on loaded translation
-    const list = ["phrase_type", "subject", "object", "verb", "time", "place", "tense", "negative", "voice", "auxiliary"];
+    const list = ["phrase_type", "subject", "object", "verb", "time", "place", "tense", "negative", "voice", "auxiliary", "adjective"];
     list.forEach(part => {
         translateSelect(lang, part); // Translate each part
     });
     const listLabel = ["phrase_type_label", "subject_label", "object_label", "verb_label", "time_label",
-     "place_label", "tense_label", "negative_label", "voice_label", "auxiliary_label",
+     "place_label", "tense_label", "negative_label", "voice_label", "auxiliary_label","adjective_label",
      // buttons
      "phrase","random_select", "sample","LastMark_label"];
     listLabel.forEach(part => {
