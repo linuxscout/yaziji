@@ -46,6 +46,7 @@ class componentsSet:
             "auxiliary": {"type": "word", "conjugable": True, "wordtype": "verb", "required":False},
             "time":   {"type": "word", "conjugable": False, "wordtype": "adverb", "required":False},
             "place":  {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
+            "adjectiive":  {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
         }
         self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
         self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 

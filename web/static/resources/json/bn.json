@@ -1,5 +1,5 @@
 {
-    "adjectives": {
+    "adjective": {
         "أَنِيقٌ": "মার্জিত",
         "بَخِيلٌ": "স্টিনি",
         "بَشِعٌ": "কুরুচিপূর্ণ",
@@ -44,7 +44,8 @@
         "object",
         "time",
         "place",
-        "phrase_type"
+        "phrase_type",
+        "adjective"
     ],
     "negative": {
         "مثبت": "ইতিবাচক",

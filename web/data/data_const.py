@@ -33,7 +33,9 @@ selectValues = {"fields": [
   "object",
   "time",
   "place",
+    "adjective",
   "phrase_type",
+
 ],
  "phrase_type":{ 
    "جملة فعلية":  _('جملة فعلية'),

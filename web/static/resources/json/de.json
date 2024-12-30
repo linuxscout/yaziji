@@ -1,5 +1,5 @@
 {
-    "adjectives": {
+    "adjective": {
         "أَنِيقٌ": "elegant",
         "بَخِيلٌ": "geizig",
         "بَشِعٌ": "hässlich",
@@ -44,7 +44,8 @@
         "object",
         "time",
         "place",
-        "phrase_type"
+        "phrase_type",
+        "adjective"
     ],
     "negative": {
         "مثبت": "مثبت",

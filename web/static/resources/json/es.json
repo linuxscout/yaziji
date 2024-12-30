@@ -44,7 +44,8 @@
         "object",
         "time",
         "place",
-        "phrase_type"
+        "phrase_type",
+        "adjective"
     ],
     "negative": {
         "مثبت": "afirmativo",
