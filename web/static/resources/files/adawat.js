@@ -295,7 +295,7 @@ const ratingChange = function(e) {
 
     const prefix = getPrefixPath();
     const rating = $(this).val();
-    console.log("Rating Element:", this, "Rating Value:", rating);
+//    console.log("Rating Element:", this, "Rating Value:", rating);
     // Collecting form data
     const formData = {
         text: document.NewForm.subject.value,
@@ -341,81 +341,80 @@ const copyToClipboard = (e) => {
 };
 
 
-// a class to draw form with translation
-class DrawForm {
-    constructor(language_url) {
-        this.language_url = language_url;
-        this.translations = {};
-    }
-
-    // Load translations from JSON files
-    load_languages() {
-        const lang = getLang();
-        $.ajax({
-            url: `${this.language_url}${lang}.json`,
-            method: 'GET',
-            dataType: 'json',
-            success: (data) => {
-                this.translations[lang] = data;
-                console.log("Translation", data);
-            },
-            error: (xhr, status, error) => {
-                console.error('Error1:', error);
-            }
-        });
-    }
-
-    // Translate label based on the loaded translations
-    translate_label(label, lang) {
-        if (this.translations[lang] && this.translations[lang]["web-labels"]) {
-            return this.translations[lang]["web-labels"][label] || label;  // Fallback to original label if not found
-        }
-        return label;  // Fallback to original label if translations are not available
-    }
-
-    // Translate value based on the loaded translations
-    translate_value(field, key, lang) {
-        return this.translations[lang]?.[field]?.[key] || key;  // Fallback to key if translation is not available
-    }
-
-    // Draw the form with translated values
-    draw_form() {
-        const lang = getLang();
-        const prefix = getPrefixPath();
-
-        $.getJSON(`${prefix}/selectGet`, {
-            text: '',
-            action: "RandomText"
-        }, (data) => {
-            if (!data) {
-                console.log("Nothing from selectGet");
-                return;
-            }
-
-            const selectValues = data;
-//                 selectValues["adjective"] =  selectValues["adjectives"];
-            selectValues.fields.forEach(field => {
-                console.log("field to draw", field)
-                const fieldLabel = $(`#${field}_label`);
-                const ar_label = fieldLabel.text();
-                const tr_label = this.translate_label(ar_label, lang);
-
-                if (lang !== "ar") {
-                    fieldLabel.append(`[${tr_label}]`);
-                }
-
-                $.each(selectValues[field], (key, value) => {
-                    const translatedValue = lang !== "ar"
-                        ? `${key} [${this.translate_value(field, key, lang)}]`
-                        : value;
-
-                    $(`#${field}`).append($("<option></option>").attr("value", key).text(translatedValue));
-                });
-            });
-        });
-    }
-}
-
+//// a class to draw form with translation
+//class DrawForm {
+//    constructor(language_url) {
+//        this.language_url = language_url;
+//        this.translations = {};
+//    }
+//
+//    // Load translations from JSON files
+//    load_languages() {
+//        const lang = getLang();
+//        $.ajax({
+//            url: `${this.language_url}${lang}.json`,
+//            method: 'GET',
+//            dataType: 'json',
+//            success: (data) => {
+//                this.translations[lang] = data;
+//                console.log("Translation", data);
+//            },
+//            error: (xhr, status, error) => {
+//                console.error('Error1:', error);
+//            }
+//        });
+//    }
+//
+//    // Translate label based on the loaded translations
+//    translate_label(label, lang) {
+//        if (this.translations[lang] && this.translations[lang]["web-labels"]) {
+//            return this.translations[lang]["web-labels"][label] || label;  // Fallback to original label if not found
+//        }
+//        return label;  // Fallback to original label if translations are not available
+//    }
+//
+//    // Translate value based on the loaded translations
+//    translate_value(field, key, lang) {
+//        return this.translations[lang]?.[field]?.[key] || key;  // Fallback to key if translation is not available
+//    }
+//
+//    // Draw the form with translated values
+//    draw_form() {
+//        const lang = getLang();
+//        const prefix = getPrefixPath();
+//
+//        $.getJSON(`${prefix}/selectGet`, {
+//            text: '',
+//            action: "RandomText"
+//        }, (data) => {
+//            if (!data) {
+//                console.log("Nothing from selectGet");
+//                return;
+//            }
+//
+//            const selectValues = data;
+//            selectValues.fields.forEach(field => {
+//
+//                const fieldLabel = $(`#${field}_label`);
+//                const ar_label = fieldLabel.text();
+//                const tr_label = this.translate_label(ar_label, lang);
+//
+//                if (lang !== "ar") {
+//                    fieldLabel.append(`[${tr_label}]`);
+//                }
+//
+//                $.each(selectValues[field], (key, value) => {
+//                    const translatedValue = lang !== "ar"
+//                        ? `${key} [${this.translate_value(field, key, lang)}]`
+//                        : value;
+//
+//                    $(`#${field}`).append($("<option></option>").attr("value", key).text(translatedValue));
+//                });
+//            });
+//        });
+//    }
+//}
+//
 
 
 // Object to store translations
@@ -439,7 +438,7 @@ async function loadTranslationFile(lang) {
 // Select language change event handler
 const selectLanguage = function () {
     const lang = this.value;
-    console.log("Selected language:", lang);
+//    console.log("Selected language:", lang);
     translateUI(lang); // Translate UI elements
 };
 
@@ -488,7 +487,52 @@ function translateSelect(lang, part) {
     }
 
     // Loop through the options and translate their text content
-    Array.from(partSelect.options).forEach(option => {
+//    console.log("PART select", part, partSelect.length, typeof(partTranslations));
+//    console.log("PART select translation", partTranslations);
+    // if options are not empty, translate
+    // else draw
+    if(partSelect.length <= 1)
+    {
+    Object.keys(partTranslations).forEach(value => {
+    const translatedValue = partTranslations[value];
+
+//    console.log("PART select translation-value", value);
+
+    if (lang === "ar") {
+        // For Arabic, only display the value (original text)
+         $(`#${part}`).append($("<option></option>").attr("value", value).text(value));
+    } else {
+        // For other languages, display the translated value if available
+        if (translatedValue) {
+            $(`#${part}`).append($("<option></option>")
+                .attr("value", value)
+                .text(`${value} [${translatedValue}]`)
+                  );
+        } else {
+           $(`#${part}`).append($("<option></option>").attr("value", value).text(value));
+            console.warn(`Translation missing for: ${value}`);
+        }
+    }
+   });
+
+//    Array.from(partTranslations).forEach(value => {
+//        const translatedValue =  partTranslations[value]
+//        // For Arabic, only display the value
+//        console.log("PART select translation-value", value);
+//        if (lang === "ar") {
+//            partSelect.append($("<option></option>").attr("value", value).text(value));
+//        } else {
+//            // Translate the option text and append it with the translation
+////            if (translatedValue) {
+//            partSelect.append($("<option></option>").attr("value", value).text(translatedValue));
+////            }
+//        }
+//    });
+    }
+    else
+    {   // draw instead of translate
+//    console.log()
+       Array.from(partSelect.options).forEach(option => {
         const value = option.value; // Use the option's value as a key
 
         // For Arabic, only display the value
@@ -501,6 +545,7 @@ function translateSelect(lang, part) {
             }
         }
     });
+    }
 }
 
 // Function to translate the labels of HTML elements
@@ -554,11 +599,19 @@ loadTranslationFile("ar").then(translations => {
     }
 });
 
+function get_lang2()
+{
+const lang = $("#language").val() || "ar";
+//console.log("Get_lang", lang);
+return lang;
+}
 $(document).ready(() => {
     // Initialize the DrawForm instance
-    const myDraw = new DrawForm(language_url);
-    myDraw.load_languages();
-    myDraw.draw_form();
+//    const myDraw = new DrawForm(language_url);
+//    myDraw.load_languages();
+//    myDraw.draw_form();
+    const lang = get_lang2();
+     translateUI(lang);
     if(!CONFIG_DEBUG_MODE)
     { // hide some buttons
 
