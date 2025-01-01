@@ -264,6 +264,64 @@ class TestInputValidator(unittest.TestCase):
             self.assertIsNotNone(wordindex_attributes,
                              msg=f"\nError on dictionary loading: {self.phrase_generator.dict_path}.")
 
+    # @unittest.skip("Test later")
+    def test_check_unsupported_components(self):
+        # Arrange
+        test_set = [
+                {'id': 9,
+                 "components": {'subject': '', 'object': '', 'verb': '', 'time': 'أَمْسِ',
+                                'place': '', 'tense': TensePast, 'voice': ACTIVE_VOICE,
+                                'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
+                'valid': True,
+                'note': ''
+                },
+                {'id': 10,
+                'components': {'wrong_field': NOMINAL_PHRASE,},
+                'valid': False,
+                'note': 'Unsupported field name'
+                }]
+
+
+
+        for item in test_set:
+            result = self.validator.check_unsupported_components(item["components"])
+            note = self.validator.get_note()
+            self.assertEqual(result, item["valid"],
+                             msg=f"ُExample n°{item['id']}\nResult  :{result}\nExpected:{item['valid']}\nMy Note{item['note']} \nThe Validator Note {note}")
+
+    # @unittest.skip("Test later")
+    def test_check_required_components(self):
+        # Arrange
+        test_set = [
+                {'id': 8,
+                 "components": {'subject': '', 'object': '', 'verb': '', 'time': 'أَمْسِ',
+                                'place': '', 'tense': TensePast, 'voice': ACTIVE_VOICE,
+                                'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
+                'valid': True,
+                'note': ''
+                },
+            {'id': 9,
+                 "components": {'subject': '', 'object': '', 'verb': '', 'time': 'أَمْسِ',
+                                'place': '', 'tense': TensePast, 'voice': ACTIVE_VOICE,
+                                'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': ""},
+                'valid': False,
+                'note': ''
+                },
+                {'id': 10,
+                'components': {'wrong_field': NOMINAL_PHRASE,},
+                'valid': False,
+                'note': 'Required name'
+                }]
+
+
+
+        for item in test_set:
+            result = self.validator.check_required_components(item["components"])
+            note = self.validator.get_note()
+            self.assertEqual(result, item["valid"],
+                             msg=f"ُExample n°{item['id']}\nResult  :{result}\nExpected:{item['valid']}\nMy Note{item['note']} \nThe Validator Note {note}")
+
+
     @unittest.skip("Test later")
     def test_sample(self):
         # Assert message error

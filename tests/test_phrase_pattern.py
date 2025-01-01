@@ -15,6 +15,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "../yaziji"))
 from yaziji.phrase_pattern import PhrasePattern  # Assuming the class is in phrase_pattern.py
 from yaziji.wordnode import wordNode
 from yaziji.error_listener import ErrorListener
+from yaziji.validator import Validator
 from yaziji.yaziji_const import FATHA_WORD, DAMMA_WORD, KASRA_WORD
 from yaziji.yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, VERBAL_PHRASE, NOMINAL_PHRASE
 from yaziji.yaziji_const import ACTIVE_VOICE, PASSIVE_VOICE, AFFIRMATIVE, NEGATIVE
@@ -23,7 +24,8 @@ from yaziji.yaziji_const import NUMBER_SINGULAR, NUMBER_DUAL, NUMBER_PLURAL, GEN
 class TestPhrasePattern(unittest.TestCase):
     def setUp(self,):
         # Creating instance of PhrasePattern
-        self.phrase = PhrasePattern()
+        validator = Validator()
+        self.phrase = PhrasePattern(validator=validator)
     # @unittest.skip("Test later")
 
 
@@ -252,7 +254,7 @@ class TestPhrasePattern(unittest.TestCase):
             ]
         for item in components_list:
             result = self.phrase.add_components(item["components"])
-            self.assertEqual(result > 0,item["valid"], msg=f"add components \nnames{self.phrase.nodes}\nfeatures{self.phrase.phrase_features}")  # Should return True if preparation is successful
+            self.assertEqual(result > 0,item["valid"], msg=f"\add components Result'{result}'\nnames{self.phrase.nodes}\nfeatures{self.phrase.phrase_features}")  # Should return True if preparation is successful
 
     # @unittest.skip("Test later")
     def test_prepare_valid(self):

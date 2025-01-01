@@ -50,10 +50,12 @@ class PhraseGenerator:
         self.small_dictionary = worddictionary.WordDictionary(dict_path)
         # the validator use dictionay to validate fields and features
         # the main task is to validate semantic relationship between words
-        self.validator = validator.Validator(dictionary=self.small_dictionary)
+        self.validator = validator.Validator(dictionary=self.small_dictionary,
+                                             error_observer=self.error_observer)
         # add error observer to phrase pattern
-        self.pattern = phrase_pattern.PhrasePattern(error_observer=self.error_observer,
-                                                   validator=self.validator)
+        self.pattern = phrase_pattern.PhrasePattern(   validator=self.validator
+                                            # error_observer=self.error_observer,
+                                                )
 
     #
     # def load_dictionary(self, file_path):

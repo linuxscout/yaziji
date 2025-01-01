@@ -114,7 +114,7 @@ class PhrasePattern:
         # to be replaced by a dict of dict
         return components.get(name, "")
         # The new way
-        return components.get(name, {}).get("value","")
+        # return components.get(name, {}).get("value","")
 
     def get_word_attributes(self, word):
         """
@@ -141,32 +141,57 @@ class PhrasePattern:
         # Checking components before any operation
 
         # check for extra components not supported
-        for key in components:
-            if key not in self.nodes_names and not key in self.phrase_features:
-                response = -3
-                # self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
-                self.notify_error_id(response,"UNSUPPORTED_COMPONENT", {"name":key})
-                return response
-        # check if a required name is not found
-        for name in self.nodes_names:
-            if self.is_required(name) and self.get_comp_value(components, name) == "":
-                response = -2
-                # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
-                self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
-                return response
+        # for key in components:
+        #     if key not in self.nodes_names and not key in self.phrase_features:
+        #         response = -3
+        #         # self.notify_error(response,f"ERROR: Unsupported component key '{key}'.")
+        #         self.notify_error_id(response,"UNSUPPORTED_COMPONENT", {"name":key})
+        #         return response
+        #
+        # # check if a required name is not found
+        # for name in self.nodes_names:
+        #     if self.is_required(name) and self.get_comp_value(components, name) == "":
+        #         response = -2
+        #         # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+        #         self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
+        #         return response
+        #
+        # for feature in self.phrase_features:
+        #     if self.is_required(feature) and self.get_comp_value(components, feature) == "":
+        #         response = -4
+        #         # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
+        #         self.notify_error_id(response,"REQUIRED_NAME", {"name":feature})
+        #         return response
 
         if self.validator is not None:
-            # print("I'm Validaror I'm here", type(components))
+            # print("I'm Validaror I'm here", self.validator)
+            # check if a required name is not found
+            check = self.validator.check_unsupported_components(components)
+            if not check:
+                # self.notify_error_id(-2,"REQUIRED_NAME", {"name":name})
+                # print(-2,"REQUIRED_NAME", {"name":name})
+                # self.notify_error(-3, self.validator.get_note())
+                return -3
+            # check if a required name is not found
+            check = self.validator.check_required_components(components)
+            if not check:
+                # self.notify_error_id(-2,"REQUIRED_NAME", {"name":name})
+                # print(-2,"REQUIRED_NAME", {"name":name})
+                # self.notify_error(-2, self.validator.get_note())
+                return -2
             # Chek for sufficient_components
             check = self.validator.check_sufficient_components(components)
             if not check:
-                self.notify_error(-15, self.validator.get_note())
+                # self.notify_error(-15, self.validator.get_note())
                 return -15
 
             check = self.validator.check_semantic(components)
             if not check:
-                self.notify_error(-17, self.validator.get_note())
+                # self.notify_error(-17, self.validator.get_note())
                 return -17
+        else:
+            self.notify_error_id(-25,"VALIDATOR_NOT_INITIALIZED")
+            return -25
         return True
 
     def add_components(self, components, featured_data=None):
@@ -227,11 +252,12 @@ class PhrasePattern:
             # store it in phrase_type
             # this determine the way to order phrase words
             self.phrase_type = self.get_feature_value("phrase_type")
-        else:
-            response = -4
-            # self.notify_error(response,f"ERROR: Required Phrase type is empty'.")
-            self.notify_error_id(response, "EMPTY_PHRASE_TYPE")
-            return response
+        # deprecated, handled by required fields
+        # else:
+        #     response = -4
+        #     # self.notify_error(response,f"ERROR: Required Phrase type is empty'.")
+        #     self.notify_error_id(response, "EMPTY_PHRASE_TYPE")
+        #     return response
         # get the phrase word order (stream) according to phrase type
         self.stream = stream_pattern.streamPattern(self.phrase_type)
 
@@ -319,7 +345,7 @@ class PhrasePattern:
             #     return -16
             check = self.validator.check_semantic(components)
             if not check:
-                self.notify_error(-17, self.validator.get_note())
+                # self.notify_error(-17, self.validator.get_note())
                 return -17
 
         # مشكلة في التصريف بين الضمير وفعل الأمر
