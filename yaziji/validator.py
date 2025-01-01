@@ -10,7 +10,7 @@ from yaziji_const import VERBAL_PHRASE, NOMINAL_PHRASE
 from yaziji_const import ACTIVE_VOICE, PASSIVE_VOICE, AFFIRMATIVE, NEGATIVE
 
 from components_set import componentsSet
-from error_listener import ErrorListener, INFO_CONST, WARNING_CONST
+from error_listener import ErrorListener, INFO_CONST, WARNING_CONST, ERROR_CONST
 # from yaziji.phrase_generator import PhraseGenerator
 class Validator:
     def __init__(self, dictionary=None, error_observer:ErrorListener=None):
@@ -52,30 +52,41 @@ class Validator:
              logging.info(f"{type.upper()} #{error_id}: {formatted_message}")
         return True
 
-    def add_note(self, note: str, args:dict= {}) -> None:
+    def add_note(self, note: str, args:dict= {}, type:str=ERROR_CONST) -> None:
         """
         add a note to signal an error
         :param note:
         :return:
         """
-        self.notes.append(note)
-        self.notify(-15, note, args)
-
-    def add_note_info(self, note: str, args:dict= {}) -> None:
-        """
-        add a note to signal an error
-        :param note:
-        :return:
-        """
-        self.notes.append("INFO:"+note)
-        self.notify(-15, note, args, type=INFO_CONST)
+        #self.notes.append(note)
+        self.notes.append({"type":type, "note":note, "args":args})
+        self.notify(-15, note, args, type=type)
+    #
+    # def add_note_info(self, note: str, args:dict= {}) -> None:
+    #     """
+    #     add a note to signal an error
+    #     :param note:
+    #     :return:
+    #     """
+    #     self.notes.append({"type":INFO_CONST, "note":note, "args":args})
+    #     self.notify(-15, note, args, type=INFO_CONST)
 
     def get_note(self)-> str:
         """
         Return the last note
         :return:
         """
-        return self.notes[-1] if  self.notes else ""
+        last_note = self.notes[-1] if  self.notes else {}
+        return last_note.get("note",'')
+    def get_errorno(self)-> str:
+        """
+        Return the last note
+        :return:
+        """
+        last_note = self.notes[-1] if  self.notes else {}
+        errorno = ErrorListener.get_errorno(last_note.get('note',''))
+
+        return -errorno
 
     def check_verb_object_relationship(self, verb, obj):
         """
@@ -166,22 +177,22 @@ class Validator:
         # if the fphrase contain the
         # a mimimal verb subject
         if verb and subject:
-            self.add_note_info("VALID COMPONENTS_VERB_SUBJ", {"verb":verb, "subject":subject})
+            self.add_note("VALID COMPONENTS_VERB_SUBJ", {"verb":verb, "subject":subject},type=INFO_CONST)
             return True
         # a mimimal subject place, can form a nominal phrase أحمد في السوق
         if subject and place:
-            self.add_note_info("VALID COMPONENTS_SUBJ_PLACE",{"place":place, "subject":subject} )
+            self.add_note("VALID COMPONENTS_SUBJ_PLACE",{"place":place, "subject":subject},type=INFO_CONST )
             return True
         if subject and predicate:
             # self.add_note_info("VALID: Subject + APredicate")
-            self.add_note_info("VALID COMPONENTS_SUBJ_PREDICATE",{"predicate":predicate, "subject":subject} )
+            self.add_note("VALID COMPONENTS_SUBJ_PREDICATE",{"predicate":predicate, "subject":subject},type=INFO_CONST )
             return True
 
         # a mimimal no subject, verb objectwith passive voice
         # print("subject;", subject, "verb:", verb, "object",object, "imperative",imperative, "passive_voice",passive_voice)
         if not subject and verb and object and not imperative and passive_voice:
             # self.add_note("VALID: verb + Object + Passive voice")
-            self.add_note_info("VALID COMPONENTS_VERB_OBJ_PASSIVE",{"verb":verb, "object":object})
+            self.add_note("VALID COMPONENTS_VERB_OBJ_PASSIVE",{"verb":verb, "object":object}, type=INFO_CONST)
             return True
 
         self.add_note("INSUFFICIENT_COMPONENTS")
@@ -224,10 +235,10 @@ class Validator:
 
         # INVALID: imperative and not pronoun in ImperativePronouns
         if verb and imperative and not pronoun in ImperativePronouns and  not object:
-            self.add_note("INCOMPATIBLE_SUBJECT_TENSE")
+            self.add_note("INCOMPATIBLE_SUBJECT_TENSE", {"subject":pronoun, "tense":TenseImperative})
             return False
 
-        self.add_note_info("NO_FREATURES_ISSUE")
+        self.add_note("NO_FREATURES_ISSUE", type=INFO_CONST)
         return True
 
     def is_required(self, name):
@@ -280,13 +291,13 @@ class Validator:
         predicate = components.get("adjective",'')
 
         if not self.check_verb_subject_relationship(verb, subject):
-            self.add_note("SEM_INCOMP_VERB_SUBJ",{"verb":verb, "subject":subject})
+            self.add_note("SEM_INCOMP_VERB_SUBJ",{"verb":verb, "subject":subject}, type=WARNING_CONST)
             return False
         if not self.check_verb_object_relationship(verb, object):
-            self.add_note("SEM_INCOMP_VERB_OBJ",{"verb":verb, "object":object})
+            self.add_note("SEM_INCOMP_VERB_OBJ",{"verb":verb, "object":object}, type=WARNING_CONST)
             return False
 
-        self.add_note_info("NO_SEMANTIC_ISSUE")
+        self.add_note("NO_SEMANTIC_ISSUE", type=INFO_CONST)
         return True
     # def check_verb_voice_compatible(self, verb, voice):
     #     """

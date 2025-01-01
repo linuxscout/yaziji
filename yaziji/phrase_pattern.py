@@ -42,11 +42,12 @@ import stream_pattern
 from wordnode import wordNode
 from components_set import componentsSet
 from validator import  Validator
+from error_listener import ErrorListener
 class PhrasePattern:
     """
     A class to generator
     """
-    def __init__(self, error_observer=None, validator=None):
+    def __init__(self, error_observer:ErrorListener=None, validator:Validator=None):
         # init error_observer
         self.error_observer = error_observer
         # Init objects
@@ -171,27 +172,28 @@ class PhrasePattern:
                 # self.notify_error_id(-2,"REQUIRED_NAME", {"name":name})
                 # print(-2,"REQUIRED_NAME", {"name":name})
                 # self.notify_error(-3, self.validator.get_note())
-                return -3
+                return self.validator.get_errorno() #-3
             # check if a required name is not found
             check = self.validator.check_required_components(components)
             if not check:
                 # self.notify_error_id(-2,"REQUIRED_NAME", {"name":name})
                 # print(-2,"REQUIRED_NAME", {"name":name})
                 # self.notify_error(-2, self.validator.get_note())
-                return -2
+                return self.validator.get_errorno() #-2
             # Chek for sufficient_components
             check = self.validator.check_sufficient_components(components)
             if not check:
                 # self.notify_error(-15, self.validator.get_note())
-                return -15
+                return self.validator.get_errorno() #-15
 
             check = self.validator.check_semantic(components)
             if not check:
                 # self.notify_error(-17, self.validator.get_note())
-                return -17
+                return self.validator.get_errorno() #-17
         else:
             self.notify_error_id(-25,"VALIDATOR_NOT_INITIALIZED")
-            return -25
+            return self.get_errorno("VALIDATOR_NOT_INITIALIZED")
+
         return True
 
     def add_components(self, components, featured_data=None):
@@ -346,7 +348,7 @@ class PhrasePattern:
             check = self.validator.check_semantic(components)
             if not check:
                 # self.notify_error(-17, self.validator.get_note())
-                return -17
+                return self.validator.get_errorno() # -17
 
         # مشكلة في التصريف بين الضمير وفعل الأمر
         # deprecated, moved to validator
@@ -876,6 +878,11 @@ class PhrasePattern:
         else:
             formatted_message = message_id + str(args)
         return self.notify_error(errorno, formatted_message)
+
+    def get_errorno(self, message_id):
+        # get error message from observer
+
+        return self.error_observer.get_errorno(message_id)
 
     def log(selfself, location, message):
         logging.info(f"PHRASE_Pattern DEBUG: #{location}: {message}")

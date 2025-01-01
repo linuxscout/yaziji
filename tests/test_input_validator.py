@@ -17,11 +17,12 @@ from yaziji.yaziji_const import ACTIVE_VOICE, PASSIVE_VOICE, AFFIRMATIVE, NEGATI
 
 # from yaziji.phrase_generator import PhraseGenerator
 from yaziji.validator import Validator
+from yaziji.error_listener import ErrorListener, ERROR_MESSAGES
 
 class TestInputValidator(unittest.TestCase):
     def setUp(self):
         # self.phrase_generator = PhraseGenerator()
-        self.validator = Validator()
+        self.validator = Validator(error_observer=ErrorListener())
 
 
     # @unittest.skip("Test later")
@@ -320,6 +321,31 @@ class TestInputValidator(unittest.TestCase):
             note = self.validator.get_note()
             self.assertEqual(result, item["valid"],
                              msg=f"ُExample n°{item['id']}\nResult  :{result}\nExpected:{item['valid']}\nMy Note{item['note']} \nThe Validator Note {note}")
+
+
+    # @unittest.skip("Test later")
+    def test_get_errorno(self):
+        # Assert message error
+        messages =[    "VERBAL_PHRASE_NO_VERB",
+    "NOMINAL_PHRASE_NO_NOUN",
+    "VERB_NO_SUB_NO_OBJ",
+    "ACTIVE_VOICE_NO_SUB",
+    "INSUFFICIENT_COMPONENTS",
+    "INTRANS_VERB_PASSIVE_VOICE",
+    "INTRANS_VERB_WITH_OBJ",
+    "TRANS_VERB_NO_OBJ",]
+        for num, msg in enumerate(messages):
+            # avoid substitution
+            if not(type(msg)==str and "{" not in msg):
+                self.validator.add_note(msg)
+                result = self.validator.get_errorno()
+                self.assertTrue(result<0,
+                                 msg=f"ُExample message ID '{msg}'\nResult  :{result}")
+        msg = "ANYTHING"
+        self.validator.add_note(msg)
+        result = self.validator.get_errorno()
+        self.assertFalse(result > 0,
+                         msg=f"ُExample message ID '{msg}'\nResult  :{result}")
 
 
     @unittest.skip("Test later")

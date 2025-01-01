@@ -1,6 +1,6 @@
 # Error listener class to handle errors
 ERROR_MESSAGES = {
-    -1: "Imperative Tense Incompatible with pronoun.",
+    "UNKNOWN_ERROR": "Error not defined",
     -2: "A required name not found.",
     -3: "Unsupported component key.",
     -4: "ERROR: Required Phrase type is empty.",
@@ -32,6 +32,7 @@ ERROR_MESSAGES = {
 
 INFO_CONST = "info"
 WARNING_CONST = "warning"
+ERROR_CONST = "error"
 class ErrorListener:
     def __init__(self,):
         pass
@@ -116,7 +117,6 @@ class ErrorListener:
         """
         return ";".join(self.info_list)
 
-
     def show_warnings(self):
         """
         show warnings
@@ -130,6 +130,21 @@ class ErrorListener:
         :return:
         """
         return ";".join(self.warning_list)
+    @staticmethod
+    def get_errorno(message_id):
+        """
+        Return a numeric value for error message key
+        :param message_id:
+        :return:
+        """
+        # lookup for key
+        key = message_id
+        if key in ERROR_MESSAGES:
+            errorno = list(ERROR_MESSAGES.keys()).index(key) + 1
+            # print(errorno)
+            return errorno
+        return 0
+
 
     def reset(self):
         """
