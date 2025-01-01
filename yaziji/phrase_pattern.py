@@ -102,7 +102,7 @@ class PhrasePattern:
         # init nodes
         # prepare only nodes with word type
         for name  in self.nodes_names:
-            self.nodes[name] = wordNode("default", "")
+            self.nodes[name] = wordNode(name, "")
         # prepare features nodes
 
     def get_comp_value(self, components, name):
@@ -855,6 +855,7 @@ class PhrasePattern:
 
         # Join the phrase parts with spaces and return the resulting phrase
         return " ".join(phrase_parts)
+
 
     def notify_error(self, errorno, message, level="error"):
         """
