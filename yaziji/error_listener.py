@@ -95,12 +95,12 @@ class ErrorListener:
         """
         return self.error_list
 
-    def show_errors_to_string(self):
+    def show_errors_to_string(self, sep="\n"):
         """
         show errors
         :return:
         """
-        return ";".join(self.error_list)
+        return sep.join(self.error_list)
 
 
     def show_infos(self):
@@ -110,12 +110,12 @@ class ErrorListener:
         """
         return self.info_list
 
-    def show_infos_to_string(self):
+    def show_infos_to_string(self, sep="\n"):
         """
         show infos
         :return:
         """
-        return ";".join(self.info_list)
+        return sep.join(self.info_list)
 
     def show_warnings(self):
         """
@@ -124,12 +124,12 @@ class ErrorListener:
         """
         return self.warning_list
 
-    def show_warnings_to_string(self):
+    def show_warnings_to_string(self, sep="\n"):
         """
         show warnings
         :return:
         """
-        return ";".join(self.warning_list)
+        return sep.join(self.warning_list)
     @staticmethod
     def get_errorno(message_id):
         """

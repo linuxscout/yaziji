@@ -75,6 +75,11 @@ MARFOU3 = "مرفوع"
 MANSOUB = "منصوب"
 MAJROUR = "مجرور"
 DEFINED = "تعريف"
+
+VERB_TYPE = "فعل"
+NOUN_TYPE = "اسم"
+ADVERB_TYPE = "ظرف"
+
 PASSIVE_VOICE = "مبني للمجهول"
 ACTIVE_VOICE = "معلوم"
 NEGATIVE = "منفي"
@@ -87,6 +92,8 @@ HIDDEN ="مخفي"
 PARTICAL_LAM = "لَمْ"
 PARTICAL_LAN = "لَنْ"
 PARTICAL_LA = "لا"
+PARTICAL_FI = "فِي"
+PARTICAL_AN = 'أَنْ'
 
 TRANSITIVE_COMMON ="مشترك"
 TRANSITIVE_INDIRECT ="متعدي بحرف"
@@ -183,8 +190,6 @@ u'هما': u'هُمَا',
 u'هما مؤ': u'هُمَا',
 u'هم': u'هُمْ',
 u'هن': u'هُنَّ',
-
-    
 }
 
 AUXILIARY= {
@@ -192,4 +197,120 @@ AUXILIARY= {
         u"أَرَادَ": araby.KASRA,
         u"كَادَ":araby.FATHA,
     
+}
+
+TIME_ADVERB_INFLECTION = "ظرف زمان منصوب على الظرفية"
+STATIC_INFLECTION= {
+PARTICAL_LA : "حرف نهي جازم",
+PARTICAL_LAM: "حرف جزم",
+PARTICAL_LAN: "حرف نصب",
+PARTICAL_AN: "حرف نصب",
+PARTICAL_FI : "حرف جر",
+    "أَمْسِ": "ظرف زمان مبني على الكسر في محل نصب على الظرفية",
+   "دَائِمًا":TIME_ADVERB_INFLECTION,
+    "أَوَّلَ أَمْسِ":TIME_ADVERB_INFLECTION,
+    "الْبَارِحَةَ":TIME_ADVERB_INFLECTION,
+    "أَحْيَانًا":TIME_ADVERB_INFLECTION,
+    "بَعْدَ غَدٍ":TIME_ADVERB_INFLECTION,
+    "مَسَاءً":TIME_ADVERB_INFLECTION,
+    "الْيَوْمَ":TIME_ADVERB_INFLECTION,
+    "غَدًا":TIME_ADVERB_INFLECTION,
+    "صَبَاحًا":TIME_ADVERB_INFLECTION,
+    "كُلَّ يَوْمٍ":TIME_ADVERB_INFLECTION,
+    "البَارِحَةَ":TIME_ADVERB_INFLECTION,
+    "اليَوْمَ":TIME_ADVERB_INFLECTION,
+    "سَاعَةً":TIME_ADVERB_INFLECTION,
+    "سَنَةً":TIME_ADVERB_INFLECTION,
+    "شِتَاءً":TIME_ADVERB_INFLECTION,
+    "صَيْفًا":TIME_ADVERB_INFLECTION,
+    "ظُهْرًا":TIME_ADVERB_INFLECTION,
+    "عَصْرًا":TIME_ADVERB_INFLECTION,
+    "فَجْرًا":TIME_ADVERB_INFLECTION,
+    "لَحْظَةَ":TIME_ADVERB_INFLECTION,
+    "لَيْلًا":TIME_ADVERB_INFLECTION,
+    "نَهْارًا":TIME_ADVERB_INFLECTION
+}
+
+
+SUBJECT_FUNCTION = "فاعل/مبتدأ"
+VERBAL_SUBJECT_FUNCTION = "فاعل"
+OBJECT_FUNCTION = "مفعول به"
+PASSIVE_SUBJECT_FUNCTION = "نائب فاعل"
+ADJECTIVE_FUNCTION = "فاعل"
+NOMINAL_SUBJECT_FUNCTION = "مبتدأ"
+PREDICATE_FUNCTION = "خبر"
+
+
+NODES_CONFIG = {
+   # features
+   "phrase_type":{
+      "type":"feature",
+      "conjugable":False,
+      "wordtype":"",
+      "required":True
+   },
+   "tense":{
+      "type":"feature",
+      "conjugable":False,
+      "wordtype":"",
+      "required":False
+   },
+   "voice":{
+      "type":"feature",
+      "conjugable":False,
+      "wordtype":"",
+      "required":False
+   },
+   "negative":{
+      "type":"feature",
+      "conjugable":False,
+      "wordtype":"",
+      "required":False
+   },
+   # words
+   "subject":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":NOUN_TYPE,
+       "function": SUBJECT_FUNCTION,  # initial function
+      "required":False,
+   },
+   "object":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":NOUN_TYPE,
+      "function": OBJECT_FUNCTION,  # initial function
+      "required":False
+   },
+   "verb":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":VERB_TYPE,
+      "required":False
+   },
+   "auxiliary":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":VERB_TYPE,
+      "required":False
+   },
+   "time":{
+      "type":"word",
+      "conjugable":False,
+      "wordtype":ADVERB_TYPE,
+      "required":False
+   },
+   "place":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":NOUN_TYPE,
+      "required":False
+   },
+   "adjective":{
+      "type":"word",
+      "conjugable":True,
+      "wordtype":NOUN_TYPE,
+      "function": ADJECTIVE_FUNCTION,
+      "required":False
+   }
 }

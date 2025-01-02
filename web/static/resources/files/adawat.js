@@ -23,6 +23,7 @@ function test_compatibility(options) {
      * @param {Object} options - The sentence components to check.
      * @return {boolean} - Returns true if the sentence is valid, false otherwise.
      */
+//    return true;
     const PASSIVE_VOICE = "مبني للمجهول";
     const ACTIVE_VOICE = "معلوم";
     const VERBAL_PHRASE = "جملة فعلية";

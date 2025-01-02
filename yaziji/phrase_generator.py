@@ -28,6 +28,7 @@ import phrase_pattern
 import components_set
 import error_listener
 import validator
+import inflector
 import worddictionary
 import os
 import random
@@ -56,6 +57,7 @@ class PhraseGenerator:
         self.pattern = phrase_pattern.PhrasePattern(   validator=self.validator
                                             # error_observer=self.error_observer,
                                                 )
+        self.inflector = inflector.Inflector()
 
     #
     # def load_dictionary(self, file_path):
@@ -148,14 +150,17 @@ class PhraseGenerator:
             # phrase = self.error_message(response)
             #TODO: return an empty phrase with a list of possible errors separatly
             phrase = ""
+            inflection =""
         else:
             self.pattern.prepare()
             phrase = self.pattern.build()
+            infl_list = self.inflector.inflect_nodes(self.pattern.nodes, self.pattern.stream)
+            inflection = self.inflector.to_string(infl_list, sep="<br/>")
 
         return {"phrase": phrase,
         "phrase_type":self.pattern.phrase_type,
-        "inflection": "إعراب الجملة",
-        "errors":self.error_observer.show_errors_to_string()
+        "inflection": inflection,
+        "errors":self.error_observer.show_errors_to_string(sep="<br/>")
         }
 
     def error_message(self, error_no):

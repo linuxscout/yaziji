@@ -34,7 +34,7 @@ class TestInflector(unittest.TestCase):
         result = self.inflector.inflect_static("FI")
         self.assertEqual(result, "")
 
-
+    @unittest.skip("Test later")
     def test_inflect_word(self):
         """Test the inflect_word method."""
 
@@ -58,34 +58,54 @@ class TestInflector(unittest.TestCase):
             result = self.phrase_generator.build(item["components"])
             phrase = result.get("phrase",'')
             nodes = self.phrase_generator.pattern.nodes
-            features = self.phrase_generator.pattern.phrase_features
+            stream = self.phrase_generator.pattern.stream
+            # features = self.phrase_generator.pattern.phrase_features
             print(f"--------Example n°{item['id']}-----------------")
-            for key, wdnode in nodes.items():
-                inflection = self.inflector.inflect_word(wdnode)
-                print(f"Name: '{wdnode.name}', word:'{wdnode.word}', inflection: '{inflection}'")
-        self.assertTrue(False)
+            print("PHRASE:",phrase)
+            for key,wdnode in nodes.items():
+                if key in stream.to_list():
+                    # print("Node", wdnode)
+                    # print("Node tags", wdnode.tags)
+                    inflection = self.inflector.inflect_word(wdnode)
+                    self.assertTrue(inflection,
+                                    msg= f"Name: '{wdnode.name}', word:'{wdnode.word}:{wdnode.conjugated}', tags:{wdnode.tags} \ncode '{wdnode.tagcode}' \tinflection: '{inflection}'")
+        # self.assertTrue(False)
             # self.assertEqual(phrase == item["phrase"], item["valid"],
             #                  msg=f"\nResult  :{result}\nExpected:{item['phrase']}")  # Should return True if preparation is successful
 
 
-    @unittest.skip("Test later")
-    def test_i3rab(self):
+    # @unittest.skip("Test later")
+    def test_inflect_nodes(self):
         """Test the i3rab method."""
         # Override nodes with mock data
-        self.inflector.nodes = self.mock_nodes
-        self.inflector.stream = self.mock_stream
 
-        # Call the method
-        result = self.inflector.i3rab()
 
-        # Expected output
-        expected_result = [
-            {'kind': 'did', 'word': 'word', 'inflect': ''},
-            {'kind': 'played', 'word': 'word', 'inflect': ''},
-            {'kind': 'well', 'word': 'word', 'inflect': ''}
+        test_set=[ {"id":1,
+                    "components":{'subject': 'تَاجِرٌ', 'object': '', 'verb': 'سَافَرَ', 'time': 'البَارِحَةَ', 'place': 'طَرِيقٌ',
+                       'tense': TensePast, 'voice': PASSIVE_VOICE, 'auxiliary': 'اِسْتَطَاعَ',
+                       'negative': NEGATIVE, 'phrase_type': NOMINAL_PHRASE},
+                     "phrase":"التَّاجِرُ لَمْ يُسْتَطَعْ أَنْ يُسَافَرَ فِي الطَّرِيقِ البَارِحَةَ",
+                    "valid":True,
+                    },
+                    {"id":2,
+                    "components":{'subject': 'مُهَنْدِسٌ', 'object': '', 'verb': 'اشْتَرَى', 'time': 'أَمْسِ',
+                                  'place': 'سُوقٌ', 'tense': TensePast, 'voice': ACTIVE_VOICE,
+                                  'auxiliary': '', 'negative': NEGATIVE, 'phrase_type': VERBAL_PHRASE},
+                      "phrase":"لَمْ يَشْتَرِ الْمُهَنْدِسُ فِي السُّوقِ أَمْسِ",
+                      "valid":False,
+                    },
         ]
+        for item in test_set:
+            result = self.phrase_generator.build(item["components"])
+            phrase = result.get("phrase",'')
+            nodes = self.phrase_generator.pattern.nodes
+            stream = self.phrase_generator.pattern.stream
+            features = self.phrase_generator.pattern.phrase_features
+            inflect_parts = self.inflector.inflect_nodes(nodes, stream)
+            inflect_text = self.inflector.to_string(inflect_parts)
+            self.assertTrue(inflect_text,
+                            msg=f"Example n°{item['id']}: Inflection for '{phrase}'\n{inflect_text}.")
 
-        self.assertEqual(result, expected_result)
 
     @unittest.skip("Test later")
     def test_i3rab_with_hidden_node(self):

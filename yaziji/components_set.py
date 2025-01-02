@@ -26,6 +26,9 @@ import random
 
 import libqutrub.verb_const as vconst
 import yaziji_const
+from  yaziji_const import NOUN_TYPE, VERB_TYPE, ADVERB_TYPE
+from  yaziji_const import NODES_CONFIG
+
 
 class componentsSet:
     """
@@ -33,21 +36,7 @@ class componentsSet:
     """
     def __init__(self,):
         # components setting
-        self.nodes_config= {
-            # features
-            "phrase_type": {"type": "feature", "conjugable": False, "wordtype": "", "required":True},
-            "tense": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
-            "voice": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
-            "negative": {"type": "feature", "conjugable": False, "wordtype": "", "required":False},
-            # words
-            "subject":   {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
-            "object":    {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
-            "verb":      {"type": "word", "conjugable": True, "wordtype": "verb", "required":False},
-            "auxiliary": {"type": "word", "conjugable": True, "wordtype": "verb", "required":False},
-            "time":   {"type": "word", "conjugable": False, "wordtype": "adverb", "required":False},
-            "place":  {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
-            "adjective":  {"type": "word", "conjugable": True, "wordtype": "noun", "required":False},
-        }
+        self.nodes_config= NODES_CONFIG
         self.subjects = [u"", u"أَحْمَد", u"وَلَدٌ"] + list(vconst.PronounsTable)
         self.objects = [u"", u"حَلِيبٌ", u"بَابٌ"] + list(vconst.PronounsTable) 
         self.verbs = [ u"", u"شَرِبَ",
@@ -149,6 +138,14 @@ class componentsSet:
         :return: The value of the 'conjugable' attribute or None if not found.
         """
         return self.nodes_config.get(key, {}).get("conjugable", False)
+
+    def get_config(self, key):
+        """
+        Retrieve the  attributes for a specific key in the dictionary.
+        :param key: The key whose 'conjugable' attribute is to be retrieved.
+        :return: The value of the 'conjugable' attribute or None if not found.
+        """
+        return self.nodes_config.get(key, {})
 
     def get_wordtype(self, key):
         """

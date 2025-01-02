@@ -34,9 +34,10 @@ import arramooz.arabicdictionary
 from arramooz.nountuple import NounTuple
 from arramooz.verbtuple import VerbTuple
 
-import yaziji_const
+import yaziji_const as yconst
 from yaziji_const import MARFOU3, MANSOUB, MAJROUR, DEFINED, PASSIVE_VOICE, VERBAL_PHRASE
 from yaziji_const import HIDDEN, GENDER_FEMALE, NEGATIVE, PARTICAL_LA, PARTICAL_LAM, PARTICAL_LAN
+
 import yz_utils
 import stream_pattern
 from wordnode import wordNode
@@ -102,7 +103,7 @@ class PhrasePattern:
         # init nodes
         # prepare only nodes with word type
         for name  in self.nodes_names:
-            self.nodes[name] = wordNode(name, "")
+            self.nodes[name] = wordNode(name=name, value="")
         # prepare features nodes
 
     def get_comp_value(self, components, name):
@@ -229,13 +230,18 @@ class PhrasePattern:
             #     # self.notify_error(response,f"ERROR: A required name '{name}' not found. ",)
             #     self.notify_error_id(response,"REQUIRED_NAME", {"name":name})
             #     return response
+            config_fields = self.components_config.get_config(name)
+            value = self.get_comp_value(components, name)
+            # self.nodes[name] = wordNode(name=name, value="", config=config_fields)
+            # self.nodes[name].configure(config_fields)
+            # print("CONFIG", config_fields, "\n", self.nodes[name].conjugable)
             if self.components_config.get_type(name) == "word":
-                self.nodes[name]  = wordNode(name, self.get_comp_value(components, name))
+                self.nodes[name]  = wordNode(name=name, value=value, config=config_fields)
             elif self.components_config.get_type(name) == "feature":
                 # save features in features table
-                self.phrase_features[name] = self.get_comp_value(components, name)
+                self.phrase_features[name] = value
             else:
-                self.nodes[name] = wordNode(name, self.get_comp_value(components, name))
+                self.nodes[name] = wordNode(name=name, value=value, config=config_fields)
 
         # select a stream for a given phrase type
         # the stream is the word order and phrase components
@@ -421,7 +427,7 @@ class PhrasePattern:
                     and self.get_feature_value("voice") != PASSIVE_VOICE
             ):
                 v_enclitic = self.get_enclitic(self.predicate)
-                self.nodes["verb"].encilitc = v_enclitic
+                self.nodes["verb"].enclitic = v_enclitic
                 self.nodes["verb"].proclitic = ""
                 verb_conjugated = self.nodes["verb"].conjugated
                 forms = self.verbaffixer.vocalize(verb_conjugated, proclitic="", enclitic=v_enclitic)
@@ -430,23 +436,33 @@ class PhrasePattern:
         # Prepare object (predicate)
         if self.predicate:
             self.prepare_predicate(self.nodes["object"])
+            self.nodes["object"].set_function_by_features(self.phrase_features)
 
         # Prepare subject
         if self.subject:
             tags = [MARFOU3, DEFINED]
             if self.get_feature_value("has_verb") and self.phrase_type == VERBAL_PHRASE:
                 if self.is_pronoun(self.subject) or self.get_feature_value("voice") == PASSIVE_VOICE:
+                # if self.get_feature_value("voice") == PASSIVE_VOICE:
                     tags = [HIDDEN]  # Hide the subject
+
             self.nodes["subject"].conjugated = self.conjugate_noun_by_tags(self.nodes["subject"], tags=tags)
+            self.nodes["subject"].set_function_by_features(self.phrase_features)
+            self.nodes["subject"].add_tags(tags)
+            self.nodes["subject"].add_tags([yconst.NOUN_TYPE,])
 
         # Prepare place circumstance
         if self.place_circumstance:
             self.nodes["place"].before = u"فِي"
+            tags = [MAJROUR, DEFINED]
             self.nodes["place"].conjugated = self.conjugate_noun_by_tags(
-                self.nodes["place"], tags=[MAJROUR, DEFINED]
+                self.nodes["place"], tags= tags
             )
+            self.nodes["place"].add_tags(tags)
+            self.nodes["place"].add_tags([yconst.NOUN_TYPE,])
 
         return True
+
 
     # def prepare(self,):
     #     """
@@ -556,7 +572,8 @@ class PhrasePattern:
             # مبتدأ وخبر
             # word_node.conjugated  = self.conjugate_noun_by_tags(word_node, tags=[MARFOU3, DEFINED])
             tags = [MARFOU3, DEFINED]
-        word_node.tags = tags
+        word_node.add_tags(tags)
+        word_node.add_tags([yconst.NOUN_TYPE,])
         word_node.conjugated  = self.conjugate_noun_by_tags(word_node, tags)
 
     def prepare_verb(self, wordnode , vtype=""):
@@ -598,6 +615,7 @@ class PhrasePattern:
         # wordnode.transitive = transitive
         # wordnode.future_type = future_type
         wordnode.pronoun = pronoun
+        wordnode.add_tags([tense, pronoun, yconst.VERB_TYPE])
 
     def conjugate_noun_by_tags(self, word_node, tags):
         """
@@ -607,7 +625,7 @@ class PhrasePattern:
             word_node.hide()
             return ""
         # Handle special cases for words like pronouns
-        vocalized = yaziji_const.SPECIAL_VOCALIZED.get(word_node.word, "")
+        vocalized = yconst.SPECIAL_VOCALIZED.get(word_node.word, "")
         if vocalized:
             return vocalized
 
@@ -631,8 +649,11 @@ class PhrasePattern:
         # Apply affixation and retrieve forms
         word = word_node.value
         forms = self.nounaffixer.vocalize(word_node.vocalized, proclitic, suffix, enclitic)
-
+        conj_tag = self.nounaffixer.get_tags(word_node.vocalized, proclitic, suffix, enclitic)
         # Return the conjugated form or the original word
+        word_node.add_tags(conj_tag)
+        word_node.add_tags(tags)
+        word_node.add_tags([yconst.NOUN_TYPE,])
         return forms[0][0] if forms else word
 
     def is_compatible(self, tense, pronoun):
@@ -644,7 +665,7 @@ class PhrasePattern:
         """
         Extract enclitic
         """
-        return yaziji_const.ENCLITICS.get(pronoun,"")
+        return yconst.ENCLITICS.get(pronoun,"")
 
     def get_tense(self, time_word):
         """
@@ -653,7 +674,7 @@ class PhrasePattern:
         # Determine primary tense based on the time word
         given_tense =  self.get_feature_value("tense")
         # if time word give tense, use it, else use given tense
-        tense = yaziji_const.TENSES.get(time_word, given_tense if given_tense else "")
+        tense = yconst.TENSES.get(time_word, given_tense if given_tense else "")
         verb_factor = ""
 
         # Handle negative tense cases
@@ -705,7 +726,7 @@ class PhrasePattern:
             word_tuple_result = VerbTuple({"vocalized":word,
                                  "unvocalized":araby.strip_harakat(word),
                                  "transitive": True,
-                                 "future_type": yaziji_const.AUXILIARY.get(word, araby.FATHA)
+                                 "future_type": yconst.AUXILIARY.get(word, araby.FATHA)
                                  })
         elif self.nodes_word_attributes and word in self.nodes_word_attributes:
             given_attributes = self.nodes_word_attributes.get(word,{})
